@@ -1,0 +1,25 @@
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+   <soapenv:Body>
+      <bcs:CreateSubscriberResultMsg xmlns:bcs="http://172.22.26.40:8080/services/BcServices " xmlns:cbs="http://www.huawei.com/bme/cbsinterface/cbscommon" xmlns:bcc="http://www.huawei.com/bme/cbsinterface/bccommon">
+         <ResultHeader>
+            <cbs:Version>1</cbs:Version>
+            <cbs:ResultCode>0</cbs:ResultCode>
+            <cbs:ResultDesc>Operation successfully.</cbs:ResultDesc>
+         </ResultHeader>
+         <CreateSubscriberResult>
+            <bcs:EffectiveTime>20240925103743</bcs:EffectiveTime>
+            <bcs:OfferingInst>
+               <bcc:OfferingKey>
+                  <bcc:OfferingID>71</bcc:OfferingID>
+                  <bcc:PurchaseSeq>3108</bcc:PurchaseSeq>
+               </bcc:OfferingKey>
+               <bcc:EffectiveTime>20240925103743</bcc:EffectiveTime>
+               <bcc:ExpirationTime>20370101000000</bcc:ExpirationTime>
+            </bcs:OfferingInst>
+            <bcs:SiteInfo>
+               <bcc:PrimarySite>2</bcc:PrimarySite>
+            </bcs:SiteInfo>
+         </CreateSubscriberResult>
+      </bcs:CreateSubscriberResultMsg>
+   </soapenv:Body>
+</soapenv:Envelope>

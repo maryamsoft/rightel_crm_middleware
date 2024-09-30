@@ -1,0 +1,405 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:bbcommon="http://www.huawei.com/bme/cbsinterface/bbcommon" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:import namespace="http://www.huawei.com/bme/cbsinterface/bbcommon" schemaLocation="CBSInterface_BB_Common.xsd"/>
+	<!--Query CDR-->
+	<xs:complexType name="QueryCDRRequest">
+		<xs:sequence>
+			<xs:element name="CustAccessCode" type="bbcommon:CustAccessCode" minOccurs="0"/>
+			<xs:choice>
+				<xs:element name="SubAccessCode" type="bbcommon:SubAccessCode"/>
+				<xs:element name="SubGroupAccessCode" type="bbcommon:SubGroupAccessCode"/>
+				<xs:element name="CustomerAccessCode" type="bbcommon:CustAccessCode">
+					<xs:annotation>
+						<xs:documentation>查询客户级别账单</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="AcctAccessCode" type="bbcommon:AcctAccessCode"/>
+			</xs:choice>
+			<xs:choice>
+				<xs:element name="BillCycleID" type="xs:string"/>
+				<xs:element name="TimePeriod">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="StartTime" type="xs:string"/>
+							<xs:element name="EndTime" type="xs:string" minOccurs="0"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:choice>
+			<xs:element name="ServiceCategory" type="xs:string" minOccurs="0"/>
+			<xs:element name="FlowType" type="xs:string" minOccurs="0"/>
+			<xs:element name="ServiceType" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="OtherNumber" type="xs:string" minOccurs="0"/>
+			<xs:element name="TotalCDRNum" type="xs:integer"/>
+			<xs:element name="BeginRowNum" type="xs:integer"/>
+			<xs:element name="FetchRowNum" type="xs:integer"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="QueryCDRResult">
+		<xs:sequence>
+			<xs:element name="TotalCDRNum" type="xs:integer"/>
+			<xs:element name="BeginRowNum" type="xs:integer"/>
+			<xs:element name="FetchRowNum" type="xs:integer"/>
+			<xs:element name="CDRSummary" minOccurs="0" maxOccurs="unbounded">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="ServiceCategory" type="xs:string">
+							<xs:annotation>
+								<xs:documentation>业务分类，如 呼叫，短信，彩信</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="SeriveType" type="xs:string" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>业务类型，如国内固话呼叫、国内移动呼叫、国际移动呼叫</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="ServiceTypeName" type="xs:string"/>
+						<xs:element name="FlowType" type="xs:string" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>例如：MO, MT, MF
+									对于Voice, SMS, MMS等存在主被叫的业务有效</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="RoamFlag" type="xs:string" minOccurs="0"/>
+						<xs:element name="BillCycleID" type="xs:string"/>
+						<xs:element name="VolumeInfo" minOccurs="0" maxOccurs="unbounded">
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="ActualVolume" type="xs:long">
+										<xs:annotation>
+											<xs:documentation>实际用量值</xs:documentation>
+										</xs:annotation>
+									</xs:element>
+									<xs:element name="RatingVolume" type="xs:long">
+										<xs:annotation>
+											<xs:documentation>批价用量值</xs:documentation>
+										</xs:annotation>
+									</xs:element>
+									<xs:element name="FreeVolume" type="xs:long">
+										<xs:annotation>
+											<xs:documentation>免费用量值</xs:documentation>
+										</xs:annotation>
+									</xs:element>
+									<xs:element name="MeasureUnit" type="xs:integer"/>
+									<xs:element name="FreeUnitList" minOccurs="0" maxOccurs="unbounded">
+										<xs:annotation>
+											<xs:documentation>免费用量使用的免费资源列表</xs:documentation>
+										</xs:annotation>
+										<xs:complexType>
+											<xs:sequence>
+												<xs:element name="FreeUnitType" type="xs:string">
+													<xs:annotation>
+														<xs:documentation>免费资源的类型编码</xs:documentation>
+													</xs:annotation>
+												</xs:element>
+												<xs:element name="Amount" type="xs:long">
+													<xs:annotation>
+														<xs:documentation>免费用量值</xs:documentation>
+													</xs:annotation>
+												</xs:element>
+												<xs:element name="MeasureUnit" type="xs:integer" minOccurs="0"/>
+											</xs:sequence>
+										</xs:complexType>
+									</xs:element>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="TotalChargeInfo" minOccurs="0" maxOccurs="unbounded">
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="ActualChargeAmt" type="xs:long">
+										<xs:annotation>
+											<xs:documentation>应用了免费资源后的实际批价总费用（含税）</xs:documentation>
+										</xs:annotation>
+									</xs:element>
+									<xs:element name="ActualTax" minOccurs="0" maxOccurs="unbounded">
+										<xs:complexType>
+											<xs:sequence>
+												<xs:element name="TaxCode" type="xs:string"/>
+												<xs:element name="TaxAmt" type="xs:long"/>
+											</xs:sequence>
+										</xs:complexType>
+									</xs:element>
+									<xs:element name="FreeChargeAmt" type="xs:long">
+										<xs:annotation>
+											<xs:documentation>应用的免费资源部分抵了多少总费用（含税）</xs:documentation>
+										</xs:annotation>
+									</xs:element>
+									<xs:element name="FreeTax" minOccurs="0" maxOccurs="unbounded">
+										<xs:complexType>
+											<xs:sequence>
+												<xs:element name="TaxCode" type="xs:string"/>
+												<xs:element name="TaxAmt" type="xs:long"/>
+											</xs:sequence>
+										</xs:complexType>
+									</xs:element>
+									<xs:element name="CurrencyID" type="xs:integer"/>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="AdditionalProperty" minOccurs="0" maxOccurs="unbounded">
+							<xs:annotation>
+								<xs:documentation>It is reserved for future extension</xs:documentation>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="Code" type="xs:string"/>
+									<xs:element name="Value" type="xs:string"/>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="CDRInfo" minOccurs="0" maxOccurs="unbounded">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="CdrSeq" type="xs:string"/>
+						<xs:element name="ServiceCategory" type="xs:string">
+							<xs:annotation>
+								<xs:documentation>业务分类，如 呼叫，短信，彩信</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="SeriveType" type="xs:string">
+							<xs:annotation>
+								<xs:documentation>业务类型，如国内固话呼叫、国内移动呼叫、国际移动呼叫</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="ServiceTypeName" type="xs:string"/>
+						<xs:element name="SubKey" type="xs:string"/>
+						<xs:element name="PrimaryIdentity" type="xs:string" minOccurs="0"/>
+						<xs:element name="AccountKey" type="xs:string"/>
+						<xs:element name="OtherNumber" type="xs:string" minOccurs="0"/>
+						<xs:element name="OriginalCalledParty" type="xs:string" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>原被叫方,CF流程</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="FlowType" type="xs:string" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>例如：MO, MT, MF
+									对于Voice, SMS, MMS等存在主被叫的业务有效</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="ChargingPartyNumber" type="xs:string" minOccurs="0"/>
+						<xs:element name="RoamFlag" type="xs:string" minOccurs="0"/>
+						<xs:element name="CallingCellID" type="xs:string" minOccurs="0"/>
+						<xs:element name="CalledCellID" type="xs:string" minOccurs="0"/>
+						<xs:element name="AreaInfo" minOccurs="0">
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="CallingHomeCountryCode" type="xs:integer" minOccurs="0"/>
+									<xs:element name="CallingHomeAreaNumber" type="xs:integer" minOccurs="0"/>
+									<xs:element name="CallingHomeOperatorNumber" type="xs:integer" minOccurs="0"/>
+									<xs:element name="CallingRoamCountryCode" type="xs:integer" minOccurs="0"/>
+									<xs:element name="CallingRoamAreaNumber" type="xs:integer" minOccurs="0"/>
+									<xs:element name="CallingRoamOperatorNumber" type="xs:integer" minOccurs="0"/>
+									<xs:element name="CalledHomeCountryCode" type="xs:integer" minOccurs="0"/>
+									<xs:element name="CalledHomeAreaNumber" type="xs:integer" minOccurs="0"/>
+									<xs:element name="CalledHomeOperatorNumber" type="xs:integer" minOccurs="0"/>
+									<xs:element name="CalledRoamCountryCode" type="xs:integer" minOccurs="0"/>
+									<xs:element name="CalledRoamAreaNumber" type="xs:integer" minOccurs="0"/>
+									<xs:element name="CalledRoamOperatorNumber" type="xs:integer" minOccurs="0"/>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="RefundIndicator" type="xs:string" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>标识扣费还是回补</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="SpecialNumberIndicator" type="xs:string" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>短消息特殊号码类型，主要标识出免费号码，A2P/P2A等类型</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="URL" type="xs:string" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>对于数据业务类有效</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="ServiceID" type="xs:string" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>业务编号</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="SpCpID" type="xs:string" minOccurs="0"/>
+						<xs:element name="CategoryID" type="xs:string" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>服务分类</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="ContentID" type="xs:string" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>内容ID</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="StartTime" type="xs:string">
+							<xs:annotation>
+								<xs:documentation>CDR 开始时间，用户归属地时间</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="EndTime" type="xs:string" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>CDR 结束时间，用户归属地时间</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="BillCycleID" type="xs:string"/>
+						<xs:element name="VolumeInfo" minOccurs="0">
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="ActualVolume" type="xs:long">
+										<xs:annotation>
+											<xs:documentation>实际用量值</xs:documentation>
+										</xs:annotation>
+									</xs:element>
+									<xs:element name="RatingVolume" type="xs:long">
+										<xs:annotation>
+											<xs:documentation>批价用量值</xs:documentation>
+										</xs:annotation>
+									</xs:element>
+									<xs:element name="FreeVolume" type="xs:long">
+										<xs:annotation>
+											<xs:documentation>免费用量值</xs:documentation>
+										</xs:annotation>
+									</xs:element>
+									<xs:element name="MeasureUnit" type="xs:integer">
+										<xs:annotation>
+											<xs:documentation>用量的单位编码</xs:documentation>
+										</xs:annotation>
+									</xs:element>
+									<xs:element name="FreeUnitList" minOccurs="0" maxOccurs="unbounded">
+										<xs:annotation>
+											<xs:documentation>免费用量使用的免费资源列表</xs:documentation>
+										</xs:annotation>
+										<xs:complexType>
+											<xs:sequence>
+												<xs:element name="FreeUnitType" type="xs:string">
+													<xs:annotation>
+														<xs:documentation>免费资源的类型编码</xs:documentation>
+													</xs:annotation>
+												</xs:element>
+												<xs:element name="Amount" type="xs:long">
+													<xs:annotation>
+														<xs:documentation>免费用量值</xs:documentation>
+													</xs:annotation>
+												</xs:element>
+												<xs:element name="MeasureUnit" type="xs:integer" minOccurs="0">
+													<xs:annotation>
+														<xs:documentation>用量的单位编码</xs:documentation>
+													</xs:annotation>
+												</xs:element>
+											</xs:sequence>
+										</xs:complexType>
+									</xs:element>
+									<xs:element name="FreeVolumeList" minOccurs="0" maxOccurs="unbounded">
+										<xs:complexType>
+											<xs:sequence>
+												<xs:element name="FreeVolume" type="xs:long"/>
+												<xs:element name="MeasureUnit" type="xs:integer" minOccurs="0">
+													<xs:annotation>
+														<xs:documentation>用量的单位编码</xs:documentation>
+													</xs:annotation>
+												</xs:element>
+												<xs:element name="Offering" minOccurs="0">
+													<xs:complexType>
+														<xs:sequence>
+															<xs:element name="OfferingID" type="xs:integer" nillable="true"/>
+															<xs:element name="OfferingName" type="xs:string" minOccurs="0"/>
+															<xs:element name="PurchaseSeq" type="xs:string" minOccurs="0"/>
+														</xs:sequence>
+													</xs:complexType>
+												</xs:element>
+											</xs:sequence>
+										</xs:complexType>
+									</xs:element>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="TotalChargeInfo" minOccurs="0">
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="ActualChargeAmt" type="xs:long">
+										<xs:annotation>
+											<xs:documentation>应用了免费资源后的实际批价总费用（含税）</xs:documentation>
+										</xs:annotation>
+									</xs:element>
+									<xs:element name="ActualTax" minOccurs="0" maxOccurs="unbounded">
+										<xs:complexType>
+											<xs:sequence>
+												<xs:element name="TaxCode" type="xs:string"/>
+												<xs:element name="TaxAmt" type="xs:long"/>
+											</xs:sequence>
+										</xs:complexType>
+									</xs:element>
+									<xs:element name="FreeChargeAmt" type="xs:long">
+										<xs:annotation>
+											<xs:documentation>应用的免费资源部分抵了多少总费用（含税）</xs:documentation>
+										</xs:annotation>
+									</xs:element>
+									<xs:element name="FreeTax" minOccurs="0" maxOccurs="unbounded">
+										<xs:complexType>
+											<xs:sequence>
+												<xs:element name="TaxCode" type="xs:string"/>
+												<xs:element name="TaxAmt" type="xs:long"/>
+											</xs:sequence>
+										</xs:complexType>
+									</xs:element>
+									<xs:element name="CurrencyID" type="xs:integer"/>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="ChargeDetail" minOccurs="0" maxOccurs="unbounded">
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="ChargeCode" type="xs:string"/>
+									<xs:element name="ChargeCodeName" type="xs:string"/>
+									<xs:element name="ChargeAmount" type="xs:long"/>
+									<xs:element name="PayAcctKey" type="xs:string"/>
+									<xs:element name="PayObjClass" type="xs:string"/>
+									<xs:element name="PayObjType" type="xs:string"/>
+									<xs:element name="PayObjID" type="xs:long"/>
+									<xs:element name="OfferingID" type="xs:integer" minOccurs="0">
+										<xs:annotation>
+											<xs:documentation>具体的批价Offering ID, 0 表示全局资费</xs:documentation>
+										</xs:annotation>
+									</xs:element>
+									<xs:element name="OfferingName" type="xs:string" minOccurs="0">
+										<xs:annotation>
+											<xs:documentation>OfferingID查询Offering信息进行取Offering名称</xs:documentation>
+										</xs:annotation>
+									</xs:element>
+									<xs:element name="PlanID" type="xs:long" minOccurs="0">
+										<xs:annotation>
+											<xs:documentation>全局的计划标识</xs:documentation>
+										</xs:annotation>
+									</xs:element>
+									<xs:element name="CurrencyID" type="xs:integer"/>
+									<xs:element name="Tax" minOccurs="0" maxOccurs="unbounded">
+										<xs:complexType>
+											<xs:sequence>
+												<xs:element name="TaxCode" type="xs:string"/>
+												<xs:element name="TaxAmt" type="xs:long"/>
+											</xs:sequence>
+										</xs:complexType>
+									</xs:element>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="AdditionalProperty" minOccurs="0" maxOccurs="unbounded">
+							<xs:annotation>
+								<xs:documentation>It is reserved for future extension</xs:documentation>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="Code" type="xs:string"/>
+									<xs:element name="Value" type="xs:string"/>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

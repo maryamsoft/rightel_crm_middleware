@@ -1,0 +1,26 @@
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ars="http://www.huawei.com/bme/cbsinterface/arservices" xmlns:cbs="http://www.huawei.com/bme/cbsinterface/cbscommon" xmlns:arc="http://cbs.huawei.com/ar/wsservice/arcommon">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ars:QueryPaymentLogRequestMsg>
+         <RequestHeader>
+            <cbs:Version>1</cbs:Version>
+            <cbs:BusinessCode>QueryPaymentLog</cbs:BusinessCode>
+            <cbs:MessageSeq>${=new java.text.SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS").format(new Date())}</cbs:MessageSeq>
+            <cbs:AccessSecurity>
+               <cbs:LoginSystemCode>102</cbs:LoginSystemCode>
+               <cbs:Password>7/PuyYwNpRtSX7jDpxnl2ECAvuVYH2Mu9zxqgPGJrPYYK73MCZN7DvrDepA=</cbs:Password>
+            </cbs:AccessSecurity>
+            <cbs:OperatorInfo>
+               <cbs:OperatorID>101</cbs:OperatorID>
+            </cbs:OperatorInfo>
+         </RequestHeader>
+         <QueryPaymentLogRequest>
+            <ars:AcctAccessCode>
+               <!--You have a CHOICE of the next 3 items at this level-->
+               <arc:PrimaryIdentity>9235000073</arc:PrimaryIdentity>
+            </ars:AcctAccessCode>
+            <ars:ExtTransID>923500002879800</ars:ExtTransID>
+         </QueryPaymentLogRequest>
+      </ars:QueryPaymentLogRequestMsg>
+   </soapenv:Body>
+</soapenv:Envelope>

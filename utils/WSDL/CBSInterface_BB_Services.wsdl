@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:cbscommon="http://www.huawei.com/bme/cbsinterface/cbscommon" xmlns:bb="http://www.huawei.com/bme/cbsinterface/bbservices" targetNamespace="http://www.huawei.com/bme/cbsinterface/bbservices">
+	<types>
+		<xs:schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" targetNamespace="http://www.huawei.com/bme/cbsinterface/bbservices">
+			<import namespace="http://www.huawei.com/bme/cbsinterface/cbscommon" schemaLocation="CBSInterface_MessageHeader.xsd"/>
+			<include schemaLocation="CBSInterface_BB_QueryFreeUnit.xsd"/>
+			<include schemaLocation="CBSInterface_BB_HotBilling.xsd"/>
+			<include schemaLocation="CBSInterface_BB_Charge2Bill.xsd"/>
+			<include schemaLocation="CBSInterface_BB_QueryCDR.xsd"/>
+			<element name="QueryFreeUnitRequestMsg">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="RequestHeader" type="cbscommon:RequestHeader"/>
+						<xs:element name="QueryFreeUnitRequest" type="bb:QueryFreeUnitRequest"/>
+					</xs:sequence>
+				</xs:complexType>
+			</element>
+			<element name="QueryFreeUnitResultMsg">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="ResultHeader" type="cbscommon:ResultHeader"/>
+						<xs:element name="QueryFreeUnitResult" type="bb:QueryFreeUnitResult" minOccurs="0"/>
+					</xs:sequence>
+				</xs:complexType>
+			</element>
+			<element name="HotBillingRequestMsg">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="RequestHeader" type="cbscommon:RequestHeader"/>
+						<xs:element name="HotBillingRequest" type="bb:HotBillingRequest"/>
+					</xs:sequence>
+				</xs:complexType>
+			</element>
+			<element name="HotBillingResultMsg">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="ResultHeader" type="cbscommon:ResultHeader"/>
+						<xs:element name="HotBillingResult" type="bb:HotBillingResult"/>
+					</xs:sequence>
+				</xs:complexType>
+			</element>
+			<element name="QueryHotBillingStatusRequestMsg">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="RequestHeader" type="cbscommon:RequestHeader"/>
+						<xs:element name="QueryHotBillingStatusRequest" type="bb:QueryHotBillingStatusRequest"/>
+					</xs:sequence>
+				</xs:complexType>
+			</element>
+			<element name="QueryHotBillingStatusResultMsg">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="ResultHeader" type="cbscommon:ResultHeader"/>
+						<xs:element name="QueryHotBillingStatusResult" type="bb:QueryHotBillingStatusResult" minOccurs="0"/>
+					</xs:sequence>
+				</xs:complexType>
+			</element>
+			<element name="Charge2BillRequestMsg">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="RequestHeader" type="cbscommon:RequestHeader"/>
+						<xs:element name="Charge2BillRequest" type="bb:Charge2BillRequest"/>
+					</xs:sequence>
+				</xs:complexType>
+			</element>
+			<element name="Charge2BillResultMsg">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="ResultHeader" type="cbscommon:ResultHeader"/>
+						<xs:element name="Charge2BillResult" type="bb:Charge2BillResult" minOccurs="0"/>
+					</xs:sequence>
+				</xs:complexType>
+			</element>
+			<element name="QueryCDRRequestMsg">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="RequestHeader" type="cbscommon:RequestHeader"/>
+						<xs:element name="QueryCDRRequest" type="bb:QueryCDRRequest"/>
+					</xs:sequence>
+				</xs:complexType>
+			</element>
+			<element name="QueryCDRResultMsg">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="ResultHeader" type="cbscommon:ResultHeader"/>
+						<xs:element name="QueryCDRResult" type="bb:QueryCDRResult" minOccurs="0"/>
+					</xs:sequence>
+				</xs:complexType>
+			</element>
+		</xs:schema>
+	</types>
+	<message name="QueryFreeUnitRequestMessage">
+		<part name="QueryFreeUnitRequestMsg" element="bb:QueryFreeUnitRequestMsg"/>
+	</message>
+	<message name="QueryFreeUnitResultMessage">
+		<part name="QueryFreeUnitResultMsg" element="bb:QueryFreeUnitResultMsg"/>
+	</message>
+	<message name="HotBillingRequestMessage">
+		<part name="HotBillingRequestMsg" element="bb:HotBillingRequestMsg"/>
+	</message>
+	<message name="HotBillingResultMessage">
+		<part name="HotBillingResultMsg" element="bb:HotBillingResultMsg"/>
+	</message>
+	<message name="QueryHotBillingStatusRequestMessage">
+		<part name="QueryHotBillingStatusRequestMsg" element="bb:QueryHotBillingStatusRequestMsg"/>
+	</message>
+	<message name="QueryHotBillingStatusResultMessage">
+		<part name="QueryHotBillingStatusResultMsg" element="bb:QueryHotBillingStatusResultMsg"/>
+	</message>
+	<message name="Charge2BillRequestMessage">
+		<part name="Charge2BillRequestMsg" element="bb:Charge2BillRequestMsg"/>
+	</message>
+	<message name="Charge2BillResultMessage">
+		<part name="Charge2BillResultMsg" element="bb:Charge2BillResultMsg"/>
+	</message>
+	<message name="QueryCDRRequestMessage">
+		<part name="QueryCDRRequestMsg" element="bb:QueryCDRRequestMsg"/>
+	</message>
+	<message name="QueryCDRResultMessage">
+		<part name="QueryCDRResultMsg" element="bb:QueryCDRResultMsg"/>
+	</message>
+	<portType name="BbServices">
+		<operation name="QueryFreeUnit">
+			<input message="bb:QueryFreeUnitRequestMessage"/>
+			<output message="bb:QueryFreeUnitResultMessage"/>
+		</operation>
+		<operation name="HotBilling">
+			<input message="bb:HotBillingRequestMessage"/>
+			<output message="bb:HotBillingResultMessage"/>
+		</operation>
+		<operation name="QueryHotBillingStatus">
+			<input message="bb:QueryHotBillingStatusRequestMessage"/>
+			<output message="bb:QueryHotBillingStatusResultMessage"/>
+		</operation>
+		<operation name="Charge2Bill">
+			<input message="bb:Charge2BillRequestMessage"/>
+			<output message="bb:Charge2BillResultMessage"/>
+		</operation>
+		<operation name="Charge2BillRollback">
+			<input message="bb:Charge2BillRollbackRequestMessage"/>
+			<output message="bb:Charge2BillRollbackResultMessage"/>
+		</operation>
+		<operation name="Charge2BillPartRollback">
+			<input message="bb:Charge2BillPartRollbackRequestMessage"/>
+			<output message="bb:Charge2BillPartRollbackResultMessage"/>
+		</operation>
+		<operation name="QueryCDR">
+			<input message="bb:QueryCDRRequestMessage"/>
+			<output message="bb:QueryCDRResultMessage"/>
+		</operation>
+	</portType>
+	<binding name="BbServicsBinding" type="bb:BbServices">
+		<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+		<operation name="QueryFreeUnit">
+			<soap:operation soapAction="QueryFreeUnit" style="document"/>
+			<input>
+				<soap:body use="literal"/>
+			</input>
+			<output>
+				<soap:body use="literal"/>
+			</output>
+		</operation>
+		<operation name="HotBilling">
+			<soap:operation soapAction="HotBilling" style="document"/>
+			<input>
+				<soap:body use="literal"/>
+			</input>
+			<output>
+				<soap:body use="literal"/>
+			</output>
+		</operation>
+		<operation name="QueryHotBillingStatus">
+			<soap:operation soapAction="QueryHotBillingStatus" style="document"/>
+			<input>
+				<soap:body use="literal"/>
+			</input>
+			<output>
+				<soap:body use="literal"/>
+			</output>
+		</operation>
+		<operation name="Charge2Bill">
+			<soap:operation soapAction="Charge2Bill" style="document"/>
+			<input>
+				<soap:body use="literal"/>
+			</input>
+			<output>
+				<soap:body use="literal"/>
+			</output>
+		</operation>
+		<operation name="QueryCDR">
+			<soap:operation soapAction="QueryCDR" style="document"/>
+			<input>
+				<soap:body use="literal"/>
+			</input>
+			<output>
+				<soap:body use="literal"/>
+			</output>
+		</operation>
+	</binding>
+	<service name="BbServices">
+		<port name="BbServicesPort" binding="bb:BbServicsBinding">
+			<soap:address location="http://www.huawei.com/bme/cbsinterface/bbservices/wsdl/CBSInterface_BB_Services.wsdl"/>
+		</port>
+	</service>
+</definitions>

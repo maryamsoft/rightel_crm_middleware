@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:bccommon="http://www.huawei.com/bme/cbsinterface/bccommon" xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:import namespace="http://www.huawei.com/bme/cbsinterface/bccommon" schemaLocation="CBSInterface_BC_Common.xsd"/>
+	<xs:complexType name="ChangeUsagePayLimitRequest">
+		<xs:sequence>
+			<xs:element name="ChgObj">
+				<xs:complexType>
+					<xs:choice>
+						<xs:element name="SubAccessCode" type="bccommon:SubAccessCode"/>
+					</xs:choice>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="UsagePayLimit">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="AddPayLimit" minOccurs="0" maxOccurs="unbounded">
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="UsagePayLimitKey" type="xs:string"/>
+									<xs:element name="PaidObj">
+										<xs:complexType>
+											<xs:choice>
+												<xs:element name="CustAccessCode" type="bccommon:CustAccessCode"/>
+												<xs:element name="SubAccessCode" type="bccommon:SubAccessCode"/>
+												<xs:element name="SubGroupAccessCode" type="bccommon:SubGroupAccessCode"/>
+											</xs:choice>
+										</xs:complexType>
+									</xs:element>
+									<xs:element name="EventType" type="xs:integer"/>
+									<xs:element name="LimitRule" type="xs:string" minOccurs="0"/>
+									<xs:element name="LimitCycleType" type="xs:string"/>
+									<xs:element name="LimitMeasureUnit" type="xs:integer"/>
+									<xs:element name="EffDate" type="bccommon:DateTime" minOccurs="0"/>
+									<xs:element name="EffectiveTime" type="bccommon:EffectMode" minOccurs="0">
+										<xs:annotation>
+											<xs:documentation>EffDate节点传了，优先按照EffDate的时间设置生效时间，如果EffDate未传，按照EffectiveTime设置生效时间，两者都未传，立即生效</xs:documentation>
+										</xs:annotation>
+									</xs:element>
+									<xs:element name="ExpDate" type="bccommon:DateTime" minOccurs="0"/>
+									<xs:element name="LimitValue" type="xs:long"/>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="DelPayLimit" minOccurs="0" maxOccurs="unbounded">
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="UsagePayLimitKey" type="xs:string"/>
+									<xs:element name="ExpDate" type="bccommon:DateTime" minOccurs="0"/>
+									<xs:element name="ExpiredTime" type="bccommon:ExpiredMode" minOccurs="0">
+										<xs:annotation>
+											<xs:documentation>ExpDate传了，按照ExpDate设置失效时间，如果没传，按照ExpiredTime的模式设置失效时间，两者都没传，立即失效</xs:documentation>
+										</xs:annotation>
+									</xs:element>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="ModPayLimit" minOccurs="0" maxOccurs="unbounded">
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="UsagePayLimitKey" type="xs:string"/>
+									<xs:element name="LimitValue" type="xs:long" minOccurs="0"/>
+									<xs:element name="EffectiveTime" type="bccommon:EffectMode" minOccurs="0">
+										<xs:annotation>
+											<xs:documentation>修改LimitValue的生效模式</xs:documentation>
+										</xs:annotation>
+									</xs:element>
+									<xs:element name="AddTempLimit" minOccurs="0" maxOccurs="unbounded">
+										<xs:complexType>
+											<xs:sequence>
+												<xs:element name="LimitValue" type="xs:long"/>
+												<xs:element name="EffectiveTime" type="bccommon:EffectMode" minOccurs="0">
+													<xs:annotation>
+														<xs:documentation>新增的临时限额的生效模式</xs:documentation>
+													</xs:annotation>
+												</xs:element>
+												<xs:element name="ExpDate" type="bccommon:DateTime" minOccurs="0">
+													<xs:annotation>
+														<xs:documentation>不传默认为临时限额生效时间所在周期的结束时间</xs:documentation>
+													</xs:annotation>
+												</xs:element>
+											</xs:sequence>
+										</xs:complexType>
+									</xs:element>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

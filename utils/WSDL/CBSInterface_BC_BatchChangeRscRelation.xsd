@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:bccommon="http://www.huawei.com/bme/cbsinterface/bccommon" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:import namespace="http://www.huawei.com/bme/cbsinterface/bccommon" schemaLocation="CBSInterface_BC_Common.xsd"/>
+	<!---->
+	<xs:complexType name="BatchChangeRscRelationRequest">
+		<xs:sequence>
+			<xs:choice>
+				<xs:annotation>
+					<xs:documentation>If delete relation by RelationDestIdentify, this node can be empty </xs:documentation>
+				</xs:annotation>
+				<xs:element name="SubAccessCode" minOccurs="0">
+					<xs:complexType>
+						<xs:complexContent>
+							<xs:extension base="bccommon:SubAccessCode"/>
+						</xs:complexContent>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="SubGroupAccessCode" type="bccommon:SubGroupAccessCode" minOccurs="0"/>
+				<xs:element name="CustAccessCode" type="bccommon:CustAccessCode" minOccurs="0"/>
+			</xs:choice>
+			<xs:element name="FileName" type="xs:string"/>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

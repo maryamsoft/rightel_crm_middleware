@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:bccommon="http://www.huawei.com/bme/cbsinterface/bccommon" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:import namespace="http://www.huawei.com/bme/cbsinterface/bccommon" schemaLocation="../CBSInterface_BC_Common.xsd"/>
+	<xs:complexType name="Param">
+		<xs:sequence>
+			<xs:element name="Code" type="xs:string"/>
+			<xs:choice>
+				<xs:element name="Value" type="xs:string"/>
+				<xs:element name="Param" type="Param" maxOccurs="unbounded"/>
+				<xs:element name="ObjParam" type="ComplexParam" maxOccurs="unbounded"/>
+			</xs:choice>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ComplexParam">
+		<xs:choice>
+			<xs:element name="Value" type="xs:string"/>
+			<xs:element name="Param" type="Param" maxOccurs="unbounded"/>
+			<xs:element name="ObjParam" type="ComplexParam" maxOccurs="unbounded"/>
+		</xs:choice>
+	</xs:complexType>
+	<xs:complexType name="WorkOrderRequest">
+		<xs:sequence>
+			<xs:element name="WorkOrderType" type="xs:string"/>
+			<xs:element name="OrderObjType" type="xs:string"/>
+			<xs:element name="OrderObjKey" type="xs:string"/>
+			<xs:element name="OrderObjCode" type="xs:string"/>
+			<xs:element name="OrderParam" type="Param" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

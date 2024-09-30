@@ -1,0 +1,41 @@
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+   <soapenv:Body>
+      <bcs:ChangeSubOfferingResultMsg xmlns:bcs="http://172.22.26.40:8080/services/BcServices" xmlns:cbs="http://www.huawei.com/bme/cbsinterface/cbscommon" xmlns:bcc="http://www.huawei.com/bme/cbsinterface/bccommon">
+         <ResultHeader>
+            <cbs:Version>1</cbs:Version>
+            <cbs:ResultCode>0</cbs:ResultCode>
+            <cbs:ResultDesc>Operation successfully.</cbs:ResultDesc>
+         </ResultHeader>
+         <ChangeSubOfferingResult>
+            <bcs:AddOffering>
+               <bcs:OfferingKey>
+                  <bcc:OfferingID>785632384</bcc:OfferingID>
+                  <bcc:PurchaseSeq>202409420002</bcc:PurchaseSeq>
+               </bcs:OfferingKey>
+               <bcs:EffectiveTime>20240925091843</bcs:EffectiveTime>
+               <bcs:ExpirationTime>20370101000000</bcs:ExpirationTime>
+               <bcs:RentDeductionStatus>0</bcs:RentDeductionStatus>
+            </bcs:AddOffering>
+            <bcs:RentDeductionResult>
+               <bcs:FreeUnitChangeList>
+                  <bcs:OwnerType>S</bcs:OwnerType>
+                  <bcs:OwnerKey>9235000018</bcs:OwnerKey>
+                  <bcs:FreeUnitChgInfo>
+                     <bcs:FreeUnitInstanceID>133000000000000120</bcs:FreeUnitInstanceID>
+                     <bcs:FreeUnitType>C_test_voice</bcs:FreeUnitType>
+                     <bcs:FreeUnitTypeName>test_voice</bcs:FreeUnitTypeName>
+                     <bcs:MeasureUnit>1003</bcs:MeasureUnit>
+                     <bcs:MeasureUnitName>Seconds</bcs:MeasureUnitName>
+                     <bcs:OldAmt>5000</bcs:OldAmt>
+                     <bcs:NewAmt>5000</bcs:NewAmt>
+                     <bcs:OfferingKey>
+                        <bcc:OfferingID>785632384</bcc:OfferingID>
+                        <bcc:PurchaseSeq>202409420002</bcc:PurchaseSeq>
+                     </bcs:OfferingKey>
+                  </bcs:FreeUnitChgInfo>
+               </bcs:FreeUnitChangeList>
+            </bcs:RentDeductionResult>
+         </ChangeSubOfferingResult>
+      </bcs:ChangeSubOfferingResultMsg>
+   </soapenv:Body>
+</soapenv:Envelope>

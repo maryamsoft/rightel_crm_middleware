@@ -1,0 +1,964 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:bccommon="http://www.huawei.com/bme/cbsinterface/bccommon" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:import namespace="http://www.huawei.com/bme/cbsinterface/bccommon" schemaLocation="CBSInterface_BC_Common.xsd"/>
+	<!---->
+	<xs:complexType name="QueryCustomerInfoRequest">
+		<xs:sequence>
+			<xs:element name="QueryObj">
+				<xs:complexType>
+					<xs:choice>
+						<xs:element name="CustAccessCode" type="bccommon:CustAccessCode"/>
+						<xs:element name="SubAccessCode">
+							<xs:complexType>
+								<xs:complexContent>
+									<xs:extension base="bccommon:SubAccessCode"/>
+								</xs:complexContent>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="SubGroupAccessCode" type="bccommon:SubGroupAccessCode"/>
+						<xs:element name="AcctAccessCode">
+							<xs:complexType>
+								<xs:complexContent>
+									<xs:extension base="bccommon:AcctAccessCode">
+										<xs:sequence>
+											<xs:element name="PayType" type="xs:string" minOccurs="0"/>
+										</xs:sequence>
+									</xs:extension>
+								</xs:complexContent>
+							</xs:complexType>
+						</xs:element>
+					</xs:choice>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="QueryMode" type="xs:int" minOccurs="0"/>
+			<xs:element name="CustomerMask" minOccurs="0">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="20"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="AccountMask" minOccurs="0">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="20"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="SubscriberMask" minOccurs="0">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="20"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="GroupMask" minOccurs="0">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="20"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="AdditionalProperty" type="bccommon:SimpleProperty" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="QueryCustomerInfoResult">
+		<xs:sequence>
+			<xs:element name="Customer" minOccurs="0">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="CustKey" type="xs:string"/>
+						<xs:element name="CustInfo" type="bccommon:CustInfo" minOccurs="0"/>
+						<xs:choice minOccurs="0">
+							<xs:element name="IndividualInfo" type="bccommon:IndividualInfo"/>
+							<xs:element name="OrgInfo" type="bccommon:OrgInfo"/>
+						</xs:choice>
+						<xs:element name="AddressInfo" type="bccommon:Address" minOccurs="0"/>
+						<xs:element name="OfferingInst" minOccurs="0" maxOccurs="unbounded">
+							<xs:complexType>
+								<xs:complexContent>
+									<xs:extension base="bccommon:OfferingInst">
+										<xs:sequence>
+											<xs:element name="EffectiveTime" type="bccommon:DateTime"/>
+											<xs:element name="ExpirationTime" type="bccommon:DateTime"/>
+											<xs:element name="ActivationMode" type="xs:string"/>
+											<xs:element name="ActivationTime" type="bccommon:DateTime" minOccurs="0"/>
+											<xs:element name="ActiveTimeLimit" type="bccommon:DateTime" minOccurs="0"/>
+											<xs:element name="RentInfo" type="bccommon:OfferRentInfo" minOccurs="0"/>
+										</xs:sequence>
+									</xs:extension>
+								</xs:complexContent>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="SiteInfo" type="bccommon:SiteInfo" minOccurs="0"/>
+						<xs:element name="FreeUnitInfo" minOccurs="0">
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="FreeUnitItem" minOccurs="0" maxOccurs="unbounded">
+										<xs:complexType>
+											<xs:sequence>
+												<xs:element name="FreeUnitType" type="xs:string"/>
+												<xs:element name="FreeUnitTypeName" type="xs:string"/>
+												<xs:element name="MeasureUnit" type="xs:string"/>
+												<xs:element name="MeasureUnitName" type="xs:string"/>
+												<xs:element name="TotalInitialAmount" type="xs:long"/>
+												<xs:element name="TotalUnusedAmount" type="xs:long"/>
+												<xs:element name="FreeUnitItemDetail" maxOccurs="unbounded">
+													<xs:complexType>
+														<xs:sequence>
+															<xs:element name="FreeUnitInstanceID" type="xs:long"/>
+															<xs:element name="InitialAmount" type="xs:long"/>
+															<xs:element name="CurrentAmount" type="xs:long"/>
+															<xs:element name="EffectiveTime" type="xs:string"/>
+															<xs:element name="ExpireTime" type="xs:string"/>
+															<xs:element name="FreeUnitOrigin" minOccurs="0">
+																<xs:complexType>
+																	<xs:sequence>
+																		<xs:element name="OriginType" type="xs:string"/>
+																		<xs:choice>
+																			<xs:element name="OfferingKey" minOccurs="0">
+																				<xs:complexType>
+																					<xs:complexContent>
+																						<xs:extension base="bccommon:OfferingKey">
+																							<xs:sequence>
+																								<xs:element name="OfferingName" type="xs:string"/>
+																							</xs:sequence>
+																						</xs:extension>
+																					</xs:complexContent>
+																				</xs:complexType>
+																			</xs:element>
+																			<xs:element name="PlanID" type="xs:long" nillable="true" minOccurs="0"/>
+																		</xs:choice>
+																		<xs:element name="RenewFlag" type="xs:string" minOccurs="0"/>
+																		<xs:element name="AlreadyRenewTimes" type="xs:integer" minOccurs="0"/>
+																		<xs:element name="MaxRenewTimes" type="xs:integer" minOccurs="0"/>
+																	</xs:sequence>
+																</xs:complexType>
+															</xs:element>
+															<xs:element name="UsagePriority" type="xs:integer" minOccurs="0"/>
+															<xs:element name="RollOverFlag" type="xs:string"/>
+															<xs:element name="LastRollOveredTime" type="xs:string" minOccurs="0"/>
+															<xs:element name="AlreadyRollOverTimes" type="xs:integer" minOccurs="0"/>
+															<xs:element name="ReserveValidTime" type="xs:string" minOccurs="0"/>
+														</xs:sequence>
+													</xs:complexType>
+												</xs:element>
+												<xs:element name="MemberUsageList" minOccurs="0" maxOccurs="unbounded">
+													<xs:complexType>
+														<xs:sequence>
+															<xs:element name="PrimaryIdentity" type="xs:string"/>
+															<xs:element name="SubscriberKey" type="xs:string"/>
+															<xs:element name="UsedAmount" type="xs:long"/>
+														</xs:sequence>
+													</xs:complexType>
+												</xs:element>
+												<xs:element name="FUPaymentPlanList" minOccurs="0">
+													<xs:complexType>
+														<xs:sequence>
+															<xs:element name="FUPaymentPlanInfo" maxOccurs="unbounded">
+																<xs:complexType>
+																	<xs:sequence>
+																		<xs:element name="FreeUnitInstanceID" type="xs:long">
+																			<xs:annotation>
+																				<xs:documentation>免费资源实例标识</xs:documentation>
+																			</xs:annotation>
+																		</xs:element>
+																		<xs:element name="FreeUnitCycleType" type="xs:string">
+																			<xs:annotation>
+																				<xs:documentation>支付计划周期类型</xs:documentation>
+																			</xs:annotation>
+																		</xs:element>
+																		<xs:element name="FreeUnitUSRuleID" type="xs:long">
+																			<xs:annotation>
+																				<xs:documentation>支付计划使用场景标识</xs:documentation>
+																			</xs:annotation>
+																		</xs:element>
+																		<xs:element name="TimeSchemaID" type="xs:long">
+																			<xs:annotation>
+																				<xs:documentation>时间方案标识</xs:documentation>
+																			</xs:annotation>
+																		</xs:element>
+																		<xs:element name="MaxUsageAmt" type="xs:long">
+																			<xs:annotation>
+																				<xs:documentation>设置支付计划限额值</xs:documentation>
+																			</xs:annotation>
+																		</xs:element>
+																		<xs:element name="UsageAmt" type="xs:long">
+																			<xs:annotation>
+																				<xs:documentation>已使用额度。</xs:documentation>
+																			</xs:annotation>
+																		</xs:element>
+																	</xs:sequence>
+																</xs:complexType>
+															</xs:element>
+														</xs:sequence>
+													</xs:complexType>
+												</xs:element>
+											</xs:sequence>
+										</xs:complexType>
+									</xs:element>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="EffectiveTime" type="xs:string" minOccurs="0"/>
+						<xs:element name="ExpireTime" type="xs:string" minOccurs="0"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="Subscriber" minOccurs="0" maxOccurs="unbounded">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="SubscriberKey" type="xs:string"/>
+						<xs:element name="SubscriberInfo" minOccurs="0">
+							<xs:complexType>
+								<xs:complexContent>
+									<xs:extension base="bccommon:Subscriber">
+										<xs:sequence>
+											<xs:element name="StatusDetail" type="xs:string"/>
+											<xs:element name="ActivationTime" type="bccommon:DateTime" minOccurs="0"/>
+											<xs:element name="UserCustomer" minOccurs="0">
+												<xs:complexType>
+													<xs:sequence>
+														<xs:element name="CustKey" type="xs:string"/>
+														<xs:element name="CustInfo" type="bccommon:CustInfo"/>
+														<xs:choice minOccurs="0">
+															<xs:element name="IndividualInfo" type="bccommon:IndividualInfo"/>
+															<xs:element name="OrgInfo" type="bccommon:OrgInfo"/>
+														</xs:choice>
+													</xs:sequence>
+												</xs:complexType>
+											</xs:element>
+											<xs:element name="AddressInfo" type="bccommon:Address" minOccurs="0"/>
+										</xs:sequence>
+									</xs:extension>
+								</xs:complexContent>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="PaymentMode" type="xs:string" minOccurs="0"/>
+						<xs:element name="PrimaryOffering" minOccurs="0">
+							<xs:complexType>
+								<xs:complexContent>
+									<xs:extension base="bccommon:POfferingInst">
+										<xs:sequence>
+											<xs:element name="StatusDetails" type="xs:string" minOccurs="0"/>
+										</xs:sequence>
+									</xs:extension>
+								</xs:complexContent>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="SupplementaryOffering" minOccurs="0" maxOccurs="unbounded">
+							<xs:complexType>
+								<xs:complexContent>
+									<xs:extension base="bccommon:OfferingInst">
+										<xs:sequence>
+											<xs:element name="EffectiveTime" type="bccommon:DateTime"/>
+											<xs:element name="ExpirationTime" type="bccommon:DateTime"/>
+											<xs:element name="ActivationMode" type="xs:string"/>
+											<xs:element name="ActivationTime" type="bccommon:DateTime" minOccurs="0"/>
+											<xs:element name="ActiveTimeLimit" type="bccommon:DateTime" minOccurs="0"/>
+											<xs:element name="StatusDetails" type="xs:string" minOccurs="0"/>
+											<xs:element name="RentInfo" type="bccommon:OfferRentInfo" minOccurs="0"/>
+										</xs:sequence>
+									</xs:extension>
+								</xs:complexContent>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="AccmUsageList" minOccurs="0" maxOccurs="unbounded">
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="AccmType" type="xs:string"/>
+									<xs:element name="AccmTypeName" type="xs:string"/>
+									<xs:element name="Amount" type="xs:long"/>
+									<xs:element name="UnitType" type="xs:string"/>
+									<xs:choice>
+										<xs:element name="CurrencyID" type="xs:integer"/>
+										<xs:element name="MeasureID" type="xs:integer"/>
+									</xs:choice>
+									<xs:element name="BeginDate" type="bccommon:DateTime"/>
+									<xs:element name="EndDate" type="bccommon:DateTime"/>
+									<xs:element name="CumulativePreAmt" type="xs:long" minOccurs="0"/>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="LifeCycleDetail" minOccurs="0">
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="StatusDetail" type="xs:string"/>
+									<xs:element name="FraudTimes" type="xs:integer"/>
+									<xs:element name="RBlacklistStatus" type="xs:string"/>
+									<xs:element name="CurrentStatusIndex" type="xs:string" minOccurs="0"/>
+									<xs:element name="LifeCycleStatus" minOccurs="0" maxOccurs="unbounded">
+										<xs:complexType>
+											<xs:sequence>
+												<xs:element name="StatusName" type="xs:string"/>
+												<xs:element name="StatusExpireTime" type="bccommon:DateTime"/>
+												<xs:element name="StatusIndex" type="xs:string"/>
+											</xs:sequence>
+										</xs:complexType>
+									</xs:element>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="AcctList" minOccurs="0" maxOccurs="unbounded">
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="AcctKey" type="xs:string"/>
+									<xs:element name="BalanceResult" minOccurs="0" maxOccurs="unbounded">
+										<xs:complexType>
+											<xs:sequence>
+												<xs:element name="BalanceType" type="xs:string"/>
+												<xs:element name="BalanceTypeName" type="xs:string" minOccurs="0"/>
+												<xs:element name="TotalAmount" type="xs:long"/>
+												<xs:element name="ReservedAmount" type="xs:long" minOccurs="0"/>
+												<xs:element name="DepositFlag" type="xs:string"/>
+												<xs:element name="RefundFlag" type="xs:string"/>
+												<xs:element name="CurrencyID" type="xs:integer"/>
+												<xs:element name="BalanceDetail" maxOccurs="unbounded">
+													<xs:complexType>
+														<xs:sequence>
+															<xs:element name="BalanceInstanceID" type="xs:long"/>
+															<xs:element name="Amount" type="xs:long"/>
+															<xs:element name="InitialAmount" type="xs:long"/>
+															<xs:element name="EffectiveTime" type="xs:string"/>
+															<xs:element name="ExpireTime" type="xs:string"/>
+															<xs:element name="AcctBalOriginal" minOccurs="0">
+																<xs:complexType>
+																	<xs:sequence>
+																		<xs:element name="OriginalType" type="xs:string"/>
+																		<xs:element name="OriginalID" type="xs:long">
+																			<xs:annotation>
+																				<xs:documentation>当OriginalType为1时，此字段表示OfferingID；当OriginalType为2时，此字段表示全局计划标识</xs:documentation>
+																			</xs:annotation>
+																		</xs:element>
+																		<xs:element name="PurchaseSeq" type="xs:string" minOccurs="0"/>
+																	</xs:sequence>
+																</xs:complexType>
+															</xs:element>
+															<xs:element name="LastUpdateTime" type="xs:string" minOccurs="0"/>
+														</xs:sequence>
+													</xs:complexType>
+												</xs:element>
+											</xs:sequence>
+										</xs:complexType>
+									</xs:element>
+									<xs:element name="OutStandingList" minOccurs="0" maxOccurs="unbounded">
+										<xs:complexType>
+											<xs:sequence>
+												<xs:element name="BillCycleID" type="xs:string"/>
+												<xs:element name="BillCycleBeginTime" type="xs:string"/>
+												<xs:element name="BillCycleEndTime" type="xs:string"/>
+												<xs:element name="DueDate" type="xs:string"/>
+												<xs:element name="OutStandingDetail" maxOccurs="unbounded">
+													<xs:complexType>
+														<xs:sequence>
+															<xs:element name="OutStandingAmount" type="xs:long"/>
+															<xs:element name="CurrencyID" type="xs:integer"/>
+														</xs:sequence>
+													</xs:complexType>
+												</xs:element>
+											</xs:sequence>
+										</xs:complexType>
+									</xs:element>
+									<xs:element name="AccountCredit" minOccurs="0" maxOccurs="unbounded">
+										<xs:complexType>
+											<xs:sequence>
+												<xs:element name="CreditLimitType" type="xs:string" minOccurs="0"/>
+												<xs:element name="CreditLimitTypeName" type="xs:string" minOccurs="0"/>
+												<xs:element name="TotalCreditAmount" type="xs:long"/>
+												<xs:element name="TotalUsageAmount" type="xs:long"/>
+												<xs:element name="TotalRemainAmount" type="xs:long"/>
+												<xs:element name="CurrencyID" type="xs:integer"/>
+												<xs:element name="CreditAmountInfo" minOccurs="0" maxOccurs="unbounded">
+													<xs:complexType>
+														<xs:sequence>
+															<xs:element name="CreditInstID" type="xs:long"/>
+															<xs:element name="LimitClass" type="xs:string">
+																<xs:annotation>
+																	<xs:documentation>I: 初始信用度
+T: 临时信用度</xs:documentation>
+																</xs:annotation>
+															</xs:element>
+															<xs:element name="Amount" type="xs:long"/>
+															<xs:element name="EffectiveTime" type="xs:string"/>
+															<xs:element name="ExpireTime" type="xs:string"/>
+														</xs:sequence>
+													</xs:complexType>
+												</xs:element>
+												<xs:element name="NoLimitFlag" type="xs:string" minOccurs="0"/>
+											</xs:sequence>
+										</xs:complexType>
+									</xs:element>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="FreeUnitInfo" minOccurs="0">
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="FreeUnitItem" minOccurs="0" maxOccurs="unbounded">
+										<xs:complexType>
+											<xs:sequence>
+												<xs:element name="FreeUnitType" type="xs:string"/>
+												<xs:element name="FreeUnitTypeName" type="xs:string"/>
+												<xs:element name="MeasureUnit" type="xs:string"/>
+												<xs:element name="MeasureUnitName" type="xs:string"/>
+												<xs:element name="TotalInitialAmount" type="xs:long"/>
+												<xs:element name="TotalUnusedAmount" type="xs:long"/>
+												<xs:element name="FreeUnitItemDetail" maxOccurs="unbounded">
+													<xs:complexType>
+														<xs:sequence>
+															<xs:element name="FreeUnitInstanceID" type="xs:long"/>
+															<xs:element name="InitialAmount" type="xs:long"/>
+															<xs:element name="CurrentAmount" type="xs:long"/>
+															<xs:element name="EffectiveTime" type="xs:string"/>
+															<xs:element name="ExpireTime" type="xs:string"/>
+															<xs:element name="FreeUnitOrigin" minOccurs="0">
+																<xs:complexType>
+																	<xs:sequence>
+																		<xs:element name="OriginType" type="xs:string"/>
+																		<xs:choice>
+																			<xs:element name="OfferingKey" minOccurs="0">
+																				<xs:complexType>
+																					<xs:complexContent>
+																						<xs:extension base="bccommon:OfferingKey">
+																							<xs:sequence>
+																								<xs:element name="OfferingName" type="xs:string"/>
+																							</xs:sequence>
+																						</xs:extension>
+																					</xs:complexContent>
+																				</xs:complexType>
+																			</xs:element>
+																			<xs:element name="PlanID" type="xs:long" nillable="true" minOccurs="0"/>
+																		</xs:choice>
+																		<xs:element name="RenewFlag" type="xs:string" minOccurs="0"/>
+																		<xs:element name="AlreadyRenewTimes" type="xs:integer" minOccurs="0"/>
+																		<xs:element name="MaxRenewTimes" type="xs:integer" minOccurs="0"/>
+																	</xs:sequence>
+																</xs:complexType>
+															</xs:element>
+															<xs:element name="UsagePriority" type="xs:integer" minOccurs="0"/>
+															<xs:element name="RollOverFlag" type="xs:string"/>
+															<xs:element name="LastRollOveredTime" type="xs:string" minOccurs="0"/>
+															<xs:element name="AlreadyRollOverTimes" type="xs:integer" minOccurs="0"/>
+															<xs:element name="ReserveValidTime" type="xs:string" minOccurs="0"/>
+														</xs:sequence>
+													</xs:complexType>
+												</xs:element>
+												<xs:element name="MemberUsageList" minOccurs="0" maxOccurs="unbounded">
+													<xs:complexType>
+														<xs:sequence>
+															<xs:element name="PrimaryIdentity" type="xs:string"/>
+															<xs:element name="SubscriberKey" type="xs:string"/>
+															<xs:element name="UsedAmount" type="xs:long"/>
+														</xs:sequence>
+													</xs:complexType>
+												</xs:element>
+												<xs:element name="FUPaymentPlanList" minOccurs="0">
+													<xs:complexType>
+														<xs:sequence>
+															<xs:element name="FUPaymentPlanInfo" maxOccurs="unbounded">
+																<xs:complexType>
+																	<xs:sequence>
+																		<xs:element name="FreeUnitInstanceID" type="xs:long">
+																			<xs:annotation>
+																				<xs:documentation>免费资源实例标识</xs:documentation>
+																			</xs:annotation>
+																		</xs:element>
+																		<xs:element name="FreeUnitCycleType" type="xs:string">
+																			<xs:annotation>
+																				<xs:documentation>支付计划周期类型</xs:documentation>
+																			</xs:annotation>
+																		</xs:element>
+																		<xs:element name="FreeUnitUSRuleID" type="xs:long">
+																			<xs:annotation>
+																				<xs:documentation>支付计划使用场景标识</xs:documentation>
+																			</xs:annotation>
+																		</xs:element>
+																		<xs:element name="TimeSchemaID" type="xs:long">
+																			<xs:annotation>
+																				<xs:documentation>时间方案标识</xs:documentation>
+																			</xs:annotation>
+																		</xs:element>
+																		<xs:element name="MaxUsageAmt" type="xs:long">
+																			<xs:annotation>
+																				<xs:documentation>设置支付计划限额值</xs:documentation>
+																			</xs:annotation>
+																		</xs:element>
+																		<xs:element name="UsageAmt" type="xs:long">
+																			<xs:annotation>
+																				<xs:documentation>已使用额度。</xs:documentation>
+																			</xs:annotation>
+																		</xs:element>
+																	</xs:sequence>
+																</xs:complexType>
+															</xs:element>
+														</xs:sequence>
+													</xs:complexType>
+												</xs:element>
+											</xs:sequence>
+										</xs:complexType>
+									</xs:element>
+									<xs:element name="ShareUsageList" minOccurs="0" maxOccurs="unbounded">
+										<xs:complexType>
+											<xs:sequence>
+												<xs:element name="SharedPrimaryIdentity" type="xs:string"/>
+												<xs:element name="OfferingKey" type="bccommon:OfferingKey" minOccurs="0"/>
+												<xs:element name="UsedAmount" type="xs:long"/>
+												<xs:element name="FreeUnitType" type="xs:string"/>
+												<xs:element name="MeasureUnit" type="xs:string"/>
+											</xs:sequence>
+										</xs:complexType>
+									</xs:element>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="LimitUsageList" minOccurs="0" maxOccurs="unbounded">
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="LimitType" type="xs:string"/>
+									<xs:element name="LimitTypeName" type="xs:string"/>
+									<xs:element name="Amount" type="xs:long"/>
+									<xs:element name="UsageAmount" type="xs:long"/>
+									<xs:element name="LimitCtrlType" type="xs:string"/>
+									<xs:element name="CurrencyID" type="xs:integer" minOccurs="0"/>
+									<xs:element name="MeasureType" type="xs:integer" minOccurs="0"/>
+									<xs:element name="MeasureID" type="xs:integer" minOccurs="0"/>
+									<xs:element name="BeginDate" type="bccommon:DateTime" minOccurs="0"/>
+									<xs:element name="EndDay" type="bccommon:DateTime" minOccurs="0"/>
+									<xs:element name="LimitCtrlAction" type="xs:string" minOccurs="0"/>
+									<xs:element name="LimitParam" minOccurs="0" maxOccurs="unbounded">
+										<xs:complexType>
+											<xs:sequence>
+												<xs:element name="ParamCode" type="xs:string"/>
+												<xs:element name="ParamValue" type="xs:long"/>
+											</xs:sequence>
+										</xs:complexType>
+									</xs:element>
+									<xs:element name="EffectiveTime" type="bccommon:DateTime" minOccurs="0"/>
+									<xs:element name="ExpireTime" type="bccommon:DateTime" minOccurs="0"/>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="EffectiveTime" type="xs:string" minOccurs="0"/>
+						<xs:element name="ExpireTime" type="xs:string" minOccurs="0"/>
+						<xs:element name="LoanLogDetail" minOccurs="0" maxOccurs="unbounded">
+							<xs:annotation>
+								<xs:documentation>取自内存表RB_PPS_LOAN_INFO,所有未关闭借贷记录
+                    </xs:documentation>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="LoanID" type="xs:string">
+										<xs:annotation>
+											<xs:documentation>a unique identifier for each loan
+                                    format:Subid+":"+entry_date
+                                </xs:documentation>
+										</xs:annotation>
+									</xs:element>
+									<xs:element name="InitLoanAMT" type="xs:long">
+										<xs:annotation>
+											<xs:documentation>Amount granted to subscriber using loan service</xs:documentation>
+										</xs:annotation>
+									</xs:element>
+									<xs:element name="initLoanDate" type="xs:string">
+										<xs:annotation>
+											<xs:documentation>申请借贷时间</xs:documentation>
+										</xs:annotation>
+									</xs:element>
+									<xs:element name="InitLoanPoundage" type="xs:long" minOccurs="0">
+										<xs:annotation>
+											<xs:documentation>fees deducted once subscriber gets the loan successfully.
+                                </xs:documentation>
+										</xs:annotation>
+									</xs:element>
+									<xs:element name="RepaymentAMT" type="xs:long">
+										<xs:annotation>
+											<xs:documentation>Total amount subscriber must pay against this loan</xs:documentation>
+										</xs:annotation>
+									</xs:element>
+									<xs:element name="PaidAMT" type="xs:long">
+										<xs:annotation>
+											<xs:documentation>paid loan amount</xs:documentation>
+										</xs:annotation>
+									</xs:element>
+									<xs:element name="RemainingAMT" type="xs:long">
+										<xs:annotation>
+											<xs:documentation>remaining unpaid loan amount</xs:documentation>
+										</xs:annotation>
+									</xs:element>
+									<xs:element name="GraceDate" type="xs:string" minOccurs="0">
+										<xs:annotation>
+											<xs:documentation>Date when subscriber should close that loan, else, he will be
+                                    blacklisted
+                                </xs:documentation>
+										</xs:annotation>
+									</xs:element>
+									<xs:element name="PaidPoundage" type="xs:long">
+										<xs:annotation>
+											<xs:documentation>paid loan poundage amount</xs:documentation>
+										</xs:annotation>
+									</xs:element>
+									<xs:element name="RemainingPoundage" type="xs:long">
+										<xs:annotation>
+											<xs:documentation>remaining unpaid loan poundage amount</xs:documentation>
+										</xs:annotation>
+									</xs:element>
+									<xs:element name="RemainingTotal" type="xs:long">
+										<xs:annotation>
+											<xs:documentation>RemainingAMT+RemainingPoundage</xs:documentation>
+										</xs:annotation>
+									</xs:element>
+									<xs:element name="ForceGraceDate" type="xs:string">
+										<xs:annotation>
+											<xs:documentation>after this Date, the system will force repay.</xs:documentation>
+										</xs:annotation>
+									</xs:element>
+									<xs:element name="LoanGrade" type="xs:integer">
+										<xs:annotation>
+											<xs:documentation>loan grade</xs:documentation>
+										</xs:annotation>
+									</xs:element>
+									<xs:element name="SPID" type="xs:string">
+										<xs:annotation>
+											<xs:documentation>service provide ID.</xs:documentation>
+										</xs:annotation>
+									</xs:element>
+									<xs:element name="LoanTransID" type="xs:string">
+										<xs:annotation>
+											<xs:documentation>Loan transaction ID.</xs:documentation>
+										</xs:annotation>
+									</xs:element>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="MemberBasicInfo" minOccurs="0" maxOccurs="unbounded">
+							<xs:annotation>
+								<xs:documentation>用户作为集团成员的基本信息
+                    </xs:documentation>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="SubGroupKey" type="xs:string"/>
+									<xs:element name="SubGroupCode" type="xs:string"/>
+									<xs:element name="SubGroupType" type="xs:string"/>									
+									<xs:element name="MemberTypeCode" type="xs:string" minOccurs="0"/>
+									<xs:element name="MemberShortNo" type="xs:string" minOccurs="0"/>
+									<xs:element name="MemberStatus" type="xs:string" minOccurs="0"/>
+									<xs:element name="EffectiveTime" type="bccommon:DateTime"/>
+									<xs:element name="ExpirationTime" type="bccommon:DateTime"/>
+									<xs:element name="MemberProperty" type="bccommon:SimpleProperty" minOccurs="0" maxOccurs="unbounded"/>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="PaymentRelationList" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>用户被代付关系</xs:documentation>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="PayRelation" maxOccurs="unbounded">
+										<xs:complexType>
+											<xs:sequence>
+												<xs:element name="PayRelationKey" type="xs:string"/>
+												<xs:element name="DefaultPayFlag" type="xs:string">
+													<xs:annotation>
+														<xs:documentation>Y/N</xs:documentation>
+													</xs:annotation>
+												</xs:element>
+												<xs:element name="AcctKey" type="xs:string"/>
+												<xs:element name="PayObjType" type="xs:string"/>
+												<xs:element name="PayObjKey" type="xs:string"/>
+												<xs:element name="PayObjCode" type="xs:string"/>
+												<xs:element name="Priority" type="xs:integer"/>
+												<xs:element name="PayRelExtRule" type="bccommon:PayRelExtRule" minOccurs="0"/>
+												<xs:element name="OnlyPayRelFlag" type="xs:string" minOccurs="0"/>
+												<xs:element name="PaymentLimitKey" type="xs:string" minOccurs="0"/>
+												<xs:element name="OriginType" type="xs:string" minOccurs="0"/>
+												<xs:element name="OriginKey" type="xs:string" minOccurs="0"/>
+												<xs:element name="EffectiveTime" type="bccommon:DateTime"/>
+												<xs:element name="ExpirationTime" type="bccommon:DateTime"/>
+												<xs:element name="UsageAmount" type="xs:long" minOccurs="0"/>
+												<xs:element name="LimitValueExprResult" type="xs:long" minOccurs="0"/>
+											</xs:sequence>
+										</xs:complexType>
+									</xs:element>
+									<xs:element name="PaymentLimit" minOccurs="0" maxOccurs="unbounded">
+										<xs:complexType>
+											<xs:sequence>
+												<xs:element name="PaymentLimitKey" type="xs:string"/>
+												<xs:element name="PaymentLimitInfo">
+													<xs:complexType>
+														<xs:complexContent>
+															<xs:extension base="bccommon:PaymentLimit"/>
+														</xs:complexContent>
+													</xs:complexType>
+												</xs:element>
+											</xs:sequence>
+										</xs:complexType>
+									</xs:element>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="SubGroup" minOccurs="0">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="SubGroupKey" type="xs:string"/>
+						<xs:element name="SubGroupInfo" minOccurs="0">
+							<xs:complexType>
+								<xs:complexContent>
+									<xs:extension base="bccommon:SubGroup">
+										<xs:sequence>
+											<xs:element name="GroupType" type="xs:string"/>
+											<xs:element name="Status" type="xs:string"/>
+											<xs:element name="StatusDetail" type="xs:string"/>
+											<xs:element name="UserCustomer" minOccurs="0">
+												<xs:complexType>
+													<xs:sequence>
+														<xs:element name="CustKey" type="xs:string"/>
+														<xs:element name="CustInfo" type="bccommon:CustInfo"/>
+														<xs:choice minOccurs="0">
+															<xs:element name="IndividualInfo" type="bccommon:IndividualInfo"/>
+															<xs:element name="OrgInfo" type="bccommon:OrgInfo"/>
+														</xs:choice>
+													</xs:sequence>
+												</xs:complexType>
+											</xs:element>
+											<xs:element name="AddressInfo" type="bccommon:Address" minOccurs="0"/>
+											<xs:element name="RGroupKey" type="xs:string" minOccurs="0"/>
+											<xs:element name="EffectiveTime" type="bccommon:DateTime"/>
+											<xs:element name="ExpirationTime" type="bccommon:DateTime"/>
+										</xs:sequence>
+									</xs:extension>
+								</xs:complexContent>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="PrimaryOffering" type="bccommon:POfferingInst" minOccurs="0"/>
+						<xs:element name="SupplementaryOffering" minOccurs="0" maxOccurs="unbounded">
+							<xs:complexType>
+								<xs:complexContent>
+									<xs:extension base="bccommon:OfferingInst">
+										<xs:sequence>
+											<xs:element name="EffectiveTime" type="bccommon:DateTime"/>
+											<xs:element name="ExpirationTime" type="bccommon:DateTime"/>
+											<xs:element name="ActivationMode" type="xs:string"/>
+											<xs:element name="ActivationTime" type="bccommon:DateTime" minOccurs="0"/>
+											<xs:element name="ActiveTimeLimit" type="bccommon:DateTime" minOccurs="0"/>
+											<xs:element name="RentInfo" type="bccommon:OfferRentInfo" minOccurs="0"/>
+										</xs:sequence>
+									</xs:extension>
+								</xs:complexContent>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="FreeUnitInfo" minOccurs="0">
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="FreeUnitItem" minOccurs="0" maxOccurs="unbounded">
+										<xs:complexType>
+											<xs:sequence>
+												<xs:element name="FreeUnitType" type="xs:string"/>
+												<xs:element name="FreeUnitTypeName" type="xs:string"/>
+												<xs:element name="MeasureUnit" type="xs:string"/>
+												<xs:element name="MeasureUnitName" type="xs:string"/>
+												<xs:element name="TotalInitialAmount" type="xs:long"/>
+												<xs:element name="TotalUnusedAmount" type="xs:long"/>
+												<xs:element name="FreeUnitItemDetail" maxOccurs="unbounded">
+													<xs:complexType>
+														<xs:sequence>
+															<xs:element name="FreeUnitInstanceID" type="xs:long"/>
+															<xs:element name="InitialAmount" type="xs:long"/>
+															<xs:element name="CurrentAmount" type="xs:long"/>
+															<xs:element name="EffectiveTime" type="xs:string"/>
+															<xs:element name="ExpireTime" type="xs:string"/>
+															<xs:element name="FreeUnitOrigin" minOccurs="0">
+																<xs:complexType>
+																	<xs:sequence>
+																		<xs:element name="OriginType" type="xs:string"/>
+																		<xs:choice>
+																			<xs:element name="OfferingKey" minOccurs="0">
+																				<xs:complexType>
+																					<xs:complexContent>
+																						<xs:extension base="bccommon:OfferingKey">
+																							<xs:sequence>
+																								<xs:element name="OfferingName" type="xs:string"/>
+																							</xs:sequence>
+																						</xs:extension>
+																					</xs:complexContent>
+																				</xs:complexType>
+																			</xs:element>
+																			<xs:element name="PlanID" type="xs:long" nillable="true" minOccurs="0"/>
+																		</xs:choice>
+																		<xs:element name="RenewFlag" type="xs:string" minOccurs="0"/>
+																		<xs:element name="AlreadyRenewTimes" type="xs:integer" minOccurs="0"/>
+																		<xs:element name="MaxRenewTimes" type="xs:integer" minOccurs="0"/>
+																	</xs:sequence>
+																</xs:complexType>
+															</xs:element>
+															<xs:element name="UsagePriority" type="xs:integer" minOccurs="0"/>
+															<xs:element name="RollOverFlag" type="xs:string"/>
+															<xs:element name="LastRollOveredTime" type="xs:string" minOccurs="0"/>
+															<xs:element name="AlreadyRollOverTimes" type="xs:integer" minOccurs="0"/>
+															<xs:element name="ReserveValidTime" type="xs:string" minOccurs="0"/>
+														</xs:sequence>
+													</xs:complexType>
+												</xs:element>
+												<xs:element name="MemberUsageList" minOccurs="0" maxOccurs="unbounded">
+													<xs:complexType>
+														<xs:sequence>
+															<xs:element name="PrimaryIdentity" type="xs:string"/>
+															<xs:element name="SubscriberKey" type="xs:string"/>
+															<xs:element name="UsedAmount" type="xs:long"/>
+														</xs:sequence>
+													</xs:complexType>
+												</xs:element>
+												<xs:element name="FUPaymentPlanList" minOccurs="0">
+													<xs:complexType>
+														<xs:sequence>
+															<xs:element name="FUPaymentPlanInfo" maxOccurs="unbounded">
+																<xs:complexType>
+																	<xs:sequence>
+																		<xs:element name="FreeUnitInstanceID" type="xs:long">
+																			<xs:annotation>
+																				<xs:documentation>免费资源实例标识</xs:documentation>
+																			</xs:annotation>
+																		</xs:element>
+																		<xs:element name="FreeUnitCycleType" type="xs:string">
+																			<xs:annotation>
+																				<xs:documentation>支付计划周期类型</xs:documentation>
+																			</xs:annotation>
+																		</xs:element>
+																		<xs:element name="FreeUnitUSRuleID" type="xs:long">
+																			<xs:annotation>
+																				<xs:documentation>支付计划使用场景标识</xs:documentation>
+																			</xs:annotation>
+																		</xs:element>
+																		<xs:element name="TimeSchemaID" type="xs:long">
+																			<xs:annotation>
+																				<xs:documentation>时间方案标识</xs:documentation>
+																			</xs:annotation>
+																		</xs:element>
+																		<xs:element name="MaxUsageAmt" type="xs:long">
+																			<xs:annotation>
+																				<xs:documentation>设置支付计划限额值</xs:documentation>
+																			</xs:annotation>
+																		</xs:element>
+																		<xs:element name="UsageAmt" type="xs:long">
+																			<xs:annotation>
+																				<xs:documentation>已使用额度。</xs:documentation>
+																			</xs:annotation>
+																		</xs:element>
+																	</xs:sequence>
+																</xs:complexType>
+															</xs:element>
+														</xs:sequence>
+													</xs:complexType>
+												</xs:element>
+											</xs:sequence>
+										</xs:complexType>
+									</xs:element>
+									<xs:element name="ShareUsageList" minOccurs="0" maxOccurs="unbounded">
+										<xs:complexType>
+											<xs:sequence>
+												<xs:element name="SharedPrimaryIdentity" type="xs:string"/>
+												<xs:element name="OfferingKey" type="bccommon:OfferingKey" minOccurs="0"/>
+												<xs:element name="UsedAmount" type="xs:long"/>
+												<xs:element name="FreeUnitType" type="xs:string"/>
+												<xs:element name="MeasureUnit" type="xs:string"/>
+											</xs:sequence>
+										</xs:complexType>
+									</xs:element>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="Account" minOccurs="0" maxOccurs="unbounded">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="AcctKey" type="xs:string"/>
+						<xs:element name="AcctInfo" minOccurs="0">
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="AcctCode" type="xs:string"/>
+									<xs:element name="UserCustomerKey" type="xs:string" minOccurs="0"/>
+									<xs:element name="UserCustomer" minOccurs="0">
+										<xs:complexType>
+											<xs:sequence>
+												<xs:element name="CustKey" type="xs:string"/>
+												<xs:element name="CustInfo" type="bccommon:CustInfo"/>
+												<xs:choice minOccurs="0">
+													<xs:element name="IndividualInfo" type="bccommon:IndividualInfo"/>
+													<xs:element name="OrgInfo" type="bccommon:OrgInfo"/>
+												</xs:choice>
+											</xs:sequence>
+										</xs:complexType>
+									</xs:element>
+									<xs:element name="ParentAcctKey" type="xs:string" minOccurs="0">
+										<xs:annotation>
+											<xs:documentation>There is a account hierarchy in the system. If a account node has a parent node in the account hierarchy, this field is the parent account key.</xs:documentation>
+										</xs:annotation>
+									</xs:element>
+									<xs:element name="RootAcctKey" type="xs:string" minOccurs="0"/>
+									<xs:element name="AcctBasicInfo">
+										<xs:complexType>
+											<xs:complexContent>
+												<xs:extension base="bccommon:AccountBasicInfo">
+													<xs:sequence>
+														<xs:element name="Status" type="xs:string" minOccurs="0"/>
+														<xs:element name="StatusDetail" type="xs:string" minOccurs="0"/>
+													</xs:sequence>
+												</xs:extension>
+											</xs:complexContent>
+										</xs:complexType>
+									</xs:element>
+									<xs:element name="BillCycleType" type="xs:string"/>
+									<xs:element name="AcctType" type="xs:string"/>
+									<xs:element name="PaymentType" type="xs:string"/>
+									<xs:element name="AcctClass" type="xs:string"/>
+									<xs:element name="CurrencyID" type="xs:integer"/>
+									<xs:element name="AcctPayMethod" type="xs:string"/>
+									<xs:element name="AutoPayChannel" minOccurs="0" maxOccurs="unbounded">
+										<xs:complexType>
+											<xs:sequence>
+												<xs:element name="AutoPayChannelKey" type="xs:string"/>
+												<xs:element name="AutoPayChannelInfo">
+													<xs:complexType>
+														<xs:complexContent>
+															<xs:extension base="bccommon:AutoPayChannelInfo4Q"/>
+														</xs:complexContent>
+													</xs:complexType>
+												</xs:element>
+											</xs:sequence>
+										</xs:complexType>
+									</xs:element>
+									<xs:element name="AddressInfo" type="bccommon:Address" minOccurs="0" maxOccurs="unbounded"/>
+									<xs:element name="BillCycleOpenDate" type="bccommon:DateTime" minOccurs="0"/>
+									<xs:element name="BillCycleEndDate" type="bccommon:DateTime" minOccurs="0"/>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="OfferingInst" minOccurs="0" maxOccurs="unbounded">
+							<xs:complexType>
+								<xs:complexContent>
+									<xs:extension base="bccommon:OfferingInst">
+										<xs:sequence>
+											<xs:element name="EffectiveTime" type="bccommon:DateTime"/>
+											<xs:element name="ExpirationTime" type="bccommon:DateTime"/>
+											<xs:element name="ActivationMode" type="xs:string"/>
+											<xs:element name="ActivationTime" type="bccommon:DateTime" minOccurs="0"/>
+											<xs:element name="ActiveTimeLimit" type="bccommon:DateTime" minOccurs="0"/>
+										</xs:sequence>
+									</xs:extension>
+								</xs:complexContent>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="EffectiveTime" type="xs:string" minOccurs="0"/>
+						<xs:element name="ExpireTime" type="xs:string" minOccurs="0"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

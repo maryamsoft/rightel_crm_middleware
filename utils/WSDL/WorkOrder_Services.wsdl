@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:cbscommon="http://www.huawei.com/bme/cbsinterface/cbscommon" xmlns:wo="http://www.huawei.com/bme/cbsinterface/woservices" targetNamespace="http://www.huawei.com/bme/cbsinterface/woservices">
+	<types>
+		<xs:schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" targetNamespace="http://www.huawei.com/bme/cbsinterface/woservices">
+			<import namespace="http://www.huawei.com/bme/cbsinterface/cbscommon" schemaLocation="../CBSInterface_MessageHeader.xsd"/>
+			<include schemaLocation="WorkOrder.xsd"/>
+			<element name="WorkOrderRequestMsg">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="RequestHeader" type="cbscommon:RequestHeader"/>
+						<xs:element name="WorkOrderRequest" type="wo:WorkOrderRequest"/>
+					</xs:sequence>
+				</xs:complexType>
+			</element>
+			<element name="WorkOrderResultMsg">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="ResultHeader" type="cbscommon:ResultHeader"/>
+					</xs:sequence>
+				</xs:complexType>
+			</element>
+		</xs:schema>
+	</types>
+	
+	<message name="WorkOrderRequestMessage">
+		<part name="WorkOrderRequestMsg" element="wo:WorkOrderRequestMsg"/>
+	</message>
+	<message name="WorkOrderResultMessage">
+		<part name="WorkOrderResultMsg" element="wo:WorkOrderResultMsg"/>
+	</message>
+	
+	<portType name="WoServices">
+		<operation name="WorkOrder">
+			<input message="wo:WorkOrderRequestMessage"/>
+			<output message="wo:WorkOrderResultMessage"/>
+		</operation>
+	</portType>
+
+	<binding name="WoServicsBinding" type="wo:WoServices">
+		<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+		<operation name="WorkOrder">
+			<soap:operation soapAction="WorkOrder" style="document"/>
+			<input>
+				<soap:body use="literal"/>
+			</input>
+			<output>
+				<soap:body use="literal"/>
+			</output>
+		</operation>
+	</binding>
+	
+	<service name="WoServices">
+		<port name="WoServicesPort" binding="wo:WoServicsBinding">
+			<soap:address location="http://www.huawei.com/bme/cbsinterface/woservices/wsdl/WorkOrder_Services.wsdl"/>
+		</port>
+	</service>
+
+</definitions>
