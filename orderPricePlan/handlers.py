@@ -23,7 +23,9 @@ def separationDoServiceOrderPricePlan(request_body):
     DiscountFee = tmp.split("</DiscountFee>")[0]
 
     print(DiscountFee, MSISDN ,ChannelID ,OfferCode ,AU ,Amount ,PayFlag ,BankID)
-    generate_order_price_plan_CBS_Request()
+    # response = generate_order_price_plan_CBS_Request()
+    response = None
+    generate_response(response)
     return True
 
 
@@ -120,7 +122,15 @@ def generate_order_price_plan_CBS_Request():
         print(f"Error: {e}")
     
     
-    
-    
+def generate_response(cbs_response=None) :
+    cbs_response= open('/opt/projects/fastapi/crm_middleware/orderPricePlan/templates/responses/ChangeSubOffering.txt', 'r')
+    xml_root:etree = etree.fromstring(cbs_response.read())
+    print('root:', xml_root)
+    nsp_body ={'soapenv':'http://schemas.xmlsoap.org/soap/envelope/'}
+    Body = xml_root.find('soapenv:Body', nsp_body)
+    ch_body = Body.getchildren()[0]
+    result =  Body.find(f'.//{{{ch_body.nsmap["bcc"]}}}OfferingID')
+    offeringId = result.text
+    print('result:', offeringId)
     
     
