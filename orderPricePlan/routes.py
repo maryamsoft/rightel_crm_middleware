@@ -5,7 +5,7 @@ from fastapi import APIRouter
 from typing import Annotated
 from pydantic import BaseModel
 from .services import call_cbs
-from .handlers import separationDoServiceOrderPricePlan
+from .handlers import separationDoServiceOrderPricePlan, generate_request
 
 
 router = APIRouter()
@@ -34,8 +34,10 @@ class OrderPricePlanOfferRequest(BaseModel):
     discountFee: Annotated[None, "discountFee"]
     bankId: str
     payFlag: str
+    CallerID: Annotated[None, "CallerID"]
 
-@router.post("/")
+
+@router.post('/')
 async def orderPricePlanOffer(request: OrderPricePlanOfferRequest):
-
-    return call_cbs(request.dict())
+    generate_request(request)
+    # return call_cbs(request.dict())

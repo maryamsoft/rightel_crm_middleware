@@ -1,28 +1,8 @@
 from lxml import etree
 from zeep import Client
+from datetime import datetime
 
 def separationDoServiceOrderPricePlan(request_body):
-    # xml_root:etree = etree.fromstring(request_body)
-    # nsp_body = xml_root.nsmap['ocs']
-    # in0 = xml_root.find(f'.//{{{nsp_body}}}in0')
-    # tmp = in0.text.split("<MSISDN>")[1]
-    # MSISDN = tmp.split("</MSISDN>")[0]
-    # tmp = in0.text.split("<ChannelID>")[1]
-    # ChannelID = tmp.split("</ChannelID>")[0]
-    # tmp = in0.text.split("<OfferCode>")[1]
-    # OfferCode = tmp.split("</OfferCode>")[0]
-    # tmp = in0.text.split("<AU>")[1]
-    # AU = tmp.split("</AU>")[0]
-    # tmp = in0.text.split("<Amount>")[1]
-    # Amount = tmp.split("</Amount>")[0]
-    # tmp = in0.text.split("<PayFlag>")[1]
-    # PayFlag = tmp.split("</PayFlag>")[0]
-    # tmp = in0.text.split("<BankID>")[1]
-    # BankID = tmp.split("</BankID>")[0]
-    # tmp = in0.text.split("<DiscountFee>")[1]
-    # DiscountFee = tmp.split("</DiscountFee>")[0]
-
-    # print(DiscountFee, MSISDN ,ChannelID ,OfferCode ,AU ,Amount ,PayFlag ,BankID)
     response = generate_order_price_plan_CBS_Request()
     response = None
     # generate_response(response)
@@ -128,90 +108,85 @@ def generate_order_price_plan_CBS_Request():
     #     print(response)
     # except Exception as e:
     #     print(f"Error: {e}")
+       
     
-    # Load the XSD schema
+def generate_request(data):
+    C_FREE_PAY_FLAG = 0 if data.payFlag==1 else 1
+    data.msisdn=9235000018
+    request = f'''
+        <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:bcs="http://www.huawei.com/bme/cbsinterface/bcservices" xmlns:cbs="http://www.huawei.com/bme/cbsinterface/cbscommon" xmlns:bcc="http://www.huawei.com/bme/cbsinterface/bccommon">
+        <soapenv:Header/>
+        <soapenv:Body>
+            <bcs:ChangeSubOfferingRequestMsg>
+                <RequestHeader>
+                    <cbs:Version>1</cbs:Version>
+                    <cbs:BusinessCode>ChangeSubOffering</cbs:BusinessCode>
+                    <cbs:MessageSeq>{datetime.now()}</cbs:MessageSeq>
+                    <cbs:AccessSecurity>
+                    <cbs:LoginSystemCode>102</cbs:LoginSystemCode>
+                    <cbs:Password>7/PuyYwNpRtSX7jDpxnl2ECAvuVYH2Mu9zxqgPGJrPYYK73MCZN7DvrDepA=</cbs:Password>
+                    </cbs:AccessSecurity>
+                    <cbs:OperatorInfo>
+                    <cbs:OperatorID>101</cbs:OperatorID>
+                    </cbs:OperatorInfo>
+                </RequestHeader>
+                <ChangeSubOfferingRequest>
+                    <bcs:SubAccessCode>
+                    <bcc:PrimaryIdentity>{data.msisdn}</bcc:PrimaryIdentity>
+                    </bcs:SubAccessCode>
+                    <bcs:SupplementaryOffering>
+                    <bcs:AddOffering>
+                        <bcc:OfferingKey>
+                            <bcc:OfferingCode>sms_rate_language</bcc:OfferingCode>
+                            <bcc:PurchaseSeq>{data.offerCode}</bcc:PurchaseSeq>
+                        </bcc:OfferingKey>
+                        <bcc:OInstProperty>
+                            <bcc:PropCode>CN_CHANNEL_ID</bcc:PropCode>
+                            <bcc:PropType>1</bcc:PropType>
+                            <bcc:Value>{data.channelId}</bcc:Value>
+                        </bcc:OInstProperty>
+                        <bcc:OInstProperty>
+                            <bcc:PropCode>C_FREE_FIRSTMRC</bcc:PropCode>
+                            <bcc:PropType>1</bcc:PropType>
+                            <bcc:Value>{C_FREE_PAY_FLAG}</bcc:Value>
+                        </bcc:OInstProperty>
+                        <bcc:OInstProperty>
+                            <bcc:PropCode>CN_PAY_FLAG</bcc:PropCode>
+                            <bcc:PropType>1</bcc:PropType>
+                            <bcc:Value>{data.payFlag}</bcc:Value>
+                        </bcc:OInstProperty>
+                        <bcc:OInstProperty>
+                            <bcc:PropCode>CN_AU</bcc:PropCode>
+                            <bcc:PropType>1</bcc:PropType>
+                            <bcc:Value>{data.au}</bcc:Value>
+                        </bcc:OInstProperty>
+                        <bcc:OInstProperty>
+                            <bcc:PropCode>CN_FIRST_AMOUNT</bcc:PropCode>
+                            <bcc:PropType>1</bcc:PropType>
+                            <bcc:Value>{data.amount}</bcc:Value>
+                        </bcc:OInstProperty>
+                        <bcc:OInstProperty>
+                            <bcc:PropCode>CN_BANK_ID</bcc:PropCode>
+                            <bcc:PropType>1</bcc:PropType>
+                            <bcc:Value>{data.bankId}</bcc:Value>
+                        </bcc:OInstProperty>
+                        <bcc:OInstProperty>
+                            <bcc:PropCode>CN_CALLER_ID</bcc:PropCode>
+                            <bcc:PropType>1</bcc:PropType>
+                            <bcc:Value>{data.CallerID}</bcc:Value>
+                        </bcc:OInstProperty>
+                        <bcs:EffectiveTime>
+                            <bcc:Mode>I</bcc:Mode>
+                        </bcs:EffectiveTime>
+                    </bcs:AddOffering>
+                    </bcs:SupplementaryOffering>
+                    <bcs:OperationCode>4052485</bcs:OperationCode>
+                </ChangeSubOfferingRequest>
+            </bcs:ChangeSubOfferingRequestMsg>
+        </soapenv:Body>
+        </soapenv:Envelope>'''
     
-# Create the factory for your 'ChangeSubOfferingRequest'
-
-    client = Client('/opt/projects/fastapi/crm_middleware/utils/WSDL/CBSInterface_BC_Services.wsdl')
-    change_sub_offering_request = client.get_type('ns0:ChangeSubOfferingRequest')
-
-    # Create the request payload
-    request_data = change_sub_offering_request(
-        SubAccessCode={'PrimaryIdentity': 'sub123'},
-        PrimaryOffering={
-            'OldPrimaryOffering': {
-                # 'OfferingKey': {
-                #     'OfferingID': '12345',
-                #     'OfferingInstanceID': '54321'
-                # },
-                'OInstProperty': [
-                    {'PropCode':'Prop1','PropType':'Type1', 'Value': 'Value1'}
-                ]
-            },
-            'NewPrimaryOffering': {
-                # 'OfferingKey': {
-                #     'OfferingID': '67890',
-                #     'OfferingInstanceID': '09876'
-                # }
-            },
-            'EffectiveTime': {'Mode': 'Immediate'}
-        },
-        SupplementaryOffering={
-            'AddOffering': [
-                {
-                    'OfferingKey': {
-                        'OfferingCode': '23456',
-                        'PurchaseSeq': '65432'
-                    },
-                    'EffectiveTime': {'Mode': 'Immediate'}
-                }
-            ],
-            'DelOffering': [
-                {
-                    'OfferingKey': {
-                        'OfferingID': '23457',
-                        # 'OfferingInstanceID': '65433'
-                    },
-                    # 'AdditionalProperty': [
-                    #     {'PropertyID': 'C_DELOFFER_REMOVEROURCE', 'PropertyValue': '1'}
-                    # ]
-                }
-            ]
-        },
-        HandlingChargeFlag='Yes',
-        ServiceTransactionID='TX12345'
-    )
-
-    # Send the request (replace with actual service URL)
-    response = client.service.ChangeSubOffering(request_data)
-
-    # Print the response
-    print(response)
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+    print(request)
         
         
 def generate_response(cbs_response=None) :
