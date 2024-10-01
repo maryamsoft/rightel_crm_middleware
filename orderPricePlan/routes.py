@@ -4,7 +4,7 @@ from utils import common
 from fastapi import APIRouter
 from typing import Annotated
 from pydantic import BaseModel
-from .services import call_cbs
+from .services import ChangeSubOffering
 from .handlers import separationDoServiceOrderPricePlan, generate_request
 
 
@@ -39,5 +39,6 @@ class OrderPricePlanOfferRequest(BaseModel):
 
 @router.post('/')
 async def orderPricePlanOffer(request: OrderPricePlanOfferRequest):
-    generate_request(request)
+    # generate_request(request)
+    ChangeSubOffering(request)
     # return call_cbs(request.dict())
