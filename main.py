@@ -1,6 +1,9 @@
 from fastapi import FastAPI
-from orderPricePlan import routes as orderPricePlan_router
+from orderPricePlan.routes import router as orderPricePlanRoutes
+
 app = FastAPI()
 
 
-app.include_router(orderPricePlan_router.router)
+app.include_router(orderPricePlanRoutes, prefix="/orderPricePlan", tags=["orderPricePlan"])
+
+

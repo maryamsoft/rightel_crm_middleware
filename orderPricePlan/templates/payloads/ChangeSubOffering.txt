@@ -21,7 +21,6 @@
             <bcs:SupplementaryOffering>
                <bcs:AddOffering>
                   <bcc:OfferingKey>
-                     <!--bcc:OfferingID>1383721433</bcc:OfferingID-->
                      <bcc:OfferingCode>sms_rate_language</bcc:OfferingCode>
                      <bcc:PurchaseSeq>202459420002</bcc:PurchaseSeq>
                   </bcc:OfferingKey>

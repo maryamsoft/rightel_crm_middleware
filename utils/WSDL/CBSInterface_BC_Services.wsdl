@@ -190,8 +190,8 @@
 			<element name="ChangeAcctCreditLimitRequestMsg">
 				<xs:complexType>
 					<xs:sequence>
-						<xs:element name="RequestHeader" type="cbscommon:RequestHeader"/>
-						<xs:element name="ChangeAcctCreditLimitRequest" type="bc:ChangeAcctCreditLimitRequest"/>
+						<!-- <xs:element name="RequestHeader" type="cbscommon:RequestHeader"/> -->
+						<!-- <xs:element name="ChangeAcctCreditLimitRequest" type="bc:ChangeAcctCreditLimitRequest"/> -->
 					</xs:sequence>
 				</xs:complexType>
 			</element>
