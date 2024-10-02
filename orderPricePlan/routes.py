@@ -2,10 +2,9 @@ from fastapi import APIRouter, Request, Response,  Depends
 from fastapi.responses import JSONResponse
 from utils import common
 from fastapi import APIRouter
-from typing import Annotated
-from pydantic import BaseModel
 from .services import call_cbs
-from .handlers import separationDoServiceOrderPricePlan, generate_request
+from .handlers import separationDoServiceOrderPricePlan, send_request, generate_response
+from .schemas import OrderPricePlanOfferRequest, ResponseBase
 
 
 router = APIRouter()
@@ -24,20 +23,12 @@ async def CheckRequestType(request: Request):
     return Response(content='ok', media_type="application/xml")
 
 
-
-class OrderPricePlanOfferRequest(BaseModel):
-    msisdn: str
-    offerCode: str
-    channelId: int
-    au: str
-    amount: int
-    discountFee: Annotated[None, "discountFee"]
-    bankId: str
-    payFlag: str
-    CallerID: Annotated[None, "CallerID"]
-
-
-@router.post('/')
+@router.post('/', response_model=ResponseBase)
 async def orderPricePlanOffer(request: OrderPricePlanOfferRequest):
-    generate_request(request)
-    # return call_cbs(request.dict())
+    CBS_response = send_request(request)
+    result = generate_response(CBS_response)
+    response =  {
+        'OrderNbr':result
+    }
+    return response
+    

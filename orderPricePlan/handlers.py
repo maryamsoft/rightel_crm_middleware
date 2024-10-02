@@ -1,6 +1,9 @@
+from fastapi import HTTPException
 from lxml import etree
 from zeep import Client
 from datetime import datetime
+from utils import header
+import requests
 
 def separationDoServiceOrderPricePlan(request_body):
     response = generate_order_price_plan_CBS_Request()
@@ -110,94 +113,39 @@ def generate_order_price_plan_CBS_Request():
     #     print(f"Error: {e}")
        
     
-def generate_request(data):
-    C_FREE_PAY_FLAG = 0 if data.payFlag==1 else 1
+def send_request(data):
+    headers = {
+        'Content-Type': 'text/xml; charset=utf-8'
+    }
     data.msisdn=9235000018
-    request = f'''
+    payload = f'''
         <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:bcs="http://www.huawei.com/bme/cbsinterface/bcservices" xmlns:cbs="http://www.huawei.com/bme/cbsinterface/cbscommon" xmlns:bcc="http://www.huawei.com/bme/cbsinterface/bccommon">
         <soapenv:Header/>
         <soapenv:Body>
-            <bcs:ChangeSubOfferingRequestMsg>
-                <RequestHeader>
-                    <cbs:Version>1</cbs:Version>
-                    <cbs:BusinessCode>ChangeSubOffering</cbs:BusinessCode>
-                    <cbs:MessageSeq>{datetime.now()}</cbs:MessageSeq>
-                    <cbs:AccessSecurity>
-                    <cbs:LoginSystemCode>102</cbs:LoginSystemCode>
-                    <cbs:Password>7/PuyYwNpRtSX7jDpxnl2ECAvuVYH2Mu9zxqgPGJrPYYK73MCZN7DvrDepA=</cbs:Password>
-                    </cbs:AccessSecurity>
-                    <cbs:OperatorInfo>
-                    <cbs:OperatorID>101</cbs:OperatorID>
-                    </cbs:OperatorInfo>
-                </RequestHeader>
-                <ChangeSubOfferingRequest>
-                    <bcs:SubAccessCode>
-                    <bcc:PrimaryIdentity>{data.msisdn}</bcc:PrimaryIdentity>
-                    </bcs:SubAccessCode>
-                    <bcs:SupplementaryOffering>
-                    <bcs:AddOffering>
-                        <bcc:OfferingKey>
-                            <bcc:OfferingCode>sms_rate_language</bcc:OfferingCode>
-                            <bcc:PurchaseSeq>{data.offerCode}</bcc:PurchaseSeq>
-                        </bcc:OfferingKey>
-                        <bcc:OInstProperty>
-                            <bcc:PropCode>CN_CHANNEL_ID</bcc:PropCode>
-                            <bcc:PropType>1</bcc:PropType>
-                            <bcc:Value>{data.channelId}</bcc:Value>
-                        </bcc:OInstProperty>
-                        <bcc:OInstProperty>
-                            <bcc:PropCode>C_FREE_FIRSTMRC</bcc:PropCode>
-                            <bcc:PropType>1</bcc:PropType>
-                            <bcc:Value>{C_FREE_PAY_FLAG}</bcc:Value>
-                        </bcc:OInstProperty>
-                        <bcc:OInstProperty>
-                            <bcc:PropCode>CN_PAY_FLAG</bcc:PropCode>
-                            <bcc:PropType>1</bcc:PropType>
-                            <bcc:Value>{data.payFlag}</bcc:Value>
-                        </bcc:OInstProperty>
-                        <bcc:OInstProperty>
-                            <bcc:PropCode>CN_AU</bcc:PropCode>
-                            <bcc:PropType>1</bcc:PropType>
-                            <bcc:Value>{data.au}</bcc:Value>
-                        </bcc:OInstProperty>
-                        <bcc:OInstProperty>
-                            <bcc:PropCode>CN_FIRST_AMOUNT</bcc:PropCode>
-                            <bcc:PropType>1</bcc:PropType>
-                            <bcc:Value>{data.amount}</bcc:Value>
-                        </bcc:OInstProperty>
-                        <bcc:OInstProperty>
-                            <bcc:PropCode>CN_BANK_ID</bcc:PropCode>
-                            <bcc:PropType>1</bcc:PropType>
-                            <bcc:Value>{data.bankId}</bcc:Value>
-                        </bcc:OInstProperty>
-                        <bcc:OInstProperty>
-                            <bcc:PropCode>CN_CALLER_ID</bcc:PropCode>
-                            <bcc:PropType>1</bcc:PropType>
-                            <bcc:Value>{data.CallerID}</bcc:Value>
-                        </bcc:OInstProperty>
-                        <bcs:EffectiveTime>
-                            <bcc:Mode>I</bcc:Mode>
-                        </bcs:EffectiveTime>
-                    </bcs:AddOffering>
-                    </bcs:SupplementaryOffering>
-                    <bcs:OperationCode>4052485</bcs:OperationCode>
-                </ChangeSubOfferingRequest>
+            <bcs:ChangeSubOfferingRequestMsg>'''\
+            +header.body_header_tag('ChangeSubOffering')+\
+             header.body_content_tag(data)+\
+            '''
             </bcs:ChangeSubOfferingRequestMsg>
         </soapenv:Body>
-        </soapenv:Envelope>'''
-    
-    print(request)
+        </soapenv:Envelope>
+        '''
+    response = requests.request("POST", 'http://172.22.26.40:8080/services/BcServices', headers=headers, data=payload)
+    if response.status_code==200:
+        return response.content
+    else:
+        raise HTTPException(status_code=response.status_code, detail="Bad content")
         
         
-def generate_response(cbs_response=None) :
-    cbs_response= open('/opt/projects/fastapi/crm_middleware/orderPricePlan/templates/responses/ChangeSubOffering.txt', 'r')
-    xml_root:etree = etree.fromstring(cbs_response.read())
-    print('root:', xml_root)
+def generate_response(cbs_response) :
+    # cbs_response= open('/opt/projects/fastapi/crm_middleware/orderPricePlan/templates/responses/ChangeSubOffering.txt', 'r')
+    # xml_root:etree = etree.fromstring(cbs_response.read())
+    xml_root:etree = etree.fromstring(cbs_response)
     nsp_body ={'soapenv':'http://schemas.xmlsoap.org/soap/envelope/'}
     Body = xml_root.find('soapenv:Body', nsp_body)
     ch_body = Body.getchildren()[0]
     result =  Body.find(f'.//{{{ch_body.nsmap["bcc"]}}}OfferingID')
     offeringId = result.text
-    print('result:', offeringId)
+    return offeringId
     
     
