@@ -4,7 +4,7 @@ from lxml import etree
 from utils import body
 from string import Template
 from datetime import datetime
-from utils.soap_client import soap_client
+from utils.soap_client import AR_soap_client
 
 
 def queryBalance(data):
@@ -14,7 +14,7 @@ def queryBalance(data):
         queryBalance_template = file.read()
     queryBalance_template = Template(queryBalance_template)
     queryBalance = queryBalance_template.substitute({**data.__dict__,"datetime":datetime.now().strftime("%Y-%m-%dT%H:%M:%S"),"C_FREE_PAY_FLAG" : 0 if data.payFlag==1 else 1})
-    return soap_client.call_service('QueryBalance', queryBalance)
+    return AR_soap_client.call_service('QueryBalance', queryBalance)
     
 
 def generate_response(cbs_response) :
