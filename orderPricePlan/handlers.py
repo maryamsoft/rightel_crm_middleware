@@ -5,6 +5,8 @@ from datetime import datetime
 from utils import body
 import requests
 from xml.dom import minidom 
+from fastapi.responses import XMLResponse
+
 
 def separationDoServiceOrderPricePlan(request_body):
     response = generate_order_price_plan_CBS_Request()
@@ -150,19 +152,27 @@ def generate_response(cbs_response) :
     return offeringId
 
 
-def parse_response(cbs_response) :
-    print('hiiiiiii')
-    doc = minidom.parse(cbs_response) 
-    # doc.getElementsByTagName returns the NodeList 
-    name = doc.getElementsByTagName("soapenv:Body")[0] 
-    print(name.firstChild.data) 
-    
-    # staffs = doc.getElementsByTagName("staff") 
-    # for staff in staffs: 
-    #         staff_id = staff.getAttribute("id") 
-    #         name = staff.getElementsByTagName("name")[0] 
-    #         salary = staff.getElementsByTagName("salary")[0] 
-    #         print("id:% s, name:% s, salary:% s" %
-    #             (staff_id, name.firstChild.data, salary.firstChild.data)) 
+# @app.get("/parse-soap", response_class=XMLResponse)
+# async def parse_soap():
+#     # Parse the SOAP response
+#     root = ET.fromstring(soap_response)
+
+#     # Define namespaces
+#     namespaces = {
+#         'soapenv': 'http://schemas.xmlsoap.org/soap/envelope/',
+#         'bcs': 'http://www.huawei.com/bme/cbsinterface/bcservices',
+#         'cbs': 'http://www.huawei.com/bme/cbsinterface/cbscommon',
+#         'bcc': 'http://www.huawei.com/bme/cbsinterface/bccommon'
+#     }
+
+#     # Extract ResultCode
+#     result_code = root.find('.//cbs:ResultCode', namespaces)
+#     if result_code is not None and result_code.text == '0':
+#         # Extract OfferingID if ResultCode is 0
+#         offering_id = root.find('.//bcc:OfferingID', namespaces)
+#         if offering_id is not None:
+#             return {"OfferingID": offering_id.text.strip()}
+
+#     return {"Error": "ResultCode is not 0 or OfferingID not found."}
     
     
