@@ -1,14 +1,13 @@
-import requests
 import os
-from lxml import etree
-from utils import body
+import xml.etree.ElementTree as ET
 from string import Template
 from datetime import datetime
 from utils.soap_client import soap_client
+from fastapi import HTTPException, Security, status
 
 
 def ChangeSubOffering(data):
-    data.msisdn=9235000018
+    data.msisdn = 9235000018
     app_path = os.path.dirname(os.path.abspath(__file__))
     with open(app_path+'/templates/payloads/ChangeSubOffering.txt', 'r') as file:
         changeSubOffering_template = file.read()
@@ -18,10 +17,29 @@ def ChangeSubOffering(data):
     
 
 def generate_response(cbs_response) :
-    xml_root:etree = etree.fromstring(cbs_response)
-    nsp_body ={'soapenv':'http://schemas.xmlsoap.org/soap/envelope/'}
-    Body = xml_root.find('soapenv:Body', nsp_body)
-    ch_body = Body.getchildren()[0]
-    result =  Body.find(f'.//{{{ch_body.nsmap["bcc"]}}}OfferingID')
-    offeringId = result.text
-    return offeringId
+        root = ET.fromstring(cbs_response)
+        namespaces = {
+        'soapenv': 'http://schemas.xmlsoap.org/soap/envelope/',
+        'bcs': 'http://www.huawei.com/bme/cbsinterface/bcservices',
+        'cbs': 'http://www.huawei.com/bme/cbsinterface/cbscommon',
+        'bcc': 'http://www.huawei.com/bme/cbsinterface/bccommon'
+    }
+
+        result_code = root.find('.//cbs:ResultCode', namespaces)
+        result_desc = root.find('.//cbs:ResultDesc', namespaces)
+        if result_code is not None and result_code.text == '0':
+            offering_id = root.find('.//bcc:OfferingID', namespaces)
+            if offering_id is not None:
+                return offering_id.text.strip()
+
+        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail= result_desc.text)
+
+    #old_way
+    #     xml_root:etree = etree.fromstring(cbs_response)
+    #     nsp_body ={'soapenv':'http://schemas.xmlsoap.org/soap/envelope/'}
+    #     Body = xml_root.find('soapenv:Body', nsp_body)
+    #     ch_body = Body.getchildren()[0]
+    #     result =  Body.find(f'.//{{{ch_body.nsmap["bcc"]}}}OfferingID')
+    #     offeringId = result.text
+    #     return offeringId
+
