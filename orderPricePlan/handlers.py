@@ -2,7 +2,7 @@ from fastapi import HTTPException
 from lxml import etree
 from zeep import Client
 from datetime import datetime
-from utils import header
+from utils import body
 import requests
 
 def separationDoServiceOrderPricePlan(request_body):
@@ -123,8 +123,8 @@ def send_request(data):
         <soapenv:Header/>
         <soapenv:Body>
             <bcs:ChangeSubOfferingRequestMsg>'''\
-            +header.body_header_tag('ChangeSubOffering')+\
-             header.body_content_tag(data)+\
+            +body.header_tag('ChangeSubOffering')+\
+             body.content_tag(data)+\
             '''
             </bcs:ChangeSubOfferingRequestMsg>
         </soapenv:Body>
