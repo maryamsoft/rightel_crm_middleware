@@ -5,7 +5,6 @@ from .schemas import OrderPricePlanOfferRequest, ResponseBase
 
 router = APIRouter()
 
-
 @router.post('/', response_model=ResponseBase)
 async def orderPricePlanOffer(request: OrderPricePlanOfferRequest):
     try:
