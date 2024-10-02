@@ -3,7 +3,7 @@ from fastapi.responses import JSONResponse
 from utils import common
 from fastapi import APIRouter
 from .services import call_cbs
-from .handlers import separationDoServiceOrderPricePlan, send_request, generate_response
+from .handlers import separationDoServiceOrderPricePlan, send_request, generate_response, parse_response
 from .schemas import OrderPricePlanOfferRequest, ResponseBase
 
 
@@ -26,7 +26,8 @@ async def CheckRequestType(request: Request):
 @router.post('/', response_model=ResponseBase)
 async def orderPricePlanOffer(request: OrderPricePlanOfferRequest):
     CBS_response = send_request(request)
-    result = generate_response(CBS_response)
+    # result = generate_response(CBS_response)
+    result = parse_response(CBS_response)
     response =  {
         'OrderNbr':result
     }

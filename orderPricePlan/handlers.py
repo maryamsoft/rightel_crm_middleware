@@ -4,6 +4,7 @@ from zeep import Client
 from datetime import datetime
 from utils import body
 import requests
+from xml.dom import minidom 
 
 def separationDoServiceOrderPricePlan(request_body):
     response = generate_order_price_plan_CBS_Request()
@@ -132,7 +133,7 @@ def send_request(data):
         '''
     response = requests.request("POST", 'http://172.22.26.40:8080/services/BcServices', headers=headers, data=payload)
     if response.status_code==200:
-        return response.content
+        return response
     else:
         raise HTTPException(status_code=response.status_code, detail="Bad content")
         
@@ -147,5 +148,21 @@ def generate_response(cbs_response) :
     result =  Body.find(f'.//{{{ch_body.nsmap["bcc"]}}}OfferingID')
     offeringId = result.text
     return offeringId
+
+
+def parse_response(cbs_response) :
+    print('hiiiiiii')
+    doc = minidom.parse(cbs_response) 
+    # doc.getElementsByTagName returns the NodeList 
+    name = doc.getElementsByTagName("soapenv:Body")[0] 
+    print(name.firstChild.data) 
+    
+    # staffs = doc.getElementsByTagName("staff") 
+    # for staff in staffs: 
+    #         staff_id = staff.getAttribute("id") 
+    #         name = staff.getElementsByTagName("name")[0] 
+    #         salary = staff.getElementsByTagName("salary")[0] 
+    #         print("id:% s, name:% s, salary:% s" %
+    #             (staff_id, name.firstChild.data, salary.firstChild.data)) 
     
     
