@@ -16,3 +16,4 @@ class SOAPClient:
 
 
 soap_client = SOAPClient("http://172.22.26.40:8080/services/BcServices")
+soap_client = SOAPClient("http://172.22.26.40:8080/services/ArServices")
