@@ -5,3 +5,4 @@ kill $PID
 echo "fastapi-app stopped"
 else
 echo "fastapi-app is not running"
+fi
