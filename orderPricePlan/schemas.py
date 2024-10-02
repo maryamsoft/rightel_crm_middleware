@@ -1,9 +1,7 @@
 from typing import Annotated
 from pydantic import BaseModel
-from pydantic import BaseModel, create_model
-from datetime import datetime
-from typing import List
-from typing_extensions import TypedDict
+from pydantic import BaseModel
+
 
 class OrderPricePlanOfferRequest(BaseModel):
     msisdn: str
@@ -17,8 +15,6 @@ class OrderPricePlanOfferRequest(BaseModel):
     CallerID: Annotated[None, "CallerID"]
     
     
-    
-
 class ResponseBase(BaseModel):
     OrderNbr: str
 

@@ -5,7 +5,7 @@
          <RequestHeader>
             <cbs:Version>1</cbs:Version>
             <cbs:BusinessCode>ChangeSubOffering</cbs:BusinessCode>
-            <cbs:MessageSeq>${=new java.text.SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS").format(new Date())}</cbs:MessageSeq>
+            <cbs:MessageSeq>$datetime</cbs:MessageSeq>
             <cbs:AccessSecurity>
                <cbs:LoginSystemCode>102</cbs:LoginSystemCode>
                <cbs:Password>7/PuyYwNpRtSX7jDpxnl2ECAvuVYH2Mu9zxqgPGJrPYYK73MCZN7DvrDepA=</cbs:Password>
@@ -16,48 +16,48 @@
          </RequestHeader>
          <ChangeSubOfferingRequest>
             <bcs:SubAccessCode>
-               <bcc:PrimaryIdentity>9235000018</bcc:PrimaryIdentity>
+               <bcc:PrimaryIdentity>$msisdn</bcc:PrimaryIdentity>
             </bcs:SubAccessCode>
             <bcs:SupplementaryOffering>
                <bcs:AddOffering>
                   <bcc:OfferingKey>
                      <bcc:OfferingCode>sms_rate_language</bcc:OfferingCode>
-                     <bcc:PurchaseSeq>202459420002</bcc:PurchaseSeq>
+                     <bcc:PurchaseSeq>$offerCode</bcc:PurchaseSeq>
                   </bcc:OfferingKey>
                   <bcc:OInstProperty>
                      <bcc:PropCode>CN_CHANNEL_ID</bcc:PropCode>
                      <bcc:PropType>1</bcc:PropType>
-                     <bcc:Value>channe0924</bcc:Value>
+                     <bcc:Value>$channelId</bcc:Value>
                   </bcc:OInstProperty>
                   <bcc:OInstProperty>
                      <bcc:PropCode>C_FREE_FIRSTMRC</bcc:PropCode>
                      <bcc:PropType>1</bcc:PropType>
-                     <bcc:Value>1</bcc:Value>
+                     <bcc:Value>$C_FREE_PAY_FLAG</bcc:Value>
                   </bcc:OInstProperty>
                   <bcc:OInstProperty>
                      <bcc:PropCode>CN_PAY_FLAG</bcc:PropCode>
                      <bcc:PropType>1</bcc:PropType>
-                     <bcc:Value>1</bcc:Value>
+                     <bcc:Value>$payFlag</bcc:Value>
                   </bcc:OInstProperty>
                   <bcc:OInstProperty>
                      <bcc:PropCode>CN_AU</bcc:PropCode>
                      <bcc:PropType>1</bcc:PropType>
-                     <bcc:Value>bankau20</bcc:Value>
+                     <bcc:Value>$au</bcc:Value>
                   </bcc:OInstProperty>
                   <bcc:OInstProperty>
                      <bcc:PropCode>CN_FIRST_AMOUNT</bcc:PropCode>
                      <bcc:PropType>1</bcc:PropType>
-                     <bcc:Value>5000000</bcc:Value>
+                     <bcc:Value>$amount</bcc:Value>
                   </bcc:OInstProperty>
                   <bcc:OInstProperty>
                      <bcc:PropCode>CN_BANK_ID</bcc:PropCode>
                      <bcc:PropType>1</bcc:PropType>
-                     <bcc:Value>20240924</bcc:Value>
+                     <bcc:Value>$bankId</bcc:Value>
                   </bcc:OInstProperty>
                   <bcc:OInstProperty>
                      <bcc:PropCode>CN_CALLER_ID</bcc:PropCode>
                      <bcc:PropType>1</bcc:PropType>
-                     <bcc:Value>test20240924</bcc:Value>
+                     <bcc:Value>$CallerID</bcc:Value>
                   </bcc:OInstProperty>
                   <bcs:EffectiveTime>
                      <bcc:Mode>I</bcc:Mode>
