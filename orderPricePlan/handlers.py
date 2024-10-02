@@ -29,8 +29,6 @@ def send_request(data):
         
         
 def generate_response(cbs_response) :
-    # cbs_response= open('/opt/projects/fastapi/crm_middleware/orderPricePlan/templates/responses/ChangeSubOffering.txt', 'r')
-    # xml_root:etree = etree.fromstring(cbs_response.read())
     xml_root:etree = etree.fromstring(cbs_response)
     nsp_body ={'soapenv':'http://schemas.xmlsoap.org/soap/envelope/'}
     Body = xml_root.find('soapenv:Body', nsp_body)
