@@ -8,7 +8,7 @@ from utils.soap_client import AR_soap_client
 
 
 def queryBalance(data):
-    data.msisdn=9235000018
+    data.msisdn=9210451762
     app_path = os.path.dirname(os.path.abspath(__file__))
     with open(app_path+'/templates/payloads/QueryBalance.txt', 'r') as file:
         queryBalance_template = file.read()

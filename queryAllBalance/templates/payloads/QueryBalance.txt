@@ -14,7 +14,7 @@
          <QueryBalanceRequest>
             <ars:QueryObj>
                <ars:SubAccessCode>
-                  <arc:PrimaryIdentity>9210451762</arc:PrimaryIdentity>
+                  <arc:PrimaryIdentity>$msisdn</arc:PrimaryIdentity>
                </ars:SubAccessCode>
             </ars:QueryObj>
          </QueryBalanceRequest>
