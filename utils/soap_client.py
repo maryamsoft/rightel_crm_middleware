@@ -15,5 +15,6 @@ class SOAPClient:
             raise HTTPException(status_code=response.status_code, detail="Bad content")
 
 
-soap_client = SOAPClient("http://172.22.26.40:8080/services/BcServices")
-soap_client = SOAPClient("http://172.22.26.40:8080/services/ArServices")
+BC_soap_client = SOAPClient("http://172.22.26.40:8080/services/BcServices")
+AR_soap_client = SOAPClient("http://172.22.26.40:8080/services/ArServices")
+BB_soap_client = SOAPClient("http://172.22.26.40:8080/services/BBServices")

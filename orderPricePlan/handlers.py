@@ -2,8 +2,8 @@ import os
 import xml.etree.ElementTree as ET
 from string import Template
 from datetime import datetime
-from utils.soap_client import soap_client
 from fastapi import HTTPException, Security, status
+from utils.soap_client import BC_soap_client
 
 
 def ChangeSubOffering(data):
@@ -13,7 +13,7 @@ def ChangeSubOffering(data):
         changeSubOffering_template = file.read()
     changeSubOffering_template = Template(changeSubOffering_template)
     changeSubOffering = changeSubOffering_template.substitute({**data.__dict__,"datetime":datetime.now().strftime("%Y-%m-%dT%H:%M:%S"),"C_FREE_PAY_FLAG" : 0 if data.payFlag==1 else 1})
-    return soap_client.call_service('ChangeSubOffering', changeSubOffering)
+    return BC_soap_client.call_service('ChangeSubOffering', changeSubOffering)
     
 
 def generate_response(cbs_response) :
