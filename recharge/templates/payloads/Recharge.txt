@@ -17,41 +17,41 @@
          <RechargeRequest>
             <ars:RechargeObj>
                <ars:SubAccessCode>
-                  <arc:PrimaryIdentity>$MSISDN	</arc:PrimaryIdentity>
+                  <arc:PrimaryIdentity>$msisdn</arc:PrimaryIdentity>
                </ars:SubAccessCode>
             </ars:RechargeObj>
             <ars:RechargeInfo>
                <ars:CashPayment>
-                  <ars:PaymentMethod>1001</ars:PaymentMethod>
-                  <ars:Amount>1400</ars:Amount>
+                  <ars:PaymentMethod>$paymentMethod</ars:PaymentMethod>
+                  <ars:Amount>$amount</ars:Amount>
                   <ars:BankInfo>
-                     <arc:BankCode>ABC</arc:BankCode>
+                     <arc:BankCode>$bankId</arc:BankCode>
                   </ars:BankInfo>
                </ars:CashPayment>
             </ars:RechargeInfo>
             <ars:AdditionalProperty>
                <arc:Code>CN_AU</arc:Code>
-               <arc:Value>20240919</arc:Value>
+               <arc:Value>$au</arc:Value>
             </ars:AdditionalProperty>
             <ars:AdditionalProperty>
                <arc:Code>CN_CHARGE_TYPE</arc:Code>
-               <arc:Value>20240919</arc:Value>
+               <arc:Value>$paymentType</arc:Value>
             </ars:AdditionalProperty>
             <ars:AdditionalProperty>
                <arc:Code>CN_CALLER_ID</arc:Code>
-               <arc:Value>caller20240919</arc:Value>
+               <arc:Value>$callerID</arc:Value>
             </ars:AdditionalProperty>
             <ars:AdditionalProperty>
                <arc:Code>CN_VC_TYPE</arc:Code>
-               <arc:Value>type20240919</arc:Value>
+               <arc:Value>$voucherType</arc:Value>
             </ars:AdditionalProperty>
             <ars:AdditionalProperty>
                <arc:Code>C_CELLID</arc:Code>
-               <arc:Value>cell20240919</arc:Value>
+               <arc:Value>$location</arc:Value>
             </ars:AdditionalProperty>
             <ars:AdditionalProperty>
                <arc:Code>CN_VC_SN</arc:Code>
-               <arc:Value>sn20240919</arc:Value>
+               <arc:Value>$serialNumber</arc:Value>
             </ars:AdditionalProperty>
          </RechargeRequest>
       </ars:RechargeRequestMsg>

@@ -1,18 +1,15 @@
 from fastapi import APIRouter
-from .handlers import  ChangeRecharge, generate_response
+from .handlers import  recharge_handler, generate_response
 from .schemas import RechargeRequest
 
 
 router = APIRouter()
 
 @router.post('/')
-async def orderPricePlanOffer(request: RechargeRequest):
+async def recharge_pps(request: RechargeRequest):
     try:
-        CBS_response = ChangeRecharge(request)
-        result = generate_response(CBS_response)
-        response =  {
-            'OrderNbr':result
-        }
-        return response
+        xml_response = recharge_handler(request)
+        result = generate_response(xml_response)
+        return result
     except Exception as error:
         raise error
