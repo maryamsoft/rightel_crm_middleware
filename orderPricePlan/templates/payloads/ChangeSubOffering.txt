@@ -21,8 +21,8 @@
             <bcs:SupplementaryOffering>
                <bcs:AddOffering>
                   <bcc:OfferingKey>
-                     <bcc:OfferingCode>sms_rate_language</bcc:OfferingCode>
-                     <bcc:PurchaseSeq>$offerCode</bcc:PurchaseSeq>
+                     <bcc:OfferingCode>$offerCode</bcc:OfferingCode>
+                     <bcc:PurchaseSeq></bcc:PurchaseSeq>
                   </bcc:OfferingKey>
                   <bcc:OInstProperty>
                      <bcc:PropCode>CN_CHANNEL_ID</bcc:PropCode>
