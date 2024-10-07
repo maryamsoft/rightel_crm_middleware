@@ -17,5 +17,20 @@ def recharge_handler(data):
     print("request:", xml_data)
     return soap_client.call_service('Recharge', xml_data)
 
+
+
 def generate_response(response) :
-        return response
+        root = ET.fromstring(response)
+        namespaces = {
+        'soapenv': 'http://schemas.xmlsoap.org/soap/envelope/',
+        'bcs': 'http://www.huawei.com/bme/cbsinterface/bcservices',
+        'cbs': 'http://www.huawei.com/bme/cbsinterface/cbscommon',
+        'bcc': 'http://www.huawei.com/bme/cbsinterface/bccommon'
+        }
+        balance = root.find('.//arc:NewBalanceAmt', namespaces)
+        if balance is not None:
+            return {
+                    "Balance": balance.text.strip()
+                }
+        
+        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST)
