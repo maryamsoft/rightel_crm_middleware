@@ -6,7 +6,7 @@ from .schemas import OrderPricePlanOfferRequest, ResponseBase
 router = APIRouter()
 
 
-@router.post('/', response_model=ResponseBase)
+@router.post('', response_model=ResponseBase)
 async def queryAllBalance(request: OrderPricePlanOfferRequest):
     CBS_response = ChangeSubOffering(request)
     result = generate_response(CBS_response)

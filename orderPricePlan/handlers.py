@@ -7,7 +7,8 @@ from utils.soap_client import BC_soap_client
 
 
 def ChangeSubOffering(data):
-    data.msisdn = 9235000018
+    print('data:', {**data.__dict__})
+    print("datetime:",datetime.now().strftime("%Y-%m-%dT%H:%M:%S"))
     app_path = os.path.dirname(os.path.abspath(__file__))
     with open(app_path+'/templates/payloads/ChangeSubOffering.txt', 'r') as file:
         changeSubOffering_template = file.read()
@@ -33,6 +34,7 @@ def generate_response(cbs_response) :
                 return offering_id.text.strip()
 
         raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail= result_desc.text)
+
 
     #old_way
     #     xml_root:etree = etree.fromstring(cbs_response)

@@ -5,7 +5,7 @@ from .schemas import OrderPricePlanOfferRequest, ResponseBase
 
 router = APIRouter()
 
-@router.post('/', response_model=ResponseBase)
+@router.post('', response_model=ResponseBase)
 async def orderPricePlanOffer(request: OrderPricePlanOfferRequest):
     try:
         CBS_response = ChangeSubOffering(request)
