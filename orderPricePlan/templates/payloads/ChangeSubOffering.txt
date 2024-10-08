@@ -57,7 +57,7 @@
                   <bcc:OInstProperty>
                      <bcc:PropCode>CN_CALLER_ID</bcc:PropCode>
                      <bcc:PropType>1</bcc:PropType>
-                     <bcc:Value>$CallerID</bcc:Value>
+                     <bcc:Value>$CallerId</bcc:Value>
                   </bcc:OInstProperty>
                   <bcs:EffectiveTime>
                      <bcc:Mode>I</bcc:Mode>
