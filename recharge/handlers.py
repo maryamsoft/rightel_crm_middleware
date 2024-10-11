@@ -8,8 +8,6 @@ from .schemas import RechargeRequest
 
 
 def recharge_handler(data:RechargeRequest):
-    print('data:', {**data.__dict__})
-    print("datetime:",datetime.now().strftime("%Y-%m-%dT%H:%M:%S"))
     app_path = os.path.dirname(os.path.abspath(__file__))
     with open(app_path+'/templates/payloads/Recharge.txt', 'r') as file:
         template = file.read()

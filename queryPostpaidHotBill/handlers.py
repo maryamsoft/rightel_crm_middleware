@@ -7,8 +7,6 @@ from fastapi import HTTPException, Security, status
 
 
 def query_postpaid_hotbill_handler(data):
-    print('data:', {**data.__dict__})
-    print("datetime:",datetime.now().strftime("%Y-%m-%dT%H:%M:%S"))
     app_path = os.path.dirname(os.path.abspath(__file__))
     with open(app_path+'/templates/payloads/QueryPostpaidHotBill.txt', 'r') as file:
         template = file.read()

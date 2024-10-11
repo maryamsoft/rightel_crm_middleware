@@ -8,8 +8,6 @@ from utils import body
 
 
 def ChangeSubOffering(data):
-    #Making a ten-digit msisdn
-    # data.msisdn = body.create_standard_msisdn(data.msisdn)
     app_path = os.path.dirname(os.path.abspath(__file__))
     with open(app_path+'/templates/payloads/ChangeSubOffering.txt', 'r') as file:
         changeSubOffering_template = file.read()
