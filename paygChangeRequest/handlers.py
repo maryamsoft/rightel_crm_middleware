@@ -5,9 +5,10 @@ from datetime import datetime
 from fastapi import HTTPException, status
 from utils.soap_client import BC_soap_client
 from utils import body 
+from .schemas import PaygChangeRequest
 
 
-def paygChangeRequest(data):
+def payg_change_request(data:PaygChangeRequest):
     pass
     
 

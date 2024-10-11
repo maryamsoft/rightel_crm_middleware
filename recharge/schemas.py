@@ -8,7 +8,7 @@ class RechargeRequest(BaseModel):
     au: Optional[str] = None
     paymentType: Optional[str] = "1"
     faceValueDtoList: Optional[List[dict]] = None
-    callerId: Optional[str] = None
+    callerID: Optional[str] = None
     paymentMethod: Optional[int] = 1
     voucherType: Optional[str] = None
     location: Optional[str] = None

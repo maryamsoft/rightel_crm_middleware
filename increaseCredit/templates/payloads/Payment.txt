@@ -4,7 +4,7 @@
       <ars:PaymentRequestMsg>
          <RequestHeader>
             <cbs:Version>1</cbs:Version>
-            <cbs:MessageSeq>${=new java.text.SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS").format(new Date())}</cbs:MessageSeq>
+            <cbs:MessageSeq>{{ datetime }}</cbs:MessageSeq>
             <cbs:OwnershipInfo>
                <cbs:BEID>101</cbs:BEID>
                <cbs:BRID>101</cbs:BRID>
@@ -24,21 +24,21 @@
             <ars:PaymentObj>
                <ars:AcctAccessCode>
                   <!--You have a CHOICE of the next 3 items at this level-->
-                  <arc:PrimaryIdentity>9235000026</arc:PrimaryIdentity>
+                  <arc:PrimaryIdentity>{{ MSISDN }}</arc:PrimaryIdentity>
                   <ars:PayType>2</ars:PayType>
                </ars:AcctAccessCode>
             </ars:PaymentObj>
             <ars:PaymentInfo>
                <ars:CashPayment>
-                  <ars:Amount>5000</ars:Amount>
+                  <ars:Amount>{{ IncreaseValue }}</ars:Amount>
                   <ars:BankInfo>
-                     <arc:BankCode>ABC</arc:BankCode>
+                     <arc:BankCode>{{ BankId }}</arc:BankCode>
                   </ars:BankInfo>
                </ars:CashPayment>
             </ars:PaymentInfo>
             <ars:AdditionalProperty>
                <arc:Code>CN_AU</arc:Code>
-               <arc:Value>202450918</arc:Value>
+               <arc:Value>{{AU}}</arc:Value>
             </ars:AdditionalProperty>
          </PaymentRequest>
       </ars:PaymentRequestMsg>

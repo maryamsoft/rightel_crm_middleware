@@ -5,7 +5,7 @@
          <RequestHeader>
             <cbs:Version>1</cbs:Version>
             <cbs:BusinessCode>?</cbs:BusinessCode>
-            <cbs:MessageSeq>$datetime</cbs:MessageSeq>
+            <cbs:MessageSeq>{{datetime}}</cbs:MessageSeq>
             <cbs:AccessSecurity>
                <cbs:LoginSystemCode>102</cbs:LoginSystemCode>
                <cbs:Password>7/PuyYwNpRtSX7jDpxnl2ECAvuVYH2Mu9zxqgPGJrPYYK73MCZN7DvrDepA=</cbs:Password>
@@ -17,42 +17,42 @@
          <RechargeRequest>
             <ars:RechargeObj>
                <ars:SubAccessCode>
-                  <arc:PrimaryIdentity>$msisdn</arc:PrimaryIdentity>
+                  <arc:PrimaryIdentity>{{msisdn}}</arc:PrimaryIdentity>
                </ars:SubAccessCode>
             </ars:RechargeObj>
             <ars:RechargeInfo>
                <ars:CashPayment>
-                  <ars:PaymentMethod>$paymentMethod</ars:PaymentMethod>
-                  <ars:Amount>$amount</ars:Amount>
-                  <ars:BankInfo>
-                     <arc:BankCode>$bankId</arc:BankCode>
-                  </ars:BankInfo>
+                  {% if paymentMethod is not none  %}<ars:PaymentMethod>{{paymentMethod}}</ars:PaymentMethod>{% endif %}
+                  <ars:Amount>{{amount}}</ars:Amount>
+                  {% if bankId is not none %}<ars:BankInfo>
+                     <arc:BankCode>{{bankId}}</arc:BankCode>
+                  </ars:BankInfo>{% endif %}
                </ars:CashPayment>
             </ars:RechargeInfo>
-            <ars:AdditionalProperty>
+            {% if au is not none %} <ars:AdditionalProperty>
                <arc:Code>CN_AU</arc:Code>
-               <arc:Value>$au</arc:Value>
-            </ars:AdditionalProperty>
-            <ars:AdditionalProperty>
+               <arc:Value>{{au}}</arc:Value>
+            </ars:AdditionalProperty>{% endif %}
+            {% if paymentType is not none%}<ars:AdditionalProperty>
                <arc:Code>CN_CHARGE_TYPE</arc:Code>
-               <arc:Value>$paymentType</arc:Value>
-            </ars:AdditionalProperty>
-            <ars:AdditionalProperty>
+               <arc:Value>{{paymentType}}</arc:Value>
+            </ars:AdditionalProperty>{% endif %}
+            {% if callerID is not none%}<ars:AdditionalProperty>
                <arc:Code>CN_CALLER_ID</arc:Code>
-               <arc:Value>$callerID</arc:Value>
-            </ars:AdditionalProperty>
-            <ars:AdditionalProperty>
+               <arc:Value>{{callerID}}</arc:Value>
+            </ars:AdditionalProperty>{% endif %}
+            {% if voucherType is not none%}<ars:AdditionalProperty>
                <arc:Code>CN_VC_TYPE</arc:Code>
-               <arc:Value>$voucherType</arc:Value>
-            </ars:AdditionalProperty>
-            <ars:AdditionalProperty>
+               <arc:Value>{{voucherType}}</arc:Value>
+            </ars:AdditionalProperty>{% endif %}
+            {% if location is not none%}<ars:AdditionalProperty>
                <arc:Code>C_CELLID</arc:Code>
-               <arc:Value>$location</arc:Value>
-            </ars:AdditionalProperty>
-            <ars:AdditionalProperty>
+               <arc:Value>{{location}}</arc:Value>
+            </ars:AdditionalProperty>{% endif %}
+            {% if serialNumber is not none%}<ars:AdditionalProperty>
                <arc:Code>CN_VC_SN</arc:Code>
-               <arc:Value>$serialNumber</arc:Value>
-            </ars:AdditionalProperty>
+               <arc:Value>{{serialNumber}}</arc:Value>
+            </ars:AdditionalProperty>{% endif %}
          </RechargeRequest>
       </ars:RechargeRequestMsg>
    </soapenv:Body>

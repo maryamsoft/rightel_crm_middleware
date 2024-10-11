@@ -4,7 +4,7 @@
       <ars:PaymentRequestMsg>
          <RequestHeader>
             <cbs:Version>1</cbs:Version>
-            <cbs:MessageSeq>${=new java.text.SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS").format(new Date())}</cbs:MessageSeq>
+            <cbs:MessageSeq>{{ datetime }}</cbs:MessageSeq>
             <cbs:OwnershipInfo>
                <cbs:BEID>101</cbs:BEID>
                <cbs:BRID>101</cbs:BRID>
@@ -24,35 +24,35 @@
             <ars:PaymentObj>
                <ars:AcctAccessCode>
                   <!--You have a CHOICE of the next 3 items at this level-->
-                  <arc:PrimaryIdentity>$MSISDN</arc:PrimaryIdentity>
+                  <arc:PrimaryIdentity>{{MSISDN}}</arc:PrimaryIdentity>
                   <ars:PayType>2</ars:PayType>
                </ars:AcctAccessCode>
             </ars:PaymentObj>
             <ars:PaymentInfo>
                <ars:CashPayment>
-                  <ars:PaymentMethod>$PaymentMethod</ars:PaymentMethod>
-                  <ars:Amount>$Amount</ars:Amount>
-                  <ars:BankInfo>
-                     <arc:BankCode>$BankId</arc:BankCode>
-                  </ars:BankInfo>
+                  {% if PaymentMethod is not none %}<ars:PaymentMethod>{{PaymentMethod}}</ars:PaymentMethod>{% endif %}
+                  <ars:Amount>{{Amount}}</ars:Amount>
+                  {% if BankId is not none %}<ars:BankInfo>
+                     <arc:BankCode>{{BankId}}</arc:BankCode>
+                  </ars:BankInfo>{% endif %}
                </ars:CashPayment>
             </ars:PaymentInfo>
-            <ars:AdditionalProperty>
+            {% if AU is not none %}<ars:AdditionalProperty>
                <arc:Code>CN_AU</arc:Code>
-               <arc:Value>$AU</arc:Value>
-            </ars:AdditionalProperty>
-            <ars:AdditionalProperty>
+               <arc:Value>{{AU}}</arc:Value>
+            </ars:AdditionalProperty>{% endif %}
+            {% if BusinessType is not none %}<ars:AdditionalProperty>
                <arc:Code>CN_BUSINESSTYPE</arc:Code>
-               <arc:Value>$BusinessType</arc:Value>
-            </ars:AdditionalProperty>
-            <ars:AdditionalProperty>
+               <arc:Value>{{BusinessType}}</arc:Value>
+            </ars:AdditionalProperty>{% endif %}
+            {% if PaymentId is not none %}<ars:AdditionalProperty>
                <arc:Code>CN_PAYMENTID</arc:Code>
-               <arc:Value>$PaymentId</arc:Value>
-            </ars:AdditionalProperty>
-            <ars:AdditionalProperty>
+               <arc:Value>{{PaymentId}}</arc:Value>
+            </ars:AdditionalProperty>{% endif %}
+            {% if CallerID is not none %}<ars:AdditionalProperty>
                <arc:Code>CN_CALLERID</arc:Code>
-               <arc:Value>$CallerID</arc:Value>
-            </ars:AdditionalProperty>
+               <arc:Value>{{CallerID}}</arc:Value>
+            </ars:AdditionalProperty>{% endif %}
          </PaymentRequest>
       </ars:PaymentRequestMsg>
    </soapenv:Body>
