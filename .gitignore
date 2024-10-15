@@ -163,3 +163,11 @@ cython_debug/
 #.idea/
 
 nohup.out
+
+# mac
+.DS_Store
+**/.DS_Store
+.stop.sh
+.start.sh
+stop.sh
+start.sh

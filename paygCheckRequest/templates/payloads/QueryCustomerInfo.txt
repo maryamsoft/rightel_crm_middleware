@@ -1,0 +1,29 @@
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:bcs="http://www.huawei.com/bme/cbsinterface/bcservices" xmlns:cbs="http://www.huawei.com/bme/cbsinterface/cbscommon" xmlns:bcc="http://www.huawei.com/bme/cbsinterface/bccommon">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <bcs:QueryCustomerInfoRequestMsg>
+         <RequestHeader>
+            <cbs:Version>1</cbs:Version>
+            <!--Optional:-->
+            <cbs:BusinessCode>QueryCustomerInfoRequest</cbs:BusinessCode>
+            <cbs:MessageSeq>{{datetime}}</cbs:MessageSeq>
+            <!--Optional:-->
+            <cbs:OwnershipInfo>
+               <cbs:BEID>101</cbs:BEID>
+            </cbs:OwnershipInfo>
+             <cbs:AccessSecurity>
+                <cbs:LoginSystemCode>102</cbs:LoginSystemCode>
+                <cbs:Password>7/PuyYwNpRtSX7jDpxnl2ECAvuVYH2Mu9zxqgPGJrPYYK73MCZN7DvrDepA=</cbs:Password>
+            </cbs:AccessSecurity>
+           
+         </RequestHeader>
+         <QueryCustomerInfoRequest>
+            <bcs:QueryObj>
+               <bcs:SubAccessCode>
+                  <bcc:PrimaryIdentity>{{ MSISDN }}</bcc:PrimaryIdentity>
+               </bcs:SubAccessCode>
+            </bcs:QueryObj>
+         </QueryCustomerInfoRequest>
+      </bcs:QueryCustomerInfoRequestMsg>
+   </soapenv:Body>
+</soapenv:Envelope>

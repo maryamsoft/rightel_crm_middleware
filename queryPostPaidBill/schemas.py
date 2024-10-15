@@ -12,7 +12,7 @@ class OrderPricePlanOfferRequest(BaseModel):
     discountFee: Annotated[None, "discountFee"]
     bankId: str
     payFlag: str
-    CallerId: Annotated[None, "CallerId"]
+    CallerID: Annotated[None, "CallerID"]
     
     
 class ResponseBase(BaseModel):

@@ -1,0 +1,25 @@
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ars="http://www.huawei.com/bme/cbsinterface/arservices" xmlns:cbs="http://www.huawei.com/bme/cbsinterface/cbscommon" xmlns:arc="http://cbs.huawei.com/ar/wsservice/arcommon">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ars:QueryInvoiceRequestMsg>
+         <RequestHeader>
+            <cbs:Version>1</cbs:Version>
+            <cbs:BusinessCode>QueryInvoice</cbs:BusinessCode>
+            <cbs:MessageSeq>${=new java.text.SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS").format(new Date())}</cbs:MessageSeq>
+            <cbs:AccessSecurity>
+               <cbs:LoginSystemCode>102</cbs:LoginSystemCode>
+               <cbs:Password>7/PuyYwNpRtSX7jDpxnl2ECAvuVYH2Mu9zxqgPGJrPYYK73MCZN7DvrDepA=</cbs:Password>
+            </cbs:AccessSecurity>
+            <cbs:OperatorInfo>
+               <cbs:OperatorID>101</cbs:OperatorID>
+            </cbs:OperatorInfo>
+         </RequestHeader>
+         <QueryInvoiceRequest>
+            <ars:AcctAccessCode>
+               <arc:PrimaryIdentity>$msisdn</arc:PrimaryIdentity>
+            </ars:AcctAccessCode>
+            <ars:NumberOfBillCycle>$billingCycleId</ars:NumberOfBillCycle>
+         </QueryInvoiceRequest>
+      </ars:QueryInvoiceRequestMsg>
+   </soapenv:Body>
+</soapenv:Envelope>
