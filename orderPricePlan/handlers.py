@@ -32,6 +32,7 @@ def generate_response(cbs_response) :
             if offering_id is not None:
                 return offering_id.text.strip()
 
-        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail= result_desc.text)
-
+        # raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail= result_desc.text)
+        return None
+    
 
