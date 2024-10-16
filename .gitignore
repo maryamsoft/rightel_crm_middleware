@@ -171,4 +171,5 @@ nohup.out
 .start.sh
 stop.sh
 start.sh
-file_*.log
+logs/*
+logs
