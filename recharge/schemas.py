@@ -4,7 +4,7 @@ from typing import List, Optional, Tuple
 class RechargeRequest(BaseModel):
     msisdn: str
     amount: str
-    bankId: Optional[int] = None
+    bankId: Optional[str] = None
     au: Optional[str] = None
     paymentType: Optional[str] = "1"
     faceValueDtoList: Optional[List[dict]] = None
