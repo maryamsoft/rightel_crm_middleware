@@ -1,6 +1,6 @@
 import os
 import xml.etree.ElementTree as ET
-from string import Template
+from jinja2 import Template
 from datetime import datetime
 from fastapi import HTTPException, Security, status
 from utils.soap_client import AR_soap_client
@@ -13,7 +13,7 @@ def queryInvoice(data):
     with open(app_path+'/templates/payloads/queryInvoice.txt', 'r') as file:
         query_invoice_template = file.read()
     query_invoice_template = Template(query_invoice_template)
-    query_invoice = query_invoice_template.substitute({**data.__dict__,"datetime":datetime.now().strftime("%Y-%m-%dT%H:%M:%S")})
+    query_invoice = query_invoice_template.render({**data.__dict__,"datetime":datetime.now().strftime("%Y-%m-%dT%H:%M:%S")})
     return AR_soap_client.call_service('QueryInvoice', query_invoice)
     
 
