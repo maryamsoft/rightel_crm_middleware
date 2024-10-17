@@ -6,7 +6,7 @@ from fastapi import HTTPException, Security, status
 from utils.soap_client import AR_soap_client
 
 
-def queryInvoice(data):
+def query_post_paid_bill_handler(data):
     
     data.msisdn = 9235000018
     app_path = os.path.dirname(os.path.abspath(__file__))
@@ -18,5 +18,45 @@ def queryInvoice(data):
     
 
 def generate_response(cbs_response) :
-    pass
+    print('response:', cbs_response)
+    root = ET.fromstring(cbs_response)
+    namespaces = {
+    'soapenv': 'http://schemas.xmlsoap.org/soap/envelope/',
+    'ars': 'http://www.huawei.com/bme/cbsinterface/arservices',
+    'cbs': 'http://www.huawei.com/bme/cbsinterface/cbscommon',
+    'arc': 'http://cbs.huawei.com/ar/wsservice/arcommon'
+    }
+    result_code = root.find('.//cbs:ResultCode', namespaces)
+    result_desc = root.find('.//cbs:ResultDesc', namespaces)
+    if result_code is not None and result_code.text == '0':
+        osb_request = {
+            "PayableAmount": root.find('.//ars:PayableAmount', namespaces).text.strip(),
+            "InvoiceId": root.find('.//ars:InvoiceInfo/ars:AcctCode', namespaces).text.strip(),
+            "PaymentId": root.find('.//ars:PaymentId', namespaces).text.strip(),
+            "Status": root.find('.//ars:Status', namespaces).text.strip(),
+        }
+        BillingCycleStartDate = root.find('.//ars:BillingCycleStartDate', namespaces)
+        BillingCycleEndDate = root.find('.//ars:BillingCycleEndDate', namespaces)
+        BillingCycleID = root.find('.//ars:BillingCycleID', namespaces)
+        DateIssuance = root.find('.//ars:DateIssuance', namespaces)
+        outstainding = root.find('.//ars:OUTSTANDING', namespaces)
+        AcctItemListDtoList = root.findall('.//ars:AcctItemListDtoList', namespaces)
+        if BillingCycleStartDate is not None:
+            osb_request['BillingCycleStartDate'] = BillingCycleStartDate.text.strip()
+        if BillingCycleEndDate is not None:
+            osb_request['BillingCycleEndDate'] = BillingCycleEndDate.text.strip()
+        if BillingCycleID is not None:
+            osb_request['BillingCycleID'] = BillingCycleID.text.strip()
+        if DateIssuance is not None:
+            osb_request['DateIssuance'] = DateIssuance.text.strip()
+        if outstainding is not None:
+            osb_request['OUTSTAINDING'] = outstainding.text.strip()
+        if AcctItemListDtoList is not None:
+            osb_request['AcctItemListDtoList'] = AcctItemListDtoList.text.strip()
+
+        return osb_request
+
+
+    
+    raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST)
 

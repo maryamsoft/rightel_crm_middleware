@@ -25,17 +25,17 @@ def queryBalance(data):
     
 
 def generate_response(cbs_response) :
-     root = ET.fromstring(cbs_response)
-        namespaces = {
+    root = ET.fromstring(cbs_response)
+    namespaces = {
         'soapenv': 'http://schemas.xmlsoap.org/soap/envelope/',
         'bcs': 'http://www.huawei.com/bme/cbsinterface/bcservices',
         'cbs': 'http://www.huawei.com/bme/cbsinterface/cbscommon',
         'bcc': 'http://www.huawei.com/bme/cbsinterface/bccommon'
     }
 
-        result_code = root.find('.//cbs:ResultCode', namespaces)
-        result_desc = root.find('.//cbs:ResultDesc', namespaces)
-        if result_code is not None and result_code.text == '0':
-            Balance = root.find('.//arc:NewBalanceAmt', namespaces)
+    result_code = root.find('.//cbs:ResultCode', namespaces)
+    result_desc = root.find('.//cbs:ResultDesc', namespaces)
+    if result_code is not None and result_code.text == '0':
+        Balance = root.find('.//arc:NewBalanceAmt', namespaces)
 
-        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail= result_desc.text)
+    raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail= result_desc.text)

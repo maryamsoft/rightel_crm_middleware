@@ -1,18 +1,17 @@
 from fastapi import APIRouter
-from .handlers import  generate_response, generate_response# payment
-from .schemas import OrderPricePlanOfferRequest, ResponseBase
+from .handlers import  query_post_paid_bill_handler, generate_response
+from .schemas import QueryPostPaidRequest, ResponseBase
 # from http import Request
 
 
 router = APIRouter()
 
 @router.post('/', response_model=ResponseBase)
-async def queryPostPaidBill():
-    pass
-    # try:
-    #     CBS_response = payment(request)
-    #     result = generate_response(CBS_response)
-    #     response =  {}
-    #     return response
-    # except Exception as error:
-    #     raise error
+async def queryPostPaidBill(request: QueryPostPaidRequest):
+    try:
+        CBS_response = query_post_paid_bill_handler(request)
+        result = generate_response(CBS_response)
+        response =  {}
+        return response
+    except Exception as error:
+        raise error

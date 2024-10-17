@@ -3,7 +3,7 @@ from typing import List, Optional, Tuple
 
 
 class QuerySubscriberRGUsageRequest(BaseModel):
-    subscriberNumber: str
+    msisdn: str
     opType: str
     modifiedAt: str
     modifiedBy: int
