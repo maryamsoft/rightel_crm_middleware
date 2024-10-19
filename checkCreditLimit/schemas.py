@@ -11,3 +11,4 @@ class CheckCreditLimitResponse(BaseModel):
     NonDefaultCL: Optional[int]
     CreditUsed: int
     CreditAvailable: int
+    

@@ -24,34 +24,34 @@
             <ars:PaymentObj>
                <ars:AcctAccessCode>
                   <!--You have a CHOICE of the next 3 items at this level-->
-                  <arc:PrimaryIdentity>{{MSISDN}}</arc:PrimaryIdentity>
+                  <arc:PrimaryIdentity>{{msisdn}}</arc:PrimaryIdentity>
                   <ars:PayType>2</ars:PayType>
                </ars:AcctAccessCode>
             </ars:PaymentObj>
             <ars:PaymentInfo>
                <ars:CashPayment>
-                  {% if PaymentMethod is not none %}<ars:PaymentMethod>{{PaymentMethod}}</ars:PaymentMethod>{% endif %}
-                  <ars:Amount>{{Amount}}</ars:Amount>
-                  {% if BankId is not none %}<ars:BankInfo>
-                     <arc:BankCode>{{BankId}}</arc:BankCode>
+                  {% if paymentMethod is not none %}<ars:PaymentMethod>{{paymentMethod}}</ars:PaymentMethod>{% endif %}
+                  <ars:Amount>{{amount}}</ars:Amount>
+                  {% if bankId is not none %}<ars:BankInfo>
+                     <arc:BankCode>{{bankId}}</arc:BankCode>
                   </ars:BankInfo>{% endif %}
                </ars:CashPayment>
             </ars:PaymentInfo>
-            {% if AU is not none %}<ars:AdditionalProperty>
+            {% if au is not none %}<ars:AdditionalProperty>
                <arc:Code>CN_AU</arc:Code>
-               <arc:Value>{{AU}}</arc:Value>
+               <arc:Value>{{au}}</arc:Value>
             </ars:AdditionalProperty>{% endif %}
-            {% if BusinessType is not none %}<ars:AdditionalProperty>
+            {% if businessType is not none %}<ars:AdditionalProperty>
                <arc:Code>CN_BUSINESSTYPE</arc:Code>
-               <arc:Value>{{BusinessType}}</arc:Value>
+               <arc:Value>{{businessType}}</arc:Value>
             </ars:AdditionalProperty>{% endif %}
-            {% if PaymentId is not none %}<ars:AdditionalProperty>
+            {% if paymentId is not none %}<ars:AdditionalProperty>
                <arc:Code>CN_PAYMENTID</arc:Code>
-               <arc:Value>{{PaymentId}}</arc:Value>
+               <arc:Value>{{paymentId}}</arc:Value>
             </ars:AdditionalProperty>{% endif %}
-            {% if CallerID is not none %}<ars:AdditionalProperty>
+            {% if callerId is not none %}<ars:AdditionalProperty>
                <arc:Code>CN_CALLERID</arc:Code>
-               <arc:Value>{{CallerID}}</arc:Value>
+               <arc:Value>{{callerId}}</arc:Value>
             </ars:AdditionalProperty>{% endif %}
          </PaymentRequest>
       </ars:PaymentRequestMsg>

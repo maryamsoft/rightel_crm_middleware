@@ -1,0 +1,363 @@
+INFO:     127.0.0.1:59722 - "POST /cbs/wrapper/payPostpaidBill HTTP/1.1" 307 Temporary Redirect
+request: <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ars="http://www.huawei.com/bme/cbsinterface/arservices" xmlns:cbs="http://www.huawei.com/bme/cbsinterface/cbscommon" xmlns:arc="http://cbs.huawei.com/ar/wsservice/arcommon">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ars:PaymentRequestMsg>
+         <RequestHeader>
+            <cbs:Version>1</cbs:Version>
+            <cbs:MessageSeq>2024-10-19T16:52:46</cbs:MessageSeq>
+            <cbs:OwnershipInfo>
+               <cbs:BEID>101</cbs:BEID>
+               <cbs:BRID>101</cbs:BRID>
+            </cbs:OwnershipInfo>
+            <cbs:AccessSecurity>
+               <cbs:LoginSystemCode>102</cbs:LoginSystemCode>
+               <cbs:Password>7/PuyYwNpRtSX7jDpxnl2ECAvuVYH2Mu9zxqgPGJrPYYK73MCZN7DvrDepA=</cbs:Password>
+            </cbs:AccessSecurity>
+            <cbs:OperatorInfo>
+               <cbs:OperatorID>101</cbs:OperatorID>
+            </cbs:OperatorInfo>
+         </RequestHeader>
+         <PaymentRequest>
+            <ars:PaymentSerialNo>9235000026ABC202450918</ars:PaymentSerialNo>
+            <ars:PaymentChannelID>1</ars:PaymentChannelID>
+            <ars:OpType>2</ars:OpType>
+            <ars:PaymentObj>
+               <ars:AcctAccessCode>
+                  <!--You have a CHOICE of the next 3 items at this level-->
+                  <arc:PrimaryIdentity>989207282789</arc:PrimaryIdentity>
+                  <ars:PayType>2</ars:PayType>
+               </ars:AcctAccessCode>
+            </ars:PaymentObj>
+            <ars:PaymentInfo>
+               <ars:CashPayment>
+                  
+                  <ars:Amount>10000</ars:Amount>
+                  <ars:BankInfo>
+                     <arc:BankCode>2001</arc:BankCode>
+                  </ars:BankInfo>
+               </ars:CashPayment>
+            </ars:PaymentInfo>
+            <ars:AdditionalProperty>
+               <arc:Code>CN_AU</arc:Code>
+               <arc:Value>286198679237</arc:Value>
+            </ars:AdditionalProperty>
+            <ars:AdditionalProperty>
+               <arc:Code>CN_BUSINESSTYPE</arc:Code>
+               <arc:Value>3</arc:Value>
+            </ars:AdditionalProperty>
+            <ars:AdditionalProperty>
+               <arc:Code>CN_PAYMENTID</arc:Code>
+               <arc:Value>259097258217</arc:Value>
+            </ars:AdditionalProperty>
+            
+         </PaymentRequest>
+      </ars:PaymentRequestMsg>
+   </soapenv:Body>
+</soapenv:Envelope>
+INFO:     127.0.0.1:59722 - "POST /cbs/wrapper/payPostpaidBill/ HTTP/1.1" 500 Internal Server Error
+ERROR:    Exception in ASGI application
+Traceback (most recent call last):
+  File "/opt/projects/fastapi/crm_middleware/.venv/lib/python3.10/site-packages/uvicorn/protocols/http/httptools_impl.py", line 401, in run_asgi
+    result = await app(  # type: ignore[func-returns-value]
+  File "/opt/projects/fastapi/crm_middleware/.venv/lib/python3.10/site-packages/uvicorn/middleware/proxy_headers.py", line 70, in __call__
+    return await self.app(scope, receive, send)
+  File "/opt/projects/fastapi/crm_middleware/.venv/lib/python3.10/site-packages/fastapi/applications.py", line 1054, in __call__
+    await super().__call__(scope, receive, send)
+  File "/opt/projects/fastapi/crm_middleware/.venv/lib/python3.10/site-packages/starlette/applications.py", line 113, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/opt/projects/fastapi/crm_middleware/.venv/lib/python3.10/site-packages/starlette/middleware/errors.py", line 187, in __call__
+    raise exc
+  File "/opt/projects/fastapi/crm_middleware/.venv/lib/python3.10/site-packages/starlette/middleware/errors.py", line 165, in __call__
+    await self.app(scope, receive, _send)
+  File "/opt/projects/fastapi/crm_middleware/.venv/lib/python3.10/site-packages/starlette/middleware/exceptions.py", line 62, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "/opt/projects/fastapi/crm_middleware/.venv/lib/python3.10/site-packages/starlette/_exception_handler.py", line 62, in wrapped_app
+    raise exc
+  File "/opt/projects/fastapi/crm_middleware/.venv/lib/python3.10/site-packages/starlette/_exception_handler.py", line 51, in wrapped_app
+    await app(scope, receive, sender)
+  File "/opt/projects/fastapi/crm_middleware/.venv/lib/python3.10/site-packages/starlette/routing.py", line 715, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/opt/projects/fastapi/crm_middleware/.venv/lib/python3.10/site-packages/starlette/routing.py", line 735, in app
+    await route.handle(scope, receive, send)
+  File "/opt/projects/fastapi/crm_middleware/.venv/lib/python3.10/site-packages/starlette/routing.py", line 288, in handle
+    await self.app(scope, receive, send)
+  File "/opt/projects/fastapi/crm_middleware/.venv/lib/python3.10/site-packages/starlette/routing.py", line 76, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "/opt/projects/fastapi/crm_middleware/.venv/lib/python3.10/site-packages/starlette/_exception_handler.py", line 62, in wrapped_app
+    raise exc
+  File "/opt/projects/fastapi/crm_middleware/.venv/lib/python3.10/site-packages/starlette/_exception_handler.py", line 51, in wrapped_app
+    await app(scope, receive, sender)
+  File "/opt/projects/fastapi/crm_middleware/.venv/lib/python3.10/site-packages/starlette/routing.py", line 73, in app
+    response = await f(request)
+  File "/opt/projects/fastapi/crm_middleware/.venv/lib/python3.10/site-packages/fastapi/routing.py", line 301, in app
+    raw_response = await run_endpoint_function(
+  File "/opt/projects/fastapi/crm_middleware/.venv/lib/python3.10/site-packages/fastapi/routing.py", line 212, in run_endpoint_function
+    return await dependant.call(**values)
+  File "/opt/projects/fastapi/crm_middleware/payPostpaidBill/routes.py", line 21, in pay_postpaid_bill
+    raise error
+  File "/opt/projects/fastapi/crm_middleware/payPostpaidBill/routes.py", line 12, in pay_postpaid_bill
+    xml_response = pay_postpaid_bill_handler(request)
+  File "/opt/projects/fastapi/crm_middleware/payPostpaidBill/handlers.py", line 27, in pay_postpaid_bill_handler
+    return BC_soap_client.call_service('PayPostpaidHotBill', xml_data)
+  File "/opt/projects/fastapi/crm_middleware/utils/soap_client.py", line 13, in call_service
+    response.raise_for_status()
+  File "/opt/projects/fastapi/crm_middleware/.venv/lib/python3.10/site-packages/requests/models.py", line 1024, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 500 Server Error: Internal Server Error for url: http://172.22.26.40:8080/services/BcServices
+WARNING:  WatchFiles detected changes in 'payPostpaidBill/handlers.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [1190200]
+INFO:     Started server process [1190491]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+WARNING:  WatchFiles detected changes in 'payPostpaidBill/handlers.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [1190491]
+INFO:     Started server process [1190532]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     127.0.0.1:55312 - "POST /cbs/wrapper/payPostpaidBill HTTP/1.1" 307 Temporary Redirect
+2024-10-19 16:54:05.564 | DEBUG    | utils.soap_client:call_service:15 - {"ServiceUrl": "http://172.22.26.40:8080/services/ArServices", "RequestHeader": "{'Content-Type': 'text/xml; charset=utf-8'}", "RequestBody": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:ars=\"http://www.huawei.com/bme/cbsinterface/arservices\" xmlns:cbs=\"http://www.huawei.com/bme/cbsinterface/cbscommon\" xmlns:arc=\"http://cbs.huawei.com/ar/wsservice/arcommon\">\n   <soapenv:Header/>\n   <soapenv:Body>\n      <ars:PaymentRequestMsg>\n         <RequestHeader>\n            <cbs:Version>1</cbs:Version>\n            <cbs:MessageSeq>2024-10-19T16:54:05</cbs:MessageSeq>\n            <cbs:OwnershipInfo>\n               <cbs:BEID>101</cbs:BEID>\n               <cbs:BRID>101</cbs:BRID>\n            </cbs:OwnershipInfo>\n            <cbs:AccessSecurity>\n               <cbs:LoginSystemCode>102</cbs:LoginSystemCode>\n               <cbs:Password>7/PuyYwNpRtSX7jDpxnl2ECAvuVYH2Mu9zxqgPGJrPYYK73MCZN7DvrDepA=</cbs:Password>\n            </cbs:AccessSecurity>\n            <cbs:OperatorInfo>\n               <cbs:OperatorID>101</cbs:OperatorID>\n            </cbs:OperatorInfo>\n         </RequestHeader>\n         <PaymentRequest>\n            <ars:PaymentSerialNo>9235000026ABC202450918</ars:PaymentSerialNo>\n            <ars:PaymentChannelID>1</ars:PaymentChannelID>\n            <ars:OpType>2</ars:OpType>\n            <ars:PaymentObj>\n               <ars:AcctAccessCode>\n                  <!--You have a CHOICE of the next 3 items at this level-->\n                  <arc:PrimaryIdentity>989207282789</arc:PrimaryIdentity>\n                  <ars:PayType>2</ars:PayType>\n               </ars:AcctAccessCode>\n            </ars:PaymentObj>\n            <ars:PaymentInfo>\n               <ars:CashPayment>\n                  \n                  <ars:Amount>10000</ars:Amount>\n                  <ars:BankInfo>\n                     <arc:BankCode>2001</arc:BankCode>\n                  </ars:BankInfo>\n               </ars:CashPayment>\n            </ars:PaymentInfo>\n            <ars:AdditionalProperty>\n               <arc:Code>CN_AU</arc:Code>\n               <arc:Value>286198679237</arc:Value>\n            </ars:AdditionalProperty>\n            <ars:AdditionalProperty>\n               <arc:Code>CN_BUSINESSTYPE</arc:Code>\n               <arc:Value>3</arc:Value>\n            </ars:AdditionalProperty>\n            <ars:AdditionalProperty>\n               <arc:Code>CN_PAYMENTID</arc:Code>\n               <arc:Value>259097258217</arc:Value>\n            </ars:AdditionalProperty>\n            \n         </PaymentRequest>\n      </ars:PaymentRequestMsg>\n   </soapenv:Body>\n</soapenv:Envelope>", "ResponsetHeader": "{'Server': 'nslb', 'Date': 'Sat, 19 Oct 2024 13:24:05 GMT', 'Content-Type': 'text/xml;charset=utf-8', 'Content-Length': '358', 'Connection': 'keep-alive', 'X-FRAME-OPTIONS': 'sameorigin', 'X-Content-Type-Options': 'nosniff', 'X-XSS-Protection': '1;mode=block', 'Content-Security-Policy': \"style-src 'self' 'unsafe-inline'\", 'X-Download-Options': 'noopen', 'Strict-Transport-Security': 'max-age=31536000;includeSubdomains', 'vary': 'accept-encoding', 'Content-Encoding': 'gzip'}", "ResponseBody": "b'<?xml version=\"1.0\" encoding=\"utf-8\"?><soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\"><soapenv:Body><ars:PaymentResultMsg xmlns:ars=\"http://www.huawei.com/bme/cbsinterface/arservices\" xmlns:cbs=\"http://www.huawei.com/bme/cbsinterface/cbscommon\"><ResultHeader><cbs:Version>1</cbs:Version><cbs:ResultCode>20000003</cbs:ResultCode><cbs:MsgLanguageCode>2003</cbs:MsgLanguageCode><cbs:ResultDesc>Subscriber information verification error: The service number 989207282789 does not exist.</cbs:ResultDesc><cbs:MessageSeq>2024-10-19T16:54:05</cbs:MessageSeq></ResultHeader></ars:PaymentResultMsg></soapenv:Body></soapenv:Envelope>'"}
+request: <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ars="http://www.huawei.com/bme/cbsinterface/arservices" xmlns:cbs="http://www.huawei.com/bme/cbsinterface/cbscommon" xmlns:arc="http://cbs.huawei.com/ar/wsservice/arcommon">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ars:PaymentRequestMsg>
+         <RequestHeader>
+            <cbs:Version>1</cbs:Version>
+            <cbs:MessageSeq>2024-10-19T16:54:05</cbs:MessageSeq>
+            <cbs:OwnershipInfo>
+               <cbs:BEID>101</cbs:BEID>
+               <cbs:BRID>101</cbs:BRID>
+            </cbs:OwnershipInfo>
+            <cbs:AccessSecurity>
+               <cbs:LoginSystemCode>102</cbs:LoginSystemCode>
+               <cbs:Password>7/PuyYwNpRtSX7jDpxnl2ECAvuVYH2Mu9zxqgPGJrPYYK73MCZN7DvrDepA=</cbs:Password>
+            </cbs:AccessSecurity>
+            <cbs:OperatorInfo>
+               <cbs:OperatorID>101</cbs:OperatorID>
+            </cbs:OperatorInfo>
+         </RequestHeader>
+         <PaymentRequest>
+            <ars:PaymentSerialNo>9235000026ABC202450918</ars:PaymentSerialNo>
+            <ars:PaymentChannelID>1</ars:PaymentChannelID>
+            <ars:OpType>2</ars:OpType>
+            <ars:PaymentObj>
+               <ars:AcctAccessCode>
+                  <!--You have a CHOICE of the next 3 items at this level-->
+                  <arc:PrimaryIdentity>989207282789</arc:PrimaryIdentity>
+                  <ars:PayType>2</ars:PayType>
+               </ars:AcctAccessCode>
+            </ars:PaymentObj>
+            <ars:PaymentInfo>
+               <ars:CashPayment>
+                  
+                  <ars:Amount>10000</ars:Amount>
+                  <ars:BankInfo>
+                     <arc:BankCode>2001</arc:BankCode>
+                  </ars:BankInfo>
+               </ars:CashPayment>
+            </ars:PaymentInfo>
+            <ars:AdditionalProperty>
+               <arc:Code>CN_AU</arc:Code>
+               <arc:Value>286198679237</arc:Value>
+            </ars:AdditionalProperty>
+            <ars:AdditionalProperty>
+               <arc:Code>CN_BUSINESSTYPE</arc:Code>
+               <arc:Value>3</arc:Value>
+            </ars:AdditionalProperty>
+            <ars:AdditionalProperty>
+               <arc:Code>CN_PAYMENTID</arc:Code>
+               <arc:Value>259097258217</arc:Value>
+            </ars:AdditionalProperty>
+            
+         </PaymentRequest>
+      </ars:PaymentRequestMsg>
+   </soapenv:Body>
+</soapenv:Envelope>
+cbs-response: b'<?xml version="1.0" encoding="utf-8"?><soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"><soapenv:Body><ars:PaymentResultMsg xmlns:ars="http://www.huawei.com/bme/cbsinterface/arservices" xmlns:cbs="http://www.huawei.com/bme/cbsinterface/cbscommon"><ResultHeader><cbs:Version>1</cbs:Version><cbs:ResultCode>20000003</cbs:ResultCode><cbs:MsgLanguageCode>2003</cbs:MsgLanguageCode><cbs:ResultDesc>Subscriber information verification error: The service number 989207282789 does not exist.</cbs:ResultDesc><cbs:MessageSeq>2024-10-19T16:54:05</cbs:MessageSeq></ResultHeader></ars:PaymentResultMsg></soapenv:Body></soapenv:Envelope>'
+INFO:     127.0.0.1:55312 - "POST /cbs/wrapper/payPostpaidBill/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52104 - "POST /cbs/wrapper/payPostpaidBill HTTP/1.1" 307 Temporary Redirect
+2024-10-19 16:56:10.341 | DEBUG    | utils.soap_client:call_service:15 - {"ServiceUrl": "http://172.22.26.40:8080/services/ArServices", "RequestHeader": "{'Content-Type': 'text/xml; charset=utf-8'}", "RequestBody": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:ars=\"http://www.huawei.com/bme/cbsinterface/arservices\" xmlns:cbs=\"http://www.huawei.com/bme/cbsinterface/cbscommon\" xmlns:arc=\"http://cbs.huawei.com/ar/wsservice/arcommon\">\n   <soapenv:Header/>\n   <soapenv:Body>\n      <ars:PaymentRequestMsg>\n         <RequestHeader>\n            <cbs:Version>1</cbs:Version>\n            <cbs:MessageSeq>2024-10-19T16:56:10</cbs:MessageSeq>\n            <cbs:OwnershipInfo>\n               <cbs:BEID>101</cbs:BEID>\n               <cbs:BRID>101</cbs:BRID>\n            </cbs:OwnershipInfo>\n            <cbs:AccessSecurity>\n               <cbs:LoginSystemCode>102</cbs:LoginSystemCode>\n               <cbs:Password>7/PuyYwNpRtSX7jDpxnl2ECAvuVYH2Mu9zxqgPGJrPYYK73MCZN7DvrDepA=</cbs:Password>\n            </cbs:AccessSecurity>\n            <cbs:OperatorInfo>\n               <cbs:OperatorID>101</cbs:OperatorID>\n            </cbs:OperatorInfo>\n         </RequestHeader>\n         <PaymentRequest>\n            <ars:PaymentSerialNo>9235000026ABC202450918</ars:PaymentSerialNo>\n            <ars:PaymentChannelID>1</ars:PaymentChannelID>\n            <ars:OpType>2</ars:OpType>\n            <ars:PaymentObj>\n               <ars:AcctAccessCode>\n                  <!--You have a CHOICE of the next 3 items at this level-->\n                  <arc:PrimaryIdentity>989210455034</arc:PrimaryIdentity>\n                  <ars:PayType>2</ars:PayType>\n               </ars:AcctAccessCode>\n            </ars:PaymentObj>\n            <ars:PaymentInfo>\n               <ars:CashPayment>\n                  \n                  <ars:Amount>10000</ars:Amount>\n                  <ars:BankInfo>\n                     <arc:BankCode>2001</arc:BankCode>\n                  </ars:BankInfo>\n               </ars:CashPayment>\n            </ars:PaymentInfo>\n            <ars:AdditionalProperty>\n               <arc:Code>CN_AU</arc:Code>\n               <arc:Value>286198679237</arc:Value>\n            </ars:AdditionalProperty>\n            <ars:AdditionalProperty>\n               <arc:Code>CN_BUSINESSTYPE</arc:Code>\n               <arc:Value>3</arc:Value>\n            </ars:AdditionalProperty>\n            <ars:AdditionalProperty>\n               <arc:Code>CN_PAYMENTID</arc:Code>\n               <arc:Value>259097258217</arc:Value>\n            </ars:AdditionalProperty>\n            \n         </PaymentRequest>\n      </ars:PaymentRequestMsg>\n   </soapenv:Body>\n</soapenv:Envelope>", "ResponsetHeader": "{'Server': 'nslb', 'Date': 'Sat, 19 Oct 2024 13:26:09 GMT', 'Content-Type': 'text/xml;charset=utf-8', 'Content-Length': '357', 'Connection': 'keep-alive', 'X-FRAME-OPTIONS': 'sameorigin', 'X-Content-Type-Options': 'nosniff', 'X-XSS-Protection': '1;mode=block', 'Content-Security-Policy': \"style-src 'self' 'unsafe-inline'\", 'X-Download-Options': 'noopen', 'Strict-Transport-Security': 'max-age=31536000;includeSubdomains', 'vary': 'accept-encoding', 'Content-Encoding': 'gzip'}", "ResponseBody": "b'<?xml version=\"1.0\" encoding=\"utf-8\"?><soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\"><soapenv:Body><ars:PaymentResultMsg xmlns:ars=\"http://www.huawei.com/bme/cbsinterface/arservices\" xmlns:cbs=\"http://www.huawei.com/bme/cbsinterface/cbscommon\"><ResultHeader><cbs:Version>1</cbs:Version><cbs:ResultCode>20000003</cbs:ResultCode><cbs:MsgLanguageCode>2003</cbs:MsgLanguageCode><cbs:ResultDesc>Subscriber information verification error: The service number 989210455034 does not exist.</cbs:ResultDesc><cbs:MessageSeq>2024-10-19T16:56:10</cbs:MessageSeq></ResultHeader></ars:PaymentResultMsg></soapenv:Body></soapenv:Envelope>'"}
+request: <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ars="http://www.huawei.com/bme/cbsinterface/arservices" xmlns:cbs="http://www.huawei.com/bme/cbsinterface/cbscommon" xmlns:arc="http://cbs.huawei.com/ar/wsservice/arcommon">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ars:PaymentRequestMsg>
+         <RequestHeader>
+            <cbs:Version>1</cbs:Version>
+            <cbs:MessageSeq>2024-10-19T16:56:10</cbs:MessageSeq>
+            <cbs:OwnershipInfo>
+               <cbs:BEID>101</cbs:BEID>
+               <cbs:BRID>101</cbs:BRID>
+            </cbs:OwnershipInfo>
+            <cbs:AccessSecurity>
+               <cbs:LoginSystemCode>102</cbs:LoginSystemCode>
+               <cbs:Password>7/PuyYwNpRtSX7jDpxnl2ECAvuVYH2Mu9zxqgPGJrPYYK73MCZN7DvrDepA=</cbs:Password>
+            </cbs:AccessSecurity>
+            <cbs:OperatorInfo>
+               <cbs:OperatorID>101</cbs:OperatorID>
+            </cbs:OperatorInfo>
+         </RequestHeader>
+         <PaymentRequest>
+            <ars:PaymentSerialNo>9235000026ABC202450918</ars:PaymentSerialNo>
+            <ars:PaymentChannelID>1</ars:PaymentChannelID>
+            <ars:OpType>2</ars:OpType>
+            <ars:PaymentObj>
+               <ars:AcctAccessCode>
+                  <!--You have a CHOICE of the next 3 items at this level-->
+                  <arc:PrimaryIdentity>989210455034</arc:PrimaryIdentity>
+                  <ars:PayType>2</ars:PayType>
+               </ars:AcctAccessCode>
+            </ars:PaymentObj>
+            <ars:PaymentInfo>
+               <ars:CashPayment>
+                  
+                  <ars:Amount>10000</ars:Amount>
+                  <ars:BankInfo>
+                     <arc:BankCode>2001</arc:BankCode>
+                  </ars:BankInfo>
+               </ars:CashPayment>
+            </ars:PaymentInfo>
+            <ars:AdditionalProperty>
+               <arc:Code>CN_AU</arc:Code>
+               <arc:Value>286198679237</arc:Value>
+            </ars:AdditionalProperty>
+            <ars:AdditionalProperty>
+               <arc:Code>CN_BUSINESSTYPE</arc:Code>
+               <arc:Value>3</arc:Value>
+            </ars:AdditionalProperty>
+            <ars:AdditionalProperty>
+               <arc:Code>CN_PAYMENTID</arc:Code>
+               <arc:Value>259097258217</arc:Value>
+            </ars:AdditionalProperty>
+            
+         </PaymentRequest>
+      </ars:PaymentRequestMsg>
+   </soapenv:Body>
+</soapenv:Envelope>
+cbs-response: b'<?xml version="1.0" encoding="utf-8"?><soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"><soapenv:Body><ars:PaymentResultMsg xmlns:ars="http://www.huawei.com/bme/cbsinterface/arservices" xmlns:cbs="http://www.huawei.com/bme/cbsinterface/cbscommon"><ResultHeader><cbs:Version>1</cbs:Version><cbs:ResultCode>20000003</cbs:ResultCode><cbs:MsgLanguageCode>2003</cbs:MsgLanguageCode><cbs:ResultDesc>Subscriber information verification error: The service number 989210455034 does not exist.</cbs:ResultDesc><cbs:MessageSeq>2024-10-19T16:56:10</cbs:MessageSeq></ResultHeader></ars:PaymentResultMsg></soapenv:Body></soapenv:Envelope>'
+INFO:     127.0.0.1:52104 - "POST /cbs/wrapper/payPostpaidBill/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59692 - "POST /cbs/wrapper/payPostpaidBill HTTP/1.1" 307 Temporary Redirect
+2024-10-19 16:57:40.753 | DEBUG    | utils.soap_client:call_service:15 - {"ServiceUrl": "http://172.22.26.40:8080/services/ArServices", "RequestHeader": "{'Content-Type': 'text/xml; charset=utf-8'}", "RequestBody": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:ars=\"http://www.huawei.com/bme/cbsinterface/arservices\" xmlns:cbs=\"http://www.huawei.com/bme/cbsinterface/cbscommon\" xmlns:arc=\"http://cbs.huawei.com/ar/wsservice/arcommon\">\n   <soapenv:Header/>\n   <soapenv:Body>\n      <ars:PaymentRequestMsg>\n         <RequestHeader>\n            <cbs:Version>1</cbs:Version>\n            <cbs:MessageSeq>2024-10-19T16:57:40</cbs:MessageSeq>\n            <cbs:OwnershipInfo>\n               <cbs:BEID>101</cbs:BEID>\n               <cbs:BRID>101</cbs:BRID>\n            </cbs:OwnershipInfo>\n            <cbs:AccessSecurity>\n               <cbs:LoginSystemCode>102</cbs:LoginSystemCode>\n               <cbs:Password>7/PuyYwNpRtSX7jDpxnl2ECAvuVYH2Mu9zxqgPGJrPYYK73MCZN7DvrDepA=</cbs:Password>\n            </cbs:AccessSecurity>\n            <cbs:OperatorInfo>\n               <cbs:OperatorID>101</cbs:OperatorID>\n            </cbs:OperatorInfo>\n         </RequestHeader>\n         <PaymentRequest>\n            <ars:PaymentSerialNo>9235000026ABC202450918</ars:PaymentSerialNo>\n            <ars:PaymentChannelID>1</ars:PaymentChannelID>\n            <ars:OpType>2</ars:OpType>\n            <ars:PaymentObj>\n               <ars:AcctAccessCode>\n                  <!--You have a CHOICE of the next 3 items at this level-->\n                  <arc:PrimaryIdentity>9210457185</arc:PrimaryIdentity>\n                  <ars:PayType>2</ars:PayType>\n               </ars:AcctAccessCode>\n            </ars:PaymentObj>\n            <ars:PaymentInfo>\n               <ars:CashPayment>\n                  \n                  <ars:Amount>10000</ars:Amount>\n                  <ars:BankInfo>\n                     <arc:BankCode>2001</arc:BankCode>\n                  </ars:BankInfo>\n               </ars:CashPayment>\n            </ars:PaymentInfo>\n            <ars:AdditionalProperty>\n               <arc:Code>CN_AU</arc:Code>\n               <arc:Value>286198679237</arc:Value>\n            </ars:AdditionalProperty>\n            <ars:AdditionalProperty>\n               <arc:Code>CN_BUSINESSTYPE</arc:Code>\n               <arc:Value>3</arc:Value>\n            </ars:AdditionalProperty>\n            <ars:AdditionalProperty>\n               <arc:Code>CN_PAYMENTID</arc:Code>\n               <arc:Value>259097258217</arc:Value>\n            </ars:AdditionalProperty>\n            \n         </PaymentRequest>\n      </ars:PaymentRequestMsg>\n   </soapenv:Body>\n</soapenv:Envelope>", "ResponsetHeader": "{'Server': 'nslb', 'Date': 'Sat, 19 Oct 2024 13:27:40 GMT', 'Content-Type': 'text/xml;charset=utf-8', 'Content-Length': '348', 'Connection': 'keep-alive', 'X-FRAME-OPTIONS': 'sameorigin', 'X-Content-Type-Options': 'nosniff', 'X-XSS-Protection': '1;mode=block', 'Content-Security-Policy': \"style-src 'self' 'unsafe-inline'\", 'X-Download-Options': 'noopen', 'Strict-Transport-Security': 'max-age=31536000;includeSubdomains', 'vary': 'accept-encoding', 'Content-Encoding': 'gzip'}", "ResponseBody": "b'<?xml version=\"1.0\" encoding=\"utf-8\"?><soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\"><soapenv:Body><ars:PaymentResultMsg xmlns:ars=\"http://www.huawei.com/bme/cbsinterface/arservices\" xmlns:cbs=\"http://www.huawei.com/bme/cbsinterface/cbscommon\"><ResultHeader><cbs:Version>1</cbs:Version><cbs:ResultCode>20000002</cbs:ResultCode><cbs:MsgLanguageCode>2003</cbs:MsgLanguageCode><cbs:ResultDesc>Parameter value range verification error: The service sequence number exists.</cbs:ResultDesc><cbs:MessageSeq>2024-10-19T16:57:40</cbs:MessageSeq></ResultHeader></ars:PaymentResultMsg></soapenv:Body></soapenv:Envelope>'"}
+request: <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ars="http://www.huawei.com/bme/cbsinterface/arservices" xmlns:cbs="http://www.huawei.com/bme/cbsinterface/cbscommon" xmlns:arc="http://cbs.huawei.com/ar/wsservice/arcommon">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ars:PaymentRequestMsg>
+         <RequestHeader>
+            <cbs:Version>1</cbs:Version>
+            <cbs:MessageSeq>2024-10-19T16:57:40</cbs:MessageSeq>
+            <cbs:OwnershipInfo>
+               <cbs:BEID>101</cbs:BEID>
+               <cbs:BRID>101</cbs:BRID>
+            </cbs:OwnershipInfo>
+            <cbs:AccessSecurity>
+               <cbs:LoginSystemCode>102</cbs:LoginSystemCode>
+               <cbs:Password>7/PuyYwNpRtSX7jDpxnl2ECAvuVYH2Mu9zxqgPGJrPYYK73MCZN7DvrDepA=</cbs:Password>
+            </cbs:AccessSecurity>
+            <cbs:OperatorInfo>
+               <cbs:OperatorID>101</cbs:OperatorID>
+            </cbs:OperatorInfo>
+         </RequestHeader>
+         <PaymentRequest>
+            <ars:PaymentSerialNo>9235000026ABC202450918</ars:PaymentSerialNo>
+            <ars:PaymentChannelID>1</ars:PaymentChannelID>
+            <ars:OpType>2</ars:OpType>
+            <ars:PaymentObj>
+               <ars:AcctAccessCode>
+                  <!--You have a CHOICE of the next 3 items at this level-->
+                  <arc:PrimaryIdentity>9210457185</arc:PrimaryIdentity>
+                  <ars:PayType>2</ars:PayType>
+               </ars:AcctAccessCode>
+            </ars:PaymentObj>
+            <ars:PaymentInfo>
+               <ars:CashPayment>
+                  
+                  <ars:Amount>10000</ars:Amount>
+                  <ars:BankInfo>
+                     <arc:BankCode>2001</arc:BankCode>
+                  </ars:BankInfo>
+               </ars:CashPayment>
+            </ars:PaymentInfo>
+            <ars:AdditionalProperty>
+               <arc:Code>CN_AU</arc:Code>
+               <arc:Value>286198679237</arc:Value>
+            </ars:AdditionalProperty>
+            <ars:AdditionalProperty>
+               <arc:Code>CN_BUSINESSTYPE</arc:Code>
+               <arc:Value>3</arc:Value>
+            </ars:AdditionalProperty>
+            <ars:AdditionalProperty>
+               <arc:Code>CN_PAYMENTID</arc:Code>
+               <arc:Value>259097258217</arc:Value>
+            </ars:AdditionalProperty>
+            
+         </PaymentRequest>
+      </ars:PaymentRequestMsg>
+   </soapenv:Body>
+</soapenv:Envelope>
+cbs-response: b'<?xml version="1.0" encoding="utf-8"?><soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"><soapenv:Body><ars:PaymentResultMsg xmlns:ars="http://www.huawei.com/bme/cbsinterface/arservices" xmlns:cbs="http://www.huawei.com/bme/cbsinterface/cbscommon"><ResultHeader><cbs:Version>1</cbs:Version><cbs:ResultCode>20000002</cbs:ResultCode><cbs:MsgLanguageCode>2003</cbs:MsgLanguageCode><cbs:ResultDesc>Parameter value range verification error: The service sequence number exists.</cbs:ResultDesc><cbs:MessageSeq>2024-10-19T16:57:40</cbs:MessageSeq></ResultHeader></ars:PaymentResultMsg></soapenv:Body></soapenv:Envelope>'
+INFO:     127.0.0.1:59692 - "POST /cbs/wrapper/payPostpaidBill/ HTTP/1.1" 200 OK
+INFO:     127.0.0.1:41592 - "POST /cbs/wrapper/payPostpaidBill HTTP/1.1" 307 Temporary Redirect
+2024-10-19 16:58:11.574 | DEBUG    | utils.soap_client:call_service:15 - {"ServiceUrl": "http://172.22.26.40:8080/services/ArServices", "RequestHeader": "{'Content-Type': 'text/xml; charset=utf-8'}", "RequestBody": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:ars=\"http://www.huawei.com/bme/cbsinterface/arservices\" xmlns:cbs=\"http://www.huawei.com/bme/cbsinterface/cbscommon\" xmlns:arc=\"http://cbs.huawei.com/ar/wsservice/arcommon\">\n   <soapenv:Header/>\n   <soapenv:Body>\n      <ars:PaymentRequestMsg>\n         <RequestHeader>\n            <cbs:Version>1</cbs:Version>\n            <cbs:MessageSeq>2024-10-19T16:58:11</cbs:MessageSeq>\n            <cbs:OwnershipInfo>\n               <cbs:BEID>101</cbs:BEID>\n               <cbs:BRID>101</cbs:BRID>\n            </cbs:OwnershipInfo>\n            <cbs:AccessSecurity>\n               <cbs:LoginSystemCode>102</cbs:LoginSystemCode>\n               <cbs:Password>7/PuyYwNpRtSX7jDpxnl2ECAvuVYH2Mu9zxqgPGJrPYYK73MCZN7DvrDepA=</cbs:Password>\n            </cbs:AccessSecurity>\n            <cbs:OperatorInfo>\n               <cbs:OperatorID>101</cbs:OperatorID>\n            </cbs:OperatorInfo>\n         </RequestHeader>\n         <PaymentRequest>\n            <ars:PaymentSerialNo>9235000026ABC202450918</ars:PaymentSerialNo>\n            <ars:PaymentChannelID>1</ars:PaymentChannelID>\n            <ars:OpType>2</ars:OpType>\n            <ars:PaymentObj>\n               <ars:AcctAccessCode>\n                  <!--You have a CHOICE of the next 3 items at this level-->\n                  <arc:PrimaryIdentity>9210457185</arc:PrimaryIdentity>\n                  <ars:PayType>2</ars:PayType>\n               </ars:AcctAccessCode>\n            </ars:PaymentObj>\n            <ars:PaymentInfo>\n               <ars:CashPayment>\n                  \n                  <ars:Amount>10000</ars:Amount>\n                  <ars:BankInfo>\n                     <arc:BankCode>2001</arc:BankCode>\n                  </ars:BankInfo>\n               </ars:CashPayment>\n            </ars:PaymentInfo>\n            <ars:AdditionalProperty>\n               <arc:Code>CN_AU</arc:Code>\n               <arc:Value>286198679237</arc:Value>\n            </ars:AdditionalProperty>\n            <ars:AdditionalProperty>\n               <arc:Code>CN_BUSINESSTYPE</arc:Code>\n               <arc:Value>3</arc:Value>\n            </ars:AdditionalProperty>\n            <ars:AdditionalProperty>\n               <arc:Code>CN_PAYMENTID</arc:Code>\n               <arc:Value>259097258217</arc:Value>\n            </ars:AdditionalProperty>\n            \n         </PaymentRequest>\n      </ars:PaymentRequestMsg>\n   </soapenv:Body>\n</soapenv:Envelope>", "ResponsetHeader": "{'Server': 'nslb', 'Date': 'Sat, 19 Oct 2024 13:28:11 GMT', 'Content-Type': 'text/xml;charset=utf-8', 'Content-Length': '348', 'Connection': 'keep-alive', 'X-FRAME-OPTIONS': 'sameorigin', 'X-Content-Type-Options': 'nosniff', 'X-XSS-Protection': '1;mode=block', 'Content-Security-Policy': \"style-src 'self' 'unsafe-inline'\", 'X-Download-Options': 'noopen', 'Strict-Transport-Security': 'max-age=31536000;includeSubdomains', 'vary': 'accept-encoding', 'Content-Encoding': 'gzip'}", "ResponseBody": "b'<?xml version=\"1.0\" encoding=\"utf-8\"?><soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\"><soapenv:Body><ars:PaymentResultMsg xmlns:ars=\"http://www.huawei.com/bme/cbsinterface/arservices\" xmlns:cbs=\"http://www.huawei.com/bme/cbsinterface/cbscommon\"><ResultHeader><cbs:Version>1</cbs:Version><cbs:ResultCode>20000002</cbs:ResultCode><cbs:MsgLanguageCode>2003</cbs:MsgLanguageCode><cbs:ResultDesc>Parameter value range verification error: The service sequence number exists.</cbs:ResultDesc><cbs:MessageSeq>2024-10-19T16:58:11</cbs:MessageSeq></ResultHeader></ars:PaymentResultMsg></soapenv:Body></soapenv:Envelope>'"}
+request: <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ars="http://www.huawei.com/bme/cbsinterface/arservices" xmlns:cbs="http://www.huawei.com/bme/cbsinterface/cbscommon" xmlns:arc="http://cbs.huawei.com/ar/wsservice/arcommon">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ars:PaymentRequestMsg>
+         <RequestHeader>
+            <cbs:Version>1</cbs:Version>
+            <cbs:MessageSeq>2024-10-19T16:58:11</cbs:MessageSeq>
+            <cbs:OwnershipInfo>
+               <cbs:BEID>101</cbs:BEID>
+               <cbs:BRID>101</cbs:BRID>
+            </cbs:OwnershipInfo>
+            <cbs:AccessSecurity>
+               <cbs:LoginSystemCode>102</cbs:LoginSystemCode>
+               <cbs:Password>7/PuyYwNpRtSX7jDpxnl2ECAvuVYH2Mu9zxqgPGJrPYYK73MCZN7DvrDepA=</cbs:Password>
+            </cbs:AccessSecurity>
+            <cbs:OperatorInfo>
+               <cbs:OperatorID>101</cbs:OperatorID>
+            </cbs:OperatorInfo>
+         </RequestHeader>
+         <PaymentRequest>
+            <ars:PaymentSerialNo>9235000026ABC202450918</ars:PaymentSerialNo>
+            <ars:PaymentChannelID>1</ars:PaymentChannelID>
+            <ars:OpType>2</ars:OpType>
+            <ars:PaymentObj>
+               <ars:AcctAccessCode>
+                  <!--You have a CHOICE of the next 3 items at this level-->
+                  <arc:PrimaryIdentity>9210457185</arc:PrimaryIdentity>
+                  <ars:PayType>2</ars:PayType>
+               </ars:AcctAccessCode>
+            </ars:PaymentObj>
+            <ars:PaymentInfo>
+               <ars:CashPayment>
+                  
+                  <ars:Amount>10000</ars:Amount>
+                  <ars:BankInfo>
+                     <arc:BankCode>2001</arc:BankCode>
+                  </ars:BankInfo>
+               </ars:CashPayment>
+            </ars:PaymentInfo>
+            <ars:AdditionalProperty>
+               <arc:Code>CN_AU</arc:Code>
+               <arc:Value>286198679237</arc:Value>
+            </ars:AdditionalProperty>
+            <ars:AdditionalProperty>
+               <arc:Code>CN_BUSINESSTYPE</arc:Code>
+               <arc:Value>3</arc:Value>
+            </ars:AdditionalProperty>
+            <ars:AdditionalProperty>
+               <arc:Code>CN_PAYMENTID</arc:Code>
+               <arc:Value>259097258217</arc:Value>
+            </ars:AdditionalProperty>
+            
+         </PaymentRequest>
+      </ars:PaymentRequestMsg>
+   </soapenv:Body>
+</soapenv:Envelope>
+cbs-response: b'<?xml version="1.0" encoding="utf-8"?><soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"><soapenv:Body><ars:PaymentResultMsg xmlns:ars="http://www.huawei.com/bme/cbsinterface/arservices" xmlns:cbs="http://www.huawei.com/bme/cbsinterface/cbscommon"><ResultHeader><cbs:Version>1</cbs:Version><cbs:ResultCode>20000002</cbs:ResultCode><cbs:MsgLanguageCode>2003</cbs:MsgLanguageCode><cbs:ResultDesc>Parameter value range verification error: The service sequence number exists.</cbs:ResultDesc><cbs:MessageSeq>2024-10-19T16:58:11</cbs:MessageSeq></ResultHeader></ars:PaymentResultMsg></soapenv:Body></soapenv:Envelope>'
+INFO:     127.0.0.1:41592 - "POST /cbs/wrapper/payPostpaidBill/ HTTP/1.1" 200 OK

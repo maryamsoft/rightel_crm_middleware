@@ -34,7 +34,7 @@ def generate_response(cbs_response) :
     if result_code is not None and result_code.text == '0':
         # Balance = root.find('.//arc:NewBalanceAmt', namespaces)
         CreditLimit = root.find('.//ars:TotalCreditAmount', namespaces)
-        DefaultCL = root.find('.//ars:CreditAmountInfo', namespaces)
+        DefaultCL = root.find('.//ars:Amount', namespaces)
         # NonDefaultCL = root.find('.//arc:', namespaces) TODO: Add NonDefaultCL
         CreditUsed = root.find('.//ars:TotalUsageAmount', namespaces)
         CreditAvailable = root.find('.//ars:TotalRemainAmount', namespaces)
@@ -44,7 +44,7 @@ def generate_response(cbs_response) :
                     "DefaultCL": DefaultCL.text.strip(),
                     # "NonDefaultCL": NonDefaultCL.text.strip(),
                     "CreditUsed": CreditUsed.text.strip(),
-                    "CreditAvailable": CreditAvailable.text.strip
+                    "CreditAvailable": CreditAvailable.text.strip()
         }
     
     return None

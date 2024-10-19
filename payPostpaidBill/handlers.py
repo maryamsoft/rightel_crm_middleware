@@ -2,7 +2,7 @@ import os
 import xml.etree.ElementTree as ET
 from jinja2 import Template
 from datetime import datetime
-from utils.soap_client import BC_soap_client
+from utils.soap_client import AR_soap_client
 from fastapi import HTTPException, Security, status
 
 
@@ -20,14 +20,16 @@ def pay_postpaid_bill_handler(data):
     values = {
          **data.__dict__,
          "datetime":datetime.now().strftime("%Y-%m-%dT%H:%M:%S"),
-         "BankId": map_bankId.get(data.BankId, 1001)
+         "bankId": map_bankId.get(data.bankId, 1001)
     }
     xml_data = template.render(**values)
-    return BC_soap_client.call_service('PayPostpaidHotBill', xml_data)
+    print('request:', xml_data)
+    return AR_soap_client.call_service('PayPostpaidHotBill', xml_data)
 
 
 
 def generate_response(cbs_response) :
+    print('cbs-response:', cbs_response)
     root = ET.fromstring(cbs_response)
     namespaces = {
     'soapenv': 'http://schemas.xmlsoap.org/soap/envelope/',
