@@ -8,8 +8,6 @@ from utils import body
 
 
 def check_credit_limit(data):
-    print('data:', {**data.__dict__})
-    print("datetime:",datetime.now().strftime("%Y-%m-%dT%H:%M:%S"))
     app_path = os.path.dirname(os.path.abspath(__file__))
     with open(app_path+'/templates/payloads/QueryBalance.txt', 'r') as file:
         template = file.read()
@@ -23,6 +21,7 @@ def check_credit_limit(data):
     return AR_soap_client.call_service('CheckCreditLimit', xml_data)
     
 def generate_response(cbs_response) :
+    print('response:', cbs_response)
     root = ET.fromstring(cbs_response)
     namespaces = {
     'soapenv': 'http://schemas.xmlsoap.org/soap/envelope/',
@@ -33,22 +32,22 @@ def generate_response(cbs_response) :
     result_code = root.find('.//cbs:ResultCode', namespaces)
     result_desc = root.find('.//cbs:ResultDesc', namespaces)
     if result_code is not None and result_code.text == '0':
-        Balance = root.find('.//arc:NewBalanceAmt', namespaces)
-        CreditLimit = root.find('.//arc:TotalCreditAmount', namespaces)
-        DefaultCL = root.find('.//arc:CreditAmountInfo', namespaces)
+        # Balance = root.find('.//arc:NewBalanceAmt', namespaces)
+        CreditLimit = root.find('.//ars:TotalCreditAmount', namespaces)
+        DefaultCL = root.find('.//ars:CreditAmountInfo', namespaces)
         # NonDefaultCL = root.find('.//arc:', namespaces) TODO: Add NonDefaultCL
-        CreditUsed = root.find('.//arc:TotalUsageAmount', namespaces)
-        CreditAvailable = root.find('.//arc:TotalRemainAmount', namespaces)
-        if Balance is not None:
-            return {
-                    "Balance": Balance.text.strip(),
+        CreditUsed = root.find('.//ars:TotalUsageAmount', namespaces)
+        CreditAvailable = root.find('.//ars:TotalRemainAmount', namespaces)
+        return {
+                    # "Balance": Balance.text.strip(),
                     "CreditLimit": CreditLimit.text.strip(),
                     "DefaultCL": DefaultCL.text.strip(),
                     # "NonDefaultCL": NonDefaultCL.text.strip(),
                     "CreditUsed": CreditUsed.text.strip(),
                     "CreditAvailable": CreditAvailable.text.strip
-            }
+        }
     
+    return None
     raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST)
 
 

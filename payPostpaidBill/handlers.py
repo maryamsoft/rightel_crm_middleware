@@ -6,7 +6,7 @@ from utils.soap_client import BC_soap_client
 from fastapi import HTTPException, Security, status
 
 
-def pay_postpaid_hot_bill_handler(data):
+def pay_postpaid_bill_handler(data):
     app_path = os.path.dirname(os.path.abspath(__file__))
     with open(app_path+'/templates/payloads/Payment.txt', 'r') as file:
         template = file.read()
@@ -23,7 +23,6 @@ def pay_postpaid_hot_bill_handler(data):
          "BankId": map_bankId.get(data.BankId, 1001)
     }
     xml_data = template.render(**values)
-    print("request:", xml_data)
     return BC_soap_client.call_service('PayPostpaidHotBill', xml_data)
 
 
@@ -39,10 +38,9 @@ def generate_response(cbs_response) :
     result_code = root.find('.//cbs:ResultCode', namespaces)
     result_desc = root.find('.//cbs:ResultDesc', namespaces)
     if result_code is not None and result_code.text == '0':
-        balance = root.find('.//arc:NewBalanceAmt', namespaces)
-        if balance is not None:
-            return {
-                    "Balance": balance.text.strip()
-            }
-        
-        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST)
+        return {
+            "responseCode": None,
+            "responseDesc": None
+        }
+    return None    
+    raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST)

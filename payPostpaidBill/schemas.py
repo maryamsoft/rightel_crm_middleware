@@ -1,7 +1,7 @@
 from pydantic import BaseModel
 from typing import List, Optional, Tuple
 
-class PayPostpaidHotBillRequest(BaseModel):
+class PayPostpaidBillRequest(BaseModel):
     MSISDN: str
     Amount: str
     BankId: Optional[int]

@@ -24,21 +24,21 @@
             <ars:PaymentObj>
                <ars:AcctAccessCode>
                   <!--You have a CHOICE of the next 3 items at this level-->
-                  <arc:PrimaryIdentity>{{ MSISDN }}</arc:PrimaryIdentity>
+                  <arc:PrimaryIdentity>{{ msisdn }}</arc:PrimaryIdentity>
                   <ars:PayType>2</ars:PayType>
                </ars:AcctAccessCode>
             </ars:PaymentObj>
             <ars:PaymentInfo>
                <ars:CashPayment>
-                  <ars:Amount>{{ IncreaseValue }}</ars:Amount>
+                  <ars:Amount>{{ increaseValue }}</ars:Amount>
                   <ars:BankInfo>
-                     <arc:BankCode>{{ BankId }}</arc:BankCode>
+                     <arc:BankCode>{{ bankId }}</arc:BankCode>
                   </ars:BankInfo>
                </ars:CashPayment>
             </ars:PaymentInfo>
             <ars:AdditionalProperty>
                <arc:Code>CN_AU</arc:Code>
-               <arc:Value>{{AU}}</arc:Value>
+               <arc:Value>{{au}}</arc:Value>
             </ars:AdditionalProperty>
          </PaymentRequest>
       </ars:PaymentRequestMsg>

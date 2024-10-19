@@ -5,7 +5,7 @@ class CheckCreditLimitRequest(BaseModel):
     MSISDN: str
 
 class CheckCreditLimitResponse(BaseModel):
-    Balance: int
+    Balance: Optional[int]
     CreditLimit: int
     DefaultCL: int
     NonDefaultCL: Optional[int]

@@ -7,8 +7,6 @@ from utils.soap_client import AR_soap_client
 
 
 def query_post_paid_bill_handler(data):
-    
-    data.msisdn = 9235000018
     app_path = os.path.dirname(os.path.abspath(__file__))
     with open(app_path+'/templates/payloads/queryInvoice.txt', 'r') as file:
         query_invoice_template = file.read()
