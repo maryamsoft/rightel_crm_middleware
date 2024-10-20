@@ -4,25 +4,23 @@
       <bcs:QueryCustomerInfoRequestMsg>
          <RequestHeader>
             <cbs:Version>1</cbs:Version>
-            <!--Optional:-->
-            <cbs:BusinessCode>QueryCustomerInfoRequest</cbs:BusinessCode>
             <cbs:MessageSeq>{{datetime}}</cbs:MessageSeq>
-            <!--Optional:-->
-            <cbs:OwnershipInfo>
-               <cbs:BEID>101</cbs:BEID>
-            </cbs:OwnershipInfo>
-             <cbs:AccessSecurity>
-                <cbs:LoginSystemCode>102</cbs:LoginSystemCode>
-                <cbs:Password>7/PuyYwNpRtSX7jDpxnl2ECAvuVYH2Mu9zxqgPGJrPYYK73MCZN7DvrDepA=</cbs:Password>
+            <cbs:AccessSecurity>
+               <cbs:LoginSystemCode>102</cbs:LoginSystemCode>
+               <cbs:Password>7/PuyYwNpRtSX7jDpxnl2ECAvuVYH2Mu9zxqgPGJrPYYK73MCZN7DvrDepA=</cbs:Password>
             </cbs:AccessSecurity>
-           
          </RequestHeader>
          <QueryCustomerInfoRequest>
             <bcs:QueryObj>
                <bcs:SubAccessCode>
-                  <bcc:PrimaryIdentity>{{ MSISDN }}</bcc:PrimaryIdentity>
+                  <bcc:PrimaryIdentity>{{subscriberNumber}}</bcc:PrimaryIdentity>
                </bcs:SubAccessCode>
             </bcs:QueryObj>
+            <bcs:QueryMode>2</bcs:QueryMode>
+            <bcs:CustomerMask>0000</bcs:CustomerMask>
+            <bcs:AccountMask>00</bcs:AccountMask>
+            <bcs:SubscriberMask>100000000000</bcs:SubscriberMask>
+            <bcs:GroupMask>00000</bcs:GroupMask>
          </QueryCustomerInfoRequest>
       </bcs:QueryCustomerInfoRequestMsg>
    </soapenv:Body>
