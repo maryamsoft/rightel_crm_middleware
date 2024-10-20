@@ -8,10 +8,14 @@ from utils import header
 router = APIRouter()
 
 @router.post('', response_model=PaygCheckResponse)
-async def paygCheckRequest(request:PaygCheckRequest ,  response: Response):
+async def paygCheckRequest(request:PaygCheckRequest, response: Response):
     try:
         xml_response = payg_check_request(request)
         result = generate_response(xml_response)
+        print('result:', result)
         return result
+        return JSONResponse(content= {
+                'OrderNbr':None
+            })
     except Exception as error:
         raise error
