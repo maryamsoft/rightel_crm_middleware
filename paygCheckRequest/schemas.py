@@ -2,10 +2,7 @@ from pydantic import BaseModel
 from typing import List, Optional, Tuple
 
 class PaygCheckRequest(BaseModel):
-    subscriberNumber: int
+    pass
 
 class PaygCheckResponse(BaseModel):
-    attributeStatus: str
-    responseDesc: str
-    subscriberNumber: str
-    responseCode: str
+    pass
