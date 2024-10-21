@@ -1,8 +1,17 @@
 from pydantic import BaseModel
 from typing import List, Optional, Tuple
 
+
 class PaygCheckRequest(BaseModel):
-    subscriberNumber: int
+    # MSISDN: str
+    # mobileNum: str
+    # action: str
+    # sessionId: str
+    subscriberNumber: str
+    opType: str
+    modifiedAt: str
+    modifiedBy: int
+    sessionId: str
 
 class PaygCheckResponse(BaseModel):
     attributeStatus: str

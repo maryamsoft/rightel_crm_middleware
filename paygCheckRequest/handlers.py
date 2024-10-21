@@ -18,7 +18,7 @@ def payg_check_request(data:PaygCheckRequest):
     }
     xml_data = template.render(**values)
     print("request:", xml_data)
-    return BC_soap_client.call_service('QueryCustomerInfo', xml_data)
+    return BC_soap_client.call_service('PaygCheckRequest', xml_data)
     
 
 def generate_response(cbs_response) :
