@@ -361,3 +361,10 @@ request: <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelo
 </soapenv:Envelope>
 cbs-response: b'<?xml version="1.0" encoding="utf-8"?><soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"><soapenv:Body><ars:PaymentResultMsg xmlns:ars="http://www.huawei.com/bme/cbsinterface/arservices" xmlns:cbs="http://www.huawei.com/bme/cbsinterface/cbscommon"><ResultHeader><cbs:Version>1</cbs:Version><cbs:ResultCode>20000002</cbs:ResultCode><cbs:MsgLanguageCode>2003</cbs:MsgLanguageCode><cbs:ResultDesc>Parameter value range verification error: The service sequence number exists.</cbs:ResultDesc><cbs:MessageSeq>2024-10-19T16:58:11</cbs:MessageSeq></ResultHeader></ars:PaymentResultMsg></soapenv:Body></soapenv:Envelope>'
 INFO:     127.0.0.1:41592 - "POST /cbs/wrapper/payPostpaidBill/ HTTP/1.1" 200 OK
+
+
+
+
+
+
+
