@@ -13,3 +13,5 @@ class RechargeRequest(BaseModel):
     voucherType: Optional[str] = None
     location: Optional[str] = None
     serialNumber: Optional[str] = None
+
+

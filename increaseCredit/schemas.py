@@ -3,12 +3,10 @@ from typing import List, Optional, Tuple
 
 
 class IncreaseCreditRequest(BaseModel):
-    MSISDN: str
-    IncreaseValue: str
-    BankId: int
-    AU: str
+    msisdn: str
+    increaseValue: str
+    bankId: int
+    au: str
 
 
-class IncreaseCreditResponse(BaseModel):
-    Balance: int
     
