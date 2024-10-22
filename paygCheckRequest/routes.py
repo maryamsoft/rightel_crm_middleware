@@ -10,7 +10,6 @@ router = APIRouter()
 async def paygCheckRequest(request:PaygCheckRequest, response: Response):
     try:
         xml_response = payg_check_request(request)
-        return xml_response
         result = generate_response(xml_response)
         print('result:', result)
         return result
