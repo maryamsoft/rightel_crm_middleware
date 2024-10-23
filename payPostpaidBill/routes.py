@@ -6,7 +6,7 @@ from fastapi.responses import JSONResponse
 
 router = APIRouter()
 
-@router.post('/')
+@router.post('')
 async def pay_postpaid_bill(request: PayPostpaidBillRequest, response:Response):
     try:
         xml_response = pay_postpaid_bill_handler(request)

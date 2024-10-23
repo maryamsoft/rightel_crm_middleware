@@ -19,15 +19,15 @@ def generate_response(cbs_response) :
     print('response:', cbs_response)
     root = ET.fromstring(cbs_response)
     namespaces = {
-    'soapenv': 'http://schemas.xmlsoap.org/soap/envelope/',
-    'ars': 'http://www.huawei.com/bme/cbsinterface/arservices',
-    'cbs': 'http://www.huawei.com/bme/cbsinterface/cbscommon',
-    'arc': 'http://cbs.huawei.com/ar/wsservice/arcommon'
+        'soapenv': 'http://schemas.xmlsoap.org/soap/envelope/',
+        'ars': 'http://www.huawei.com/bme/cbsinterface/arservices',
+        'cbs': 'http://www.huawei.com/bme/cbsinterface/cbscommon',
+        'arc': 'http://cbs.huawei.com/ar/wsservice/arcommon'
     }
     result_code = root.find('.//cbs:ResultCode', namespaces)
     result_desc = root.find('.//cbs:ResultDesc', namespaces)
     if result_code is not None and result_code.text == '0':
-        osb_request = {
+        final_resppnse = {
             "PayableAmount": root.find('.//ars:AdditionalProperty[arc:Code="CN_PAYABLE_AMOUNT"]/arc:Value', namespaces).text.strip(),
             "InvoiceId": root.find('.//ars:InvoiceInfo/ars:AcctCode', namespaces).text.strip(),
             "PaymentId": root.find('.//ars:AdditionalProperty[arc:Code="CN_PAYMENT_ID"]/arc:Value', namespaces).text.strip(),
@@ -40,19 +40,19 @@ def generate_response(cbs_response) :
         outstainding = root.find('.//ars:OpenAmount', namespaces)
         # AcctItemListDtoList = root.findall('.//ars:AcctItemListDtoList', namespaces)
         if BillingCycleStartDate is not None:
-            osb_request['BillingCycleStartDate'] = BillingCycleStartDate.text.strip()
+            final_resppnse['BillingCycleStartDate'] = BillingCycleStartDate.text.strip()
         if BillingCycleEndDate is not None:
-            osb_request['BillingCycleEndDate'] = BillingCycleEndDate.text.strip()
+            final_resppnse['BillingCycleEndDate'] = BillingCycleEndDate.text.strip()
         if BillingCycleID is not None:
-            osb_request['BillingCycleID'] = BillingCycleID.text.strip()
+            final_resppnse['BillingCycleID'] = BillingCycleID.text.strip()
         if DateIssuance is not None:
-            osb_request['DateIssuance'] = DateIssuance.text.strip()
+            final_resppnse['DateIssuance'] = DateIssuance.text.strip()
         if outstainding is not None:
-            osb_request['OUTSTAINDING'] = outstainding.text.strip()
+            final_resppnse['OUTSTAINDING'] = outstainding.text.strip()
         # if AcctItemListDtoList is not None:
-        #     osb_request['AcctItemListDtoList'] = AcctItemListDtoList.text.strip()
+        #     final_resppnse['AcctItemListDtoList'] = AcctItemListDtoList.text.strip()
 
-        return osb_request
+        return final_resppnse
 
 
     

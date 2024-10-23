@@ -9,4 +9,6 @@ class IncreaseCreditRequest(BaseModel):
     au: str
 
 
+class IncreaseCreditResponse(BaseModel):
+    pass
     

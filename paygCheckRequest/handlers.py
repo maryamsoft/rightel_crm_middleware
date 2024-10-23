@@ -37,13 +37,14 @@ def generate_response(cbs_response) :
         ATTRIBUTE_STATUS_title = root.find('.//bcc:Code', namespaces)
         ATTRIBUTE_STATUS_value = root.find('.//bcc:Value', namespaces)
         RESPONSE_CODE = result_code.text
-        sub_identity = root.find('.//bcc:SubIdentity', namespaces)
-        if sub_identity is not None:
-            subscriberNumber = sub_identity.find('bcc:SubIdentity', namespaces).text
+        sub_identity = root.find('.//bcc:SubIdentity/bcc:SubIdentity', namespaces)
+        print('sub_identity:', sub_identity)
+        # if sub_identity is not None:
+        #     subscriberNumber = sub_identity.find('bcc:SubIdentity', namespaces).text
         return {
                 "attributeStatus":ATTRIBUTE_STATUS_value.text.strip(),
                 "responseDesc": "Successful",
-                "subscriberNumber": subscriberNumber,
+                "subscriberNumber": sub_identity,
                 "responseCode": RESPONSE_CODE
             }
     return None

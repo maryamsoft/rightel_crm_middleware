@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:bcs="http://www.huawei.com/bme/cbsinterface/bcservices" xmlns:cbs="http://www.huawei.com/bme/cbsinterface/cbscommon" xmlns:bcc="http://www.huawei.com/bme/cbsinterface/bccommon">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <bcs:ChangeSubInfoRequestMsg>
+         <RequestHeader>
+            <cbs:Version>1</cbs:Version>
+            <cbs:MessageSeq>{{datetime}}</cbs:MessageSeq>
+            <cbs:AccessSecurity>
+                <cbs:LoginSystemCode>102</cbs:LoginSystemCode>
+                <cbs:Password>7/PuyYwNpRtSX7jDpxnl2ECAvuVYH2Mu9zxqgPGJrPYYK73MCZN7DvrDepA=</cbs:Password>
+            </cbs:AccessSecurity>
+         </RequestHeader>
+         <ChangeSubInfoRequest>
+            <bcs:SubAccessCode>
+              <bcc:PrimaryIdentity>{{msisdn}}</bcc:PrimaryIdentity>
+            </bcs:SubAccessCode>
+            <bcs:SubBasicInfo>
+              <bcc:SubProperty>
+                 <bcc:PropCode>CN_DATA_PAYG</bcc:PropCode>
+                 <bcc:Value>{{cn_data_payg}}</bcc:Value>
+              </bcc:SubProperty>
+            </bcs:SubBasicInfo>
+         </ChangeSubInfoRequest>
+      </bcs:ChangeSubInfoRequestMsg>
+   </soapenv:Body>
+</soapenv:Envelope>

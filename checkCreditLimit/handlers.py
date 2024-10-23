@@ -39,12 +39,12 @@ def generate_response(cbs_response) :
         CreditUsed = root.find('.//ars:TotalUsageAmount', namespaces)
         CreditAvailable = root.find('.//ars:TotalRemainAmount', namespaces)
         return {
-                    # "Balance": Balance.text.strip(),
-                    "CreditLimit": CreditLimit.text.strip(),
-                    "DefaultCL": DefaultCL.text.strip(),
-                    # "NonDefaultCL": NonDefaultCL.text.strip(),
-                    "CreditUsed": CreditUsed.text.strip(),
-                    "CreditAvailable": CreditAvailable.text.strip()
+            "Balance": 0,
+            "CreditLimit": CreditLimit.text.strip(),
+            "DefaultCL": DefaultCL.text.strip(),
+            "NonDefaultCL": 0,
+            "CreditUsed": CreditUsed.text.strip(),
+            "CreditAvailable": CreditAvailable.text.strip()
         }
     
     return None

@@ -1,13 +1,13 @@
 from fastapi import APIRouter, Response
 from .handlers import  generate_response, increase_credit
-from .schemas import  IncreaseCreditRequest
+from .schemas import  IncreaseCreditRequest, IncreaseCreditResponse
 from fastapi.responses import JSONResponse
 from utils import header
 
 
 router = APIRouter()
 
-@router.post('')
+@router.post('', response_model=IncreaseCreditResponse)
 async def increaseCredit(request:IncreaseCreditRequest ,  response: Response):
     try:
         xml_response = increase_credit(request)
