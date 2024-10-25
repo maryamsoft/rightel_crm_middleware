@@ -1,11 +1,11 @@
-from typing import Annotated
+from typing import Annotated, Optional
 from pydantic import BaseModel
 from pydantic import BaseModel
 
 
 class QueryPostPaidRequest(BaseModel):
     MSISDN: str
-    BillingCycleId: str
+    BillingCycleId: Optional[str] = None
 
     
     
