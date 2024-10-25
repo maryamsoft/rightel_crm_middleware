@@ -13,12 +13,12 @@
          </RequestHeader>
          <ChangeSubInfoRequest>
             <bcs:SubAccessCode>
-              <bcc:PrimaryIdentity>{{msisdn}}</bcc:PrimaryIdentity>
+              <bcc:PrimaryIdentity>{{message.subscriberNumber}}</bcc:PrimaryIdentity>
             </bcs:SubAccessCode>
             <bcs:SubBasicInfo>
               <bcc:SubProperty>
                  <bcc:PropCode>CN_DATA_PAYG</bcc:PropCode>
-                 <bcc:Value>{{cn_data_payg}}</bcc:Value>
+                 <bcc:Value>{{message.opType}}</bcc:Value>
               </bcc:SubProperty>
             </bcs:SubBasicInfo>
          </ChangeSubInfoRequest>

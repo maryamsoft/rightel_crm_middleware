@@ -9,6 +9,7 @@ from increaseCredit.routes import router as increaseCreditRoutes
 from querySubscriberRGUsage.routes import router as querySubscriberRGUsageRoutes
 from paygCheckRequest.routes import router as paygCheckRequestRoutes
 from queryAllBalance.routes import router as queryAllBalance
+from paygChangeRequest.routes import router as paygChangeRequestRoutes
 
 
 app = FastAPI()
@@ -23,6 +24,6 @@ app.include_router(checkCreditLimitRoutes, prefix="/cbs/wrapper/checkCreditLimit
 app.include_router(increaseCreditRoutes, prefix="/cbs/wrapper/increaseCredit", tags=["increaseCredit"])
 app.include_router(querySubscriberRGUsageRoutes, prefix="/cbs/wrapper/querySubscriberRGUsage", tags=["querySubscriberRGUsage"])
 app.include_router(paygCheckRequestRoutes, prefix="/paygCheckRequest", tags=["paygCheckRequest"])
+app.include_router(paygChangeRequestRoutes, prefix="/paygChangeRequest", tags=["paygChangeRequest"])
 app.include_router(queryAllBalance, prefix="/cbs/wrapper/queryAllBalance", tags=["queryAllBalance"])
-# app.include_router(paygCheckRequestRoutes, prefix="paygCheckRequest", tags=["paygCheckRequest"])
 
