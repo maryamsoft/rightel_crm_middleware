@@ -26,6 +26,4 @@ def payg_change_request_handler(data:PaygChangeRequest):
     return BC_soap_client.call_service('Recharge', xml_data)
 
 def generate_response(cbs_response) :
-    return cbs_response
-
-
+    return {}
