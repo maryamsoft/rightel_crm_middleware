@@ -40,9 +40,9 @@ def generate_response(cbs_response):
     if result_code is not None and result_code.text == '0':
         AllBalanceDtoList_BalanceType = root.find('.//bcs:BalanceType', namespaces)
         print("balance_type", AllBalanceDtoList_BalanceType)
-        AllBalanceDtoList_BalanceName = root.find('.//bcs:BalanceTypeName', namespaces)
+        AllBalanceDtoList_BalanceName = root.find('.//bcs:BalanceName', namespaces)
         AllBalanceDtoList_BalanceValue = root.find('.//bcs:Amount', namespaces)
-        AllBalanceDtoList_UnitType = root.find('.//bcs:CurrencyID', namespaces)
+        AllBalanceDtoList_UnitType = root.find('.//bcs:AcctList', namespaces)
         AllBalanceDtoList_EffDate = root.find('.//bcs:EffectiveTime', namespaces)
         InitBal = root.find('.//bcs:InitialAmount', namespaces)
         IsShowBal = root.find('.//bcs:BalanceTypeName', namespaces)
