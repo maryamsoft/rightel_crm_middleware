@@ -16,12 +16,10 @@ def increase_credit(data:IncreaseCreditRequest):
          "datetime":datetime.now().strftime("%Y-%m-%dT%H:%M:%S"),
     }
     xml_data = template.render(**values)
-    print("request:", xml_data)
     return AR_soap_client.call_service('IncreaseCredit', xml_data)
     
 
 def generate_response(cbs_response) :
-    print('response:', cbs_response)
     root = ET.fromstring(cbs_response)
     namespaces = {
     'soapenv': 'http://schemas.xmlsoap.org/soap/envelope/',
@@ -30,10 +28,12 @@ def generate_response(cbs_response) :
     'bcc': 'http://www.huawei.com/bme/cbsinterface/bccommon'
     }
     result_code = root.find('.//cbs:ResultCode', namespaces)
+    result_desc = root.find('.//cbs:ResultDesc', namespaces)
     
     if result_code is not None and result_code.text == '0':
         return True
-        
+    
+    print('result_desc:', result_desc.text)    
     return None
         #raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST)
 

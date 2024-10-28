@@ -1,5 +1,5 @@
 from pydantic import BaseModel
-from typing import List, Optional, Tuple
+from typing import List, Optional, Tuple, Annotated
 
 
 class IncreaseCreditRequest(BaseModel):
@@ -7,8 +7,3 @@ class IncreaseCreditRequest(BaseModel):
     increaseValue: str
     bankId: int
     au: str
-
-
-class IncreaseCreditResponse(BaseModel):
-    pass
-    

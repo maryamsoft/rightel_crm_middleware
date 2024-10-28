@@ -1,22 +1,22 @@
 from fastapi import APIRouter, Response
 from .handlers import  generate_response, increase_credit
-from .schemas import  IncreaseCreditRequest, IncreaseCreditResponse
+from .schemas import  IncreaseCreditRequest
 from fastapi.responses import JSONResponse
 from utils import header
 
 
 router = APIRouter()
 
-@router.post('', response_model=IncreaseCreditResponse)
+@router.post('')
 async def increaseCredit(request:IncreaseCreditRequest ,  response: Response):
     try:
         xml_response = increase_credit(request)
         result = generate_response(xml_response)
         if result:
-            header.successful_header(response)
+            headers = header.successful_header(response)
         else:
-            header.unsuccessful_header(response)
+            headers = header.unsuccessful_header(response, '1', 'nok')
             
-        return result
+        return JSONResponse(content={}, headers=headers, status_code=200)
     except Exception as error:
         raise error

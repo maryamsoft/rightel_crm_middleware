@@ -4,35 +4,26 @@
       <ars:PaymentRequestMsg>
          <RequestHeader>
             <cbs:Version>1</cbs:Version>
-            <cbs:MessageSeq>{{ datetime }}</cbs:MessageSeq>
-            <cbs:OwnershipInfo>
-               <cbs:BEID>101</cbs:BEID>
-               <cbs:BRID>101</cbs:BRID>
-            </cbs:OwnershipInfo>
+            <cbs:MessageSeq>{{datetime}}</cbs:MessageSeq>
             <cbs:AccessSecurity>
                <cbs:LoginSystemCode>102</cbs:LoginSystemCode>
                <cbs:Password>7/PuyYwNpRtSX7jDpxnl2ECAvuVYH2Mu9zxqgPGJrPYYK73MCZN7DvrDepA=</cbs:Password>
             </cbs:AccessSecurity>
-            <cbs:OperatorInfo>
-               <cbs:OperatorID>101</cbs:OperatorID>
-            </cbs:OperatorInfo>
          </RequestHeader>
          <PaymentRequest>
-            <ars:PaymentSerialNo>92357455555</ars:PaymentSerialNo>
-            <ars:PaymentChannelID>1</ars:PaymentChannelID>
-            <ars:OpType>1</ars:OpType>
+            <ars:PaymentSerialNo>{{msisdn}}{{bankId}}{{au}}</ars:PaymentSerialNo>
+            <ars:OpType>3</ars:OpType>
+            <ars:DepositType>C_DEPOSIT_ACCOUNT</ars:DepositType>
             <ars:PaymentObj>
                <ars:AcctAccessCode>
-                  <!--You have a CHOICE of the next 3 items at this level-->
-                  <arc:PrimaryIdentity>{{ msisdn }}</arc:PrimaryIdentity>
-                  <ars:PayType>2</ars:PayType>
+                  <arc:PrimaryIdentity>{{msisdn}}</arc:PrimaryIdentity>
                </ars:AcctAccessCode>
             </ars:PaymentObj>
             <ars:PaymentInfo>
                <ars:CashPayment>
-                  <ars:Amount>{{ increaseValue }}</ars:Amount>
+                  <ars:Amount>{{increaseValue}}</ars:Amount>
                   <ars:BankInfo>
-                     <arc:BankCode>{{ bankId }}</arc:BankCode>
+                     <arc:BankCode>{{bankId}}</arc:BankCode>
                   </ars:BankInfo>
                </ars:CashPayment>
             </ars:PaymentInfo>
