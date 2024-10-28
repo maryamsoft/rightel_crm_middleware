@@ -5,7 +5,7 @@
          <RequestHeader>
             <cbs:Version>1</cbs:Version>
             <cbs:BusinessCode>ChangeSubOffering</cbs:BusinessCode>
-            <cbs:MessageSeq>$datetime</cbs:MessageSeq>
+            <cbs:MessageSeq>{{datetime}}</cbs:MessageSeq>
             <cbs:AccessSecurity>
                <cbs:LoginSystemCode>102</cbs:LoginSystemCode>
                <cbs:Password>7/PuyYwNpRtSX7jDpxnl2ECAvuVYH2Mu9zxqgPGJrPYYK73MCZN7DvrDepA=</cbs:Password>
@@ -16,49 +16,49 @@
          </RequestHeader>
          <ChangeSubOfferingRequest>
             <bcs:SubAccessCode>
-               <bcc:PrimaryIdentity>$msisdn</bcc:PrimaryIdentity>
+               <bcc:PrimaryIdentity>{{msisdn}}</bcc:PrimaryIdentity>
             </bcs:SubAccessCode>
             <bcs:SupplementaryOffering>
                <bcs:AddOffering>
                   <bcc:OfferingKey>
-                     <bcc:OfferingCode>$offerCode</bcc:OfferingCode>
+                     <bcc:OfferingCode>{{offerCode}}</bcc:OfferingCode>
                      <bcc:PurchaseSeq></bcc:PurchaseSeq>
                   </bcc:OfferingKey>
                   <bcc:OInstProperty>
                      <bcc:PropCode>CN_CHANNEL_ID</bcc:PropCode>
                      <bcc:PropType>1</bcc:PropType>
-                     <bcc:Value>$channelId</bcc:Value>
+                     <bcc:Value>{{channelId}}</bcc:Value>
                   </bcc:OInstProperty>
                   <bcc:OInstProperty>
                      <bcc:PropCode>C_FREE_FIRSTMRC</bcc:PropCode>
                      <bcc:PropType>1</bcc:PropType>
-                     <bcc:Value>$C_FREE_PAY_FLAG</bcc:Value>
+                     <bcc:Value>{{C_FREE_PAY_FLAG}}</bcc:Value>
                   </bcc:OInstProperty>
                   <bcc:OInstProperty>
                      <bcc:PropCode>CN_PAY_FLAG</bcc:PropCode>
                      <bcc:PropType>1</bcc:PropType>
-                     <bcc:Value>$payFlag</bcc:Value>
+                     <bcc:Value>{{payFlag}}</bcc:Value>
                   </bcc:OInstProperty>
                   <bcc:OInstProperty>
                      <bcc:PropCode>CN_AU</bcc:PropCode>
                      <bcc:PropType>1</bcc:PropType>
-                     <bcc:Value>$au</bcc:Value>
+                     <bcc:Value>{{au}}</bcc:Value>
                   </bcc:OInstProperty>
                   <bcc:OInstProperty>
                      <bcc:PropCode>CN_FIRST_AMOUNT</bcc:PropCode>
                      <bcc:PropType>1</bcc:PropType>
-                     <bcc:Value>$amount</bcc:Value>
+                     <bcc:Value>{{amount}}</bcc:Value>
                   </bcc:OInstProperty>
                   <bcc:OInstProperty>
                      <bcc:PropCode>CN_BANK_ID</bcc:PropCode>
                      <bcc:PropType>1</bcc:PropType>
-                     <bcc:Value>$bankId</bcc:Value>
+                     <bcc:Value>{{bankId}}</bcc:Value>
                   </bcc:OInstProperty>
-                  <bcc:OInstProperty>
+                  {% if CallerId is not none %}<bcc:OInstProperty>
                      <bcc:PropCode>CN_CALLER_ID</bcc:PropCode>
                      <bcc:PropType>1</bcc:PropType>
-                     <bcc:Value>$CallerId</bcc:Value>
-                  </bcc:OInstProperty>
+                     <bcc:Value>{{CallerId}}</bcc:Value>
+                  </bcc:OInstProperty>{% endif %}
                   <bcs:EffectiveTime>
                      <bcc:Mode>I</bcc:Mode>
                   </bcs:EffectiveTime>

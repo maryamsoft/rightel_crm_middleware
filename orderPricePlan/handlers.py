@@ -1,6 +1,6 @@
 import os
 import xml.etree.ElementTree as ET
-from string import Template
+from jinja2 import Template
 from datetime import datetime
 from fastapi import HTTPException, status
 from utils.soap_client import BC_soap_client
@@ -12,7 +12,7 @@ def ChangeSubOffering(data):
     with open(app_path+'/templates/payloads/ChangeSubOffering.txt', 'r') as file:
         changeSubOffering_template = file.read()
     changeSubOffering_template = Template(changeSubOffering_template)
-    changeSubOffering = changeSubOffering_template.substitute({**data.__dict__,"datetime":datetime.now().strftime("%Y-%m-%dT%H:%M:%S"),"C_FREE_PAY_FLAG" : 0 if data.payFlag==1 else 1})
+    changeSubOffering = changeSubOffering_template.render({**data.__dict__,"datetime":datetime.now().strftime("%Y-%m-%dT%H:%M:%S"),"C_FREE_PAY_FLAG" : 0 if data.payFlag==1 else 1})
     return BC_soap_client.call_service('ChangeSubOffering', changeSubOffering)
     
 

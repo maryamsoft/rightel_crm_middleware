@@ -1,6 +1,6 @@
 import os
 import xml.etree.ElementTree as ET
-from string import Template
+from jinja2 import Template
 from datetime import datetime
 from fastapi import HTTPException, status
 from utils.soap_client import BC_soap_client
@@ -8,11 +8,22 @@ from utils import body
 from .schemas import PaygChangeRequest
 
 
-def payg_change_request(data:PaygChangeRequest):
-    pass
-    
+def payg_change_request_handler(data:PaygChangeRequest):
+    app_path = os.path.dirname(os.path.abspath(__file__))
+    with open(app_path+'/templates/payloads/changeSubInfo.txt', 'r') as file:
+        template = file.read()
+    template = Template(template)
+    opTypeMapper = {
+        "210":0,
+        "211":1,
+    }
+    data.message.opType = opTypeMapper[data.message.opType]
+    xml_data = template.render({
+        **data.__dict__,
+        "datetime": datetime.now().strftime("%Y-%m-%dT%H:%M:%S"),
+    })
+    print("request:", xml_data)
+    return BC_soap_client.call_service('Recharge', xml_data)
 
 def generate_response(cbs_response) :
-    pass
-
-
+    return {}

@@ -1,22 +1,60 @@
 import os
 import xml.etree.ElementTree as ET
-from string import Template
+from jinja2 import Template
 from datetime import datetime
 from fastapi import HTTPException, Security, status
 from utils.soap_client import AR_soap_client
 
 
-def queryInvoice(data):
-    
-    data.msisdn = 9235000018
+def query_post_paid_bill_handler(data):
     app_path = os.path.dirname(os.path.abspath(__file__))
     with open(app_path+'/templates/payloads/queryInvoice.txt', 'r') as file:
         query_invoice_template = file.read()
     query_invoice_template = Template(query_invoice_template)
-    query_invoice = query_invoice_template.substitute({**data.__dict__,"datetime":datetime.now().strftime("%Y-%m-%dT%H:%M:%S")})
+    query_invoice = query_invoice_template.render({**data.__dict__,"datetime":datetime.now().strftime("%Y-%m-%dT%H:%M:%S")})
     return AR_soap_client.call_service('QueryInvoice', query_invoice)
     
 
 def generate_response(cbs_response) :
-    pass
+    print('response:', cbs_response)
+    root = ET.fromstring(cbs_response)
+    namespaces = {
+        'soapenv': 'http://schemas.xmlsoap.org/soap/envelope/',
+        'ars': 'http://www.huawei.com/bme/cbsinterface/arservices',
+        'cbs': 'http://www.huawei.com/bme/cbsinterface/cbscommon',
+        'arc': 'http://cbs.huawei.com/ar/wsservice/arcommon'
+    }
+    result_code = root.find('.//cbs:ResultCode', namespaces)
+    result_desc = root.find('.//cbs:ResultDesc', namespaces)
+    if result_code is not None and result_code.text == '0':
+        final_resppnse = {
+            "PayableAmount": root.find('.//ars:AdditionalProperty[arc:Code="CN_PAYABLE_AMOUNT"]/arc:Value', namespaces).text.strip(),
+            "InvoiceId": root.find('.//ars:InvoiceInfo/ars:AcctCode', namespaces).text.strip(),
+            "PaymentId": root.find('.//ars:AdditionalProperty[arc:Code="CN_PAYMENT_ID"]/arc:Value', namespaces).text.strip(),
+            "Status": root.find('.//ars:Status', namespaces).text.strip(),
+        }
+        BillingCycleStartDate = root.find('.//ars:BillCycleBeginTime', namespaces)
+        BillingCycleEndDate = root.find('.//ars:BillCycleEndTime', namespaces)
+        BillingCycleID = root.find('.//ars:BillCycleID', namespaces)
+        DateIssuance = root.find('.//ars:InvoiceDate', namespaces)
+        outstainding = root.find('.//ars:OpenAmount', namespaces)
+        # AcctItemListDtoList = root.findall('.//ars:AcctItemListDtoList', namespaces)
+        if BillingCycleStartDate is not None:
+            final_resppnse['BillingCycleStartDate'] = BillingCycleStartDate.text.strip()
+        if BillingCycleEndDate is not None:
+            final_resppnse['BillingCycleEndDate'] = BillingCycleEndDate.text.strip()
+        if BillingCycleID is not None:
+            final_resppnse['BillingCycleID'] = BillingCycleID.text.strip()
+        if DateIssuance is not None:
+            final_resppnse['DateIssuance'] = DateIssuance.text.strip()
+        if outstainding is not None:
+            final_resppnse['OUTSTAINDING'] = outstainding.text.strip()
+        # if AcctItemListDtoList is not None:
+        #     final_resppnse['AcctItemListDtoList'] = AcctItemListDtoList.text.strip()
+
+        return final_resppnse
+
+
+    
+    raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST)
 

@@ -1,0 +1,24 @@
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:arc="http://www.huawei.com/bme/cbsinterface/arcustomizedservices" xmlns:cbs="http://www.huawei.com/bme/cbsinterface/cbscommon" xmlns:arc1="http://cbs.huawei.com/ar/wsservice/arcommon">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <arc:QueryDebtRequestMsg>
+         <RequestHeader>
+            <cbs:Version>1</cbs:Version>
+            <cbs:BusinessCode>QueryDebt</cbs:BusinessCode>
+            <cbs:MessageSeq>{{datetime}}</cbs:MessageSeq>
+            <cbs:AccessSecurity>
+               <cbs:LoginSystemCode>102</cbs:LoginSystemCode>
+               <cbs:Password>7/PuyYwNpRtSX7jDpxnl2ECAvuVYH2Mu9zxqgPGJrPYYK73MCZN7DvrDepA=</cbs:Password>
+            </cbs:AccessSecurity>
+            <cbs:OperatorInfo>
+               <cbs:OperatorID>101</cbs:OperatorID>
+            </cbs:OperatorInfo>
+         </RequestHeader>
+         <QueryDebtRequest>
+            <arc:SubAccessCode>
+               <arc1:PrimaryIdentity>{{MSISDN}}</arc1:PrimaryIdentity>
+            </arc:SubAccessCode>
+         </QueryDebtRequest>
+      </arc:QueryDebtRequestMsg>
+   </soapenv:Body>
+</soapenv:Envelope>

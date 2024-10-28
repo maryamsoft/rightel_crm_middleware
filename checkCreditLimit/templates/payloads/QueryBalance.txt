@@ -3,7 +3,7 @@
    <soapenv:Body>
       <ars:QueryBalanceRequestMsg>
          <RequestHeader>
-            <cbs:Version>?</cbs:Version>
+            <cbs:Version>1</cbs:Version>
             <cbs:BusinessCode>QueryBalance</cbs:BusinessCode>
             <cbs:MessageSeq>{{ datetime }}</cbs:MessageSeq>
             <cbs:AccessSecurity>
