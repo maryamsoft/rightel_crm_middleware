@@ -2,7 +2,7 @@ import os
 import xml.etree.ElementTree as ET
 from jinja2 import Template
 from datetime import datetime
-from utils.soap_client import BC_soap_client
+from utils.soap_client import AR_soap_client
 from .schemas import IncreaseCreditRequest
 
 
@@ -17,10 +17,11 @@ def increase_credit(data:IncreaseCreditRequest):
     }
     xml_data = template.render(**values)
     print("request:", xml_data)
-    return BC_soap_client.call_service('IncreaseCredit', xml_data)
+    return AR_soap_client.call_service('IncreaseCredit', xml_data)
     
 
 def generate_response(cbs_response) :
+    print('response:', cbs_response)
     root = ET.fromstring(cbs_response)
     namespaces = {
     'soapenv': 'http://schemas.xmlsoap.org/soap/envelope/',
