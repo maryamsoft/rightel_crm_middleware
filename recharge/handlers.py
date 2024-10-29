@@ -34,9 +34,14 @@ def generate_response(response) :
     result_desc = root.find('.//cbs:ResultDesc', namespaces)
     if result_code is not None and result_code.text == '0':
         balance = root.find('.//arc:NewBalanceAmt', namespaces)
+        new_balance = root.find('.//arc:NewBalanceAmt', namespaces)
+        old_balance = root.find('.//arc:oldBalanceAmt', namespaces)
+        # ExpDate = root.find('.//ars:ExpDate', namespaces)
+        add_balance = int(new_balance.text.strip()) - int(old_balance.text.strip())
         if balance is not None:
             return {
-                    "Balance": balance.text.strip()
+                "Balance": balance.text.strip(),
+                "AddBalance": add_balance,
             }
     
     raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST)
