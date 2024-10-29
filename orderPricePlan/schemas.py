@@ -9,12 +9,12 @@ class OrderPricePlanOfferRequest(BaseModel):
     channelId: int
     au: str
     amount: int
-    discountFee: Optional[int]
     bankId: str
     payFlag: str
-    CallerId: Optional[int]
-    
-    
+    CallerId: Optional[str]
+    discountFee: Optional[str]
+
+
 class ResponseBase(BaseModel):
     OrderNbr: str
 
