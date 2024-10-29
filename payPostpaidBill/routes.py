@@ -14,8 +14,8 @@ async def pay_postpaid_bill(request: PayPostpaidBillRequest, response:Response):
         if result:
             header.successful_header(response)
             return result
-        
-        return JSONResponse(content={}, status_code=status.HTTP_200_OK)
+        headers = header.unsuccessful_header(response)
+        return JSONResponse(content={},headers=headers, status_code=status.HTTP_200_OK)
         
     except Exception as error:
         raise error

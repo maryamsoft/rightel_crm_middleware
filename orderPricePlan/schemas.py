@@ -1,4 +1,4 @@
-from typing import Annotated
+from typing import Annotated, Optional
 from pydantic import BaseModel
 from pydantic import BaseModel
 
@@ -9,10 +9,10 @@ class OrderPricePlanOfferRequest(BaseModel):
     channelId: int
     au: str
     amount: int
-    discountFee: Annotated[None, "discountFee"]
+    discountFee: Optional[int]
     bankId: str
     payFlag: str
-    CallerId: Annotated[None, "CallerId"]
+    CallerId: Optional[int]
     
     
 class ResponseBase(BaseModel):
