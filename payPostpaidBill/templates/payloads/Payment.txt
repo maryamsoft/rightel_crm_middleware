@@ -4,7 +4,7 @@
       <ars:PaymentRequestMsg>
          <RequestHeader>
             <cbs:Version>1</cbs:Version>
-            <cbs:MessageSeq>{{ datetime }}</cbs:MessageSeq>
+            <cbs:MessageSeq>{{datetime}}</cbs:MessageSeq>
             <cbs:OwnershipInfo>
                <cbs:BEID>101</cbs:BEID>
                <cbs:BRID>101</cbs:BRID>
@@ -18,7 +18,11 @@
             </cbs:OperatorInfo>
          </RequestHeader>
          <PaymentRequest>
-            <ars:PaymentSerialNo>9235000026ABC202450918</ars:PaymentSerialNo>
+            {% if bankId is not none and  au is not none  %}
+               <ars:PaymentSerialNo>{{MSISDN}}{{BankId}}{{AU}}</ars:PaymentSerialNo>
+            {% else %}
+            <ars:PaymentSerialNo></ars:PaymentSerialNo>
+            {% endif %}
             <ars:PaymentChannelID>1</ars:PaymentChannelID>
             <ars:OpType>2</ars:OpType>
             <ars:PaymentObj>

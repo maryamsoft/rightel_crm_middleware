@@ -10,9 +10,6 @@
                <cbs:LoginSystemCode>102</cbs:LoginSystemCode>
                <cbs:Password>7/PuyYwNpRtSX7jDpxnl2ECAvuVYH2Mu9zxqgPGJrPYYK73MCZN7DvrDepA=</cbs:Password>
             </cbs:AccessSecurity>
-            <cbs:OperatorInfo>
-               <cbs:OperatorID>101</cbs:OperatorID>
-            </cbs:OperatorInfo>
          </RequestHeader>
          <ChangeSubOfferingRequest>
             <bcs:SubAccessCode>
@@ -22,7 +19,6 @@
                <bcs:AddOffering>
                   <bcc:OfferingKey>
                      <bcc:OfferingCode>{{offerCode}}</bcc:OfferingCode>
-                     <bcc:PurchaseSeq></bcc:PurchaseSeq>
                   </bcc:OfferingKey>
                   <bcc:OInstProperty>
                      <bcc:PropCode>CN_CHANNEL_ID</bcc:PropCode>
@@ -55,16 +51,22 @@
                      <bcc:Value>{{bankId}}</bcc:Value>
                   </bcc:OInstProperty>
                   {% if CallerId is not none %}<bcc:OInstProperty>
-                     <bcc:PropCode>CN_CALLER_ID</bcc:PropCode>
+                  <bcc:PropCode>CN_CALLER_ID</bcc:PropCode>
+                  <bcc:PropType>1</bcc:PropType>
+                  <bcc:Value>{{CallerId}}</bcc:Value>
+               </bcc:OInstProperty>{% endif %}
+                  <!--
+                  {% if discountFee is not none %}<bcc:OInstProperty>
+                     <bcc:PropCode>CN_DISCOUNT_FEE</bcc:PropCode>
                      <bcc:PropType>1</bcc:PropType>
-                     <bcc:Value>{{CallerId}}</bcc:Value>
+                     <bcc:Value>{{discountFee}}</bcc:Value>
                   </bcc:OInstProperty>{% endif %}
+                  -->
                   <bcs:EffectiveTime>
                      <bcc:Mode>I</bcc:Mode>
                   </bcs:EffectiveTime>
                </bcs:AddOffering>
             </bcs:SupplementaryOffering>
-            <bcs:OperationCode>4052485</bcs:OperationCode>
          </ChangeSubOfferingRequest>
       </bcs:ChangeSubOfferingRequestMsg>
    </soapenv:Body>
