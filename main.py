@@ -23,7 +23,7 @@ app.include_router(payPostpaidBillRoutes, prefix="/cbs/wrapper/payPostpaidBill",
 app.include_router(checkCreditLimitRoutes, prefix="/cbs/wrapper/checkCreditLimit", tags=["checkCreditLimit"])
 app.include_router(increaseCreditRoutes, prefix="/cbs/wrapper/increaseCredit", tags=["increaseCredit"])
 app.include_router(querySubscriberRGUsageRoutes, prefix="/cbs/wrapper/querySubscriberRGUsage", tags=["querySubscriberRGUsage"])
-app.include_router(paygCheckRequestRoutes, prefix="/paygCheckRequest", tags=["paygCheckRequest"])
+app.include_router(paygCheckRequestRoutes, prefix="/CM/paygCheckRequest", tags=["paygCheckRequest"])
 app.include_router(paygChangeRequestRoutes, prefix="/paygChangeRequest", tags=["paygChangeRequest"])
 app.include_router(queryAllBalance, prefix="/cbs/wrapper/queryAllBalance", tags=["queryAllBalance"])
 
