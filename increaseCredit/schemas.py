@@ -1,14 +1,9 @@
 from pydantic import BaseModel
-from typing import List, Optional, Tuple
+from typing import List, Optional, Tuple, Annotated
 
 
 class IncreaseCreditRequest(BaseModel):
-    MSISDN: str
-    IncreaseValue: str
-    BankId: int
-    AU: str
-
-
-class IncreaseCreditResponse(BaseModel):
-    Balance: int
-    
+    msisdn: str
+    increaseValue: str
+    bankId: int
+    au: str
