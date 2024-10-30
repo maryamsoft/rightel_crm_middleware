@@ -19,7 +19,7 @@
          </RequestHeader>
          <PaymentRequest>
             {% if bankId is not none and  au is not none  %}
-               <ars:PaymentSerialNo>{{MSISDN}}{{BankId}}{{AU}}</ars:PaymentSerialNo>
+               <ars:PaymentSerialNo>{{msisdn}}{{bankId}}{{au}}</ars:PaymentSerialNo>
             {% else %}
             <ars:PaymentSerialNo></ars:PaymentSerialNo>
             {% endif %}
