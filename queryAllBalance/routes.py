@@ -7,11 +7,8 @@ from .schemas import queryAllBalanceRequest, queryAllBalanceResponse
 router = APIRouter()
 
 
-@router.post('/', response_model=queryAllBalanceResponse)
+@router.post('/')
 async def queryAllBalance(request: queryAllBalanceRequest):
     CBS_response = customerInfo(request)
     result = generate_response(CBS_response)
-    response =  {
-        'OrderNbr':result
-    }
-    return response
+    return result
