@@ -75,23 +75,23 @@ def generate_response(cbs_response):
             balance_value = free_unit_item.find('.//bcs:FreeUnitItemDetail/bcs:CurrentAmount', namespaces)
             comments = free_unit_item.find('.//bcs:FreeUnitTypeName', namespaces)
             measure_unit = free_unit_item.find('.//bcs:MeasureUnit', namespaces)
-            unit_type = 2 if measure_unit.text == '1003' else 3 if measure_unit.text == '1101' else 4
+            unit_type = 2 if measure_unit.text.strip() == '1003' else 3 if measure_unit.text.strip() == '1101' else 4
             eff_date = free_unit_item.find('.//bcs:EffectiveTime', namespaces)
             exp_date = free_unit_item.find('.//bcs:ExpireTime', namespaces)
             init_bal = free_unit_item.find('.//bcs:InitialAmount', namespaces)
-            is_show_bal = 'N' if balance_type.text.startswith('u_') else 'Y'
+            is_show_bal = 'N' if balance_type.text.strip().startswith('u_') else 'Y'
             is_show_exp_time = 'Y'
             gross_bal = 0
 
             response['AllBalanceDtoList'].append({
-                "BalanceType": balance_type.text,
-                "BalanceName": balance_name.text,
-                "BalanceValue": balance_value.text,
-                "Comments": comments.text,
+                "BalanceType": balance_type.text.strip(),
+                "BalanceName": balance_name.text.strip(),
+                "BalanceValue": balance_value.text.strip(),
+                "Comments": comments.text.strip(),
                 "UnitType": unit_type,
-                "EffDate": eff_date.text,
-                "ExpDate": exp_date.text,
-                "InitBal": init_bal.text,
+                "EffDate": eff_date.text.strip(),
+                "ExpDate": exp_date.text.strip(),
+                "InitBal": init_bal.text.strip(),
                 "IsShowBal": is_show_bal,
                 "IsShowExpTime": is_show_exp_time,
                 "GrossBal": gross_bal

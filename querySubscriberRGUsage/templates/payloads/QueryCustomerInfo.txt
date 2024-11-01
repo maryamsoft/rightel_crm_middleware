@@ -6,9 +6,6 @@
             <cbs:Version>1</cbs:Version>
             <cbs:BusinessCode>QueryCustomerInfoRequest</cbs:BusinessCode>
             <cbs:MessageSeq>{{datetime}}</cbs:MessageSeq>
-            <cbs:OwnershipInfo>
-               <cbs:BEID>101</cbs:BEID>
-            </cbs:OwnershipInfo>
             <cbs:AccessSecurity>
                <cbs:LoginSystemCode>102</cbs:LoginSystemCode>
                <cbs:Password>7/PuyYwNpRtSX7jDpxnl2ECAvuVYH2Mu9zxqgPGJrPYYK73MCZN7DvrDepA=</cbs:Password>
@@ -25,6 +22,10 @@
             <bcs:AccountMask>00</bcs:AccountMask>
             <bcs:SubscriberMask>000010100000</bcs:SubscriberMask>
             <bcs:GroupMask>00000</bcs:GroupMask>
+            <bcs:AdditionalProperty>
+               <bcc:Code>C_SCENARIO_ACCM_FLAG</bcc:Code>
+               <bcc:Value>Y</bcc:Value>
+            </bcs:AdditionalProperty>
          </QueryCustomerInfoRequest>
       </bcs:QueryCustomerInfoRequestMsg>
    </soapenv:Body>
