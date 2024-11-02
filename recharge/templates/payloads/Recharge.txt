@@ -41,7 +41,7 @@
          <arc:Code>CN_VC_TYPE</arc:Code>
          <arc:Value>{{voucherType}}</arc:Value>
       </ars:AdditionalProperty>{% endif %}
-         % if location is not none%}<ars:AdditionalProperty>
+         {% if location is not none%}<ars:AdditionalProperty>
          <arc:Code>C_CELLID</arc:Code>
          <arc:Value>{{location}}</arc:Value>
       </ars:AdditionalProperty>{% endif %}

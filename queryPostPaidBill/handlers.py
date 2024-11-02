@@ -31,8 +31,10 @@ def generate_response(cbs_response) :
             "PayableAmount": root.find('.//ars:AdditionalProperty[arc:Code="CN_PAYABLE_AMOUNT"]/arc:Value', namespaces).text.strip(),
             "InvoiceId": root.find('.//ars:InvoiceInfo/ars:AcctCode', namespaces).text.strip(),
             "PaymentId": root.find('.//ars:AdditionalProperty[arc:Code="CN_PAYMENT_ID"]/arc:Value', namespaces).text.strip(),
-            "Status": root.find('.//ars:Status', namespaces).text.strip(),
+            
         }
+        status =  root.find('.//ars:Status', namespaces).text.strip(),
+        final_resppnse['Status'] = 0 if status == 'C' else 1
         BillingCycleStartDate = root.find('.//ars:BillCycleBeginTime', namespaces)
         BillingCycleEndDate = root.find('.//ars:BillCycleEndTime', namespaces)
         BillingCycleID = root.find('.//ars:BillCycleID', namespaces)
