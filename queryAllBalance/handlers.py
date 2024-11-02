@@ -39,7 +39,9 @@ def generate_response(cbs_response):
     result_desc = root.find('.//cbs:ResultDesc', namespaces)
     if result_code is not None and result_code.text == '0':
         response = {
-            "AllBalanceDtoList": []
+            "AllBalanceDtoList":{
+                "AllBalanceDto": []
+            }
         }
         balance_results = root.findall('.//bcs:BalanceResult', namespaces)
         free_unit_items = root.findall('.//bcs:FreeUnitItem', namespaces)
@@ -56,7 +58,7 @@ def generate_response(cbs_response):
             is_show_exp_time = 'Y'
             gross_bal = 0
 
-            response['AllBalanceDtoList'].append({
+            response['AllBalanceDtoList']['AllBalanceDto'].append({
                 "BalanceType": balance_type.text,
                 "BalanceName": balance_name.text,
                 "BalanceValue": balance_value.text,
@@ -83,7 +85,7 @@ def generate_response(cbs_response):
             is_show_exp_time = 'Y'
             gross_bal = 0
 
-            response['AllBalanceDtoList'].append({
+            response['AllBalanceDtoList']['AllBalanceDto'].append({
                 "BalanceType": balance_type.text.strip(),
                 "BalanceName": balance_name.text.strip(),
                 "BalanceValue": balance_value.text.strip(),
@@ -96,7 +98,7 @@ def generate_response(cbs_response):
                 "IsShowExpTime": is_show_exp_time,
                 "GrossBal": gross_bal
             })
-            
+
         return response
 
     raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail=result_desc.text)
