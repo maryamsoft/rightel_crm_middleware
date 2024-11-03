@@ -69,7 +69,11 @@ def generate_response(cbs_response):
                 "InitBal": init_bal.text,
                 "IsShowBal": is_show_bal,
                 "IsShowExpTime": is_show_exp_time,
-                "GrossBal": gross_bal
+                "GrossBal": gross_bal,
+                #toDo: should be map
+                # "Unlimited":"", 
+                # "pkgName":"",
+                
             })
         for free_unit_item in free_unit_items:
             balance_type = free_unit_item.find('.//bcs:FreeUnitType', namespaces)
@@ -96,7 +100,11 @@ def generate_response(cbs_response):
                 "InitBal": init_bal.text.strip(),
                 "IsShowBal": is_show_bal,
                 "IsShowExpTime": is_show_exp_time,
-                "GrossBal": gross_bal
+                "GrossBal": gross_bal,
+                #toDo: should be map
+                # "Unlimited":"", 
+                # "pkgName":"",
+                
             })
 
         return response
