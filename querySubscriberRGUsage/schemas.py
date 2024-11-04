@@ -9,8 +9,17 @@ class QuerySubscriberRGUsageRequest(BaseModel):
     modifiedBy: int
     sessionId: str
 
+class UsageRGList(BaseModel):
+    rgCode: str
+    usedAmount: str
+
+class OfferUsageList(BaseModel):
+    offerName: str
+    offerCode: str
+    purchaseId: str
+    usageRGList: List[UsageRGList]
+
 
 class QuerySubscriberRGUsageResponse(BaseModel):
-    SUBSCRIBER_NUMBER: str
-    ATTRIBUTE_STATUS: str
-    RESPONSE_CODE: str
+    offerUsageList: List[OfferUsageList]
+

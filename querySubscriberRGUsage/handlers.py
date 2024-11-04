@@ -26,21 +26,22 @@ def generate_response(cbs_response) :
     root = ET.fromstring(cbs_response)
     namespaces = {
         'soapenv': 'http://schemas.xmlsoap.org/soap/envelope/',
-        'ars': 'http://www.huawei.com/bme/cbsinterface/arservices',
+        'bcs': 'http://www.huawei.com/bme/cbsinterface/bcservices',
         'cbs': 'http://www.huawei.com/bme/cbsinterface/cbscommon',
-        'arc': 'http://cbs.huawei.com/ar/wsservice/arcommon'
+        'bcc': 'http://www.huawei.com/bme/cbsinterface/bccommon'
     }
     result_code = root.find('.//cbs:ResultCode', namespaces)
     result_desc = root.find('.//cbs:ResultDesc', namespaces)
     if result_code is not None and result_code.text == '0':
+        print(root)
         free_unit_items = root.findall('.//bcs:FreeUnitItem', namespaces)
         response = {
             "offerUsageList": []
         }
         for free_unit_item in free_unit_items:
             offering_name = free_unit_item.find('.//bcs:OfferingName', namespaces)
-            offering_id = free_unit_item.find('.//bcs:OfferingID', namespaces)
-            purchase_seq = free_unit_item.find('.//bcs:PurchaseSeq', namespaces)
+            offering_id = free_unit_item.find('.//bcc:OfferingID', namespaces)
+            purchase_seq = free_unit_item.find('.//bcc:PurchaseSeq', namespaces)
             scenario_usage_list = free_unit_item.findall('.//bcs:ScenarioUsageList', namespaces)
             usageRGList = []
             for scenario_usage in scenario_usage_list:
