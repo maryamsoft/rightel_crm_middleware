@@ -33,10 +33,11 @@ def generate_response(cbs_response) :
     result_code = root.find('.//cbs:ResultCode', namespaces)
     result_desc = root.find('.//cbs:ResultDesc', namespaces)
     if result_code is not None and result_code.text == '0':
-        print(root)
         free_unit_items = root.findall('.//bcs:FreeUnitItem', namespaces)
         response = {
-            "offerUsageList": []
+            "offerUsageList": [],
+            "responseDesc":"Successful",
+            "responseCode":0
         }
         for free_unit_item in free_unit_items:
             offering_name = free_unit_item.find('.//bcs:OfferingName', namespaces)
@@ -57,6 +58,7 @@ def generate_response(cbs_response) :
                 "purchaseId": purchase_seq.text.strip(),
                 "usageRGList": usageRGList
             })
+        print('resp:', response)
         return response
     raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST)
 

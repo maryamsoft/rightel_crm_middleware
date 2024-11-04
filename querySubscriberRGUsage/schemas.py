@@ -4,10 +4,6 @@ from typing import List, Optional, Tuple
 
 class QuerySubscriberRGUsageRequest(BaseModel):
     msisdn: str
-    opType: str
-    modifiedAt: str
-    modifiedBy: int
-    sessionId: str
 
 class UsageRGList(BaseModel):
     rgCode: str
@@ -22,4 +18,7 @@ class OfferUsageList(BaseModel):
 
 class QuerySubscriberRGUsageResponse(BaseModel):
     offerUsageList: List[OfferUsageList]
+    responseCode: str
+    responseDesc: str
+    
 
