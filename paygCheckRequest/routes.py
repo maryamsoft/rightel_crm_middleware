@@ -13,8 +13,5 @@ async def paygCheckRequest(request:PaygCheckRequest, response: Response):
         result = generate_response(xml_response)
         print('result:', result)
         return result
-        return JSONResponse(content= {
-                'OrderNbr':None
-            })
     except Exception as error:
         raise error

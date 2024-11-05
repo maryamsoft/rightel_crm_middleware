@@ -7,7 +7,6 @@ class PaygCheckRequest(BaseModel):
     opType: str
     modifiedAt: str
     modifiedBy: int
-    sessionId: str
 
 class PaygCheckResponse(BaseModel):
     attributeStatus: str
