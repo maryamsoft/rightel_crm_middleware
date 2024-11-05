@@ -1,12 +1,10 @@
-import requests
 import os
-from lxml import etree
-from utils import body
 from jinja2 import Template
 from datetime import datetime
 from utils.soap_client import BC_soap_client
 import xml.etree.ElementTree as ET
 from fastapi import HTTPException, Security, status
+from datetime import datetime
 
 
 def customerInfo(data):
@@ -57,22 +55,19 @@ def generate_response(cbs_response):
             is_show_bal = 'N' if balance_type.text.startswith('u_') else 'Y'
             is_show_exp_time = 'Y'
             gross_bal = 0
-
+            
             response['AllBalanceDtoList']['AllBalanceDto'].append({
                 "BalanceType": balance_type.text,
                 "BalanceName": balance_name.text,
                 "BalanceValue": balance_value.text,
                 "Comments": comments.text,
                 "UnitType": unit_type,
-                "EffDate": eff_date.text,
-                "ExpDate": exp_date.text,
+                "EffDate": datetime.strptime(eff_date.text.strip(), '%Y%m%d%H%M%S').strftime('%Y-%m-%d %H:%M:%S'),
+                "ExpDate": datetime.strptime(exp_date.text.strip(), '%Y%m%d%H%M%S').strftime('%Y-%m-%d %H:%M:%S'),
                 "InitBal": init_bal.text,
                 "IsShowBal": is_show_bal,
                 "IsShowExpTime": is_show_exp_time,
                 "GrossBal": gross_bal,
-                #toDo: should be map
-                # "Unlimited":"", 
-                # "pkgName":"",
                 
             })
         for free_unit_item in free_unit_items:
@@ -95,15 +90,12 @@ def generate_response(cbs_response):
                 "BalanceValue": balance_value.text.strip(),
                 "Comments": comments.text.strip(),
                 "UnitType": unit_type,
-                "EffDate": eff_date.text.strip(),
-                "ExpDate": exp_date.text.strip(),
+                "EffDate": datetime.strptime(eff_date.text.strip(), '%Y%m%d%H%M%S').strftime('%Y-%m-%d %H:%M:%S'),
+                "ExpDate": datetime.strptime(exp_date.text.strip(), '%Y%m%d%H%M%S').strftime('%Y-%m-%d %H:%M:%S'),
                 "InitBal": init_bal.text.strip(),
                 "IsShowBal": is_show_bal,
                 "IsShowExpTime": is_show_exp_time,
                 "GrossBal": gross_bal,
-                #toDo: should be map
-                # "Unlimited":"", 
-                # "pkgName":"",
                 
             })
         return response
