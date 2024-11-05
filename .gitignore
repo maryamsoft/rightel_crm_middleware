@@ -173,3 +173,4 @@ stop.sh
 start.sh
 logs/*
 logs
+.nohup.out

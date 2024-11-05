@@ -8,5 +8,5 @@ class queryAllBalanceRequest(BaseModel):
     
     
 class queryAllBalanceResponse(BaseModel):
-    OrderNbr: str
+    AllBalanceDtoList: object
 

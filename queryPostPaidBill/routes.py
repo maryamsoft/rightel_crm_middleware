@@ -6,7 +6,7 @@ from .schemas import QueryPostPaidRequest, ResponseBase
 
 router = APIRouter()
 
-@router.post('/', response_model=ResponseBase)
+@router.post('', response_model=ResponseBase)
 async def queryPostPaidBill(request: QueryPostPaidRequest):
     try:
         CBS_response = query_post_paid_bill_handler(request)

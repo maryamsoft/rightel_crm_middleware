@@ -106,7 +106,6 @@ def generate_response(cbs_response):
                 # "pkgName":"",
                 
             })
-
         return response
 
     raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail=result_desc.text)
