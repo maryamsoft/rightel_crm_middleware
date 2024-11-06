@@ -11,7 +11,6 @@ async def paygCheckRequest(request:PaygCheckRequest, response: Response):
     try:
         xml_response = payg_check_request(request)
         result = generate_response(xml_response)
-        print('result:', result)
         return result
     except Exception as error:
         raise error

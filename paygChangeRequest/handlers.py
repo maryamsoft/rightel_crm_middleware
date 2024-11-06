@@ -14,10 +14,10 @@ def payg_change_request_handler(data:PaygChangeRequest):
         template = file.read()
     template = Template(template)
     opTypeMapper = {
-        "210":0,
-        "211":1,
+        "210":0, #Activate Data PAYG Service (Default Value) /current is :1
+        "211":1, #Deactivate Data PAYG Service /current is :0
     }
-    data.message.opType = opTypeMapper[data.message.opType]
+    data.opType = opTypeMapper[data.opType]
     xml_data = template.render({
         **data.__dict__,
         "datetime": datetime.now().strftime("%Y-%m-%dT%H:%M:%S"),
@@ -25,5 +25,38 @@ def payg_change_request_handler(data:PaygChangeRequest):
     print("request:", xml_data)
     return BC_soap_client.call_service('Recharge', xml_data)
 
-def generate_response(cbs_response) :
-    return {}
+def generate_response(cbs_response, data) :
+    print("cbs_response:", cbs_response)
+    root = ET.fromstring(cbs_response)
+    namespaces = {
+    'soapenv': 'http://schemas.xmlsoap.org/soap/envelope/',
+    'bcs': 'http://www.huawei.com/bme/cbsinterface/bcservices',
+    'cbs': 'http://www.huawei.com/bme/cbsinterface/cbscommon',
+    'bcc': 'http://www.huawei.com/bme/cbsinterface/bccommon'
+    }
+
+    result_code = root.find('.//cbs:ResultCode', namespaces)
+    result_desc = root.find('.//cbs:ResultDesc', namespaces)
+    attributeStatus = 1 if data.opType else 0
+    
+    if result_code is not None and result_code.text == '0':
+        return {
+                "attributeStatus":attributeStatus,
+                "responseDesc": "Successful",
+                "subscriberNumber": data.subscriberNumber,
+                "responseCode": "0"
+            }
+    elif result_code is not None and result_code.text == '20000005':
+        return {
+                "attributeStatus":attributeStatus,
+                "responseDesc": data.subscriberNumber,
+                "subscriberNumber": "",
+                "responseCode": "10018"
+            }
+    
+    return {
+                "attributeStatus":"",
+                "responseDesc": result_desc.text.strip(),
+                "subscriberNumber": data.subscriberNumber,
+                "responseCode": result_code.text.strip()
+            }
