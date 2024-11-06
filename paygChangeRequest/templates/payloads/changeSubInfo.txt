@@ -1,9 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
-
-<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"
-                  xmlns:bcs="http://www.huawei.com/bme/cbsinterface/bcservices"
-                  xmlns:cbs="http://www.huawei.com/bme/cbsinterface/cbscommon"
-                  xmlns:bcc="http://www.huawei.com/bme/cbsinterface/bccommon">
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:bcs="http://www.huawei.com/bme/cbsinterface/bcservices" xmlns:cbs="http://www.huawei.com/bme/cbsinterface/cbscommon" xmlns:bcc="http://www.huawei.com/bme/cbsinterface/bccommon">
     <soapenv:Header/>
     <soapenv:Body>
         <bcs:ChangeSubInfoRequestMsg>
@@ -17,17 +12,17 @@
             </RequestHeader>
             <ChangeSubInfoRequest>
                 <bcs:SubAccessCode>
-                    <bcc:PrimaryIdentity>{{message.subscriberNumber}}</bcc:PrimaryIdentity>
+                    <bcc:PrimaryIdentity>{{subscriberNumber}}</bcc:PrimaryIdentity>
                 </bcs:SubAccessCode>
                 <bcs:SubBasicInfo>
                     <bcc:SubProperty>
-                        <bcc:PropCode>CN_DATA_PAYG</bcc:PropCode>
-                        <bcc:Value>{{message.opType}}</bcc:Value>
+                        <bcc:Code>CN_DATA_PAYG</bcc:Code>
+                        <bcc:Value>{{opType}}</bcc:Value>
                     </bcc:SubProperty>
                 </bcs:SubBasicInfo>
                 <bcs:AdditionalProperty>
                     <bcc:Code>C_ChangeSub_AdditionalInfo</bcc:Code>
-                    <bcc:Value>{{message.modifiedBy}}</bcc:Value>
+                    <bcc:Value>{{modifiedBy}}</bcc:Value>
                 </bcs:AdditionalProperty>
             </ChangeSubInfoRequest>
         </bcs:ChangeSubInfoRequestMsg>

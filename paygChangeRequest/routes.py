@@ -11,7 +11,7 @@ router = APIRouter()
 async def paygChangeRequest(request:PaygChangeRequest ,  response: Response):
     try:
         xml_response = payg_change_request_handler(request)
-        result = generate_response(xml_response)
+        result = generate_response(xml_response, request)
         header.successful_header(response)
         return result
     except Exception as error:
