@@ -277,3 +277,431 @@ INFO:     Finished server process [1011054]
 INFO:     Started server process [1011082]
 INFO:     Waiting for application startup.
 INFO:     Application startup complete.
+WARNING:  WatchFiles detected changes in 'checkCreditLimit/handlers.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [1011082]
+INFO:     Started server process [1020523]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+WARNING:  WatchFiles detected changes in 'checkCreditLimit/handlers.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [1020523]
+Process SpawnProcess-9:
+Traceback (most recent call last):
+  File "/usr/lib/python3.10/multiprocessing/process.py", line 314, in _bootstrap
+    self.run()
+  File "/usr/lib/python3.10/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "/opt/projects/fastapi/crm_middleware/.venv/lib/python3.10/site-packages/uvicorn/_subprocess.py", line 80, in subprocess_started
+    target(sockets=sockets)
+  File "/opt/projects/fastapi/crm_middleware/.venv/lib/python3.10/site-packages/uvicorn/server.py", line 65, in run
+    return asyncio.run(self.serve(sockets=sockets))
+  File "/usr/lib/python3.10/asyncio/runners.py", line 44, in run
+    return loop.run_until_complete(main)
+  File "uvloop/loop.pyx", line 1517, in uvloop.loop.Loop.run_until_complete
+  File "/opt/projects/fastapi/crm_middleware/.venv/lib/python3.10/site-packages/uvicorn/server.py", line 69, in serve
+    await self._serve(sockets)
+  File "/opt/projects/fastapi/crm_middleware/.venv/lib/python3.10/site-packages/uvicorn/server.py", line 76, in _serve
+    config.load()
+  File "/opt/projects/fastapi/crm_middleware/.venv/lib/python3.10/site-packages/uvicorn/config.py", line 434, in load
+    self.loaded_app = import_from_string(self.app)
+  File "/opt/projects/fastapi/crm_middleware/.venv/lib/python3.10/site-packages/uvicorn/importer.py", line 19, in import_from_string
+    module = importlib.import_module(module_str)
+  File "/usr/lib/python3.10/importlib/__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 1050, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1027, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1006, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 688, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 883, in exec_module
+  File "<frozen importlib._bootstrap>", line 241, in _call_with_frames_removed
+  File "/opt/projects/fastapi/crm_middleware/main.py", line 7, in <module>
+    from checkCreditLimit.routes import router as checkCreditLimitRoutes
+  File "/opt/projects/fastapi/crm_middleware/checkCreditLimit/routes.py", line 2, in <module>
+    from .handlers import  generate_response, check_credit_limit
+  File "/opt/projects/fastapi/crm_middleware/checkCreditLimit/handlers.py", line 45
+    "Balance": Balance.text.strip() if ,
+                                       ^
+SyntaxError: invalid syntax
+WARNING:  WatchFiles detected changes in 'checkCreditLimit/handlers.py'. Reloading...
+Process SpawnProcess-10:
+Traceback (most recent call last):
+  File "/usr/lib/python3.10/multiprocessing/process.py", line 314, in _bootstrap
+    self.run()
+  File "/usr/lib/python3.10/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "/opt/projects/fastapi/crm_middleware/.venv/lib/python3.10/site-packages/uvicorn/_subprocess.py", line 80, in subprocess_started
+    target(sockets=sockets)
+  File "/opt/projects/fastapi/crm_middleware/.venv/lib/python3.10/site-packages/uvicorn/server.py", line 65, in run
+    return asyncio.run(self.serve(sockets=sockets))
+  File "/usr/lib/python3.10/asyncio/runners.py", line 44, in run
+    return loop.run_until_complete(main)
+  File "uvloop/loop.pyx", line 1517, in uvloop.loop.Loop.run_until_complete
+  File "/opt/projects/fastapi/crm_middleware/.venv/lib/python3.10/site-packages/uvicorn/server.py", line 69, in serve
+    await self._serve(sockets)
+  File "/opt/projects/fastapi/crm_middleware/.venv/lib/python3.10/site-packages/uvicorn/server.py", line 76, in _serve
+    config.load()
+  File "/opt/projects/fastapi/crm_middleware/.venv/lib/python3.10/site-packages/uvicorn/config.py", line 434, in load
+    self.loaded_app = import_from_string(self.app)
+  File "/opt/projects/fastapi/crm_middleware/.venv/lib/python3.10/site-packages/uvicorn/importer.py", line 19, in import_from_string
+    module = importlib.import_module(module_str)
+  File "/usr/lib/python3.10/importlib/__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 1050, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1027, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1006, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 688, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 883, in exec_module
+  File "<frozen importlib._bootstrap>", line 241, in _call_with_frames_removed
+  File "/opt/projects/fastapi/crm_middleware/main.py", line 7, in <module>
+    from checkCreditLimit.routes import router as checkCreditLimitRoutes
+  File "/opt/projects/fastapi/crm_middleware/checkCreditLimit/routes.py", line 2, in <module>
+    from .handlers import  generate_response, check_credit_limit
+  File "/opt/projects/fastapi/crm_middleware/checkCreditLimit/handlers.py", line 45
+    "Balance": Balance.text.strip() ifBalance ,
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+SyntaxError: invalid syntax. Perhaps you forgot a comma?
+WARNING:  WatchFiles detected changes in 'checkCreditLimit/handlers.py'. Reloading...
+Process SpawnProcess-11:
+Traceback (most recent call last):
+  File "/usr/lib/python3.10/multiprocessing/process.py", line 314, in _bootstrap
+    self.run()
+  File "/usr/lib/python3.10/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "/opt/projects/fastapi/crm_middleware/.venv/lib/python3.10/site-packages/uvicorn/_subprocess.py", line 80, in subprocess_started
+    target(sockets=sockets)
+  File "/opt/projects/fastapi/crm_middleware/.venv/lib/python3.10/site-packages/uvicorn/server.py", line 65, in run
+    return asyncio.run(self.serve(sockets=sockets))
+  File "/usr/lib/python3.10/asyncio/runners.py", line 44, in run
+    return loop.run_until_complete(main)
+  File "uvloop/loop.pyx", line 1517, in uvloop.loop.Loop.run_until_complete
+  File "/opt/projects/fastapi/crm_middleware/.venv/lib/python3.10/site-packages/uvicorn/server.py", line 69, in serve
+    await self._serve(sockets)
+  File "/opt/projects/fastapi/crm_middleware/.venv/lib/python3.10/site-packages/uvicorn/server.py", line 76, in _serve
+    config.load()
+  File "/opt/projects/fastapi/crm_middleware/.venv/lib/python3.10/site-packages/uvicorn/config.py", line 434, in load
+    self.loaded_app = import_from_string(self.app)
+  File "/opt/projects/fastapi/crm_middleware/.venv/lib/python3.10/site-packages/uvicorn/importer.py", line 19, in import_from_string
+    module = importlib.import_module(module_str)
+  File "/usr/lib/python3.10/importlib/__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 1050, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1027, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1006, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 688, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 883, in exec_module
+  File "<frozen importlib._bootstrap>", line 241, in _call_with_frames_removed
+  File "/opt/projects/fastapi/crm_middleware/main.py", line 7, in <module>
+    from checkCreditLimit.routes import router as checkCreditLimitRoutes
+  File "/opt/projects/fastapi/crm_middleware/checkCreditLimit/routes.py", line 2, in <module>
+    from .handlers import  generate_response, check_credit_limit
+  File "/opt/projects/fastapi/crm_middleware/checkCreditLimit/handlers.py", line 45
+    "Balance": Balance.text.strip() if Balance ,
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+SyntaxError: expected 'else' after 'if' expression
+WARNING:  WatchFiles detected changes in 'checkCreditLimit/handlers.py'. Reloading...
+Process SpawnProcess-12:
+Traceback (most recent call last):
+  File "/usr/lib/python3.10/multiprocessing/process.py", line 314, in _bootstrap
+    self.run()
+  File "/usr/lib/python3.10/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "/opt/projects/fastapi/crm_middleware/.venv/lib/python3.10/site-packages/uvicorn/_subprocess.py", line 80, in subprocess_started
+    target(sockets=sockets)
+  File "/opt/projects/fastapi/crm_middleware/.venv/lib/python3.10/site-packages/uvicorn/server.py", line 65, in run
+    return asyncio.run(self.serve(sockets=sockets))
+  File "/usr/lib/python3.10/asyncio/runners.py", line 44, in run
+    return loop.run_until_complete(main)
+  File "uvloop/loop.pyx", line 1517, in uvloop.loop.Loop.run_until_complete
+  File "/opt/projects/fastapi/crm_middleware/.venv/lib/python3.10/site-packages/uvicorn/server.py", line 69, in serve
+    await self._serve(sockets)
+  File "/opt/projects/fastapi/crm_middleware/.venv/lib/python3.10/site-packages/uvicorn/server.py", line 76, in _serve
+    config.load()
+  File "/opt/projects/fastapi/crm_middleware/.venv/lib/python3.10/site-packages/uvicorn/config.py", line 434, in load
+    self.loaded_app = import_from_string(self.app)
+  File "/opt/projects/fastapi/crm_middleware/.venv/lib/python3.10/site-packages/uvicorn/importer.py", line 19, in import_from_string
+    module = importlib.import_module(module_str)
+  File "/usr/lib/python3.10/importlib/__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 1050, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1027, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1006, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 688, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 883, in exec_module
+  File "<frozen importlib._bootstrap>", line 241, in _call_with_frames_removed
+  File "/opt/projects/fastapi/crm_middleware/main.py", line 7, in <module>
+    from checkCreditLimit.routes import router as checkCreditLimitRoutes
+  File "/opt/projects/fastapi/crm_middleware/checkCreditLimit/routes.py", line 2, in <module>
+    from .handlers import  generate_response, check_credit_limit
+  File "/opt/projects/fastapi/crm_middleware/checkCreditLimit/handlers.py", line 45
+    "Balance": Balance.text.strip() if Balance is not None ,
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+SyntaxError: expected 'else' after 'if' expression
+WARNING:  WatchFiles detected changes in 'checkCreditLimit/handlers.py'. Reloading...
+INFO:     Started server process [1020893]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+WARNING:  WatchFiles detected changes in 'checkCreditLimit/handlers.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [1020893]
+Process SpawnProcess-14:
+Traceback (most recent call last):
+  File "/usr/lib/python3.10/multiprocessing/process.py", line 314, in _bootstrap
+    self.run()
+  File "/usr/lib/python3.10/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "/opt/projects/fastapi/crm_middleware/.venv/lib/python3.10/site-packages/uvicorn/_subprocess.py", line 80, in subprocess_started
+    target(sockets=sockets)
+  File "/opt/projects/fastapi/crm_middleware/.venv/lib/python3.10/site-packages/uvicorn/server.py", line 65, in run
+    return asyncio.run(self.serve(sockets=sockets))
+  File "/usr/lib/python3.10/asyncio/runners.py", line 44, in run
+    return loop.run_until_complete(main)
+  File "uvloop/loop.pyx", line 1517, in uvloop.loop.Loop.run_until_complete
+  File "/opt/projects/fastapi/crm_middleware/.venv/lib/python3.10/site-packages/uvicorn/server.py", line 69, in serve
+    await self._serve(sockets)
+  File "/opt/projects/fastapi/crm_middleware/.venv/lib/python3.10/site-packages/uvicorn/server.py", line 76, in _serve
+    config.load()
+  File "/opt/projects/fastapi/crm_middleware/.venv/lib/python3.10/site-packages/uvicorn/config.py", line 434, in load
+    self.loaded_app = import_from_string(self.app)
+  File "/opt/projects/fastapi/crm_middleware/.venv/lib/python3.10/site-packages/uvicorn/importer.py", line 19, in import_from_string
+    module = importlib.import_module(module_str)
+  File "/usr/lib/python3.10/importlib/__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 1050, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1027, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1006, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 688, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 883, in exec_module
+  File "<frozen importlib._bootstrap>", line 241, in _call_with_frames_removed
+  File "/opt/projects/fastapi/crm_middleware/main.py", line 7, in <module>
+    from checkCreditLimit.routes import router as checkCreditLimitRoutes
+  File "/opt/projects/fastapi/crm_middleware/checkCreditLimit/routes.py", line 2, in <module>
+    from .handlers import  generate_response, check_credit_limit
+  File "/opt/projects/fastapi/crm_middleware/checkCreditLimit/handlers.py", line 50
+    "NonDefaultCL"] = NonDefaultCL.text.strip()
+                  ^
+SyntaxError: closing parenthesis ']' does not match opening parenthesis '{' on line 44
+WARNING:  WatchFiles detected changes in 'checkCreditLimit/handlers.py'. Reloading...
+Process SpawnProcess-15:
+Traceback (most recent call last):
+  File "/usr/lib/python3.10/multiprocessing/process.py", line 314, in _bootstrap
+    self.run()
+  File "/usr/lib/python3.10/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "/opt/projects/fastapi/crm_middleware/.venv/lib/python3.10/site-packages/uvicorn/_subprocess.py", line 80, in subprocess_started
+    target(sockets=sockets)
+  File "/opt/projects/fastapi/crm_middleware/.venv/lib/python3.10/site-packages/uvicorn/server.py", line 65, in run
+    return asyncio.run(self.serve(sockets=sockets))
+  File "/usr/lib/python3.10/asyncio/runners.py", line 44, in run
+    return loop.run_until_complete(main)
+  File "uvloop/loop.pyx", line 1517, in uvloop.loop.Loop.run_until_complete
+  File "/opt/projects/fastapi/crm_middleware/.venv/lib/python3.10/site-packages/uvicorn/server.py", line 69, in serve
+    await self._serve(sockets)
+  File "/opt/projects/fastapi/crm_middleware/.venv/lib/python3.10/site-packages/uvicorn/server.py", line 76, in _serve
+    config.load()
+  File "/opt/projects/fastapi/crm_middleware/.venv/lib/python3.10/site-packages/uvicorn/config.py", line 434, in load
+    self.loaded_app = import_from_string(self.app)
+  File "/opt/projects/fastapi/crm_middleware/.venv/lib/python3.10/site-packages/uvicorn/importer.py", line 19, in import_from_string
+    module = importlib.import_module(module_str)
+  File "/usr/lib/python3.10/importlib/__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 1050, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1027, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1006, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 688, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 883, in exec_module
+  File "<frozen importlib._bootstrap>", line 241, in _call_with_frames_removed
+  File "/opt/projects/fastapi/crm_middleware/main.py", line 7, in <module>
+    from checkCreditLimit.routes import router as checkCreditLimitRoutes
+  File "/opt/projects/fastapi/crm_middleware/checkCreditLimit/routes.py", line 2, in <module>
+    from .handlers import  generate_response, check_credit_limit
+  File "/opt/projects/fastapi/crm_middleware/checkCreditLimit/handlers.py", line 50
+    "NonDefaultCL" = NonDefaultCL.text.strip()
+                 ^
+SyntaxError: ':' expected after dictionary key
+WARNING:  WatchFiles detected changes in 'checkCreditLimit/handlers.py'. Reloading...
+Process SpawnProcess-16:
+Traceback (most recent call last):
+  File "/usr/lib/python3.10/multiprocessing/process.py", line 314, in _bootstrap
+    self.run()
+  File "/usr/lib/python3.10/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "/opt/projects/fastapi/crm_middleware/.venv/lib/python3.10/site-packages/uvicorn/_subprocess.py", line 80, in subprocess_started
+    target(sockets=sockets)
+  File "/opt/projects/fastapi/crm_middleware/.venv/lib/python3.10/site-packages/uvicorn/server.py", line 65, in run
+    return asyncio.run(self.serve(sockets=sockets))
+  File "/usr/lib/python3.10/asyncio/runners.py", line 44, in run
+    return loop.run_until_complete(main)
+  File "uvloop/loop.pyx", line 1517, in uvloop.loop.Loop.run_until_complete
+  File "/opt/projects/fastapi/crm_middleware/.venv/lib/python3.10/site-packages/uvicorn/server.py", line 69, in serve
+    await self._serve(sockets)
+  File "/opt/projects/fastapi/crm_middleware/.venv/lib/python3.10/site-packages/uvicorn/server.py", line 76, in _serve
+    config.load()
+  File "/opt/projects/fastapi/crm_middleware/.venv/lib/python3.10/site-packages/uvicorn/config.py", line 434, in load
+    self.loaded_app = import_from_string(self.app)
+  File "/opt/projects/fastapi/crm_middleware/.venv/lib/python3.10/site-packages/uvicorn/importer.py", line 19, in import_from_string
+    module = importlib.import_module(module_str)
+  File "/usr/lib/python3.10/importlib/__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 1050, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1027, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1006, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 688, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 883, in exec_module
+  File "<frozen importlib._bootstrap>", line 241, in _call_with_frames_removed
+  File "/opt/projects/fastapi/crm_middleware/main.py", line 7, in <module>
+    from checkCreditLimit.routes import router as checkCreditLimitRoutes
+  File "/opt/projects/fastapi/crm_middleware/checkCreditLimit/routes.py", line 2, in <module>
+    from .handlers import  generate_response, check_credit_limit
+  File "/opt/projects/fastapi/crm_middleware/checkCreditLimit/handlers.py", line 50
+    "NonDefaultCL" = if Balance is not None else 0
+                 ^
+SyntaxError: ':' expected after dictionary key
+WARNING:  WatchFiles detected changes in 'checkCreditLimit/handlers.py'. Reloading...
+Process SpawnProcess-17:
+Traceback (most recent call last):
+  File "/usr/lib/python3.10/multiprocessing/process.py", line 314, in _bootstrap
+    self.run()
+  File "/usr/lib/python3.10/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "/opt/projects/fastapi/crm_middleware/.venv/lib/python3.10/site-packages/uvicorn/_subprocess.py", line 80, in subprocess_started
+    target(sockets=sockets)
+  File "/opt/projects/fastapi/crm_middleware/.venv/lib/python3.10/site-packages/uvicorn/server.py", line 65, in run
+    return asyncio.run(self.serve(sockets=sockets))
+  File "/usr/lib/python3.10/asyncio/runners.py", line 44, in run
+    return loop.run_until_complete(main)
+  File "uvloop/loop.pyx", line 1517, in uvloop.loop.Loop.run_until_complete
+  File "/opt/projects/fastapi/crm_middleware/.venv/lib/python3.10/site-packages/uvicorn/server.py", line 69, in serve
+    await self._serve(sockets)
+  File "/opt/projects/fastapi/crm_middleware/.venv/lib/python3.10/site-packages/uvicorn/server.py", line 76, in _serve
+    config.load()
+  File "/opt/projects/fastapi/crm_middleware/.venv/lib/python3.10/site-packages/uvicorn/config.py", line 434, in load
+    self.loaded_app = import_from_string(self.app)
+  File "/opt/projects/fastapi/crm_middleware/.venv/lib/python3.10/site-packages/uvicorn/importer.py", line 19, in import_from_string
+    module = importlib.import_module(module_str)
+  File "/usr/lib/python3.10/importlib/__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 1050, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1027, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1006, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 688, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 883, in exec_module
+  File "<frozen importlib._bootstrap>", line 241, in _call_with_frames_removed
+  File "/opt/projects/fastapi/crm_middleware/main.py", line 7, in <module>
+    from checkCreditLimit.routes import router as checkCreditLimitRoutes
+  File "/opt/projects/fastapi/crm_middleware/checkCreditLimit/routes.py", line 2, in <module>
+    from .handlers import  generate_response, check_credit_limit
+  File "/opt/projects/fastapi/crm_middleware/checkCreditLimit/handlers.py", line 50
+    "NonDefaultCL" = if NonDefaultCL is not None else 0
+                 ^
+SyntaxError: ':' expected after dictionary key
+WARNING:  WatchFiles detected changes in 'checkCreditLimit/handlers.py'. Reloading...
+INFO:     Started server process [1021161]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+WARNING:  WatchFiles detected changes in 'checkCreditLimit/handlers.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [1021161]
+INFO:     Started server process [1021202]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+WARNING:  WatchFiles detected changes in 'checkCreditLimit/handlers.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [1021202]
+INFO:     Started server process [1021244]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+WARNING:  WatchFiles detected changes in 'checkCreditLimit/handlers.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [1021244]
+INFO:     Started server process [1021248]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+WARNING:  WatchFiles detected changes in 'checkCreditLimit/handlers.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [1021248]
+INFO:     Started server process [1021301]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+WARNING:  WatchFiles detected changes in 'checkCreditLimit/handlers.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [1021301]
+INFO:     Started server process [1023306]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+WARNING:  WatchFiles detected changes in 'checkCreditLimit/handlers.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [1023306]
+INFO:     Started server process [1023359]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+2024-11-09 16:44:22.355 | DEBUG    | utils.soap_client:call_service:15 - {"ServiceUrl": "http://172.22.26.40:8080/services/ArServices", "RequestHeader": "{'Content-Type': 'text/xml; charset=utf-8'}", "RequestBody": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:ars=\"http://www.huawei.com/bme/cbsinterface/arservices\" xmlns:cbs=\"http://www.huawei.com/bme/cbsinterface/cbscommon\" xmlns:arc=\"http://cbs.huawei.com/ar/wsservice/arcommon\">\n   <soapenv:Header/>\n   <soapenv:Body>\n      <ars:QueryBalanceRequestMsg>\n         <RequestHeader>\n            <cbs:Version>1</cbs:Version>\n            <cbs:BusinessCode>QueryBalance</cbs:BusinessCode>\n            <cbs:MessageSeq>2024-11-09T16:44:22</cbs:MessageSeq>\n            <cbs:AccessSecurity>\n               <cbs:LoginSystemCode>102</cbs:LoginSystemCode>\n               <cbs:Password>7/PuyYwNpRtSX7jDpxnl2ECAvuVYH2Mu9zxqgPGJrPYYK73MCZN7DvrDepA=</cbs:Password>\n            </cbs:AccessSecurity>\n         </RequestHeader>\n         <QueryBalanceRequest>\n            <ars:QueryObj>\n               <ars:SubAccessCode>\n                  <arc:PrimaryIdentity>9210450534</arc:PrimaryIdentity>\n               </ars:SubAccessCode>\n            </ars:QueryObj>\n         </QueryBalanceRequest>\n      </ars:QueryBalanceRequestMsg>\n   </soapenv:Body>\n</soapenv:Envelope>", "ResponsetHeader": "{'Server': 'nslb', 'Date': 'Sat, 09 Nov 2024 13:14:11 GMT', 'Content-Type': 'text/xml;charset=utf-8', 'Content-Length': '850', 'Connection': 'keep-alive', 'X-FRAME-OPTIONS': 'sameorigin', 'X-Content-Type-Options': 'nosniff', 'X-XSS-Protection': '1;mode=block', 'Content-Security-Policy': \"style-src 'self' 'unsafe-inline'\", 'X-Download-Options': 'noopen', 'Strict-Transport-Security': 'max-age=31536000;includeSubdomains', 'vary': 'accept-encoding', 'Content-Encoding': 'gzip'}", "ResponseBody": "b'<?xml version=\"1.0\" encoding=\"utf-8\"?><soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\"><soapenv:Body><ars:QueryBalanceResultMsg xmlns:ars=\"http://www.huawei.com/bme/cbsinterface/arservices\" xmlns:cbs=\"http://www.huawei.com/bme/cbsinterface/cbscommon\" xmlns:arc=\"http://cbs.huawei.com/ar/wsservice/arcommon\"><ResultHeader><cbs:Version>1</cbs:Version><cbs:ResultCode>0</cbs:ResultCode><cbs:MsgLanguageCode>2003</cbs:MsgLanguageCode><cbs:ResultDesc>Operation successfully.</cbs:ResultDesc><cbs:MessageSeq>2024-11-09T16:44:22</cbs:MessageSeq></ResultHeader><QueryBalanceResult><ars:AcctList><ars:AcctKey>27864396</ars:AcctKey><ars:BalanceResult><arc:BalanceType>C_MAIN_BILLING_ACCOUNT</arc:BalanceType><arc:BalanceTypeName>POS_MainAccount</arc:BalanceTypeName><arc:TotalAmount>31202</arc:TotalAmount><arc:ReservedAmount>0</arc:ReservedAmount><arc:DepositFlag>N</arc:DepositFlag><arc:RefundFlag>1</arc:RefundFlag><arc:CurrencyID>1069</arc:CurrencyID><arc:BalanceDetail><arc:BalanceInstanceID>12337454</arc:BalanceInstanceID><arc:Amount>31202</arc:Amount><arc:InitialAmount>0</arc:InitialAmount><arc:EffectiveTime>20240804154244</arc:EffectiveTime><arc:ExpireTime>20370101033000</arc:ExpireTime><arc:AcctBalOriginal><arc:OriginalType>0</arc:OriginalType><arc:OriginalID>0</arc:OriginalID></arc:AcctBalOriginal><arc:LastUpdateTime>20241109161947</arc:LastUpdateTime></arc:BalanceDetail></ars:BalanceResult><ars:AccountCredit><ars:CreditLimitType>C_INITIAL_CREDIT_LIMIT_LC</ars:CreditLimitType><ars:CreditLimitTypeName>LifeCycleCreditLimit</ars:CreditLimitTypeName><ars:TotalCreditAmount>1031202</ars:TotalCreditAmount><ars:TotalUsageAmount>231</ars:TotalUsageAmount><ars:TotalRemainAmount>1030971</ars:TotalRemainAmount><ars:CurrencyID>1069</ars:CurrencyID><ars:CreditAmountInfo><ars:CreditInstID>21165782</ars:CreditInstID><ars:LimitClass>I</ars:LimitClass><ars:Amount>1000000</ars:Amount><ars:EffectiveTime>20240804154244</ars:EffectiveTime><ars:ExpireTime>20370101033000</ars:ExpireTime></ars:CreditAmountInfo><ars:NoLimitFlag>N</ars:NoLimitFlag></ars:AccountCredit><ars:MaximumDepositAmount>8000000</ars:MaximumDepositAmount><ars:CurrentDepositAmount>0</ars:CurrentDepositAmount><ars:RemainDepositAmount>8000000</ars:RemainDepositAmount></ars:AcctList></QueryBalanceResult></ars:QueryBalanceResultMsg></soapenv:Body></soapenv:Envelope>'"}
+request: <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ars="http://www.huawei.com/bme/cbsinterface/arservices" xmlns:cbs="http://www.huawei.com/bme/cbsinterface/cbscommon" xmlns:arc="http://cbs.huawei.com/ar/wsservice/arcommon">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ars:QueryBalanceRequestMsg>
+         <RequestHeader>
+            <cbs:Version>1</cbs:Version>
+            <cbs:BusinessCode>QueryBalance</cbs:BusinessCode>
+            <cbs:MessageSeq>2024-11-09T16:44:22</cbs:MessageSeq>
+            <cbs:AccessSecurity>
+               <cbs:LoginSystemCode>102</cbs:LoginSystemCode>
+               <cbs:Password>7/PuyYwNpRtSX7jDpxnl2ECAvuVYH2Mu9zxqgPGJrPYYK73MCZN7DvrDepA=</cbs:Password>
+            </cbs:AccessSecurity>
+         </RequestHeader>
+         <QueryBalanceRequest>
+            <ars:QueryObj>
+               <ars:SubAccessCode>
+                  <arc:PrimaryIdentity>9210450534</arc:PrimaryIdentity>
+               </ars:SubAccessCode>
+            </ars:QueryObj>
+         </QueryBalanceRequest>
+      </ars:QueryBalanceRequestMsg>
+   </soapenv:Body>
+</soapenv:Envelope>
+response: b'<?xml version="1.0" encoding="utf-8"?><soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"><soapenv:Body><ars:QueryBalanceResultMsg xmlns:ars="http://www.huawei.com/bme/cbsinterface/arservices" xmlns:cbs="http://www.huawei.com/bme/cbsinterface/cbscommon" xmlns:arc="http://cbs.huawei.com/ar/wsservice/arcommon"><ResultHeader><cbs:Version>1</cbs:Version><cbs:ResultCode>0</cbs:ResultCode><cbs:MsgLanguageCode>2003</cbs:MsgLanguageCode><cbs:ResultDesc>Operation successfully.</cbs:ResultDesc><cbs:MessageSeq>2024-11-09T16:44:22</cbs:MessageSeq></ResultHeader><QueryBalanceResult><ars:AcctList><ars:AcctKey>27864396</ars:AcctKey><ars:BalanceResult><arc:BalanceType>C_MAIN_BILLING_ACCOUNT</arc:BalanceType><arc:BalanceTypeName>POS_MainAccount</arc:BalanceTypeName><arc:TotalAmount>31202</arc:TotalAmount><arc:ReservedAmount>0</arc:ReservedAmount><arc:DepositFlag>N</arc:DepositFlag><arc:RefundFlag>1</arc:RefundFlag><arc:CurrencyID>1069</arc:CurrencyID><arc:BalanceDetail><arc:BalanceInstanceID>12337454</arc:BalanceInstanceID><arc:Amount>31202</arc:Amount><arc:InitialAmount>0</arc:InitialAmount><arc:EffectiveTime>20240804154244</arc:EffectiveTime><arc:ExpireTime>20370101033000</arc:ExpireTime><arc:AcctBalOriginal><arc:OriginalType>0</arc:OriginalType><arc:OriginalID>0</arc:OriginalID></arc:AcctBalOriginal><arc:LastUpdateTime>20241109161947</arc:LastUpdateTime></arc:BalanceDetail></ars:BalanceResult><ars:AccountCredit><ars:CreditLimitType>C_INITIAL_CREDIT_LIMIT_LC</ars:CreditLimitType><ars:CreditLimitTypeName>LifeCycleCreditLimit</ars:CreditLimitTypeName><ars:TotalCreditAmount>1031202</ars:TotalCreditAmount><ars:TotalUsageAmount>231</ars:TotalUsageAmount><ars:TotalRemainAmount>1030971</ars:TotalRemainAmount><ars:CurrencyID>1069</ars:CurrencyID><ars:CreditAmountInfo><ars:CreditInstID>21165782</ars:CreditInstID><ars:LimitClass>I</ars:LimitClass><ars:Amount>1000000</ars:Amount><ars:EffectiveTime>20240804154244</ars:EffectiveTime><ars:ExpireTime>20370101033000</ars:ExpireTime></ars:CreditAmountInfo><ars:NoLimitFlag>N</ars:NoLimitFlag></ars:AccountCredit><ars:MaximumDepositAmount>8000000</ars:MaximumDepositAmount><ars:CurrentDepositAmount>0</ars:CurrentDepositAmount><ars:RemainDepositAmount>8000000</ars:RemainDepositAmount></ars:AcctList></QueryBalanceResult></ars:QueryBalanceResultMsg></soapenv:Body></soapenv:Envelope>'
+INFO:     127.0.0.1:51678 - "POST /cbs/wrapper/checkCreditLimit HTTP/1.1" 200 OK
+2024-11-09 16:44:27.424 | DEBUG    | utils.soap_client:call_service:15 - {"ServiceUrl": "http://172.22.26.40:8080/services/ArServices", "RequestHeader": "{'Content-Type': 'text/xml; charset=utf-8'}", "RequestBody": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:ars=\"http://www.huawei.com/bme/cbsinterface/arservices\" xmlns:cbs=\"http://www.huawei.com/bme/cbsinterface/cbscommon\" xmlns:arc=\"http://cbs.huawei.com/ar/wsservice/arcommon\">\n   <soapenv:Header/>\n   <soapenv:Body>\n      <ars:QueryBalanceRequestMsg>\n         <RequestHeader>\n            <cbs:Version>1</cbs:Version>\n            <cbs:BusinessCode>QueryBalance</cbs:BusinessCode>\n            <cbs:MessageSeq>2024-11-09T16:44:27</cbs:MessageSeq>\n            <cbs:AccessSecurity>\n               <cbs:LoginSystemCode>102</cbs:LoginSystemCode>\n               <cbs:Password>7/PuyYwNpRtSX7jDpxnl2ECAvuVYH2Mu9zxqgPGJrPYYK73MCZN7DvrDepA=</cbs:Password>\n            </cbs:AccessSecurity>\n         </RequestHeader>\n         <QueryBalanceRequest>\n            <ars:QueryObj>\n               <ars:SubAccessCode>\n                  <arc:PrimaryIdentity>9210450534</arc:PrimaryIdentity>\n               </ars:SubAccessCode>\n            </ars:QueryObj>\n         </QueryBalanceRequest>\n      </ars:QueryBalanceRequestMsg>\n   </soapenv:Body>\n</soapenv:Envelope>", "ResponsetHeader": "{'Server': 'nslb', 'Date': 'Sat, 09 Nov 2024 13:14:17 GMT', 'Content-Type': 'text/xml;charset=utf-8', 'Content-Length': '850', 'Connection': 'keep-alive', 'X-FRAME-OPTIONS': 'sameorigin', 'X-Content-Type-Options': 'nosniff', 'X-XSS-Protection': '1;mode=block', 'Content-Security-Policy': \"style-src 'self' 'unsafe-inline'\", 'X-Download-Options': 'noopen', 'Strict-Transport-Security': 'max-age=31536000;includeSubdomains', 'vary': 'accept-encoding', 'Content-Encoding': 'gzip'}", "ResponseBody": "b'<?xml version=\"1.0\" encoding=\"utf-8\"?><soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\"><soapenv:Body><ars:QueryBalanceResultMsg xmlns:ars=\"http://www.huawei.com/bme/cbsinterface/arservices\" xmlns:cbs=\"http://www.huawei.com/bme/cbsinterface/cbscommon\" xmlns:arc=\"http://cbs.huawei.com/ar/wsservice/arcommon\"><ResultHeader><cbs:Version>1</cbs:Version><cbs:ResultCode>0</cbs:ResultCode><cbs:MsgLanguageCode>2003</cbs:MsgLanguageCode><cbs:ResultDesc>Operation successfully.</cbs:ResultDesc><cbs:MessageSeq>2024-11-09T16:44:27</cbs:MessageSeq></ResultHeader><QueryBalanceResult><ars:AcctList><ars:AcctKey>27864396</ars:AcctKey><ars:BalanceResult><arc:BalanceType>C_MAIN_BILLING_ACCOUNT</arc:BalanceType><arc:BalanceTypeName>POS_MainAccount</arc:BalanceTypeName><arc:TotalAmount>31202</arc:TotalAmount><arc:ReservedAmount>0</arc:ReservedAmount><arc:DepositFlag>N</arc:DepositFlag><arc:RefundFlag>1</arc:RefundFlag><arc:CurrencyID>1069</arc:CurrencyID><arc:BalanceDetail><arc:BalanceInstanceID>12337454</arc:BalanceInstanceID><arc:Amount>31202</arc:Amount><arc:InitialAmount>0</arc:InitialAmount><arc:EffectiveTime>20240804154244</arc:EffectiveTime><arc:ExpireTime>20370101033000</arc:ExpireTime><arc:AcctBalOriginal><arc:OriginalType>0</arc:OriginalType><arc:OriginalID>0</arc:OriginalID></arc:AcctBalOriginal><arc:LastUpdateTime>20241109161947</arc:LastUpdateTime></arc:BalanceDetail></ars:BalanceResult><ars:AccountCredit><ars:CreditLimitType>C_INITIAL_CREDIT_LIMIT_LC</ars:CreditLimitType><ars:CreditLimitTypeName>LifeCycleCreditLimit</ars:CreditLimitTypeName><ars:TotalCreditAmount>1031202</ars:TotalCreditAmount><ars:TotalUsageAmount>231</ars:TotalUsageAmount><ars:TotalRemainAmount>1030971</ars:TotalRemainAmount><ars:CurrencyID>1069</ars:CurrencyID><ars:CreditAmountInfo><ars:CreditInstID>21165782</ars:CreditInstID><ars:LimitClass>I</ars:LimitClass><ars:Amount>1000000</ars:Amount><ars:EffectiveTime>20240804154244</ars:EffectiveTime><ars:ExpireTime>20370101033000</ars:ExpireTime></ars:CreditAmountInfo><ars:NoLimitFlag>N</ars:NoLimitFlag></ars:AccountCredit><ars:MaximumDepositAmount>8000000</ars:MaximumDepositAmount><ars:CurrentDepositAmount>0</ars:CurrentDepositAmount><ars:RemainDepositAmount>8000000</ars:RemainDepositAmount></ars:AcctList></QueryBalanceResult></ars:QueryBalanceResultMsg></soapenv:Body></soapenv:Envelope>'"}
+request: <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ars="http://www.huawei.com/bme/cbsinterface/arservices" xmlns:cbs="http://www.huawei.com/bme/cbsinterface/cbscommon" xmlns:arc="http://cbs.huawei.com/ar/wsservice/arcommon">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ars:QueryBalanceRequestMsg>
+         <RequestHeader>
+            <cbs:Version>1</cbs:Version>
+            <cbs:BusinessCode>QueryBalance</cbs:BusinessCode>
+            <cbs:MessageSeq>2024-11-09T16:44:27</cbs:MessageSeq>
+            <cbs:AccessSecurity>
+               <cbs:LoginSystemCode>102</cbs:LoginSystemCode>
+               <cbs:Password>7/PuyYwNpRtSX7jDpxnl2ECAvuVYH2Mu9zxqgPGJrPYYK73MCZN7DvrDepA=</cbs:Password>
+            </cbs:AccessSecurity>
+         </RequestHeader>
+         <QueryBalanceRequest>
+            <ars:QueryObj>
+               <ars:SubAccessCode>
+                  <arc:PrimaryIdentity>9210450534</arc:PrimaryIdentity>
+               </ars:SubAccessCode>
+            </ars:QueryObj>
+         </QueryBalanceRequest>
+      </ars:QueryBalanceRequestMsg>
+   </soapenv:Body>
+</soapenv:Envelope>
+response: b'<?xml version="1.0" encoding="utf-8"?><soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"><soapenv:Body><ars:QueryBalanceResultMsg xmlns:ars="http://www.huawei.com/bme/cbsinterface/arservices" xmlns:cbs="http://www.huawei.com/bme/cbsinterface/cbscommon" xmlns:arc="http://cbs.huawei.com/ar/wsservice/arcommon"><ResultHeader><cbs:Version>1</cbs:Version><cbs:ResultCode>0</cbs:ResultCode><cbs:MsgLanguageCode>2003</cbs:MsgLanguageCode><cbs:ResultDesc>Operation successfully.</cbs:ResultDesc><cbs:MessageSeq>2024-11-09T16:44:27</cbs:MessageSeq></ResultHeader><QueryBalanceResult><ars:AcctList><ars:AcctKey>27864396</ars:AcctKey><ars:BalanceResult><arc:BalanceType>C_MAIN_BILLING_ACCOUNT</arc:BalanceType><arc:BalanceTypeName>POS_MainAccount</arc:BalanceTypeName><arc:TotalAmount>31202</arc:TotalAmount><arc:ReservedAmount>0</arc:ReservedAmount><arc:DepositFlag>N</arc:DepositFlag><arc:RefundFlag>1</arc:RefundFlag><arc:CurrencyID>1069</arc:CurrencyID><arc:BalanceDetail><arc:BalanceInstanceID>12337454</arc:BalanceInstanceID><arc:Amount>31202</arc:Amount><arc:InitialAmount>0</arc:InitialAmount><arc:EffectiveTime>20240804154244</arc:EffectiveTime><arc:ExpireTime>20370101033000</arc:ExpireTime><arc:AcctBalOriginal><arc:OriginalType>0</arc:OriginalType><arc:OriginalID>0</arc:OriginalID></arc:AcctBalOriginal><arc:LastUpdateTime>20241109161947</arc:LastUpdateTime></arc:BalanceDetail></ars:BalanceResult><ars:AccountCredit><ars:CreditLimitType>C_INITIAL_CREDIT_LIMIT_LC</ars:CreditLimitType><ars:CreditLimitTypeName>LifeCycleCreditLimit</ars:CreditLimitTypeName><ars:TotalCreditAmount>1031202</ars:TotalCreditAmount><ars:TotalUsageAmount>231</ars:TotalUsageAmount><ars:TotalRemainAmount>1030971</ars:TotalRemainAmount><ars:CurrencyID>1069</ars:CurrencyID><ars:CreditAmountInfo><ars:CreditInstID>21165782</ars:CreditInstID><ars:LimitClass>I</ars:LimitClass><ars:Amount>1000000</ars:Amount><ars:EffectiveTime>20240804154244</ars:EffectiveTime><ars:ExpireTime>20370101033000</ars:ExpireTime></ars:CreditAmountInfo><ars:NoLimitFlag>N</ars:NoLimitFlag></ars:AccountCredit><ars:MaximumDepositAmount>8000000</ars:MaximumDepositAmount><ars:CurrentDepositAmount>0</ars:CurrentDepositAmount><ars:RemainDepositAmount>8000000</ars:RemainDepositAmount></ars:AcctList></QueryBalanceResult></ars:QueryBalanceResultMsg></soapenv:Body></soapenv:Envelope>'
+INFO:     127.0.0.1:51678 - "POST /cbs/wrapper/checkCreditLimit HTTP/1.1" 200 OK

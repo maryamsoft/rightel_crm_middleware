@@ -38,19 +38,16 @@ def generate_response(cbs_response) :
         NonDefaultCL = root.find('.//ars:BalanceResult[arc:BalanceType="C_DEPOSIT_ACCOUNT"]/arc:TotalAmount', namespaces)
         CreditUsed = root.find('.//ars:AccountCredit/ars:TotalUsageAmount', namespaces)
         CreditAvailable = root.find('.//ars:AccountCredit/ars:TotalRemainAmount', namespaces)
-        print('CreditAvailable:', CreditAvailable.text.strip())
         response = {
-            "Balance": Balance.text.strip(),
+            "Balance": Balance.text.strip() if Balance is not None else 0,
             "CreditLimit": CreditLimit.text.strip(),
             "DefaultCL": DefaultCL.text.strip(),
             "CreditUsed": CreditUsed.text.strip(),
-            "CreditAvailable": CreditAvailable.text.strip()
+            "CreditAvailable": CreditAvailable.text.strip(),
+            "NonDefaultCL" : NonDefaultCL.text.strip() if NonDefaultCL is not None else 0
         }
-        if NonDefaultCL is not None:
-            response["NonDefaultCL"] = NonDefaultCL.text.strip()
         return response
     
     return None
-    raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST)
 
 
