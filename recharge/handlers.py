@@ -21,7 +21,7 @@ def recharge_handler(data:RechargeRequest):
 
 
 
-def generate_response_normal(response) :
+def  generate_response_normal(response) :
     print('normal:', response)
     root = ET.fromstring(response)
     namespaces = {

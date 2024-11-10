@@ -1,0 +1,279 @@
+INFO:     Will watch for changes in these directories: ['/opt/projects/fastapi/crm_middleware']
+INFO:     Uvicorn running on http://127.0.0.1:8001 (Press CTRL+C to quit)
+INFO:     Started reloader process [924692] using WatchFiles
+INFO:     Started server process [924695]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+2024-11-09 12:08:50.091 | DEBUG    | utils.soap_client:call_service:15 - {"ServiceUrl": "http://172.22.26.40:8080/services/ArServices", "RequestHeader": "{'Content-Type': 'text/xml; charset=utf-8'}", "RequestBody": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:ars=\"http://www.huawei.com/bme/cbsinterface/arservices\" xmlns:cbs=\"http://www.huawei.com/bme/cbsinterface/cbscommon\" xmlns:arc=\"http://cbs.huawei.com/ar/wsservice/arcommon\">\n<soapenv:Header/>\n<soapenv:Body>\n   <ars:RechargeRequestMsg>\n      <RequestHeader>\n         <cbs:Version>1</cbs:Version>\n         <cbs:MessageSeq>2024-11-09T12:08:49</cbs:MessageSeq>\n         <cbs:AccessSecurity>\n            <cbs:LoginSystemCode>102</cbs:LoginSystemCode>\n            <cbs:Password>7/PuyYwNpRtSX7jDpxnl2ECAvuVYH2Mu9zxqgPGJrPYYK73MCZN7DvrDepA=</cbs:Password>\n         </cbs:AccessSecurity>\n      </RequestHeader>\n      <RechargeRequest>\n         <ars:RechargeObj>\n            <ars:SubAccessCode>\n               <arc:PrimaryIdentity>9200403499</arc:PrimaryIdentity>\n            </ars:SubAccessCode>\n         </ars:RechargeObj>\n         <ars:RechargeInfo>\n            <ars:CashPayment>\n               <ars:PaymentMethod>1001</ars:PaymentMethod>\n               <ars:Amount>1000</ars:Amount>\n               \n            </ars:CashPayment>\n         </ars:RechargeInfo>\n         \n         <ars:AdditionalProperty>\n         <arc:Code>CN_CHARGE_TYPE</arc:Code>\n         <arc:Value>1</arc:Value>\n      </ars:AdditionalProperty>\n         \n         \n         \n         \n      </RechargeRequest>\n   </ars:RechargeRequestMsg>\n</soapenv:Body>\n</soapenv:Envelope>", "ResponsetHeader": "{'Server': 'nslb', 'Date': 'Sat, 09 Nov 2024 08:38:39 GMT', 'Content-Type': 'text/xml;charset=utf-8', 'Content-Length': '679', 'Connection': 'keep-alive', 'X-FRAME-OPTIONS': 'sameorigin', 'X-Content-Type-Options': 'nosniff', 'X-XSS-Protection': '1;mode=block', 'Content-Security-Policy': \"style-src 'self' 'unsafe-inline'\", 'X-Download-Options': 'noopen', 'Strict-Transport-Security': 'max-age=31536000;includeSubdomains', 'vary': 'accept-encoding', 'Content-Encoding': 'gzip'}", "ResponseBody": "b'<?xml version=\"1.0\" encoding=\"utf-8\"?><soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\"><soapenv:Body><ars:RechargeResultMsg xmlns:ars=\"http://www.huawei.com/bme/cbsinterface/arservices\" xmlns:cbs=\"http://www.huawei.com/bme/cbsinterface/cbscommon\" xmlns:arc=\"http://cbs.huawei.com/ar/wsservice/arcommon\"><ResultHeader><cbs:Version>1</cbs:Version><cbs:ResultCode>0</cbs:ResultCode><cbs:MsgLanguageCode>2003</cbs:MsgLanguageCode><cbs:ResultDesc>Operation successfully.</cbs:ResultDesc><cbs:MessageSeq>2024-11-09T12:08:49</cbs:MessageSeq></ResultHeader><RechargeResult><ars:BalanceChgInfo><arc:BalanceType>C_2000</arc:BalanceType><arc:BalanceID>16763396</arc:BalanceID><arc:BalanceTypeName>Local Currency|\\xd8\\xa7\\xd8\\xb9\\xd8\\xaa\\xd8\\xa8\\xd8\\xa7\\xd8\\xb1</arc:BalanceTypeName><arc:OldBalanceAmt>0</arc:OldBalanceAmt><arc:NewBalanceAmt>1000</arc:NewBalanceAmt><arc:CurrencyID>1069</arc:CurrencyID></ars:BalanceChgInfo><ars:LifeCycleChgInfo><ars:OldLifeCycleStatus><ars:StatusName>Idle</ars:StatusName><ars:StatusExpireTime>19700101033000</ars:StatusExpireTime><ars:StatusIndex>1</ars:StatusIndex></ars:OldLifeCycleStatus><ars:OldLifeCycleStatus><ars:StatusName>Active</ars:StatusName><ars:StatusExpireTime>20370101033000</ars:StatusExpireTime><ars:StatusIndex>2</ars:StatusIndex></ars:OldLifeCycleStatus><ars:OldLifeCycleStatus><ars:StatusName>Call Barring</ars:StatusName><ars:StatusExpireTime>20370101033000</ars:StatusExpireTime><ars:StatusIndex>3</ars:StatusIndex></ars:OldLifeCycleStatus><ars:OldLifeCycleStatus><ars:StatusName>Suspend</ars:StatusName><ars:StatusExpireTime>20370101033000</ars:StatusExpireTime><ars:StatusIndex>4</ars:StatusIndex></ars:OldLifeCycleStatus><ars:OldLifeCycleStatus><ars:StatusName>Pool</ars:StatusName><ars:StatusExpireTime>19700101033000</ars:StatusExpireTime><ars:StatusIndex>8</ars:StatusIndex></ars:OldLifeCycleStatus><ars:OldLifeCycleStatus><ars:StatusName>Deactivation</ars:StatusName><ars:StatusExpireTime>19700101033000</ars:StatusExpireTime><ars:StatusIndex>9</ars:StatusIndex></ars:OldLifeCycleStatus><ars:NewLifeCycleStatus><ars:StatusName>Idle</ars:StatusName><ars:StatusExpireTime>19700101033000</ars:StatusExpireTime><ars:StatusIndex>1</ars:StatusIndex></ars:NewLifeCycleStatus><ars:NewLifeCycleStatus><ars:StatusName>Active</ars:StatusName><ars:StatusExpireTime>20370101033000</ars:StatusExpireTime><ars:StatusIndex>2</ars:StatusIndex></ars:NewLifeCycleStatus><ars:NewLifeCycleStatus><ars:StatusName>Call Barring</ars:StatusName><ars:StatusExpireTime>20370101033000</ars:StatusExpireTime><ars:StatusIndex>3</ars:StatusIndex></ars:NewLifeCycleStatus><ars:NewLifeCycleStatus><ars:StatusName>Suspend</ars:StatusName><ars:StatusExpireTime>20370101033000</ars:StatusExpireTime><ars:StatusIndex>4</ars:StatusIndex></ars:NewLifeCycleStatus><ars:NewLifeCycleStatus><ars:StatusName>Pool</ars:StatusName><ars:StatusExpireTime>19700101033000</ars:StatusExpireTime><ars:StatusIndex>8</ars:StatusIndex></ars:NewLifeCycleStatus><ars:NewLifeCycleStatus><ars:StatusName>Deactivation</ars:StatusName><ars:StatusExpireTime>19700101033000</ars:StatusExpireTime><ars:StatusIndex>9</ars:StatusIndex></ars:NewLifeCycleStatus><ars:AddValidity>0</ars:AddValidity></ars:LifeCycleChgInfo><ars:OverDraftForPrepaid>0</ars:OverDraftForPrepaid></RechargeResult></ars:RechargeResultMsg></soapenv:Body></soapenv:Envelope>'"}
+request: <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ars="http://www.huawei.com/bme/cbsinterface/arservices" xmlns:cbs="http://www.huawei.com/bme/cbsinterface/cbscommon" xmlns:arc="http://cbs.huawei.com/ar/wsservice/arcommon">
+<soapenv:Header/>
+<soapenv:Body>
+   <ars:RechargeRequestMsg>
+      <RequestHeader>
+         <cbs:Version>1</cbs:Version>
+         <cbs:MessageSeq>2024-11-09T12:08:49</cbs:MessageSeq>
+         <cbs:AccessSecurity>
+            <cbs:LoginSystemCode>102</cbs:LoginSystemCode>
+            <cbs:Password>7/PuyYwNpRtSX7jDpxnl2ECAvuVYH2Mu9zxqgPGJrPYYK73MCZN7DvrDepA=</cbs:Password>
+         </cbs:AccessSecurity>
+      </RequestHeader>
+      <RechargeRequest>
+         <ars:RechargeObj>
+            <ars:SubAccessCode>
+               <arc:PrimaryIdentity>9200403499</arc:PrimaryIdentity>
+            </ars:SubAccessCode>
+         </ars:RechargeObj>
+         <ars:RechargeInfo>
+            <ars:CashPayment>
+               <ars:PaymentMethod>1001</ars:PaymentMethod>
+               <ars:Amount>1000</ars:Amount>
+               
+            </ars:CashPayment>
+         </ars:RechargeInfo>
+         
+         <ars:AdditionalProperty>
+         <arc:Code>CN_CHARGE_TYPE</arc:Code>
+         <arc:Value>1</arc:Value>
+      </ars:AdditionalProperty>
+         
+         
+         
+         
+      </RechargeRequest>
+   </ars:RechargeRequestMsg>
+</soapenv:Body>
+</soapenv:Envelope>
+normal: b'<?xml version="1.0" encoding="utf-8"?><soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"><soapenv:Body><ars:RechargeResultMsg xmlns:ars="http://www.huawei.com/bme/cbsinterface/arservices" xmlns:cbs="http://www.huawei.com/bme/cbsinterface/cbscommon" xmlns:arc="http://cbs.huawei.com/ar/wsservice/arcommon"><ResultHeader><cbs:Version>1</cbs:Version><cbs:ResultCode>0</cbs:ResultCode><cbs:MsgLanguageCode>2003</cbs:MsgLanguageCode><cbs:ResultDesc>Operation successfully.</cbs:ResultDesc><cbs:MessageSeq>2024-11-09T12:08:49</cbs:MessageSeq></ResultHeader><RechargeResult><ars:BalanceChgInfo><arc:BalanceType>C_2000</arc:BalanceType><arc:BalanceID>16763396</arc:BalanceID><arc:BalanceTypeName>Local Currency|\xd8\xa7\xd8\xb9\xd8\xaa\xd8\xa8\xd8\xa7\xd8\xb1</arc:BalanceTypeName><arc:OldBalanceAmt>0</arc:OldBalanceAmt><arc:NewBalanceAmt>1000</arc:NewBalanceAmt><arc:CurrencyID>1069</arc:CurrencyID></ars:BalanceChgInfo><ars:LifeCycleChgInfo><ars:OldLifeCycleStatus><ars:StatusName>Idle</ars:StatusName><ars:StatusExpireTime>19700101033000</ars:StatusExpireTime><ars:StatusIndex>1</ars:StatusIndex></ars:OldLifeCycleStatus><ars:OldLifeCycleStatus><ars:StatusName>Active</ars:StatusName><ars:StatusExpireTime>20370101033000</ars:StatusExpireTime><ars:StatusIndex>2</ars:StatusIndex></ars:OldLifeCycleStatus><ars:OldLifeCycleStatus><ars:StatusName>Call Barring</ars:StatusName><ars:StatusExpireTime>20370101033000</ars:StatusExpireTime><ars:StatusIndex>3</ars:StatusIndex></ars:OldLifeCycleStatus><ars:OldLifeCycleStatus><ars:StatusName>Suspend</ars:StatusName><ars:StatusExpireTime>20370101033000</ars:StatusExpireTime><ars:StatusIndex>4</ars:StatusIndex></ars:OldLifeCycleStatus><ars:OldLifeCycleStatus><ars:StatusName>Pool</ars:StatusName><ars:StatusExpireTime>19700101033000</ars:StatusExpireTime><ars:StatusIndex>8</ars:StatusIndex></ars:OldLifeCycleStatus><ars:OldLifeCycleStatus><ars:StatusName>Deactivation</ars:StatusName><ars:StatusExpireTime>19700101033000</ars:StatusExpireTime><ars:StatusIndex>9</ars:StatusIndex></ars:OldLifeCycleStatus><ars:NewLifeCycleStatus><ars:StatusName>Idle</ars:StatusName><ars:StatusExpireTime>19700101033000</ars:StatusExpireTime><ars:StatusIndex>1</ars:StatusIndex></ars:NewLifeCycleStatus><ars:NewLifeCycleStatus><ars:StatusName>Active</ars:StatusName><ars:StatusExpireTime>20370101033000</ars:StatusExpireTime><ars:StatusIndex>2</ars:StatusIndex></ars:NewLifeCycleStatus><ars:NewLifeCycleStatus><ars:StatusName>Call Barring</ars:StatusName><ars:StatusExpireTime>20370101033000</ars:StatusExpireTime><ars:StatusIndex>3</ars:StatusIndex></ars:NewLifeCycleStatus><ars:NewLifeCycleStatus><ars:StatusName>Suspend</ars:StatusName><ars:StatusExpireTime>20370101033000</ars:StatusExpireTime><ars:StatusIndex>4</ars:StatusIndex></ars:NewLifeCycleStatus><ars:NewLifeCycleStatus><ars:StatusName>Pool</ars:StatusName><ars:StatusExpireTime>19700101033000</ars:StatusExpireTime><ars:StatusIndex>8</ars:StatusIndex></ars:NewLifeCycleStatus><ars:NewLifeCycleStatus><ars:StatusName>Deactivation</ars:StatusName><ars:StatusExpireTime>19700101033000</ars:StatusExpireTime><ars:StatusIndex>9</ars:StatusIndex></ars:NewLifeCycleStatus><ars:AddValidity>0</ars:AddValidity></ars:LifeCycleChgInfo><ars:OverDraftForPrepaid>0</ars:OverDraftForPrepaid></RechargeResult></ars:RechargeResultMsg></soapenv:Body></soapenv:Envelope>'
+INFO:     127.0.0.1:53600 - "POST /cbs/wrapper/recharge HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51490 - "GET /cbs/wrapper/checkCreditLimit HTTP/1.1" 405 Method Not Allowed
+2024-11-09 14:35:58.753 | DEBUG    | utils.soap_client:call_service:15 - {"ServiceUrl": "http://172.22.26.40:8080/services/ArServices", "RequestHeader": "{'Content-Type': 'text/xml; charset=utf-8'}", "RequestBody": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:ars=\"http://www.huawei.com/bme/cbsinterface/arservices\" xmlns:cbs=\"http://www.huawei.com/bme/cbsinterface/cbscommon\" xmlns:arc=\"http://cbs.huawei.com/ar/wsservice/arcommon\">\n   <soapenv:Header/>\n   <soapenv:Body>\n      <ars:QueryBalanceRequestMsg>\n         <RequestHeader>\n            <cbs:Version>1</cbs:Version>\n            <cbs:BusinessCode>QueryBalance</cbs:BusinessCode>\n            <cbs:MessageSeq>2024-11-09T14:35:58</cbs:MessageSeq>\n            <cbs:AccessSecurity>\n               <cbs:LoginSystemCode>102</cbs:LoginSystemCode>\n               <cbs:Password>7/PuyYwNpRtSX7jDpxnl2ECAvuVYH2Mu9zxqgPGJrPYYK73MCZN7DvrDepA=</cbs:Password>\n            </cbs:AccessSecurity>\n         </RequestHeader>\n         <QueryBalanceRequest>\n            <ars:QueryObj>\n               <ars:SubAccessCode>\n                  <arc:PrimaryIdentity>989209202432</arc:PrimaryIdentity>\n               </ars:SubAccessCode>\n            </ars:QueryObj>\n         </QueryBalanceRequest>\n      </ars:QueryBalanceRequestMsg>\n   </soapenv:Body>\n</soapenv:Envelope>", "ResponsetHeader": "{'Server': 'nslb', 'Date': 'Sat, 09 Nov 2024 11:05:48 GMT', 'Content-Type': 'text/xml;charset=utf-8', 'Content-Length': '358', 'Connection': 'keep-alive', 'X-FRAME-OPTIONS': 'sameorigin', 'X-Content-Type-Options': 'nosniff', 'X-XSS-Protection': '1;mode=block', 'Content-Security-Policy': \"style-src 'self' 'unsafe-inline'\", 'X-Download-Options': 'noopen', 'Strict-Transport-Security': 'max-age=31536000;includeSubdomains', 'vary': 'accept-encoding', 'Content-Encoding': 'gzip'}", "ResponseBody": "b'<?xml version=\"1.0\" encoding=\"utf-8\"?><soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\"><soapenv:Body><ars:QueryBalanceResultMsg xmlns:ars=\"http://www.huawei.com/bme/cbsinterface/arservices\" xmlns:cbs=\"http://www.huawei.com/bme/cbsinterface/cbscommon\"><ResultHeader><cbs:Version>1</cbs:Version><cbs:ResultCode>20000003</cbs:ResultCode><cbs:MsgLanguageCode>2003</cbs:MsgLanguageCode><cbs:ResultDesc>Subscriber information verification error: The service number 9209202432 does not exist.</cbs:ResultDesc><cbs:MessageSeq>2024-11-09T14:35:58</cbs:MessageSeq></ResultHeader></ars:QueryBalanceResultMsg></soapenv:Body></soapenv:Envelope>'"}
+request: <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ars="http://www.huawei.com/bme/cbsinterface/arservices" xmlns:cbs="http://www.huawei.com/bme/cbsinterface/cbscommon" xmlns:arc="http://cbs.huawei.com/ar/wsservice/arcommon">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ars:QueryBalanceRequestMsg>
+         <RequestHeader>
+            <cbs:Version>1</cbs:Version>
+            <cbs:BusinessCode>QueryBalance</cbs:BusinessCode>
+            <cbs:MessageSeq>2024-11-09T14:35:58</cbs:MessageSeq>
+            <cbs:AccessSecurity>
+               <cbs:LoginSystemCode>102</cbs:LoginSystemCode>
+               <cbs:Password>7/PuyYwNpRtSX7jDpxnl2ECAvuVYH2Mu9zxqgPGJrPYYK73MCZN7DvrDepA=</cbs:Password>
+            </cbs:AccessSecurity>
+         </RequestHeader>
+         <QueryBalanceRequest>
+            <ars:QueryObj>
+               <ars:SubAccessCode>
+                  <arc:PrimaryIdentity>989209202432</arc:PrimaryIdentity>
+               </ars:SubAccessCode>
+            </ars:QueryObj>
+         </QueryBalanceRequest>
+      </ars:QueryBalanceRequestMsg>
+   </soapenv:Body>
+</soapenv:Envelope>
+response: b'<?xml version="1.0" encoding="utf-8"?><soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"><soapenv:Body><ars:QueryBalanceResultMsg xmlns:ars="http://www.huawei.com/bme/cbsinterface/arservices" xmlns:cbs="http://www.huawei.com/bme/cbsinterface/cbscommon"><ResultHeader><cbs:Version>1</cbs:Version><cbs:ResultCode>20000003</cbs:ResultCode><cbs:MsgLanguageCode>2003</cbs:MsgLanguageCode><cbs:ResultDesc>Subscriber information verification error: The service number 9209202432 does not exist.</cbs:ResultDesc><cbs:MessageSeq>2024-11-09T14:35:58</cbs:MessageSeq></ResultHeader></ars:QueryBalanceResultMsg></soapenv:Body></soapenv:Envelope>'
+INFO:     127.0.0.1:51490 - "POST /cbs/wrapper/checkCreditLimit HTTP/1.1" 200 OK
+2024-11-09 15:21:29.467 | DEBUG    | utils.soap_client:call_service:15 - {"ServiceUrl": "http://172.22.26.40:8080/services/ArServices", "RequestHeader": "{'Content-Type': 'text/xml; charset=utf-8'}", "RequestBody": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:ars=\"http://www.huawei.com/bme/cbsinterface/arservices\" xmlns:cbs=\"http://www.huawei.com/bme/cbsinterface/cbscommon\" xmlns:arc=\"http://cbs.huawei.com/ar/wsservice/arcommon\">\n   <soapenv:Header/>\n   <soapenv:Body>\n      <ars:QueryBalanceRequestMsg>\n         <RequestHeader>\n            <cbs:Version>1</cbs:Version>\n            <cbs:BusinessCode>QueryBalance</cbs:BusinessCode>\n            <cbs:MessageSeq>2024-11-09T15:21:29</cbs:MessageSeq>\n            <cbs:AccessSecurity>\n               <cbs:LoginSystemCode>102</cbs:LoginSystemCode>\n               <cbs:Password>7/PuyYwNpRtSX7jDpxnl2ECAvuVYH2Mu9zxqgPGJrPYYK73MCZN7DvrDepA=</cbs:Password>\n            </cbs:AccessSecurity>\n         </RequestHeader>\n         <QueryBalanceRequest>\n            <ars:QueryObj>\n               <ars:SubAccessCode>\n                  <arc:PrimaryIdentity>989209202432</arc:PrimaryIdentity>\n               </ars:SubAccessCode>\n            </ars:QueryObj>\n         </QueryBalanceRequest>\n      </ars:QueryBalanceRequestMsg>\n   </soapenv:Body>\n</soapenv:Envelope>", "ResponsetHeader": "{'Server': 'nslb', 'Date': 'Sat, 09 Nov 2024 11:51:19 GMT', 'Content-Type': 'text/xml;charset=utf-8', 'Content-Length': '357', 'Connection': 'keep-alive', 'X-FRAME-OPTIONS': 'sameorigin', 'X-Content-Type-Options': 'nosniff', 'X-XSS-Protection': '1;mode=block', 'Content-Security-Policy': \"style-src 'self' 'unsafe-inline'\", 'X-Download-Options': 'noopen', 'Strict-Transport-Security': 'max-age=31536000;includeSubdomains', 'vary': 'accept-encoding', 'Content-Encoding': 'gzip'}", "ResponseBody": "b'<?xml version=\"1.0\" encoding=\"utf-8\"?><soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\"><soapenv:Body><ars:QueryBalanceResultMsg xmlns:ars=\"http://www.huawei.com/bme/cbsinterface/arservices\" xmlns:cbs=\"http://www.huawei.com/bme/cbsinterface/cbscommon\"><ResultHeader><cbs:Version>1</cbs:Version><cbs:ResultCode>20000003</cbs:ResultCode><cbs:MsgLanguageCode>2003</cbs:MsgLanguageCode><cbs:ResultDesc>Subscriber information verification error: The service number 9209202432 does not exist.</cbs:ResultDesc><cbs:MessageSeq>2024-11-09T15:21:29</cbs:MessageSeq></ResultHeader></ars:QueryBalanceResultMsg></soapenv:Body></soapenv:Envelope>'"}
+request: <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ars="http://www.huawei.com/bme/cbsinterface/arservices" xmlns:cbs="http://www.huawei.com/bme/cbsinterface/cbscommon" xmlns:arc="http://cbs.huawei.com/ar/wsservice/arcommon">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ars:QueryBalanceRequestMsg>
+         <RequestHeader>
+            <cbs:Version>1</cbs:Version>
+            <cbs:BusinessCode>QueryBalance</cbs:BusinessCode>
+            <cbs:MessageSeq>2024-11-09T15:21:29</cbs:MessageSeq>
+            <cbs:AccessSecurity>
+               <cbs:LoginSystemCode>102</cbs:LoginSystemCode>
+               <cbs:Password>7/PuyYwNpRtSX7jDpxnl2ECAvuVYH2Mu9zxqgPGJrPYYK73MCZN7DvrDepA=</cbs:Password>
+            </cbs:AccessSecurity>
+         </RequestHeader>
+         <QueryBalanceRequest>
+            <ars:QueryObj>
+               <ars:SubAccessCode>
+                  <arc:PrimaryIdentity>989209202432</arc:PrimaryIdentity>
+               </ars:SubAccessCode>
+            </ars:QueryObj>
+         </QueryBalanceRequest>
+      </ars:QueryBalanceRequestMsg>
+   </soapenv:Body>
+</soapenv:Envelope>
+response: b'<?xml version="1.0" encoding="utf-8"?><soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"><soapenv:Body><ars:QueryBalanceResultMsg xmlns:ars="http://www.huawei.com/bme/cbsinterface/arservices" xmlns:cbs="http://www.huawei.com/bme/cbsinterface/cbscommon"><ResultHeader><cbs:Version>1</cbs:Version><cbs:ResultCode>20000003</cbs:ResultCode><cbs:MsgLanguageCode>2003</cbs:MsgLanguageCode><cbs:ResultDesc>Subscriber information verification error: The service number 9209202432 does not exist.</cbs:ResultDesc><cbs:MessageSeq>2024-11-09T15:21:29</cbs:MessageSeq></ResultHeader></ars:QueryBalanceResultMsg></soapenv:Body></soapenv:Envelope>'
+INFO:     127.0.0.1:45228 - "POST /cbs/wrapper/checkCreditLimit HTTP/1.1" 200 OK
+2024-11-09 15:22:05.825 | DEBUG    | utils.soap_client:call_service:15 - {"ServiceUrl": "http://172.22.26.40:8080/services/ArServices", "RequestHeader": "{'Content-Type': 'text/xml; charset=utf-8'}", "RequestBody": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:ars=\"http://www.huawei.com/bme/cbsinterface/arservices\" xmlns:cbs=\"http://www.huawei.com/bme/cbsinterface/cbscommon\" xmlns:arc=\"http://cbs.huawei.com/ar/wsservice/arcommon\">\n   <soapenv:Header/>\n   <soapenv:Body>\n      <ars:QueryBalanceRequestMsg>\n         <RequestHeader>\n            <cbs:Version>1</cbs:Version>\n            <cbs:BusinessCode>QueryBalance</cbs:BusinessCode>\n            <cbs:MessageSeq>2024-11-09T15:22:05</cbs:MessageSeq>\n            <cbs:AccessSecurity>\n               <cbs:LoginSystemCode>102</cbs:LoginSystemCode>\n               <cbs:Password>7/PuyYwNpRtSX7jDpxnl2ECAvuVYH2Mu9zxqgPGJrPYYK73MCZN7DvrDepA=</cbs:Password>\n            </cbs:AccessSecurity>\n         </RequestHeader>\n         <QueryBalanceRequest>\n            <ars:QueryObj>\n               <ars:SubAccessCode>\n                  <arc:PrimaryIdentity>989219952406</arc:PrimaryIdentity>\n               </ars:SubAccessCode>\n            </ars:QueryObj>\n         </QueryBalanceRequest>\n      </ars:QueryBalanceRequestMsg>\n   </soapenv:Body>\n</soapenv:Envelope>", "ResponsetHeader": "{'Server': 'nslb', 'Date': 'Sat, 09 Nov 2024 11:51:55 GMT', 'Content-Type': 'text/xml;charset=utf-8', 'Content-Length': '359', 'Connection': 'keep-alive', 'X-FRAME-OPTIONS': 'sameorigin', 'X-Content-Type-Options': 'nosniff', 'X-XSS-Protection': '1;mode=block', 'Content-Security-Policy': \"style-src 'self' 'unsafe-inline'\", 'X-Download-Options': 'noopen', 'Strict-Transport-Security': 'max-age=31536000;includeSubdomains', 'vary': 'accept-encoding', 'Content-Encoding': 'gzip'}", "ResponseBody": "b'<?xml version=\"1.0\" encoding=\"utf-8\"?><soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\"><soapenv:Body><ars:QueryBalanceResultMsg xmlns:ars=\"http://www.huawei.com/bme/cbsinterface/arservices\" xmlns:cbs=\"http://www.huawei.com/bme/cbsinterface/cbscommon\"><ResultHeader><cbs:Version>1</cbs:Version><cbs:ResultCode>20000003</cbs:ResultCode><cbs:MsgLanguageCode>2003</cbs:MsgLanguageCode><cbs:ResultDesc>Subscriber information verification error: The service number 9219952406 does not exist.</cbs:ResultDesc><cbs:MessageSeq>2024-11-09T15:22:05</cbs:MessageSeq></ResultHeader></ars:QueryBalanceResultMsg></soapenv:Body></soapenv:Envelope>'"}
+request: <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ars="http://www.huawei.com/bme/cbsinterface/arservices" xmlns:cbs="http://www.huawei.com/bme/cbsinterface/cbscommon" xmlns:arc="http://cbs.huawei.com/ar/wsservice/arcommon">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ars:QueryBalanceRequestMsg>
+         <RequestHeader>
+            <cbs:Version>1</cbs:Version>
+            <cbs:BusinessCode>QueryBalance</cbs:BusinessCode>
+            <cbs:MessageSeq>2024-11-09T15:22:05</cbs:MessageSeq>
+            <cbs:AccessSecurity>
+               <cbs:LoginSystemCode>102</cbs:LoginSystemCode>
+               <cbs:Password>7/PuyYwNpRtSX7jDpxnl2ECAvuVYH2Mu9zxqgPGJrPYYK73MCZN7DvrDepA=</cbs:Password>
+            </cbs:AccessSecurity>
+         </RequestHeader>
+         <QueryBalanceRequest>
+            <ars:QueryObj>
+               <ars:SubAccessCode>
+                  <arc:PrimaryIdentity>989219952406</arc:PrimaryIdentity>
+               </ars:SubAccessCode>
+            </ars:QueryObj>
+         </QueryBalanceRequest>
+      </ars:QueryBalanceRequestMsg>
+   </soapenv:Body>
+</soapenv:Envelope>
+response: b'<?xml version="1.0" encoding="utf-8"?><soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"><soapenv:Body><ars:QueryBalanceResultMsg xmlns:ars="http://www.huawei.com/bme/cbsinterface/arservices" xmlns:cbs="http://www.huawei.com/bme/cbsinterface/cbscommon"><ResultHeader><cbs:Version>1</cbs:Version><cbs:ResultCode>20000003</cbs:ResultCode><cbs:MsgLanguageCode>2003</cbs:MsgLanguageCode><cbs:ResultDesc>Subscriber information verification error: The service number 9219952406 does not exist.</cbs:ResultDesc><cbs:MessageSeq>2024-11-09T15:22:05</cbs:MessageSeq></ResultHeader></ars:QueryBalanceResultMsg></soapenv:Body></soapenv:Envelope>'
+INFO:     127.0.0.1:50948 - "POST /cbs/wrapper/checkCreditLimit HTTP/1.1" 200 OK
+2024-11-09 15:22:19.248 | DEBUG    | utils.soap_client:call_service:15 - {"ServiceUrl": "http://172.22.26.40:8080/services/ArServices", "RequestHeader": "{'Content-Type': 'text/xml; charset=utf-8'}", "RequestBody": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:ars=\"http://www.huawei.com/bme/cbsinterface/arservices\" xmlns:cbs=\"http://www.huawei.com/bme/cbsinterface/cbscommon\" xmlns:arc=\"http://cbs.huawei.com/ar/wsservice/arcommon\">\n   <soapenv:Header/>\n   <soapenv:Body>\n      <ars:QueryBalanceRequestMsg>\n         <RequestHeader>\n            <cbs:Version>1</cbs:Version>\n            <cbs:BusinessCode>QueryBalance</cbs:BusinessCode>\n            <cbs:MessageSeq>2024-11-09T15:22:19</cbs:MessageSeq>\n            <cbs:AccessSecurity>\n               <cbs:LoginSystemCode>102</cbs:LoginSystemCode>\n               <cbs:Password>7/PuyYwNpRtSX7jDpxnl2ECAvuVYH2Mu9zxqgPGJrPYYK73MCZN7DvrDepA=</cbs:Password>\n            </cbs:AccessSecurity>\n         </RequestHeader>\n         <QueryBalanceRequest>\n            <ars:QueryObj>\n               <ars:SubAccessCode>\n                  <arc:PrimaryIdentity>989210457841</arc:PrimaryIdentity>\n               </ars:SubAccessCode>\n            </ars:QueryObj>\n         </QueryBalanceRequest>\n      </ars:QueryBalanceRequestMsg>\n   </soapenv:Body>\n</soapenv:Envelope>", "ResponsetHeader": "{'Server': 'nslb', 'Date': 'Sat, 09 Nov 2024 11:52:08 GMT', 'Content-Type': 'text/xml;charset=utf-8', 'Content-Length': '337', 'Connection': 'keep-alive', 'X-FRAME-OPTIONS': 'sameorigin', 'X-Content-Type-Options': 'nosniff', 'X-XSS-Protection': '1;mode=block', 'Content-Security-Policy': \"style-src 'self' 'unsafe-inline'\", 'X-Download-Options': 'noopen', 'Strict-Transport-Security': 'max-age=31536000;includeSubdomains', 'vary': 'accept-encoding', 'Content-Encoding': 'gzip'}", "ResponseBody": "b'<?xml version=\"1.0\" encoding=\"utf-8\"?><soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\"><soapenv:Body><ars:QueryBalanceResultMsg xmlns:ars=\"http://www.huawei.com/bme/cbsinterface/arservices\" xmlns:cbs=\"http://www.huawei.com/bme/cbsinterface/cbscommon\"><ResultHeader><cbs:Version>1</cbs:Version><cbs:ResultCode>20000004</cbs:ResultCode><cbs:MsgLanguageCode>2003</cbs:MsgLanguageCode><cbs:ResultDesc>Internal system error: Internal error: No data is found.</cbs:ResultDesc><cbs:MessageSeq>2024-11-09T15:22:19</cbs:MessageSeq></ResultHeader></ars:QueryBalanceResultMsg></soapenv:Body></soapenv:Envelope>'"}
+request: <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ars="http://www.huawei.com/bme/cbsinterface/arservices" xmlns:cbs="http://www.huawei.com/bme/cbsinterface/cbscommon" xmlns:arc="http://cbs.huawei.com/ar/wsservice/arcommon">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ars:QueryBalanceRequestMsg>
+         <RequestHeader>
+            <cbs:Version>1</cbs:Version>
+            <cbs:BusinessCode>QueryBalance</cbs:BusinessCode>
+            <cbs:MessageSeq>2024-11-09T15:22:19</cbs:MessageSeq>
+            <cbs:AccessSecurity>
+               <cbs:LoginSystemCode>102</cbs:LoginSystemCode>
+               <cbs:Password>7/PuyYwNpRtSX7jDpxnl2ECAvuVYH2Mu9zxqgPGJrPYYK73MCZN7DvrDepA=</cbs:Password>
+            </cbs:AccessSecurity>
+         </RequestHeader>
+         <QueryBalanceRequest>
+            <ars:QueryObj>
+               <ars:SubAccessCode>
+                  <arc:PrimaryIdentity>989210457841</arc:PrimaryIdentity>
+               </ars:SubAccessCode>
+            </ars:QueryObj>
+         </QueryBalanceRequest>
+      </ars:QueryBalanceRequestMsg>
+   </soapenv:Body>
+</soapenv:Envelope>
+response: b'<?xml version="1.0" encoding="utf-8"?><soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"><soapenv:Body><ars:QueryBalanceResultMsg xmlns:ars="http://www.huawei.com/bme/cbsinterface/arservices" xmlns:cbs="http://www.huawei.com/bme/cbsinterface/cbscommon"><ResultHeader><cbs:Version>1</cbs:Version><cbs:ResultCode>20000004</cbs:ResultCode><cbs:MsgLanguageCode>2003</cbs:MsgLanguageCode><cbs:ResultDesc>Internal system error: Internal error: No data is found.</cbs:ResultDesc><cbs:MessageSeq>2024-11-09T15:22:19</cbs:MessageSeq></ResultHeader></ars:QueryBalanceResultMsg></soapenv:Body></soapenv:Envelope>'
+INFO:     127.0.0.1:37874 - "POST /cbs/wrapper/checkCreditLimit HTTP/1.1" 200 OK
+2024-11-09 15:47:28.211 | DEBUG    | utils.soap_client:call_service:15 - {"ServiceUrl": "http://172.22.26.40:8080/services/ArServices", "RequestHeader": "{'Content-Type': 'text/xml; charset=utf-8'}", "RequestBody": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:ars=\"http://www.huawei.com/bme/cbsinterface/arservices\" xmlns:cbs=\"http://www.huawei.com/bme/cbsinterface/cbscommon\" xmlns:arc=\"http://cbs.huawei.com/ar/wsservice/arcommon\">\n   <soapenv:Header/>\n   <soapenv:Body>\n      <ars:QueryBalanceRequestMsg>\n         <RequestHeader>\n            <cbs:Version>1</cbs:Version>\n            <cbs:BusinessCode>QueryBalance</cbs:BusinessCode>\n            <cbs:MessageSeq>2024-11-09T15:47:28</cbs:MessageSeq>\n            <cbs:AccessSecurity>\n               <cbs:LoginSystemCode>102</cbs:LoginSystemCode>\n               <cbs:Password>7/PuyYwNpRtSX7jDpxnl2ECAvuVYH2Mu9zxqgPGJrPYYK73MCZN7DvrDepA=</cbs:Password>\n            </cbs:AccessSecurity>\n         </RequestHeader>\n         <QueryBalanceRequest>\n            <ars:QueryObj>\n               <ars:SubAccessCode>\n                  <arc:PrimaryIdentity>9210453344</arc:PrimaryIdentity>\n               </ars:SubAccessCode>\n            </ars:QueryObj>\n         </QueryBalanceRequest>\n      </ars:QueryBalanceRequestMsg>\n   </soapenv:Body>\n</soapenv:Envelope>", "ResponsetHeader": "{'Server': 'nslb', 'Date': 'Sat, 09 Nov 2024 12:17:17 GMT', 'Content-Type': 'text/xml;charset=utf-8', 'Content-Length': '359', 'Connection': 'keep-alive', 'X-FRAME-OPTIONS': 'sameorigin', 'X-Content-Type-Options': 'nosniff', 'X-XSS-Protection': '1;mode=block', 'Content-Security-Policy': \"style-src 'self' 'unsafe-inline'\", 'X-Download-Options': 'noopen', 'Strict-Transport-Security': 'max-age=31536000;includeSubdomains', 'vary': 'accept-encoding', 'Content-Encoding': 'gzip'}", "ResponseBody": "b'<?xml version=\"1.0\" encoding=\"utf-8\"?><soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\"><soapenv:Body><ars:QueryBalanceResultMsg xmlns:ars=\"http://www.huawei.com/bme/cbsinterface/arservices\" xmlns:cbs=\"http://www.huawei.com/bme/cbsinterface/cbscommon\"><ResultHeader><cbs:Version>1</cbs:Version><cbs:ResultCode>20000003</cbs:ResultCode><cbs:MsgLanguageCode>2003</cbs:MsgLanguageCode><cbs:ResultDesc>Subscriber information verification error: The service number 9210453344 does not exist.</cbs:ResultDesc><cbs:MessageSeq>2024-11-09T15:47:28</cbs:MessageSeq></ResultHeader></ars:QueryBalanceResultMsg></soapenv:Body></soapenv:Envelope>'"}
+request: <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ars="http://www.huawei.com/bme/cbsinterface/arservices" xmlns:cbs="http://www.huawei.com/bme/cbsinterface/cbscommon" xmlns:arc="http://cbs.huawei.com/ar/wsservice/arcommon">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ars:QueryBalanceRequestMsg>
+         <RequestHeader>
+            <cbs:Version>1</cbs:Version>
+            <cbs:BusinessCode>QueryBalance</cbs:BusinessCode>
+            <cbs:MessageSeq>2024-11-09T15:47:28</cbs:MessageSeq>
+            <cbs:AccessSecurity>
+               <cbs:LoginSystemCode>102</cbs:LoginSystemCode>
+               <cbs:Password>7/PuyYwNpRtSX7jDpxnl2ECAvuVYH2Mu9zxqgPGJrPYYK73MCZN7DvrDepA=</cbs:Password>
+            </cbs:AccessSecurity>
+         </RequestHeader>
+         <QueryBalanceRequest>
+            <ars:QueryObj>
+               <ars:SubAccessCode>
+                  <arc:PrimaryIdentity>9210453344</arc:PrimaryIdentity>
+               </ars:SubAccessCode>
+            </ars:QueryObj>
+         </QueryBalanceRequest>
+      </ars:QueryBalanceRequestMsg>
+   </soapenv:Body>
+</soapenv:Envelope>
+response: b'<?xml version="1.0" encoding="utf-8"?><soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"><soapenv:Body><ars:QueryBalanceResultMsg xmlns:ars="http://www.huawei.com/bme/cbsinterface/arservices" xmlns:cbs="http://www.huawei.com/bme/cbsinterface/cbscommon"><ResultHeader><cbs:Version>1</cbs:Version><cbs:ResultCode>20000003</cbs:ResultCode><cbs:MsgLanguageCode>2003</cbs:MsgLanguageCode><cbs:ResultDesc>Subscriber information verification error: The service number 9210453344 does not exist.</cbs:ResultDesc><cbs:MessageSeq>2024-11-09T15:47:28</cbs:MessageSeq></ResultHeader></ars:QueryBalanceResultMsg></soapenv:Body></soapenv:Envelope>'
+INFO:     127.0.0.1:39824 - "POST /cbs/wrapper/checkCreditLimit HTTP/1.1" 200 OK
+2024-11-09 15:52:21.502 | DEBUG    | utils.soap_client:call_service:15 - {"ServiceUrl": "http://172.22.26.40:8080/services/ArServices", "RequestHeader": "{'Content-Type': 'text/xml; charset=utf-8'}", "RequestBody": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:ars=\"http://www.huawei.com/bme/cbsinterface/arservices\" xmlns:cbs=\"http://www.huawei.com/bme/cbsinterface/cbscommon\" xmlns:arc=\"http://cbs.huawei.com/ar/wsservice/arcommon\">\n   <soapenv:Header/>\n   <soapenv:Body>\n      <ars:QueryBalanceRequestMsg>\n         <RequestHeader>\n            <cbs:Version>1</cbs:Version>\n            <cbs:BusinessCode>QueryBalance</cbs:BusinessCode>\n            <cbs:MessageSeq>2024-11-09T15:52:21</cbs:MessageSeq>\n            <cbs:AccessSecurity>\n               <cbs:LoginSystemCode>102</cbs:LoginSystemCode>\n               <cbs:Password>7/PuyYwNpRtSX7jDpxnl2ECAvuVYH2Mu9zxqgPGJrPYYK73MCZN7DvrDepA=</cbs:Password>\n            </cbs:AccessSecurity>\n         </RequestHeader>\n         <QueryBalanceRequest>\n            <ars:QueryObj>\n               <ars:SubAccessCode>\n                  <arc:PrimaryIdentity>9210450534</arc:PrimaryIdentity>\n               </ars:SubAccessCode>\n            </ars:QueryObj>\n         </QueryBalanceRequest>\n      </ars:QueryBalanceRequestMsg>\n   </soapenv:Body>\n</soapenv:Envelope>", "ResponsetHeader": "{'Server': 'nslb', 'Date': 'Sat, 09 Nov 2024 12:22:11 GMT', 'Content-Type': 'text/xml;charset=utf-8', 'Content-Length': '829', 'Connection': 'keep-alive', 'X-FRAME-OPTIONS': 'sameorigin', 'X-Content-Type-Options': 'nosniff', 'X-XSS-Protection': '1;mode=block', 'Content-Security-Policy': \"style-src 'self' 'unsafe-inline'\", 'X-Download-Options': 'noopen', 'Strict-Transport-Security': 'max-age=31536000;includeSubdomains', 'vary': 'accept-encoding', 'Content-Encoding': 'gzip'}", "ResponseBody": "b'<?xml version=\"1.0\" encoding=\"utf-8\"?><soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\"><soapenv:Body><ars:QueryBalanceResultMsg xmlns:ars=\"http://www.huawei.com/bme/cbsinterface/arservices\" xmlns:cbs=\"http://www.huawei.com/bme/cbsinterface/cbscommon\" xmlns:arc=\"http://cbs.huawei.com/ar/wsservice/arcommon\"><ResultHeader><cbs:Version>1</cbs:Version><cbs:ResultCode>0</cbs:ResultCode><cbs:MsgLanguageCode>2003</cbs:MsgLanguageCode><cbs:ResultDesc>Operation successfully.</cbs:ResultDesc><cbs:MessageSeq>2024-11-09T15:52:21</cbs:MessageSeq></ResultHeader><QueryBalanceResult><ars:AcctList><ars:AcctKey>27864396</ars:AcctKey><ars:BalanceResult><arc:BalanceType>C_MAIN_BILLING_ACCOUNT</arc:BalanceType><arc:BalanceTypeName>POS_MainAccount</arc:BalanceTypeName><arc:TotalAmount>0</arc:TotalAmount><arc:ReservedAmount>0</arc:ReservedAmount><arc:DepositFlag>N</arc:DepositFlag><arc:RefundFlag>1</arc:RefundFlag><arc:CurrencyID>1069</arc:CurrencyID><arc:BalanceDetail><arc:BalanceInstanceID>12337454</arc:BalanceInstanceID><arc:Amount>0</arc:Amount><arc:InitialAmount>0</arc:InitialAmount><arc:EffectiveTime>20240804154244</arc:EffectiveTime><arc:ExpireTime>20370101033000</arc:ExpireTime><arc:AcctBalOriginal><arc:OriginalType>0</arc:OriginalType><arc:OriginalID>0</arc:OriginalID></arc:AcctBalOriginal><arc:LastUpdateTime>20240804154244</arc:LastUpdateTime></arc:BalanceDetail></ars:BalanceResult><ars:AccountCredit><ars:CreditLimitType>C_INITIAL_CREDIT_LIMIT_LC</ars:CreditLimitType><ars:CreditLimitTypeName>LifeCycleCreditLimit</ars:CreditLimitTypeName><ars:TotalCreditAmount>1000000</ars:TotalCreditAmount><ars:TotalUsageAmount>1111202</ars:TotalUsageAmount><ars:TotalRemainAmount>-111202</ars:TotalRemainAmount><ars:CurrencyID>1069</ars:CurrencyID><ars:CreditAmountInfo><ars:CreditInstID>21165782</ars:CreditInstID><ars:LimitClass>I</ars:LimitClass><ars:Amount>1000000</ars:Amount><ars:EffectiveTime>20240804154244</ars:EffectiveTime><ars:ExpireTime>20370101033000</ars:ExpireTime></ars:CreditAmountInfo><ars:NoLimitFlag>N</ars:NoLimitFlag></ars:AccountCredit><ars:MaximumDepositAmount>8000000</ars:MaximumDepositAmount><ars:CurrentDepositAmount>0</ars:CurrentDepositAmount><ars:RemainDepositAmount>8000000</ars:RemainDepositAmount></ars:AcctList></QueryBalanceResult></ars:QueryBalanceResultMsg></soapenv:Body></soapenv:Envelope>'"}
+request: <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ars="http://www.huawei.com/bme/cbsinterface/arservices" xmlns:cbs="http://www.huawei.com/bme/cbsinterface/cbscommon" xmlns:arc="http://cbs.huawei.com/ar/wsservice/arcommon">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ars:QueryBalanceRequestMsg>
+         <RequestHeader>
+            <cbs:Version>1</cbs:Version>
+            <cbs:BusinessCode>QueryBalance</cbs:BusinessCode>
+            <cbs:MessageSeq>2024-11-09T15:52:21</cbs:MessageSeq>
+            <cbs:AccessSecurity>
+               <cbs:LoginSystemCode>102</cbs:LoginSystemCode>
+               <cbs:Password>7/PuyYwNpRtSX7jDpxnl2ECAvuVYH2Mu9zxqgPGJrPYYK73MCZN7DvrDepA=</cbs:Password>
+            </cbs:AccessSecurity>
+         </RequestHeader>
+         <QueryBalanceRequest>
+            <ars:QueryObj>
+               <ars:SubAccessCode>
+                  <arc:PrimaryIdentity>9210450534</arc:PrimaryIdentity>
+               </ars:SubAccessCode>
+            </ars:QueryObj>
+         </QueryBalanceRequest>
+      </ars:QueryBalanceRequestMsg>
+   </soapenv:Body>
+</soapenv:Envelope>
+response: b'<?xml version="1.0" encoding="utf-8"?><soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"><soapenv:Body><ars:QueryBalanceResultMsg xmlns:ars="http://www.huawei.com/bme/cbsinterface/arservices" xmlns:cbs="http://www.huawei.com/bme/cbsinterface/cbscommon" xmlns:arc="http://cbs.huawei.com/ar/wsservice/arcommon"><ResultHeader><cbs:Version>1</cbs:Version><cbs:ResultCode>0</cbs:ResultCode><cbs:MsgLanguageCode>2003</cbs:MsgLanguageCode><cbs:ResultDesc>Operation successfully.</cbs:ResultDesc><cbs:MessageSeq>2024-11-09T15:52:21</cbs:MessageSeq></ResultHeader><QueryBalanceResult><ars:AcctList><ars:AcctKey>27864396</ars:AcctKey><ars:BalanceResult><arc:BalanceType>C_MAIN_BILLING_ACCOUNT</arc:BalanceType><arc:BalanceTypeName>POS_MainAccount</arc:BalanceTypeName><arc:TotalAmount>0</arc:TotalAmount><arc:ReservedAmount>0</arc:ReservedAmount><arc:DepositFlag>N</arc:DepositFlag><arc:RefundFlag>1</arc:RefundFlag><arc:CurrencyID>1069</arc:CurrencyID><arc:BalanceDetail><arc:BalanceInstanceID>12337454</arc:BalanceInstanceID><arc:Amount>0</arc:Amount><arc:InitialAmount>0</arc:InitialAmount><arc:EffectiveTime>20240804154244</arc:EffectiveTime><arc:ExpireTime>20370101033000</arc:ExpireTime><arc:AcctBalOriginal><arc:OriginalType>0</arc:OriginalType><arc:OriginalID>0</arc:OriginalID></arc:AcctBalOriginal><arc:LastUpdateTime>20240804154244</arc:LastUpdateTime></arc:BalanceDetail></ars:BalanceResult><ars:AccountCredit><ars:CreditLimitType>C_INITIAL_CREDIT_LIMIT_LC</ars:CreditLimitType><ars:CreditLimitTypeName>LifeCycleCreditLimit</ars:CreditLimitTypeName><ars:TotalCreditAmount>1000000</ars:TotalCreditAmount><ars:TotalUsageAmount>1111202</ars:TotalUsageAmount><ars:TotalRemainAmount>-111202</ars:TotalRemainAmount><ars:CurrencyID>1069</ars:CurrencyID><ars:CreditAmountInfo><ars:CreditInstID>21165782</ars:CreditInstID><ars:LimitClass>I</ars:LimitClass><ars:Amount>1000000</ars:Amount><ars:EffectiveTime>20240804154244</ars:EffectiveTime><ars:ExpireTime>20370101033000</ars:ExpireTime></ars:CreditAmountInfo><ars:NoLimitFlag>N</ars:NoLimitFlag></ars:AccountCredit><ars:MaximumDepositAmount>8000000</ars:MaximumDepositAmount><ars:CurrentDepositAmount>0</ars:CurrentDepositAmount><ars:RemainDepositAmount>8000000</ars:RemainDepositAmount></ars:AcctList></QueryBalanceResult></ars:QueryBalanceResultMsg></soapenv:Body></soapenv:Envelope>'
+INFO:     127.0.0.1:60332 - "POST /cbs/wrapper/checkCreditLimit HTTP/1.1" 200 OK
+WARNING:  WatchFiles detected changes in 'checkCreditLimit/handlers.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [924695]
+INFO:     Started server process [1006776]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+WARNING:  WatchFiles detected changes in 'checkCreditLimit/handlers.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [1006776]
+INFO:     Started server process [1006817]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+WARNING:  WatchFiles detected changes in 'checkCreditLimit/handlers.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [1006817]
+INFO:     Started server process [1006870]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+WARNING:  WatchFiles detected changes in 'checkCreditLimit/handlers.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [1006870]
+INFO:     Started server process [1006874]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+2024-11-09 16:02:00.970 | DEBUG    | utils.soap_client:call_service:15 - {"ServiceUrl": "http://172.22.26.40:8080/services/ArServices", "RequestHeader": "{'Content-Type': 'text/xml; charset=utf-8'}", "RequestBody": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:ars=\"http://www.huawei.com/bme/cbsinterface/arservices\" xmlns:cbs=\"http://www.huawei.com/bme/cbsinterface/cbscommon\" xmlns:arc=\"http://cbs.huawei.com/ar/wsservice/arcommon\">\n   <soapenv:Header/>\n   <soapenv:Body>\n      <ars:QueryBalanceRequestMsg>\n         <RequestHeader>\n            <cbs:Version>1</cbs:Version>\n            <cbs:BusinessCode>QueryBalance</cbs:BusinessCode>\n            <cbs:MessageSeq>2024-11-09T16:02:00</cbs:MessageSeq>\n            <cbs:AccessSecurity>\n               <cbs:LoginSystemCode>102</cbs:LoginSystemCode>\n               <cbs:Password>7/PuyYwNpRtSX7jDpxnl2ECAvuVYH2Mu9zxqgPGJrPYYK73MCZN7DvrDepA=</cbs:Password>\n            </cbs:AccessSecurity>\n         </RequestHeader>\n         <QueryBalanceRequest>\n            <ars:QueryObj>\n               <ars:SubAccessCode>\n                  <arc:PrimaryIdentity>9210450534</arc:PrimaryIdentity>\n               </ars:SubAccessCode>\n            </ars:QueryObj>\n         </QueryBalanceRequest>\n      </ars:QueryBalanceRequestMsg>\n   </soapenv:Body>\n</soapenv:Envelope>", "ResponsetHeader": "{'Server': 'nslb', 'Date': 'Sat, 09 Nov 2024 12:31:50 GMT', 'Content-Type': 'text/xml;charset=utf-8', 'Content-Length': '829', 'Connection': 'keep-alive', 'X-FRAME-OPTIONS': 'sameorigin', 'X-Content-Type-Options': 'nosniff', 'X-XSS-Protection': '1;mode=block', 'Content-Security-Policy': \"style-src 'self' 'unsafe-inline'\", 'X-Download-Options': 'noopen', 'Strict-Transport-Security': 'max-age=31536000;includeSubdomains', 'vary': 'accept-encoding', 'Content-Encoding': 'gzip'}", "ResponseBody": "b'<?xml version=\"1.0\" encoding=\"utf-8\"?><soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\"><soapenv:Body><ars:QueryBalanceResultMsg xmlns:ars=\"http://www.huawei.com/bme/cbsinterface/arservices\" xmlns:cbs=\"http://www.huawei.com/bme/cbsinterface/cbscommon\" xmlns:arc=\"http://cbs.huawei.com/ar/wsservice/arcommon\"><ResultHeader><cbs:Version>1</cbs:Version><cbs:ResultCode>0</cbs:ResultCode><cbs:MsgLanguageCode>2003</cbs:MsgLanguageCode><cbs:ResultDesc>Operation successfully.</cbs:ResultDesc><cbs:MessageSeq>2024-11-09T16:02:00</cbs:MessageSeq></ResultHeader><QueryBalanceResult><ars:AcctList><ars:AcctKey>27864396</ars:AcctKey><ars:BalanceResult><arc:BalanceType>C_MAIN_BILLING_ACCOUNT</arc:BalanceType><arc:BalanceTypeName>POS_MainAccount</arc:BalanceTypeName><arc:TotalAmount>0</arc:TotalAmount><arc:ReservedAmount>0</arc:ReservedAmount><arc:DepositFlag>N</arc:DepositFlag><arc:RefundFlag>1</arc:RefundFlag><arc:CurrencyID>1069</arc:CurrencyID><arc:BalanceDetail><arc:BalanceInstanceID>12337454</arc:BalanceInstanceID><arc:Amount>0</arc:Amount><arc:InitialAmount>0</arc:InitialAmount><arc:EffectiveTime>20240804154244</arc:EffectiveTime><arc:ExpireTime>20370101033000</arc:ExpireTime><arc:AcctBalOriginal><arc:OriginalType>0</arc:OriginalType><arc:OriginalID>0</arc:OriginalID></arc:AcctBalOriginal><arc:LastUpdateTime>20240804154244</arc:LastUpdateTime></arc:BalanceDetail></ars:BalanceResult><ars:AccountCredit><ars:CreditLimitType>C_INITIAL_CREDIT_LIMIT_LC</ars:CreditLimitType><ars:CreditLimitTypeName>LifeCycleCreditLimit</ars:CreditLimitTypeName><ars:TotalCreditAmount>1000000</ars:TotalCreditAmount><ars:TotalUsageAmount>1111202</ars:TotalUsageAmount><ars:TotalRemainAmount>-111202</ars:TotalRemainAmount><ars:CurrencyID>1069</ars:CurrencyID><ars:CreditAmountInfo><ars:CreditInstID>21165782</ars:CreditInstID><ars:LimitClass>I</ars:LimitClass><ars:Amount>1000000</ars:Amount><ars:EffectiveTime>20240804154244</ars:EffectiveTime><ars:ExpireTime>20370101033000</ars:ExpireTime></ars:CreditAmountInfo><ars:NoLimitFlag>N</ars:NoLimitFlag></ars:AccountCredit><ars:MaximumDepositAmount>8000000</ars:MaximumDepositAmount><ars:CurrentDepositAmount>0</ars:CurrentDepositAmount><ars:RemainDepositAmount>8000000</ars:RemainDepositAmount></ars:AcctList></QueryBalanceResult></ars:QueryBalanceResultMsg></soapenv:Body></soapenv:Envelope>'"}
+request: <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ars="http://www.huawei.com/bme/cbsinterface/arservices" xmlns:cbs="http://www.huawei.com/bme/cbsinterface/cbscommon" xmlns:arc="http://cbs.huawei.com/ar/wsservice/arcommon">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ars:QueryBalanceRequestMsg>
+         <RequestHeader>
+            <cbs:Version>1</cbs:Version>
+            <cbs:BusinessCode>QueryBalance</cbs:BusinessCode>
+            <cbs:MessageSeq>2024-11-09T16:02:00</cbs:MessageSeq>
+            <cbs:AccessSecurity>
+               <cbs:LoginSystemCode>102</cbs:LoginSystemCode>
+               <cbs:Password>7/PuyYwNpRtSX7jDpxnl2ECAvuVYH2Mu9zxqgPGJrPYYK73MCZN7DvrDepA=</cbs:Password>
+            </cbs:AccessSecurity>
+         </RequestHeader>
+         <QueryBalanceRequest>
+            <ars:QueryObj>
+               <ars:SubAccessCode>
+                  <arc:PrimaryIdentity>9210450534</arc:PrimaryIdentity>
+               </ars:SubAccessCode>
+            </ars:QueryObj>
+         </QueryBalanceRequest>
+      </ars:QueryBalanceRequestMsg>
+   </soapenv:Body>
+</soapenv:Envelope>
+response: b'<?xml version="1.0" encoding="utf-8"?><soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"><soapenv:Body><ars:QueryBalanceResultMsg xmlns:ars="http://www.huawei.com/bme/cbsinterface/arservices" xmlns:cbs="http://www.huawei.com/bme/cbsinterface/cbscommon" xmlns:arc="http://cbs.huawei.com/ar/wsservice/arcommon"><ResultHeader><cbs:Version>1</cbs:Version><cbs:ResultCode>0</cbs:ResultCode><cbs:MsgLanguageCode>2003</cbs:MsgLanguageCode><cbs:ResultDesc>Operation successfully.</cbs:ResultDesc><cbs:MessageSeq>2024-11-09T16:02:00</cbs:MessageSeq></ResultHeader><QueryBalanceResult><ars:AcctList><ars:AcctKey>27864396</ars:AcctKey><ars:BalanceResult><arc:BalanceType>C_MAIN_BILLING_ACCOUNT</arc:BalanceType><arc:BalanceTypeName>POS_MainAccount</arc:BalanceTypeName><arc:TotalAmount>0</arc:TotalAmount><arc:ReservedAmount>0</arc:ReservedAmount><arc:DepositFlag>N</arc:DepositFlag><arc:RefundFlag>1</arc:RefundFlag><arc:CurrencyID>1069</arc:CurrencyID><arc:BalanceDetail><arc:BalanceInstanceID>12337454</arc:BalanceInstanceID><arc:Amount>0</arc:Amount><arc:InitialAmount>0</arc:InitialAmount><arc:EffectiveTime>20240804154244</arc:EffectiveTime><arc:ExpireTime>20370101033000</arc:ExpireTime><arc:AcctBalOriginal><arc:OriginalType>0</arc:OriginalType><arc:OriginalID>0</arc:OriginalID></arc:AcctBalOriginal><arc:LastUpdateTime>20240804154244</arc:LastUpdateTime></arc:BalanceDetail></ars:BalanceResult><ars:AccountCredit><ars:CreditLimitType>C_INITIAL_CREDIT_LIMIT_LC</ars:CreditLimitType><ars:CreditLimitTypeName>LifeCycleCreditLimit</ars:CreditLimitTypeName><ars:TotalCreditAmount>1000000</ars:TotalCreditAmount><ars:TotalUsageAmount>1111202</ars:TotalUsageAmount><ars:TotalRemainAmount>-111202</ars:TotalRemainAmount><ars:CurrencyID>1069</ars:CurrencyID><ars:CreditAmountInfo><ars:CreditInstID>21165782</ars:CreditInstID><ars:LimitClass>I</ars:LimitClass><ars:Amount>1000000</ars:Amount><ars:EffectiveTime>20240804154244</ars:EffectiveTime><ars:ExpireTime>20370101033000</ars:ExpireTime></ars:CreditAmountInfo><ars:NoLimitFlag>N</ars:NoLimitFlag></ars:AccountCredit><ars:MaximumDepositAmount>8000000</ars:MaximumDepositAmount><ars:CurrentDepositAmount>0</ars:CurrentDepositAmount><ars:RemainDepositAmount>8000000</ars:RemainDepositAmount></ars:AcctList></QueryBalanceResult></ars:QueryBalanceResultMsg></soapenv:Body></soapenv:Envelope>'
+CreditAvailable: -111202
+INFO:     127.0.0.1:42022 - "POST /cbs/wrapper/checkCreditLimit HTTP/1.1" 200 OK
+WARNING:  WatchFiles detected changes in 'queryAllBalance/handlers.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [1006874]
+INFO:     Started server process [1011054]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+WARNING:  WatchFiles detected changes in 'queryAllBalance/handlers.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [1011054]
+INFO:     Started server process [1011082]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.

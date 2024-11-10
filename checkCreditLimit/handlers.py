@@ -38,6 +38,7 @@ def generate_response(cbs_response) :
         NonDefaultCL = root.find('.//ars:BalanceResult[arc:BalanceType="C_DEPOSIT_ACCOUNT"]/arc:TotalAmount', namespaces)
         CreditUsed = root.find('.//ars:AccountCredit/ars:TotalUsageAmount', namespaces)
         CreditAvailable = root.find('.//ars:AccountCredit/ars:TotalRemainAmount', namespaces)
+        print('CreditAvailable:', CreditAvailable.text.strip())
         response = {
             "Balance": Balance.text.strip(),
             "CreditLimit": CreditLimit.text.strip(),
