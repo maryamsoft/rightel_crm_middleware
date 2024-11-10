@@ -55,13 +55,11 @@
                   <bcc:PropType>1</bcc:PropType>
                   <bcc:Value>{{CallerId}}</bcc:Value>
                </bcc:OInstProperty>{% endif %}
-                  <!--
                   {% if discountFee is not none %}<bcc:OInstProperty>
                      <bcc:PropCode>CN_DISCOUNT_FEE</bcc:PropCode>
                      <bcc:PropType>1</bcc:PropType>
                      <bcc:Value>{{discountFee}}</bcc:Value>
                   </bcc:OInstProperty>{% endif %}
-                  -->
                   <bcs:EffectiveTime>
                      <bcc:Mode>I</bcc:Mode>
                   </bcs:EffectiveTime>

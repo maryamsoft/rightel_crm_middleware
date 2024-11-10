@@ -44,7 +44,7 @@ def generate_response(cbs_response) :
             "DefaultCL": DefaultCL.text.strip(),
             "CreditUsed": CreditUsed.text.strip(),
             "CreditAvailable": CreditAvailable.text.strip(),
-            "NonDefaultCL" : NonDefaultCL.text.strip() if NonDefaultCL is not None else 0
+            "NonDefaultCL" : NonDefaultCL.text.strip() if NonDefaultCL is not None else None
         }
         return response
     
