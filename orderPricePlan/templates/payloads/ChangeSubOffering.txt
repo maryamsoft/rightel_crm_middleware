@@ -54,7 +54,7 @@
                   <bcc:PropCode>CN_CALLER_ID</bcc:PropCode>
                   <bcc:PropType>1</bcc:PropType>
                   <bcc:Value>{{CallerId}}</bcc:Value>
-               </bcc:OInstProperty>{% endif %}
+               <  /bcc:OInstProperty>{% endif %}
                   {% if discountFee is not none %}<bcc:OInstProperty>
                      <bcc:PropCode>C_COM_DISCOUNT_AMT</bcc:PropCode>
                      <bcc:PropType>1</bcc:PropType>
