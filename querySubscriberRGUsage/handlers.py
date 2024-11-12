@@ -39,27 +39,30 @@ def generate_response(cbs_response) :
             "responseDesc":"Successful",
             "responseCode":0
         }
-        for free_unit_item in free_unit_items:
-            offering_name = free_unit_item.find('.//bcs:OfferingName', namespaces)
-            offering_id = free_unit_item.find('.//bcc:OfferingID', namespaces)
-            purchase_seq = free_unit_item.find('.//bcc:PurchaseSeq', namespaces)
-            scenario_usage_list = free_unit_item.findall('.//bcs:ScenarioUsageList', namespaces)
-            usageRGList = []
-            for scenario_usage in scenario_usage_list:
-                rg_code = scenario_usage.find('.//bcs:ScenarioCode', namespaces)
-                used_amount = scenario_usage.find('.//bcs:UsedAmount', namespaces)
-                usageRGList.append({
-                    "rgCode": rg_code.text.strip(),
-                    "usedAmount": used_amount.text.strip()
+        try:
+            for free_unit_item in free_unit_items:
+                offering_name = free_unit_item.find('.//bcs:OfferingName', namespaces)
+                offering_id = free_unit_item.find('.//bcc:OfferingID', namespaces)
+                purchase_seq = free_unit_item.find('.//bcc:PurchaseSeq', namespaces)
+                scenario_usage_list = free_unit_item.findall('.//bcs:ScenarioUsageList', namespaces)
+                usageRGList = []
+                for scenario_usage in scenario_usage_list:
+                    rg_code = scenario_usage.find('.//bcs:ScenarioCode', namespaces)
+                    used_amount = scenario_usage.find('.//bcs:UsedAmount', namespaces)
+                    usageRGList.append({
+                        "rgCode": rg_code.text.strip(),
+                        "usedAmount": used_amount.text.strip()
+                    })
+                response['offerUsageList'].append({
+                    "offerName": offering_name.text.strip(),
+                    "offerCode": offering_id.text.strip(),
+                    "purchaseId": purchase_seq.text.strip(),
+                    "usageRGList": usageRGList
                 })
-            response['offerUsageList'].append({
-                "offerName": offering_name.text.strip(),
-                "offerCode": offering_id.text.strip(),
-                "purchaseId": purchase_seq.text.strip(),
-                "usageRGList": usageRGList
-            })
-        print('resp:', response)
-        return response
+            return response
+        except Exception as error:
+            return None
+    return None
     raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST)
 
 
