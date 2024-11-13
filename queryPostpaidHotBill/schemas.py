@@ -8,12 +8,18 @@ class QueryPostpaidHotBillRequest(BaseModel):
 
 class QueryPostpaidHotBillResponse(BaseModel):
     PayableAmount: float
-    InvoiceID: str
-    PaymentID: str
+    InvoiceId: str
+    PaymentId: str
     Subscription: Optional[float]
     AddSubscription: Optional[float]
     TotalAmout: Optional[float]
     Tax: Optional[float]
-    OutStanding: Optional[float]
+    OUTSTANDING: Optional[float]
     BillingCycleStartDate: str
     EndDate: str
+    PayableAmount
+
+
+
+
+

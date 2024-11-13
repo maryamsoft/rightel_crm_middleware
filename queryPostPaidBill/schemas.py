@@ -5,7 +5,6 @@ from pydantic import BaseModel
 
 class QueryPostPaidRequest(BaseModel):
     MSISDN: str
-    BillingCycleId: Optional[str] = None
 
     
     
