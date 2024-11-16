@@ -45,11 +45,17 @@ def generate_response(cbs_response) :
             scenario_usage_list = free_unit_item.findall('.//bcs:ScenarioUsageList', namespaces)
             usageRGList = []
             for scenario_usage in scenario_usage_list:
-                rg_code = scenario_usage.find('.//bcs:ScenarioCode', namespaces)
-                used_amount = scenario_usage.find('.//bcs:UsedAmount', namespaces)
+                rg_code = scenario_usage.find('.//bcs:ScenarioCode', namespaces).text.strip()
+                used_amount = scenario_usage.find('.//bcs:UsedAmount', namespaces).text.strip()
+                calculated_amount = scenario_usage.find('.//bcs:UsedAmount', namespaces).text.strip()
+                if rg_code == 'National':
+                    used_amount = int(used_amount) * (1024 * 1024 / 378)
+                elif rg_code == 'In-house':
+                    used_amount = int(used_amount) * 4
                 usageRGList.append({
-                    "rgCode": rg_code.text.strip(),
-                    "usedAmount": used_amount.text.strip()
+                    "rgCode": rg_code,
+                    "usedAmount": used_amount,
+                    "calculatedAmount": calculated_amount
                 })
             response['offerUsageList'].append({
                 "offerName": offering_name.text.strip(),
