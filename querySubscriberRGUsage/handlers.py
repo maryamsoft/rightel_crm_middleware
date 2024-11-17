@@ -49,9 +49,15 @@ def generate_response(cbs_response) :
                 for scenario_usage in scenario_usage_list:
                     rg_code = scenario_usage.find('.//bcs:ScenarioCode', namespaces)
                     used_amount = scenario_usage.find('.//bcs:UsedAmount', namespaces)
+                    calculated_amount = scenario_usage.find('.//bcs:UsedAmount', namespaces).text.strip()
+                    if rg_code == 'National':
+                        used_amount = int(used_amount) * (1024 * 1024 / 378)
+                    elif rg_code == 'In-house':
+                        used_amount = int(used_amount) * 4
                     usageRGList.append({
-                        "rgCode": rg_code.text.strip(),
-                        "usedAmount": used_amount.text.strip()
+                        "rgCode": rg_code,
+                        "usedAmount": used_amount,
+                        "calculatedAmount": calculated_amount
                     })
                 response['offerUsageList'].append({
                     "offerName": offering_name.text.strip(),
@@ -61,6 +67,7 @@ def generate_response(cbs_response) :
                 })
             return response
         except Exception as error:
+            print('error:', error)
             return None
     return None
     raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST)

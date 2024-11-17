@@ -29,16 +29,24 @@ def generate_response(cbs_response) :
     result_desc = root.find('.//cbs:ResultDesc', namespaces)
     if result_code is not None and result_code.text == '0':
         PayableAmount = root.find('.//ars:PayableAmount', namespaces).text
+        OUTSTANDING = PayableAmount
         InvoiceID = root.find('.//ars:AccountCode', namespaces).text
         PaymentID = root.find('.//ars:PaymentID', namespaces).text
         BillingCycleStartDate = root.find('.//ars:BillCycleBeginTime', namespaces).text
         EndDate = root.find('.//ars:EndTime', namespaces).text
         return {
             "PayableAmount": PayableAmount,
-            "InvoiceID": InvoiceID,
-            "PaymentID": PaymentID,
+            "InvoiceId": InvoiceID,
+            "PaymentId": PaymentID,
             "BillingCycleStartDate": BillingCycleStartDate,
-            "EndDate": EndDate
+            "EndDate": EndDate,
+            "OUTSTANDING": OUTSTANDING,
+            # "AcctItemListDtoList":AcctItemListDtoList,
+            # "SUBSCRIPTION":SUBSCRIPTION,
+            # "AddSubscription":AddSubscription,
+            # "TOTAL_AMOUNT":TOTAL_AMOUNT,
+            # "TAX":TAX,
+            # "MDSP":MDSP,
         }
 
     raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST)

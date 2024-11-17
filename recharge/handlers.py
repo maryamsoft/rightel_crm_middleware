@@ -77,14 +77,16 @@ def generate_response_exciting(response) :
             eff_date = balance.find('./arc:EffDate', namespaces)
             if eff_date is not None:
                 benefit_bal_dto['EffDate'] = eff_date.text.strip()
-            if exp_date is not None:
-                benefit_bal_dto['ExpDate'] = exp_date.text.strip()
+            exp_date_item = balance.find('./arc:ExpDate', namespaces)
+            if exp_date_item is not None:
+                benefit_bal_dto['ExpDate'] = exp_date_item.text.strip()
 
             benefit_bal_dto_list.append(benefit_bal_dto)
         if new_balance is not None:
             return {
                 "Balance": new_balance.text.strip(),
                 "AddBalance": add_balance,
+                "ExpDate": exp_date.text.strip(),
                 "BenefitBalDtoList": benefit_bal_dto_list
             }
 
