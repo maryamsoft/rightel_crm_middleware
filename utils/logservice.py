@@ -1,9 +1,10 @@
 
 from loguru import logger
-
+from datetime import datetime
 # Configure the logger (if necessary)
 #logger.add(sys.stderr, format="{time:MMMM D, YYYY > HH:mm:ss!UTC} | {level} | {message}", serialize=False)
-logger.add("logs/file_{time}.log",rotation="12:00",compression="zip",format="{time:MMMM D, YYYY > HH:mm:ss!UTC} | {level} | {message}",enqueue=True)
+filename="logs/file_"+datetime.now().strftime("%Y-%m-%d")+".log"
+logger.add(filename,rotation="00:00",compression="zip",format="{time:YYYY-MM-DD at HH:mm:ss} | {level} | {message}",enqueue=True)
 
 # You can add more configurations here as needed
 
