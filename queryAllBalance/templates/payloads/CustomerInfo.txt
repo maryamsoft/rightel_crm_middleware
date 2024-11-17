@@ -17,7 +17,7 @@
          <QueryCustomerInfoRequest>
             <bcs:QueryObj>
                <bcs:SubAccessCode>
-                  <bcc:PrimaryIdentity>{{msisdn}}</bcc:PrimaryIdentity>
+                  <bcc:PrimaryIdentity>{{MSISDN}}</bcc:PrimaryIdentity>
                </bcs:SubAccessCode>
             </bcs:QueryObj>
             <bcs:QueryMode>2</bcs:QueryMode>

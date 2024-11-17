@@ -10,9 +10,6 @@
                <cbs:LoginSystemCode>102</cbs:LoginSystemCode>
                <cbs:Password>7/PuyYwNpRtSX7jDpxnl2ECAvuVYH2Mu9zxqgPGJrPYYK73MCZN7DvrDepA=</cbs:Password>
             </cbs:AccessSecurity>
-            <cbs:OperatorInfo>
-               <cbs:OperatorID>101</cbs:OperatorID>
-            </cbs:OperatorInfo>
          </RequestHeader>
          <QueryDebtRequest>
             <arc:SubAccessCode>

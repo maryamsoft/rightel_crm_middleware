@@ -31,23 +31,29 @@ def generate_response(cbs_response) :
     }
     result_code = root.find('.//cbs:ResultCode', namespaces)
     result_desc = root.find('.//cbs:ResultDesc', namespaces)
-    if result_code is not None and result_code.text == '0':
-        # Balance = root.find('.//arc:NewBalanceAmt', namespaces)
-        CreditLimit = root.find('.//ars:TotalCreditAmount', namespaces)
-        DefaultCL = root.find('.//ars:Amount', namespaces)
-        # NonDefaultCL = root.find('.//arc:', namespaces) TODO: Add NonDefaultCL
-        CreditUsed = root.find('.//ars:TotalUsageAmount', namespaces)
-        CreditAvailable = root.find('.//ars:TotalRemainAmount', namespaces)
-        return {
-            "Balance": 0,
-            "CreditLimit": CreditLimit.text.strip(),
-            "DefaultCL": DefaultCL.text.strip(),
-            "NonDefaultCL": 0,
-            "CreditUsed": CreditUsed.text.strip(),
-            "CreditAvailable": CreditAvailable.text.strip()
-        }
+    try:
+        if result_code is not None and result_code.text == '0':
+            Balance = root.find('.//ars:BalanceResult[arc:BalanceType="C_MAIN_BILLING_ACCOUNT"]/arc:TotalAmount', namespaces)
+            CreditLimit = root.find('.//ars:AccountCredit/ars:TotalCreditAmount', namespaces)
+            DefaultCL = root.find('.//ars:CreditAmountInfo/ars:Amount', namespaces)
+            NonDefaultCL = root.find('.//ars:BalanceResult[arc:BalanceType="C_DEPOSIT_ACCOUNT"]/arc:TotalAmount', namespaces)
+            CreditUsed = root.find('.//ars:AccountCredit/ars:TotalUsageAmount', namespaces)
+            CreditAvailable = root.find('.//ars:AccountCredit/ars:TotalRemainAmount', namespaces)
+            IncreaseLimit = root.find('.//ars:MaximumDepositAmount', namespaces)
+            response = {
+                "Balance": Balance.text.strip() if Balance is not None else 0,
+                "CreditLimit": CreditLimit.text.strip(),
+                "DefaultCL": DefaultCL.text.strip(),
+                "CreditUsed": CreditUsed.text.strip(),
+                "CreditAvailable": CreditAvailable.text.strip(),
+                "NonDefaultCL" : NonDefaultCL.text.strip() if NonDefaultCL is not None else None,
+                "IncreaseLimit" : IncreaseLimit.text.strip()
+            }
+            return response
+    except Exception as error:
+        print('cbs_response:', error)
+        return None
     
     return None
-    raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST)
 
 

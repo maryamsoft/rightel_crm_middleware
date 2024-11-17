@@ -12,6 +12,10 @@ async def querySubscriberRGUsage(request:QuerySubscriberRGUsageRequest ,  respon
     try:
         xml_response = query_subscriber_rgusage(request)
         result = generate_response(xml_response)
-        return result
+        if result:
+            header.successful_header(response)
+            return result
+        
+        return JSONResponse(content= {})
     except Exception as error:
         raise error

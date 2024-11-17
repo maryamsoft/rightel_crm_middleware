@@ -22,7 +22,7 @@ def payg_check_request(data:PaygCheckRequest):
     
 
 def generate_response(cbs_response) :
-    print('response:', cbs_response)
+    print('cbs_response:', cbs_response)
     root = ET.fromstring(cbs_response)
     namespaces = {
     'soapenv': 'http://schemas.xmlsoap.org/soap/envelope/',
@@ -34,19 +34,23 @@ def generate_response(cbs_response) :
     result_code = root.find('.//cbs:ResultCode', namespaces)
     result_desc = root.find('.//cbs:ResultDesc', namespaces)
     if result_code is not None and result_code.text == '0':
-        ATTRIBUTE_STATUS_title = root.find('.//bcc:Code', namespaces)
+        # ATTRIBUTE_STATUS_title = root.find('.//bcc:Code', namespaces)
         ATTRIBUTE_STATUS_value = root.find('.//bcc:Value', namespaces)
-        RESPONSE_CODE = result_code.text
+        RESPONSE_CODE = result_code.text.strip()
         sub_identity = root.find('.//bcc:SubIdentity/bcc:SubIdentity', namespaces)
-        print('sub_identity:', sub_identity)
         # if sub_identity is not None:
         #     subscriberNumber = sub_identity.find('bcc:SubIdentity', namespaces).text
         return {
                 "attributeStatus":ATTRIBUTE_STATUS_value.text.strip(),
                 "responseDesc": "Successful",
-                "subscriberNumber": sub_identity,
+                "subscriberNumber": sub_identity.text.strip(),
                 "responseCode": RESPONSE_CODE
             }
-    return None
+    return {
+            "attributeStatus":"",
+            "responseDesc": result_desc.text.strip(),
+            "subscriberNumber": "",
+            "responseCode": result_code.text.strip()
+            }
 
 

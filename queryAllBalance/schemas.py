@@ -4,9 +4,9 @@ from pydantic import BaseModel
 
 
 class queryAllBalanceRequest(BaseModel):
-    msisdn: str
+    MSISDN: str
     
     
 class queryAllBalanceResponse(BaseModel):
-    OrderNbr: str
+    AllBalanceDtoList: object
 

@@ -5,7 +5,7 @@
          <RequestHeader>
             <cbs:Version>1</cbs:Version>
             <cbs:BusinessCode>QueryBalance</cbs:BusinessCode>
-            <cbs:MessageSeq>{{ datetime }}</cbs:MessageSeq>
+            <cbs:MessageSeq>{{datetime}}</cbs:MessageSeq>
             <cbs:AccessSecurity>
                <cbs:LoginSystemCode>102</cbs:LoginSystemCode>
                <cbs:Password>7/PuyYwNpRtSX7jDpxnl2ECAvuVYH2Mu9zxqgPGJrPYYK73MCZN7DvrDepA=</cbs:Password>
@@ -14,7 +14,7 @@
          <QueryBalanceRequest>
             <ars:QueryObj>
                <ars:SubAccessCode>
-                  <arc:PrimaryIdentity>{{ MSISDN }}</arc:PrimaryIdentity>
+                  <arc:PrimaryIdentity>{{MSISDN}}</arc:PrimaryIdentity>
                </ars:SubAccessCode>
             </ars:QueryObj>
          </QueryBalanceRequest>

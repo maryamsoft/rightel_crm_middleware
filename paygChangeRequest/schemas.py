@@ -9,10 +9,13 @@ class Message(BaseModel):
     modifiedBy: str
 
 class PaygChangeRequest(BaseModel):
-    mobileNum: str
-    action: str
-    sessionId: str
-    message: Message
+    subscriberNumber: int
+    opType: str
+    modifiedAt: str
+    modifiedBy: int
 
 class PaygChangeResponse(BaseModel):
-    pass
+    attributeStatus: str
+    responseDesc: str
+    subscriberNumber: str
+    responseCode: str

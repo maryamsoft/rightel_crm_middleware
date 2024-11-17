@@ -10,15 +10,13 @@
                <cbs:LoginSystemCode>102</cbs:LoginSystemCode>
                <cbs:Password>7/PuyYwNpRtSX7jDpxnl2ECAvuVYH2Mu9zxqgPGJrPYYK73MCZN7DvrDepA=</cbs:Password>
             </cbs:AccessSecurity>
-            <cbs:OperatorInfo>
-               <cbs:OperatorID>101</cbs:OperatorID>
-            </cbs:OperatorInfo>
          </RequestHeader>
          <QueryInvoiceRequest>
             <ars:AcctAccessCode>
                <arc:PrimaryIdentity>{{MSISDN}}</arc:PrimaryIdentity>
             </ars:AcctAccessCode>
-            {% if BillingCycleId is not none %}<ars:NumberOfBillCycle>{{BillingCycleId}}</ars:NumberOfBillCycle> {$ endif %}
+            {% if BillingCycleId is not none %}<ars:BillCycleID>{{BillingCycleId}}</ars:BillCycleID>{% endif %}
+            {% if NumberOfBillCycle is not none %}<ars:NumberOfBillCycle>1</ars:NumberOfBillCycle>{% endif %}
          </QueryInvoiceRequest>
       </ars:QueryInvoiceRequestMsg>
    </soapenv:Body>

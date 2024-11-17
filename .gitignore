@@ -172,4 +172,9 @@ nohup.out
 stop.sh
 start.sh
 logs/*
+<<<<<<< HEAD
 logs
+=======
+logs
+.nohup.out
+>>>>>>> development
