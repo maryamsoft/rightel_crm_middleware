@@ -17,7 +17,6 @@ class QueryPostpaidHotBillResponse(BaseModel):
     OUTSTANDING: Optional[float]
     BillingCycleStartDate: str
     EndDate: str
-    PayableAmount
 
 
 

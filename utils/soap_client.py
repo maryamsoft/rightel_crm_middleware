@@ -2,31 +2,36 @@ import requests
 from fastapi import HTTPException
 from utils.logservice import logger
 from utils.logmodel import logmodel
-from datetime import datetime
+import datetime
+
 class SOAPClient:
     def __init__(self, wsdl_url):
         self.wsdl_url = wsdl_url
 
     def call_service(self, service_name, xml_data):
         headers = {'Content-Type': 'text/xml; charset=utf-8'}
-        request_time = datetime.now()
+        req_time = datetime.datetime.now()
+        
         response = requests.post(self.wsdl_url, data=xml_data, headers=headers)
-        response_time = datetime.now()
+        
         response.raise_for_status()
+        difference = datetime.datetime.now() - req_time
+        
         if response.status_code==200:
             logger.debug(logmodel(ServiceUrl=self.wsdl_url,
                                    RequestHeader=headers,
                                    RequestBody=xml_data,
                                    ResponsetHeader=response.headers,
-                                   ResponseBody=response.content).JsonString())
-            print('different:', response_time-request_time)
+                                   ResponseBody=response.content,
+                                   TimeSpan=difference.microseconds).JsonString())
             return response.content
         else:
             logger.debug(logmodel(RemoteIP=self.wsdl_url,
                                    RequestHeader=headers,
                                    RequestBody=xml_data,
                                    ResponsetHeader="status code is:"+response.status_code,
-                                   ResponseBody="Bad content").JsonString())
+                                   ResponseBody="Bad content",
+                                   TimeSpan=difference.microseconds).JsonString())
             raise HTTPException(status_code=response.status_code, detail="Bad content")
 
 
