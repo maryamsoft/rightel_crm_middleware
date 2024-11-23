@@ -12,11 +12,12 @@ def query_post_paid_bill_handler(data):
         query_invoice_template = file.read()
     query_invoice_template = Template(query_invoice_template)
     query_invoice = query_invoice_template.render({**data.__dict__,"datetime":datetime.now().strftime("%Y-%m-%dT%H:%M:%S")})
+    print('query_invoice:', query_invoice)
     return AR_soap_client.call_service('QueryInvoice', query_invoice)
     
 
 def generate_response(cbs_response) :
-    print('response:', cbs_response)
+    print('cbs-response:', cbs_response)
     root = ET.fromstring(cbs_response)
     namespaces = {
         'soapenv': 'http://schemas.xmlsoap.org/soap/envelope/',
