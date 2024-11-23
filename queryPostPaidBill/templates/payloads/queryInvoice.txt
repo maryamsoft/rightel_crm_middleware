@@ -16,8 +16,6 @@
                <arc:PrimaryIdentity>{{MSISDN}}</arc:PrimaryIdentity>
             </ars:AcctAccessCode>
             <ars:NumberOfBillCycle>1</ars:NumberOfBillCycle>
-            {% if BillingCycleId is not None %}<ars:BillCycleID>{{BillingCycleId}}</ars:BillCycleID>{% endif %}
-            <ars:NumberOfBillCycle>1</ars:NumberOfBillCycle>
          </QueryInvoiceRequest>
       </ars:QueryInvoiceRequestMsg>
    </soapenv:Body>

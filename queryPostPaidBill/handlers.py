@@ -55,9 +55,10 @@ def generate_response(cbs_response) :
         # if AcctItemListDtoList is not None:
         #     final_resppnse['AcctItemListDtoList'] = AcctItemListDtoList.text.strip()
 
+        print('final_resppnse:', final_resppnse)
         return final_resppnse
 
 
-    
+    return None 
     raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST)
 

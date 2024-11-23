@@ -1,4 +1,3 @@
-from fastapi import APIRouter
 from fastapi import APIRouter, Response, status
 from .handlers import generate_response, customerInfo
 from .schemas import queryAllBalanceRequest, queryAllBalanceResponse

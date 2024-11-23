@@ -1,6 +1,5 @@
 from typing import Annotated, Optional
 from pydantic import BaseModel
-from pydantic import BaseModel
 
 
 class QueryPostPaidRequest(BaseModel):
@@ -9,5 +8,12 @@ class QueryPostPaidRequest(BaseModel):
     
     
 class ResponseBase(BaseModel):
-    OrderNbr: str
+    PayableAmount:str
+    InvoiceId:str
+    PaymentId:str
+    BillingCycleStartDate:str
+    BillingCycleEndDate:str
+    BillingCycleID:str
+    DateIssuance:str
+    Status:str
 
