@@ -11,26 +11,11 @@ def pay_postpaid_bill_handler(data):
     with open(app_path+'/templates/payloads/Payment.txt', 'r') as file:
         template = file.read()
     template = Template(template)
-    map_bankId = {
-        1: 1001,
-        2: 2001,
-        3: 3001
-        # TODO: Add more bankId mappings
-    }
-    map_paymentmethod ={
-        '1': '1001',
-        '2': '2001',
-        '3': '3001',
-        # TODO: Add more payment method mappings
-    }
-
+    
     values = {
          **data.__dict__,
          "datetime":datetime.now().strftime("%Y-%m-%dT%H:%M:%S"),
-         # "bankId": map_bankId.get(data.bankId, 1001)
     }
-    if data.paymentMethod is not None:
-        values['paymentMethod'] = map_paymentmethod.get(data.paymentMethod, '1001')
     xml_data = template.render(**values)
     print('request:', xml_data)
     return AR_soap_client.call_service('PayPostpaidHotBill', xml_data)

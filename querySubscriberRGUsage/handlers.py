@@ -50,10 +50,10 @@ def generate_response(cbs_response) :
                     rg_code = scenario_usage.find('.//bcs:ScenarioCode', namespaces)
                     used_amount = scenario_usage.find('.//bcs:UsedAmount', namespaces)
                     calculated_amount = scenario_usage.find('.//bcs:UsedAmount', namespaces).text.strip()
-                    if rg_code == 'National':
-                        used_amount = int(used_amount) * (1024 * 1024 / 378)
-                    elif rg_code == 'In-house':
-                        used_amount = int(used_amount) * 4
+                    # if rg_code == 'National':
+                    #     used_amount = int(used_amount) * (1024 * 1024 / 378)
+                    # elif rg_code == 'InHouseMessenger':
+                    #     used_amount = int(used_amount) * 4
                     usageRGList.append({
                         "rgCode": rg_code,
                         "usedAmount": used_amount,
