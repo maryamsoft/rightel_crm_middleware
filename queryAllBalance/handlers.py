@@ -5,7 +5,7 @@ from utils.soap_client import BC_soap_client
 import xml.etree.ElementTree as ET
 from fastapi import HTTPException, Security, status
 from datetime import datetime
-
+from utils.custom_handler import CustomException
 
 def customerInfo(data):
     # data.msisdn=9210451762
@@ -100,4 +100,4 @@ def generate_response(cbs_response):
             })
         return response
 
-    raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail=result_desc.text)
+    raise CustomException(status=result_code.text.strip(), detail=result_desc.text.strip())

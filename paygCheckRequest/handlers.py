@@ -5,6 +5,7 @@ from datetime import datetime
 from fastapi import Response
 from utils.soap_client import BC_soap_client
 from .schemas import PaygCheckRequest
+from utils.custom_handler import CustomException
 
 
 def payg_check_request(data:PaygCheckRequest):
@@ -46,11 +47,6 @@ def generate_response(cbs_response) :
                 "subscriberNumber": sub_identity.text.strip(),
                 "responseCode": RESPONSE_CODE
             }
-    return {
-            "attributeStatus":"",
-            "responseDesc": result_desc.text.strip(),
-            "subscriberNumber": "",
-            "responseCode": result_code.text.strip()
-            }
+    raise CustomException(status=result_code.text.strip(), detail=result_desc.text.strip())
 
 
