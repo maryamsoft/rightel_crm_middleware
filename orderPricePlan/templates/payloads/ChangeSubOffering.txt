@@ -35,17 +35,21 @@
                      <bcc:PropType>1</bcc:PropType>
                      <bcc:Value>{{payFlag}}</bcc:Value>
                   </bcc:OInstProperty>
-                  {% if payFlag=='2' %}
+                  {% if au is not none %}
                   <bcc:OInstProperty>
                      <bcc:PropCode>CN_AU</bcc:PropCode>
                      <bcc:PropType>1</bcc:PropType>
                      <bcc:Value>{{au}}</bcc:Value>
                   </bcc:OInstProperty>
+                  {% endif %}
+                  {% if amount is not none %}
                   <bcc:OInstProperty>
                      <bcc:PropCode>CN_FIRST_AMOUNT</bcc:PropCode>
                      <bcc:PropType>1</bcc:PropType>
                      <bcc:Value>{{amount}}</bcc:Value>
                   </bcc:OInstProperty>
+                  {% endif %}
+                  {% if bankId is not none %}
                   <bcc:OInstProperty>
                      <bcc:PropCode>CN_BANK_ID</bcc:PropCode>
                      <bcc:PropType>1</bcc:PropType>
@@ -61,7 +65,8 @@
                      <bcc:PropCode>C_COM_DISCOUNT_AMT</bcc:PropCode>
                      <bcc:PropType>1</bcc:PropType>
                      <bcc:Value>{{discountFee}}</bcc:Value>
-                  </bcc:OInstProperty>{% endif %}
+                  </bcc:OInstProperty>
+                  {% endif %}
                   <bcs:EffectiveTime>
                      <bcc:Mode>I</bcc:Mode>
                   </bcs:EffectiveTime>

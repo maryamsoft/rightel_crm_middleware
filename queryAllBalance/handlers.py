@@ -57,14 +57,14 @@ def generate_response(cbs_response):
             gross_bal = 0
             
             response['AllBalanceDtoList']['AllBalanceDto'].append({
-                "BalanceType": balance_type.text,
-                "BalanceName": balance_name.text,
-                "BalanceValue": balance_value.text,
-                "Comments": comments.text,
+                "BalanceType": balance_type.text.strip(),
+                "BalanceName": balance_name.text.strip(),
+                "BalanceValue": balance_value.text.strip(),
+                "Comments": comments.text.strip(),
                 "UnitType": unit_type,
                 "EffDate": datetime.strptime(eff_date.text.strip(), '%Y%m%d%H%M%S').strftime('%Y-%m-%d %H:%M:%S'),
                 "ExpDate": datetime.strptime(exp_date.text.strip(), '%Y%m%d%H%M%S').strftime('%Y-%m-%d %H:%M:%S'),
-                "InitBal": init_bal.text,
+                "InitBal": init_bal.text.strip(),
                 "IsShowBal": is_show_bal,
                 "IsShowExpTime": is_show_exp_time,
                 "GrossBal": gross_bal,
