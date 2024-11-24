@@ -4,7 +4,7 @@ from jinja2 import Template
 from datetime import datetime
 from utils.soap_client import AR_soap_client
 from fastapi import HTTPException, Security, status
-
+from utils.custom_handler import CustomException
 
 def pay_postpaid_bill_handler(data):
     app_path = os.path.dirname(os.path.abspath(__file__))
@@ -38,5 +38,5 @@ def generate_response(cbs_response) :
             "responseCode": None,
             "responseDesc": None
         }
-    return None    
-    raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST)
+    raise CustomException(status=result_code.text.strip(), detail=result_desc.text.strip())    
+    

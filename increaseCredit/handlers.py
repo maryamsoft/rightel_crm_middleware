@@ -4,6 +4,7 @@ from jinja2 import Template
 from datetime import datetime
 from utils.soap_client import AR_soap_client
 from .schemas import IncreaseCreditRequest
+from utils.custom_handler import CustomException
 
 
 def increase_credit(data:IncreaseCreditRequest):
@@ -32,9 +33,7 @@ def generate_response(cbs_response) :
     
     if result_code is not None and result_code.text == '0':
         return True
+    raise CustomException(status=result_code.text.strip(), detail=result_desc.text.strip())
     
-    print('result_desc:', result_desc.text)    
-    return None
-        #raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST)
 
 

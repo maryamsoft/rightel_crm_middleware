@@ -5,6 +5,7 @@ from datetime import datetime
 from fastapi import HTTPException, status
 from utils.soap_client import BC_soap_client
 from utils import body 
+from utils.custom_handler import CustomException
 
 
 def ChangeSubOffering(data):
@@ -19,23 +20,22 @@ def ChangeSubOffering(data):
     
 
 def generate_response(cbs_response) :
-        print('cbs_response:', cbs_response)
-        root = ET.fromstring(cbs_response)
-        namespaces = {
-        'soapenv': 'http://schemas.xmlsoap.org/soap/envelope/',
-        'bcs': 'http://www.huawei.com/bme/cbsinterface/bcservices',
-        'cbs': 'http://www.huawei.com/bme/cbsinterface/cbscommon',
-        'bcc': 'http://www.huawei.com/bme/cbsinterface/bccommon'
+    root = ET.fromstring(cbs_response)
+    namespaces = {
+    'soapenv': 'http://schemas.xmlsoap.org/soap/envelope/',
+    'bcs': 'http://www.huawei.com/bme/cbsinterface/bcservices',
+    'cbs': 'http://www.huawei.com/bme/cbsinterface/cbscommon',
+    'bcc': 'http://www.huawei.com/bme/cbsinterface/bccommon'
     }
 
-        result_code = root.find('.//cbs:ResultCode', namespaces)
-        result_desc = root.find('.//cbs:ResultDesc', namespaces)
-        if result_code is not None and result_code.text == '0':
-            offering_id = root.find('.//bcc:PurchaseSeq', namespaces)
-            if offering_id is not None:
-                return offering_id.text.strip()
+    result_code = root.find('.//cbs:ResultCode', namespaces)
+    result_desc = root.find('.//cbs:ResultDesc', namespaces)
+    if result_code is not None and result_code.text == '0':
+        offering_id = root.find('.//bcc:PurchaseSeq', namespaces)
+        if offering_id is not None:
+            return offering_id.text.strip()
 
-        # raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail= result_desc.text)
-        return None
+    raise CustomException(status=result_code.text.strip(), detail=result_desc.text.strip())
+        
     
 

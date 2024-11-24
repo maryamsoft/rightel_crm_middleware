@@ -4,6 +4,7 @@ from jinja2 import Template
 from datetime import datetime
 from fastapi import HTTPException, Security, status
 from utils.soap_client import AR_soap_client
+from utils.custom_handler import CustomException
 
 
 def query_post_paid_bill_handler(data):
@@ -55,10 +56,9 @@ def generate_response(cbs_response) :
         # if AcctItemListDtoList is not None:
         #     final_resppnse['AcctItemListDtoList'] = AcctItemListDtoList.text.strip()
 
-        print('final_resppnse:', final_resppnse)
         return final_resppnse
 
 
-    return None 
-    raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST)
+    raise CustomException(status=result_code.text.strip(), detail=result_desc.text.strip())
+    
 

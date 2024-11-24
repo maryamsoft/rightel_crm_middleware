@@ -6,6 +6,7 @@ from fastapi import HTTPException, status
 from utils.soap_client import BC_soap_client
 from utils import body 
 from .schemas import PaygChangeRequest
+from utils.custom_handler import CustomException
 
 
 def payg_change_request_handler(data:PaygChangeRequest):
@@ -53,10 +54,5 @@ def generate_response(cbs_response, data) :
                 "subscriberNumber": "",
                 "responseCode": "10018"
             }
-    
-    return {
-                "attributeStatus":"",
-                "responseDesc": result_desc.text.strip(),
-                "subscriberNumber": data.subscriberNumber,
-                "responseCode": result_code.text.strip()
-            }
+    else:
+        raise CustomException(status=result_code.text.strip(), detail=result_desc.text.strip())

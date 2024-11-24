@@ -5,6 +5,7 @@ from datetime import datetime
 from utils.soap_client import AR_soap_client
 from fastapi import HTTPException, Security, status
 from .schemas import RechargeRequest
+from utils.custom_handler import CustomException
 
 
 def recharge_handler(data:RechargeRequest):
@@ -90,4 +91,4 @@ def generate_response_exciting(response) :
                 "BenefitBalDtoList": benefit_bal_dto_list
             }
 
-    raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST)
+    raise CustomException(status=result_code.text.strip(), detail=result_desc.text.strip())

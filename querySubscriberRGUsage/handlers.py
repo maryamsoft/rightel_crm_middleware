@@ -6,6 +6,7 @@ from fastapi import HTTPException, status
 from utils.soap_client import BC_soap_client
 from utils import body 
 from .schemas import QuerySubscriberRGUsageRequest
+from utils.custom_handler import CustomException
 
 
 def query_subscriber_rgusage(data:QuerySubscriberRGUsageRequest):
@@ -39,37 +40,33 @@ def generate_response(cbs_response) :
             "responseDesc":"Successful",
             "responseCode":0
         }
-        try:
-            for free_unit_item in free_unit_items:
-                offering_name = free_unit_item.find('.//bcs:OfferingName', namespaces)
-                offering_id = free_unit_item.find('.//bcc:OfferingID', namespaces)
-                purchase_seq = free_unit_item.find('.//bcc:PurchaseSeq', namespaces)
-                scenario_usage_list = free_unit_item.findall('.//bcs:ScenarioUsageList', namespaces)
-                usageRGList = []
-                for scenario_usage in scenario_usage_list:
-                    rg_code = scenario_usage.find('.//bcs:ScenarioCode', namespaces)
-                    used_amount = scenario_usage.find('.//bcs:UsedAmount', namespaces)
-                    calculated_amount = scenario_usage.find('.//bcs:UsedAmount', namespaces).text.strip()
-                    # if rg_code == 'National':
-                    #     used_amount = int(used_amount) * (1024 * 1024 / 378)
-                    # elif rg_code == 'InHouseMessenger':
-                    #     used_amount = int(used_amount) * 4
-                    usageRGList.append({
-                        "rgCode": rg_code,
-                        "usedAmount": used_amount,
-                        "calculatedAmount": calculated_amount
-                    })
-                response['offerUsageList'].append({
-                    "offerName": offering_name.text.strip(),
-                    "offerCode": offering_id.text.strip(),
-                    "purchaseId": purchase_seq.text.strip(),
-                    "usageRGList": usageRGList
+        for free_unit_item in free_unit_items:
+            offering_name = free_unit_item.find('.//bcs:OfferingName', namespaces)
+            offering_id = free_unit_item.find('.//bcc:OfferingID', namespaces)
+            purchase_seq = free_unit_item.find('.//bcc:PurchaseSeq', namespaces)
+            scenario_usage_list = free_unit_item.findall('.//bcs:ScenarioUsageList', namespaces)
+            usageRGList = []
+            for scenario_usage in scenario_usage_list:
+                rg_code = scenario_usage.find('.//bcs:ScenarioCode', namespaces)
+                used_amount = scenario_usage.find('.//bcs:UsedAmount', namespaces)
+                calculated_amount = scenario_usage.find('.//bcs:UsedAmount', namespaces).text.strip()
+                # if rg_code == 'National':
+                #     used_amount = int(used_amount) * (1024 * 1024 / 378)
+                # elif rg_code == 'InHouseMessenger':
+                #     used_amount = int(used_amount) * 4
+                usageRGList.append({
+                    "rgCode": rg_code,
+                    "usedAmount": used_amount,
+                    "calculatedAmount": calculated_amount
                 })
-            return response
-        except Exception as error:
-            print('error:', error)
-            return None
-    return None
-    raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST)
+            response['offerUsageList'].append({
+                "offerName": offering_name.text.strip(),
+                "offerCode": offering_id.text.strip(),
+                "purchaseId": purchase_seq.text.strip(),
+                "usageRGList": usageRGList
+            })
+        return response
+    
+    raise CustomException(status=result_code.text.strip(), detail=result_desc.text.strip())
 
 

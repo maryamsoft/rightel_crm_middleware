@@ -10,10 +10,10 @@ from querySubscriberRGUsage.routes import router as querySubscriberRGUsageRoutes
 from paygCheckRequest.routes import router as paygCheckRequestRoutes
 from queryAllBalance.routes import router as queryAllBalance
 from paygChangeRequest.routes import router as paygChangeRequestRoutes
-
+from utils.custom_handler import custom_exception_handler, CustomException
 
 app = FastAPI()
-
+app.add_exception_handler(CustomException, custom_exception_handler)
 
 app.include_router(orderPricePlanRoutes, prefix="/cbs/wrapper/orderPricePlanOffer", tags=["orderPricePlan"])
 app.include_router(rechargesRoutes, prefix="/cbs/wrapper/recharge", tags=["recharge"])

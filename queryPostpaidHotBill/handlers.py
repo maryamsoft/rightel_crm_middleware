@@ -4,6 +4,7 @@ from jinja2 import Template
 from datetime import datetime
 from utils.soap_client import BC_soap_client
 from fastapi import HTTPException, Security, status
+from utils.custom_handler import CustomException
 
 
 def query_postpaid_hotbill_handler(data):
@@ -17,7 +18,7 @@ def query_postpaid_hotbill_handler(data):
 
 
 def generate_response(cbs_response) :
-    print('response:', cbs_response)
+    print('cbs_response:', cbs_response)
     root = ET.fromstring(cbs_response)
     namespaces = {
         'soapenv': 'http://schemas.xmlsoap.org/soap/envelope/',
@@ -49,4 +50,4 @@ def generate_response(cbs_response) :
             # "MDSP":MDSP,
         }
 
-    raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST)
+    raise CustomException(status=result_code.text.strip(), detail=result_desc.text.strip())
