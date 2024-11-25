@@ -9,7 +9,7 @@ from utils.custom_handler import CustomException
 
 def query_postpaid_hotbill_handler(data):
     app_path = os.path.dirname(os.path.abspath(__file__))
-    with open(app_path+'/templates/payloads/QueryPostpaidHotBill.txt', 'r') as file:
+    with open(app_path+'/templates/payloads/QueryDebt.txt', 'r') as file:
         template = file.read()
     template = Template(template)
     xml_data = template.render({**data.__dict__,"datetime":datetime.now().strftime("%Y-%m-%dT%H:%M:%S")})

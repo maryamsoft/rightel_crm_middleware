@@ -44,9 +44,13 @@ def generate_response(cbs_response) :
         outstainding = root.find('.//ars:OpenAmount', namespaces)
         # AcctItemListDtoList = root.findall('.//ars:AcctItemListDtoList', namespaces)
         if BillingCycleStartDate is not None:
-            final_resppnse['BillingCycleStartDate'] = BillingCycleStartDate.text.strip()
+            billing_cycle_start_date_str = str(BillingCycleStartDate.text.strip())
+            billing_cycle_start_date = datetime.strptime(billing_cycle_start_date_str, '%Y%m%d%H%M%S')
+            final_resppnse['BillingCycleStartDate'] = billing_cycle_start_date.strftime('%Y-%m-%d')
         if BillingCycleEndDate is not None:
-            final_resppnse['BillingCycleEndDate'] = BillingCycleEndDate.text.strip()
+            billing_cycle_end_date_str = str(BillingCycleEndDate.text.strip())
+            billing_cycle_end_date = datetime.strptime(billing_cycle_end_date_str, '%Y%m%d%H%M%S')
+            final_resppnse['BillingCycleEndDate'] = billing_cycle_end_date.strftime('%Y-%m-%d')
         if BillingCycleID is not None:
             final_resppnse['BillingCycleID'] = BillingCycleID.text.strip()
         if DateIssuance is not None:
