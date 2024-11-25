@@ -16,4 +16,5 @@ class ResponseBase(BaseModel):
     BillingCycleID:str
     DateIssuance:str
     Status:str
+    OUTSTAINDING:str
 
