@@ -41,7 +41,7 @@ def generate_response(cbs_response) :
         BillingCycleEndDate = root.find('.//ars:BillCycleEndTime', namespaces)
         BillingCycleID = root.find('.//ars:BillCycleID', namespaces)
         DateIssuance = root.find('.//ars:InvoiceDate', namespaces)
-        outstainding = root.find('.//ars:OpenAmount', namespaces)
+        outstanding = root.find('.//ars:OpenAmount', namespaces)
         # AcctItemListDtoList = root.findall('.//ars:AcctItemListDtoList', namespaces)
         if BillingCycleStartDate is not None:
             billing_cycle_start_date_str = str(BillingCycleStartDate.text.strip())
@@ -55,8 +55,8 @@ def generate_response(cbs_response) :
             final_resppnse['BillingCycleID'] = BillingCycleID.text.strip()
         if DateIssuance is not None:
             final_resppnse['DateIssuance'] = DateIssuance.text.strip()
-        if outstainding is not None:
-            final_resppnse['OUTSTAINDING'] = outstainding.text.strip()
+        if outstanding is not None:
+            final_resppnse['OUTSTANDING'] = outstanding.text.strip()
         # if AcctItemListDtoList is not None:
         #     final_resppnse['AcctItemListDtoList'] = AcctItemListDtoList.text.strip()
 

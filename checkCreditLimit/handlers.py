@@ -42,11 +42,11 @@ def generate_response(cbs_response) :
         response = {
             "Balance": Balance.text.strip() if Balance is not None else 0,
             "CreditLimit": CreditLimit.text.strip(),
-            "DefaultCL": DefaultCL.text.strip(),
+            "DefaultCL": DefaultCL.text.strip() if DefaultCL is not None else 0,
             "CreditUsed": CreditUsed.text.strip(),
             "CreditAvailable": CreditAvailable.text.strip(),
             "NonDefaultCL" : NonDefaultCL.text.strip() if NonDefaultCL is not None else None,
-            "IncreaseLimit" : IncreaseLimit.text.strip()
+            "IncreaseLimit" : IncreaseLimit.text.strip() if IncreaseLimit is not None else 0,
         }
         return response
     else:
