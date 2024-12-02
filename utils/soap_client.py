@@ -11,9 +11,9 @@ class SOAPClient:
     def call_service(self, service_name, xml_data):
         headers = {'Content-Type': 'text/xml; charset=utf-8'}
         req_time = datetime.datetime.now()
-        
+        print('response')
         response = requests.post(self.wsdl_url, data=xml_data, headers=headers)
-        
+        print('response:', response.status_code)
         response.raise_for_status()
         difference = datetime.datetime.now() - req_time
         
@@ -37,4 +37,5 @@ class SOAPClient:
 
 BC_soap_client = SOAPClient("http://172.22.26.40:8080/services/BcServices")
 AR_soap_client = SOAPClient("http://172.22.26.40:8080/services/ArServices")
+ArCustomized_soap_client = SOAPClient("http://172.22.26.40:8080/services/ArCustomizedServices")
 BB_soap_client = SOAPClient("http://172.22.26.40:8080/services/BBServices")
