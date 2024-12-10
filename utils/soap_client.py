@@ -12,7 +12,8 @@ class SOAPClient:
         headers = {'Content-Type': 'text/xml; charset=utf-8'}
         req_time = datetime.datetime.now()
         print('response')
-        response = requests.post(self.wsdl_url, data=xml_data, headers=headers)
+        response = requests.post(self.wsdl_url, data=xml_data, headers=headers, verify=False)
+        
         print('response:', response.status_code)
         response.raise_for_status()
         difference = datetime.datetime.now() - req_time
@@ -35,7 +36,14 @@ class SOAPClient:
             raise HTTPException(status_code=response.status_code, detail="Bad content")
 
 
-BC_soap_client = SOAPClient("http://172.22.26.40:8080/services/BcServices")
-AR_soap_client = SOAPClient("http://172.22.26.40:8080/services/ArServices")
-ArCustomized_soap_client = SOAPClient("http://172.22.26.40:8080/services/ArCustomizedServices")
-BB_soap_client = SOAPClient("http://172.22.26.40:8080/services/BBServices")
+# BC_soap_client = SOAPClient("http://172.22.26.40:8080/services/BcServices")
+# AR_soap_client = SOAPClient("http://172.22.26.40:8080/services/ArServices")
+# ArCustomized_soap_client = SOAPClient("http://172.22.26.40:8080/services/ArCustomizedServices")
+# BB_soap_client = SOAPClient("http://172.22.26.40:8080/services/BBServices")
+
+
+
+BC_soap_client = SOAPClient("https://172.22.20.119:8081/services/BcServices")
+AR_soap_client = SOAPClient("https://172.22.20.119:8081/services/ArServices")
+ArCustomized_soap_client = SOAPClient("https://172.22.20.119:8081/services/ArCustomizedServices")
+BB_soap_client = SOAPClient("https://172.22.20.119:8081/services/BBServices")
