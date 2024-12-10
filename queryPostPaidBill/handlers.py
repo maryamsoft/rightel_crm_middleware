@@ -29,14 +29,17 @@ def generate_response(cbs_response) :
     result_code = root.find('.//cbs:ResultCode', namespaces)
     result_desc = root.find('.//cbs:ResultDesc', namespaces)
     if result_code is not None and result_code.text == '0':
+        PayableAmount = root.find('.//ars:AdditionalProperty[arc:Code="CN_PAYABLE_AMOUNT"]/arc:Value', namespaces)
+        InvoiceId = root.find('.//ars:InvoiceInfo/ars:AcctCode', namespaces)
+        PaymentId = root.find('.//ars:AdditionalProperty[arc:Code="CN_PAYMENT_ID"]/arc:Value', namespaces)
         final_resppnse = {
-            "PayableAmount": root.find('.//ars:AdditionalProperty[arc:Code="CN_PAYABLE_AMOUNT"]/arc:Value', namespaces).text.strip(),
-            "InvoiceId": root.find('.//ars:InvoiceInfo/ars:AcctCode', namespaces).text.strip(),
-            "PaymentId": root.find('.//ars:AdditionalProperty[arc:Code="CN_PAYMENT_ID"]/arc:Value', namespaces).text.strip(),
+            "PayableAmount": PayableAmount.text.strip() if PayableAmount else 0,
+            "InvoiceId": InvoiceId.text.strip() if InvoiceId else 0,
+            "PaymentId": PaymentId.text.strip() if PaymentId else 0,
             
         }
-        status =  root.find('.//ars:Status', namespaces).text.strip(),
-        final_resppnse['Status'] = 0 if status == 'C' else 1
+        status =  root.find('.//ars:Status', namespaces)
+        final_resppnse['Status'] = 0 if status and status.text.strip() == 'C' else 1
         BillingCycleStartDate = root.find('.//ars:BillCycleBeginTime', namespaces)
         BillingCycleEndDate = root.find('.//ars:BillCycleEndTime', namespaces)
         BillingCycleID = root.find('.//ars:BillCycleID', namespaces)

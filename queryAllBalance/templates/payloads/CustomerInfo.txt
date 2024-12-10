@@ -23,7 +23,7 @@
             <bcs:QueryMode>2</bcs:QueryMode>
             <bcs:CustomerMask>0000</bcs:CustomerMask>
             <bcs:AccountMask>00</bcs:AccountMask>
-            <bcs:SubscriberMask>000010100000</bcs:SubscriberMask>
+            <bcs:SubscriberMask>001010100000</bcs:SubscriberMask>
             <bcs:GroupMask>00000</bcs:GroupMask>
          </QueryCustomerInfoRequest>
       </bcs:QueryCustomerInfoRequestMsg>
