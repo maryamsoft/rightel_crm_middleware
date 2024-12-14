@@ -6,6 +6,7 @@ from fastapi import HTTPException, status
 from utils.soap_client import BC_soap_client
 from utils import body 
 from utils.custom_handler import CustomException
+from utils.utils import get_login_and_password
 
 
 def ChangeSubOffering(data):
@@ -16,7 +17,8 @@ def ChangeSubOffering(data):
     changeSubOffering = changeSubOffering_template.render({**data.__dict__,"datetime":datetime.now().strftime("%Y-%m-%dT%H:%M:%S"),
                                                            "C_FREE_PAY_FLAG" : 0 if str(data.payFlag)=="1" else 1})
     print('request:', changeSubOffering)
-    return BC_soap_client.call_service('ChangeSubOffering', changeSubOffering)
+    system_auth_info = get_login_and_password()
+    return BC_soap_client.call_service('ChangeSubOffering', {**changeSubOffering, **system_auth_info})
     
 
 def generate_response(cbs_response) :
