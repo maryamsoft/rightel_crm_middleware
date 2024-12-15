@@ -10,8 +10,8 @@
                <cbs:BEID>101</cbs:BEID>
             </cbs:OwnershipInfo>
             <cbs:AccessSecurity>
-               <cbs:LoginSystemCode>102</cbs:LoginSystemCode>
-               <cbs:Password>7/PuyYwNpRtSX7jDpxnl2ECAvuVYH2Mu9zxqgPGJrPYYK73MCZN7DvrDepA=</cbs:Password>
+               <cbs:LoginSystemCode>{{LoginSystemCode}}</cbs:LoginSystemCode>
+               <cbs:Password>{{Password}}</cbs:Password>
             </cbs:AccessSecurity>
          </RequestHeader>
          <QueryCustomerInfoRequest>

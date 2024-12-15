@@ -13,12 +13,14 @@ def ChangeSubOffering(data):
     app_path = os.path.dirname(os.path.abspath(__file__))
     with open(app_path+'/templates/payloads/ChangeSubOffering.txt', 'r') as file:
         changeSubOffering_template = file.read()
+    system_auth_info = get_login_and_password()
     changeSubOffering_template = Template(changeSubOffering_template)
     changeSubOffering = changeSubOffering_template.render({**data.__dict__,"datetime":datetime.now().strftime("%Y-%m-%dT%H:%M:%S"),
-                                                           "C_FREE_PAY_FLAG" : 0 if str(data.payFlag)=="1" else 1})
+                                                           "C_FREE_PAY_FLAG" : 0 if str(data.payFlag)=="1" else 1,
+                                                           **system_auth_info
+                                                           })
     print('request:', changeSubOffering)
-    system_auth_info = get_login_and_password()
-    return BC_soap_client.call_service('ChangeSubOffering', {**changeSubOffering, **system_auth_info})
+    return BC_soap_client.call_service('ChangeSubOffering', changeSubOffering)
     
 
 def generate_response(cbs_response) :
