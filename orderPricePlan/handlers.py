@@ -3,17 +3,18 @@ import xml.etree.ElementTree as ET
 from jinja2 import Template
 from datetime import datetime
 from fastapi import HTTPException, status
+from .schemas import OrderPricePlanOfferRequest
 from utils.soap_client import BC_soap_client
 from utils import body 
 from utils.custom_handler import CustomException
 from utils.utils import get_login_and_password
 
 
-def ChangeSubOffering(data):
+def ChangeSubOffering(data:OrderPricePlanOfferRequest):
     app_path = os.path.dirname(os.path.abspath(__file__))
     with open(app_path+'/templates/payloads/ChangeSubOffering.txt', 'r') as file:
         changeSubOffering_template = file.read()
-    system_auth_info = get_login_and_password()
+    system_auth_info = get_login_and_password(data.channelId)
     changeSubOffering_template = Template(changeSubOffering_template)
     changeSubOffering = changeSubOffering_template.render({**data.__dict__,"datetime":datetime.now().strftime("%Y-%m-%dT%H:%M:%S"),
                                                            "C_FREE_PAY_FLAG" : 0 if str(data.payFlag)=="1" else 1,

@@ -13,7 +13,7 @@ def payg_check_request(data:PaygCheckRequest):
     app_path = os.path.dirname(os.path.abspath(__file__))
     with open(app_path+'/templates/payloads/QueryCustomerInfo.txt', 'r') as file:
         template = file.read()
-    system_auth_info = get_login_and_password()
+    system_auth_info = get_login_and_password(data.modifiedBy)
     template = Template(template)
     values = {
          **data.__dict__,
