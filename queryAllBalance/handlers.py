@@ -6,16 +6,19 @@ import xml.etree.ElementTree as ET
 from fastapi import HTTPException, Security, status
 from datetime import datetime
 from utils.custom_handler import CustomException
+from utils.utils import get_login_and_password
 
 def customerInfo(data):
     # data.msisdn=9210451762
     app_path = os.path.dirname(os.path.abspath(__file__))
     with open(app_path + '/templates/payloads/CustomerInfo.txt', 'r') as file:
         template = file.read()
+    system_auth_info = get_login_and_password()
     template = Template(template)
     values = {
         **data.__dict__,
         "datetime": datetime.now().strftime("%Y-%m-%dT%H:%M:%S"),
+        **system_auth_info
     }
     xml_data = template.render(**values)
     print("request:", xml_data)
@@ -44,23 +47,55 @@ def generate_response(cbs_response):
         balance_results = root.findall('.//bcs:BalanceResult', namespaces)
         free_unit_items = root.findall('.//bcs:FreeUnitItem', namespaces)
         for balance_result in balance_results:
-            balance_detail = balance_result.find('.//bcs:BalanceDetail', namespaces)
+            balance_details = balance_result.findall('.//bcs:BalanceDetail', namespaces)
             balance_type = balance_result.find('.//bcs:BalanceType', namespaces)
             balance_name = balance_result.find('.//bcs:BalanceTypeName', namespaces)
+            print('balance_type:', balance_name.text.strip())
+            en_balance_name = balance_name.text.strip().split("|")[0]
             comments = balance_result.find('.//bcs:BalanceTypeName', namespaces)
             unit_type = 1
-            eff_date = balance_result.find('.//bcs:EffectiveTime', namespaces)
-            exp_date = balance_result.find('.//bcs:ExpireTime', namespaces)
-            init_bal = balance_result.find('.//bcs:InitialAmount', namespaces)
             is_show_bal = 'N' if balance_type.text.startswith('u_') else 'Y'
             is_show_exp_time = 'Y'
             gross_bal = 0
-            for detail in balance_detail:
-                print('detail:', detail)
-                balance_value = detail.find('bcs:Amount', namespaces)
-                print('balance_value:',balance_value)
+            for detail in balance_details:
+                balance_value =  detail.find('.//bcs:Amount', namespaces)
+                eff_date = detail.find('.//bcs:EffectiveTime', namespaces)
+                exp_date = detail.find('.//bcs:ExpireTime', namespaces)
+                init_bal = detail.find('.//bcs:InitialAmount', namespaces)
                 response['AllBalanceDtoList']['AllBalanceDto'].append({
                     "BalanceType": balance_type.text.strip(),
+                    "BalanceName": en_balance_name,
+                    "BalanceValue": balance_value.text.strip(),
+                    "Comments": comments.text.strip(),
+                    "UnitType": unit_type,
+                    "EffDate": datetime.strptime(eff_date.text.strip(), '%Y%m%d%H%M%S').strftime('%Y-%m-%d %H:%M:%S'),
+                    "ExpDate": datetime.strptime(exp_date.text.strip(), '%Y%m%d%H%M%S').strftime('%Y-%m-%d %H:%M:%S'),
+                    "InitBal": init_bal.text.strip(),
+                    "IsShowBal": is_show_bal,
+                    "IsShowExpTime": is_show_exp_time,
+                    "GrossBal": gross_bal, 
+                })
+                
+        for free_unit_item in free_unit_items:
+            balance_type = free_unit_item.find('.//bcs:FreeUnitType', namespaces)
+            en_balance_type = balance_type.text.strip().split("|")[0]
+            balance_name = free_unit_item.find('.//bcs:FreeUnitTypeName', namespaces)
+            freeunit_Details = free_unit_item.findall('.//bcs:FreeUnitItemDetail', namespaces)
+            comments = free_unit_item.find('.//bcs:FreeUnitTypeName', namespaces)
+            measure_unit = free_unit_item.find('.//bcs:MeasureUnit', namespaces)
+            unit_type = 2 if measure_unit.text.strip() == '1003' else 3 if measure_unit.text.strip() == '1101' else 4
+            
+            is_show_bal = 'N' if balance_type.text.strip().startswith('u_') else 'Y'
+            is_show_exp_time = 'Y'
+            gross_bal = 0
+            free_count = 0
+            for detail in freeunit_Details:
+                balance_value = detail.find('.//bcs:CurrentAmount', namespaces)
+                eff_date = detail.find('.//bcs:EffectiveTime', namespaces)
+                exp_date = detail.find('.//bcs:ExpireTime', namespaces)
+                init_bal = detail.find('.//bcs:InitialAmount', namespaces)
+                response['AllBalanceDtoList']['AllBalanceDto'].append({
+                    "BalanceType": en_balance_type,
                     "BalanceName": balance_name.text.strip(),
                     "BalanceValue": balance_value.text.strip(),
                     "Comments": comments.text.strip(),
@@ -71,36 +106,9 @@ def generate_response(cbs_response):
                     "IsShowBal": is_show_bal,
                     "IsShowExpTime": is_show_exp_time,
                     "GrossBal": gross_bal,
-                    
-                })
-        for free_unit_item in free_unit_items:
-            balance_type = free_unit_item.find('.//bcs:FreeUnitType', namespaces)
-            balance_name = free_unit_item.find('.//bcs:FreeUnitTypeName', namespaces)
-            balance_value = free_unit_item.find('.//bcs:FreeUnitItemDetail/bcs:CurrentAmount', namespaces)
-            comments = free_unit_item.find('.//bcs:FreeUnitTypeName', namespaces)
-            measure_unit = free_unit_item.find('.//bcs:MeasureUnit', namespaces)
-            unit_type = 2 if measure_unit.text.strip() == '1003' else 3 if measure_unit.text.strip() == '1101' else 4
-            eff_date = free_unit_item.find('.//bcs:EffectiveTime', namespaces)
-            exp_date = free_unit_item.find('.//bcs:ExpireTime', namespaces)
-            init_bal = free_unit_item.find('.//bcs:InitialAmount', namespaces)
-            is_show_bal = 'N' if balance_type.text.strip().startswith('u_') else 'Y'
-            is_show_exp_time = 'Y'
-            gross_bal = 0
 
-            response['AllBalanceDtoList']['AllBalanceDto'].append({
-                "BalanceType": balance_type.text.strip(),
-                "BalanceName": balance_name.text.strip(),
-                "BalanceValue": balance_value.text.strip(),
-                "Comments": comments.text.strip(),
-                "UnitType": unit_type,
-                "EffDate": datetime.strptime(eff_date.text.strip(), '%Y%m%d%H%M%S').strftime('%Y-%m-%d %H:%M:%S'),
-                "ExpDate": datetime.strptime(exp_date.text.strip(), '%Y%m%d%H%M%S').strftime('%Y-%m-%d %H:%M:%S'),
-                "InitBal": init_bal.text.strip(),
-                "IsShowBal": is_show_bal,
-                "IsShowExpTime": is_show_exp_time,
-                "GrossBal": gross_bal,
-                
-            })
+                })
+
         return response
 
     raise CustomException(status=result_code.text.strip(), detail=result_desc.text.strip())
