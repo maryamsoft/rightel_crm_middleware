@@ -6,16 +6,19 @@ from fastapi import Response
 from utils.soap_client import BC_soap_client
 from .schemas import PaygCheckRequest
 from utils.custom_handler import CustomException
+from utils.utils import get_login_and_password
 
 
 def payg_check_request(data:PaygCheckRequest):
     app_path = os.path.dirname(os.path.abspath(__file__))
     with open(app_path+'/templates/payloads/QueryCustomerInfo.txt', 'r') as file:
         template = file.read()
+    system_auth_info = get_login_and_password(data.modifiedBy)
     template = Template(template)
     values = {
          **data.__dict__,
          "datetime":datetime.now().strftime("%Y-%m-%dT%H:%M:%S"),
+         **system_auth_info
     }
     xml_data = template.render(**values)
     print("request:", xml_data)

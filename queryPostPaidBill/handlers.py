@@ -5,14 +5,16 @@ from datetime import datetime
 from fastapi import HTTPException, Security, status
 from utils.soap_client import AR_soap_client
 from utils.custom_handler import CustomException
+from utils.utils import get_login_and_password
 
 
 def query_post_paid_bill_handler(data):
     app_path = os.path.dirname(os.path.abspath(__file__))
     with open(app_path+'/templates/payloads/queryInvoice.txt', 'r') as file:
         query_invoice_template = file.read()
+    system_auth_info = get_login_and_password()
     query_invoice_template = Template(query_invoice_template)
-    query_invoice = query_invoice_template.render({**data.__dict__,"datetime":datetime.now().strftime("%Y-%m-%dT%H:%M:%S")})
+    query_invoice = query_invoice_template.render({**data.__dict__,"datetime":datetime.now().strftime("%Y-%m-%dT%H:%M:%S"),**system_auth_info})
     print('query_invoice:', query_invoice)
     return AR_soap_client.call_service('QueryInvoice', query_invoice)
     

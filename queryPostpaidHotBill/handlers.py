@@ -5,14 +5,16 @@ from datetime import datetime
 from fastapi import HTTPException, Security, status
 from utils.soap_client import ArCustomized_soap_client
 from utils.custom_handler import CustomException
+from utils.utils import get_login_and_password
 
 
 def query_postpaid_hotbill_handler(data):
     app_path = os.path.dirname(os.path.abspath(__file__))
     with open(app_path+'/templates/payloads/QueryDebt.txt', 'r') as file:
         query_debt_template = file.read()
+    system_auth_info = get_login_and_password()
     query_debt_template = Template(query_debt_template)
-    query_debt = query_debt_template.render({**data.__dict__,"datetime":datetime.now().strftime("%Y-%m-%dT%H:%M:%S")})
+    query_debt = query_debt_template.render({**data.__dict__,"datetime":datetime.now().strftime("%Y-%m-%dT%H:%M:%S"),**system_auth_info})
     print('query_invoice:', query_debt)
     return ArCustomized_soap_client.call_service('QueryDebt', query_debt)
 
