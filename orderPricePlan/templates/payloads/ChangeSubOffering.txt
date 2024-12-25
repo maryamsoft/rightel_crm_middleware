@@ -7,7 +7,7 @@
             <cbs:BusinessCode>ChangeSubOffering</cbs:BusinessCode>
             <cbs:MessageSeq>{{datetime}}</cbs:MessageSeq>
             <cbs:AccessSecurity>
-               <cbs:LoginSystemCode>{{{{LoginSystemCode}}}}</cbs:LoginSystemCode>
+               <cbs:LoginSystemCode>{{LoginSystemCode}}</cbs:LoginSystemCode>
                <cbs:Password>{{Password}}</cbs:Password>
             </cbs:AccessSecurity>
          </RequestHeader>

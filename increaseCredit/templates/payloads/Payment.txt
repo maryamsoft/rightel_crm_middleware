@@ -13,7 +13,7 @@
          <PaymentRequest>
             <ars:PaymentSerialNo>{{msisdn}}{{bankId}}{{au}}</ars:PaymentSerialNo>
             <ars:OpType>3</ars:OpType>
-            <ars:DepositType>C_DEPOSIT_ACCOUNT</ars:DepositType>
+            <ars:DepositType>C_1228081640</ars:DepositType>
             <ars:PaymentObj>
                <ars:AcctAccessCode>
                   <arc:PrimaryIdentity>{{msisdn}}</arc:PrimaryIdentity>

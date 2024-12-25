@@ -70,8 +70,15 @@ def get_login_and_password(channel='default'):
         39: "rightelussd",
         11: "rightelvc",
     }
-    auth = {
-        'LoginSystemCode': channels_map[channel] if channel in channels_map.keys() else '102',
-    }
-    auth['Password'] = 'PW02h8AXnNsD9/EkOfyUVXjp4L9/2NKOlJEmAHHN98oqTDVezwsOXqAO6zI='
+    if channel in channels_map.keys():
+        auth = {
+            'LoginSystemCode': channels_map[channel],
+            'Password': 'PW02h8AXnNsD9/EkOfyUVXjp4L9/2NKOlJEmAHHN98oqTDVezwsOXqAO6zI='
+        }
+    else:
+        auth = {
+            'LoginSystemCode': 102,
+            'Password': '7/PuyYwNpRtSX7jDpxnl2ECAvuVYH2Mu9zxqgPGJrPYYK73MCZN7DvrDepA='
+        }
+        
     return auth

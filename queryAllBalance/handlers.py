@@ -50,6 +50,8 @@ def generate_response(cbs_response):
             balance_details = balance_result.findall('.//bcs:BalanceDetail', namespaces)
             balance_type = balance_result.find('.//bcs:BalanceType', namespaces)
             balance_name = balance_result.find('.//bcs:BalanceTypeName', namespaces)
+            print('balance_type:', balance_name.text.strip())
+            en_balance_name = balance_name.text.strip().split("|")[0]
             comments = balance_result.find('.//bcs:BalanceTypeName', namespaces)
             unit_type = 1
             is_show_bal = 'N' if balance_type.text.startswith('u_') else 'Y'
@@ -62,7 +64,7 @@ def generate_response(cbs_response):
                 init_bal = detail.find('.//bcs:InitialAmount', namespaces)
                 response['AllBalanceDtoList']['AllBalanceDto'].append({
                     "BalanceType": balance_type.text.strip(),
-                    "BalanceName": balance_name.text.strip(),
+                    "BalanceName": en_balance_name,
                     "BalanceValue": balance_value.text.strip(),
                     "Comments": comments.text.strip(),
                     "UnitType": unit_type,
@@ -76,6 +78,7 @@ def generate_response(cbs_response):
                 
         for free_unit_item in free_unit_items:
             balance_type = free_unit_item.find('.//bcs:FreeUnitType', namespaces)
+            en_balance_type = balance_type.text.strip().split("|")[0]
             balance_name = free_unit_item.find('.//bcs:FreeUnitTypeName', namespaces)
             freeunit_Details = free_unit_item.findall('.//bcs:FreeUnitItemDetail', namespaces)
             comments = free_unit_item.find('.//bcs:FreeUnitTypeName', namespaces)
@@ -92,7 +95,7 @@ def generate_response(cbs_response):
                 exp_date = detail.find('.//bcs:ExpireTime', namespaces)
                 init_bal = detail.find('.//bcs:InitialAmount', namespaces)
                 response['AllBalanceDtoList']['AllBalanceDto'].append({
-                    "BalanceType": balance_type.text.strip(),
+                    "BalanceType": en_balance_type,
                     "BalanceName": balance_name.text.strip(),
                     "BalanceValue": balance_value.text.strip(),
                     "Comments": comments.text.strip(),
