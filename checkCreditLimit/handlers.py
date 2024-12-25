@@ -4,16 +4,19 @@ from jinja2 import Template
 from datetime import datetime
 from utils.soap_client import AR_soap_client
 from utils.custom_handler import CustomException
+from utils.utils import get_login_and_password
             
 
 def check_credit_limit(data):
     app_path = os.path.dirname(os.path.abspath(__file__))
     with open(app_path+'/templates/payloads/QueryBalance.txt', 'r') as file:
         template = file.read()
+    system_auth_info = get_login_and_password()
     template = Template(template)
     values = {
          **data.__dict__,
          "datetime":datetime.now().strftime("%Y-%m-%dT%H:%M:%S"),
+         **system_auth_info
     }
     xml_data = template.render(**values)
     print("request:", xml_data)

@@ -6,16 +6,19 @@ import xml.etree.ElementTree as ET
 from fastapi import HTTPException, Security, status
 from datetime import datetime
 from utils.custom_handler import CustomException
+from utils.utils import get_login_and_password
 
 def customerInfo(data):
     # data.msisdn=9210451762
     app_path = os.path.dirname(os.path.abspath(__file__))
     with open(app_path + '/templates/payloads/CustomerInfo.txt', 'r') as file:
         template = file.read()
+    system_auth_info = get_login_and_password()
     template = Template(template)
     values = {
         **data.__dict__,
         "datetime": datetime.now().strftime("%Y-%m-%dT%H:%M:%S"),
+        **system_auth_info
     }
     xml_data = template.render(**values)
     print("request:", xml_data)

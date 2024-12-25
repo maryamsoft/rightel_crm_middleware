@@ -7,12 +7,14 @@ from utils.soap_client import BC_soap_client
 from utils import body 
 from .schemas import PaygChangeRequest
 from utils.custom_handler import CustomException
+from utils.utils import get_login_and_password
 
 
 def payg_change_request_handler(data:PaygChangeRequest):
     app_path = os.path.dirname(os.path.abspath(__file__))
     with open(app_path+'/templates/payloads/changeSubInfo.txt', 'r') as file:
         template = file.read()
+    system_auth_info = get_login_and_password(data.modifiedBy)
     template = Template(template)
     opTypeMapper = {
         "210":0, #Activate Data PAYG Service (Default Value) /current is :1
@@ -22,6 +24,7 @@ def payg_change_request_handler(data:PaygChangeRequest):
     xml_data = template.render({
         **data.__dict__,
         "datetime": datetime.now().strftime("%Y-%m-%dT%H:%M:%S"),
+        **system_auth_info
     })
     print("request:", xml_data)
     return BC_soap_client.call_service('Recharge', xml_data)
