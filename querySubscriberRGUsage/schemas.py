@@ -8,11 +8,12 @@ class QuerySubscriberRGUsageRequest(BaseModel):
 class UsageRGList(BaseModel):
     rgCode: str
     usedAmount: str
+    calculatedAmount: str
 
 class OfferUsageList(BaseModel):
-    offerName: str
-    offerCode: str
-    purchaseId: str
+    offerName: str|None=None
+    offerCode: str|None=None
+    purchaseId: str|None=None
     usageRGList: List[UsageRGList]
 
 
