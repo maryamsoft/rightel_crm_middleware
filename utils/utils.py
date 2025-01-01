@@ -61,24 +61,52 @@
 # righteltopups
 
 def get_login_and_password(channel='default'):
-    channels_map = {
-        37: "rightelcrm",
-        1000: "rightelcrm",
-        7: "rightelivr",
-        24: "rightelivr",
-        5: "rightelussd",
-        39: "rightelussd",
-        11: "rightelvc",
-    }
-    if channel in channels_map.keys():
-        auth = {
-            'LoginSystemCode': channels_map[channel],
-            'Password': 'PW02h8AXnNsD9/EkOfyUVXjp4L9/2NKOlJEmAHHN98oqTDVezwsOXqAO6zI='
-        }
-    else:
-        auth = {
+    
+    match channel:
+        case 37 | 1000:
+            auth = {
+            'LoginSystemCode': "rightelcrm",
+            'Password': 'F7udK8boapy1d4tJ/mkD2UdwXTKBMvLpb2nlVe76zYzc/Rqe'
+            }
+        case 7 | 24:
+            auth = {
+            'LoginSystemCode': "rightelivr",
+            'Password': 'fU6EGwW5LPMGij5uY1+YNFL7QSrapmhLtp1B6s1SmtB6wC6i'
+            }
+        case 5 | 39:
+            auth = {
+            'LoginSystemCode': "rightelussd",
+            'Password': 'K8KOTvTA6SALVWoQzDtBZilHt80hIyM5EtQ6p//R2wIkMj2B'
+            }
+        case 11:
+            auth = {
+            'LoginSystemCode': "rightelvc",
+            'Password': 'c9RcaLUkvE4kwiY8kV2j5W2JvEQPNxoRb546XkqIuLs9IGEE'
+            }
+        case _:
+            auth = {
             'LoginSystemCode': 102,
             'Password': '7/PuyYwNpRtSX7jDpxnl2ECAvuVYH2Mu9zxqgPGJrPYYK73MCZN7DvrDepA='
         }
+    
+    # channels_map = {
+    #     37: "rightelcrm",
+    #     1000: "rightelcrm",
+    #     7: "rightelivr",
+    #     24: "rightelivr",
+    #     5: "rightelussd",
+    #     39: "rightelussd",
+    #     11: "rightelvc",
+    # }
+    # if channel in channels_map.keys():
+    #     auth = {
+    #         'LoginSystemCode': channels_map[channel],
+    #         'Password': 'PW02h8AXnNsD9/EkOfyUVXjp4L9/2NKOlJEmAHHN98oqTDVezwsOXqAO6zI='
+    #     }
+    # else:
+    #     auth = {
+    #         'LoginSystemCode': 102,
+    #         'Password': '7/PuyYwNpRtSX7jDpxnl2ECAvuVYH2Mu9zxqgPGJrPYYK73MCZN7DvrDepA='
+    #     }
         
     return auth
