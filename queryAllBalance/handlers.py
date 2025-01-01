@@ -21,13 +21,13 @@ def customerInfo(data):
         **system_auth_info
     }
     xml_data = template.render(**values)
-    print("request:", xml_data)
+    # print("request:", xml_data)
     return BC_soap_client.call_service('QueryCustomerInfo', xml_data)
 
 
 
 def generate_response(cbs_response):
-    print("cbs_response", cbs_response)
+    # print("cbs_response", cbs_response)
     root = ET.fromstring(cbs_response)
     namespaces = {
         'soapenv': 'http://schemas.xmlsoap.org/soap/envelope/',
