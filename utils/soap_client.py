@@ -11,12 +11,14 @@ class SOAPClient:
     def call_service(self, service_name, xml_data):
         headers = {'Content-Type': 'text/xml; charset=utf-8'}
         req_time = datetime.datetime.now()
-        print('response')
+        
+        print('CBS_request_time:', req_time)
         response = requests.post(self.wsdl_url, data=xml_data, headers=headers, verify=False)
         
-        print('response:', response.status_code)
         response.raise_for_status()
         difference = datetime.datetime.now() - req_time
+        print('CBS_response_time:', datetime.datetime.now())
+        print('CBS_difference:', difference)
         
         if response.status_code==200:
             logger.debug(logmodel(ServiceUrl=self.wsdl_url,

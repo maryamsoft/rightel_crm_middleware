@@ -4,7 +4,8 @@ from datetime import datetime
 # Configure the logger (if necessary)
 #logger.add(sys.stderr, format="{time:MMMM D, YYYY > HH:mm:ss!UTC} | {level} | {message}", serialize=False)
 filename="logs/file_"+datetime.now().strftime("%Y-%m-%d")+".log"
-logger.add(filename,rotation="00:00",compression="zip",format="{time:YYYY-MM-DD at HH:mm:ss} | {level} | {message}",enqueue=True)
+logger.remove()
+logger.add(filename,rotation="00:00",compression="zip",format="{time:YYYY-MM-DD at HH:mm:ss} | {level} | {message}",enqueue=True, level="ERROR")
 
 # You can add more configurations here as needed
 
