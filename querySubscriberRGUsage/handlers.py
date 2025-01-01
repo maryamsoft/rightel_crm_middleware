@@ -92,6 +92,7 @@ def generate_response(cbs_response) :
         }
         
         for free_unit_item in free_unit_items:
+            
             FreeUnitItemDetails = free_unit_item.findall('.//bcs:FreeUnitItemDetail', namespaces)
             usageRGList = []
             for FreeUnitItemDetail in FreeUnitItemDetails:
@@ -105,7 +106,6 @@ def generate_response(cbs_response) :
                     rg_code = scenario_usage.find('.//bcs:ScenarioCode', namespaces).text.strip()
                     used_amount = scenario_usage.find('.//bcs:UsedAmount', namespaces).text.strip()
                     calculated_amount = scenario_usage.find('.//bcs:UsedAmount', namespaces).text.strip()
-                    
                     usageRGList.append({
                         "rgCode": rg_code,
                         "usedAmount": used_amount,
@@ -121,3 +121,4 @@ def generate_response(cbs_response) :
         return response
     
     raise CustomException(status=result_code.text.strip(), detail=result_desc.text.strip())
+
