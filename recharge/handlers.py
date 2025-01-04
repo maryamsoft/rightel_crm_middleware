@@ -11,13 +11,14 @@ from utils.utils import get_login_and_password
 
 def recharge_handler(data:RechargeRequest):
     app_path = os.path.dirname(os.path.abspath(__file__))
+    
     with open(app_path+'/templates/payloads/Recharge.txt', 'r') as file:
         template = file.read()
     system_auth_info = get_login_and_password()
     template = Template(template)
     xml_data = template.render({
         **data.__dict__,
-        "datetime": datetime.now().strftime("%Y-%m-%dT%H:%M:%S"),
+        "datetime": datetime.now().strftime("%Y-%m-%dT%H:%M:%S") if data.requestId is None else data.requestId ,
         **system_auth_info
     })
     print("request:", xml_data)

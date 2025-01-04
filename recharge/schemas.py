@@ -13,5 +13,9 @@ class RechargeRequest(BaseModel):
     voucherType: Optional[str] = None
     location: Optional[str] = None
     serialNumber: Optional[str] = None
+    requestId: str|None=None
 
 
+
+class CommonHeaders(BaseModel):
+    requestId : str|None = None

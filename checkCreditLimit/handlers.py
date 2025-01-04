@@ -37,6 +37,9 @@ def generate_response(cbs_response) :
     if result_code is not None and result_code.text == '0':
         Balance = root.find('.//ars:BalanceResult[arc:BalanceType="C_MAIN_BILLING_ACCOUNT"]/arc:TotalAmount', namespaces)
         CreditLimit = root.find('.//ars:AccountCredit/ars:TotalCreditAmount', namespaces)
+        CreditUsed = root.find('.//ars:AccountCredit/ars:TotalUsageAmount', namespaces)
+        CreditAvailable = root.find('.//ars:AccountCredit/ars:TotalRemainAmount', namespaces)
+        # IncreaseLimit = root.find('.//ars:AccountCredit/ars:TotalRemainAmount', namespaces)
         DefaultCL = root.find('.//ars:CreditAmountInfo/ars:Amount', namespaces)
         NonDefaultCL = root.find('.//ars:BalanceResult[arc:BalanceType="C_DEPOSIT_ACCOUNT"]/arc:TotalAmount', namespaces)
         CreditUsed = root.find('.//ars:AccountCredit/ars:TotalUsageAmount', namespaces)
@@ -50,6 +53,7 @@ def generate_response(cbs_response) :
             "CreditAvailable": CreditAvailable.text.strip(),
             "NonDefaultCL" : NonDefaultCL.text.strip() if NonDefaultCL is not None else None,
             "IncreaseLimit" : IncreaseLimit.text.strip() if IncreaseLimit is not None else 0,
+            # "CreditUsed ":"",
         }
         return response
     else:
