@@ -35,25 +35,27 @@ def generate_response(cbs_response) :
     result_desc = root.find('.//cbs:ResultDesc', namespaces)
     
     if result_code is not None and result_code.text == '0':
-        Balance = root.find('.//ars:BalanceResult[arc:BalanceType="C_MAIN_BILLING_ACCOUNT"]/arc:TotalAmount', namespaces)
+        Balance = root.find('.//ars:BalanceResult[arc:BalanceType="C_3000"]/arc:TotalAmount', namespaces)
         CreditLimit = root.find('.//ars:AccountCredit/ars:TotalCreditAmount', namespaces)
-        CreditUsed = root.find('.//ars:AccountCredit/ars:TotalUsageAmount', namespaces)
-        CreditAvailable = root.find('.//ars:AccountCredit/ars:TotalRemainAmount', namespaces)
-        # IncreaseLimit = root.find('.//ars:AccountCredit/ars:TotalRemainAmount', namespaces)
         DefaultCL = root.find('.//ars:CreditAmountInfo/ars:Amount', namespaces)
-        NonDefaultCL = root.find('.//ars:BalanceResult[arc:BalanceType="C_DEPOSIT_ACCOUNT"]/arc:TotalAmount', namespaces)
+        NonDefaultCL = root.find('.//ars:BalanceResult[arc:BalanceType="C_1228081640"]/arc:TotalAmount', namespaces)
         CreditUsed = root.find('.//ars:AccountCredit/ars:TotalUsageAmount', namespaces)
         CreditAvailable = root.find('.//ars:AccountCredit/ars:TotalRemainAmount', namespaces)
         IncreaseLimit = root.find('.//ars:MaximumDepositAmount', namespaces)
+        MaximumDepositAmount= root.find('.//ars:MaximumDepositAmount', namespaces)
+        CurrentDepositAmount= root.find('.//ars:CurrentDepositAmount', namespaces)
+        RemainDepositAmount= root.find('.//ars:RemainDepositAmount', namespaces)
         response = {
             "Balance": Balance.text.strip() if Balance is not None else 0,
             "CreditLimit": CreditLimit.text.strip(),
             "DefaultCL": DefaultCL.text.strip() if DefaultCL is not None else 0,
             "CreditUsed": CreditUsed.text.strip(),
             "CreditAvailable": CreditAvailable.text.strip(),
-            "NonDefaultCL" : NonDefaultCL.text.strip() if NonDefaultCL is not None else None,
+            "NonDefaultCl" : NonDefaultCL.text.strip() if NonDefaultCL is not None else None,
             "IncreaseLimit" : IncreaseLimit.text.strip() if IncreaseLimit is not None else 0,
-            # "CreditUsed ":"",
+            "MaximumDepositAmount" : MaximumDepositAmount.text.strip() if MaximumDepositAmount is not None else 0,
+            "CurrentDepositAmount" : CurrentDepositAmount.text.strip() if CurrentDepositAmount is not None else 0,
+            "RemainDepositAmount" : RemainDepositAmount.text.strip() if RemainDepositAmount is not None else 0,
         }
         return response
     else:
