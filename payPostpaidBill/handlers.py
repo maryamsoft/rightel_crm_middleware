@@ -16,7 +16,7 @@ def pay_postpaid_bill_handler(data):
     
     values = {
          **data.__dict__,
-         "datetime":datetime.now().strftime("%Y-%m-%dT%H:%M:%S"),
+         "datetime":datetime.now().strftime("%Y-%m-%dT%H:%M:%S.%f"),
          **system_auth_info
     }
     xml_data = template.render(**values)

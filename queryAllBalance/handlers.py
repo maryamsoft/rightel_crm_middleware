@@ -5,7 +5,7 @@ from utils.soap_client import BC_soap_client
 import xml.etree.ElementTree as ET
 from fastapi import HTTPException, Security, status
 from datetime import datetime
-from utils.custom_handler import CustomException
+from utils.custom_handler import CustomException, convert_uts_to_asia_tehran
 from utils.utils import get_login_and_password
 
 def customerInfo(data):
@@ -17,7 +17,7 @@ def customerInfo(data):
     template = Template(template)
     values = {
         **data.__dict__,
-        "datetime": datetime.now().strftime("%Y-%m-%dT%H:%M:%S"),
+        "datetime": datetime.now().strftime("%Y-%m-%dT%H:%M:%S.%f"),
         **system_auth_info
     }
     xml_data = template.render(**values)
@@ -27,6 +27,8 @@ def customerInfo(data):
 
 
 def generate_response(cbs_response):
+    tt = convert_uts_to_asia_tehran(datetime.now().strftime('%Y-%m-%dT%H:%M:%S.000Z')).strftime('%Y-%m-%d %H:%M:%S')
+    print('tt:', tt)
     # print("cbs_response", cbs_response)
     root = ET.fromstring(cbs_response)
     namespaces = {
@@ -68,8 +70,8 @@ def generate_response(cbs_response):
                     "BalanceValue": balance_value.text.strip(),
                     "Comments": comments.text.strip(),
                     "UnitType": unit_type,
-                    "EffDate": datetime.strptime(eff_date.text.strip(), '%Y%m%d%H%M%S').strftime('%Y-%m-%d %H:%M:%S'),
-                    "ExpDate": datetime.strptime(exp_date.text.strip(), '%Y%m%d%H%M%S').strftime('%Y-%m-%d %H:%M:%S'),
+                    "EffDate": convert_uts_to_asia_tehran(datetime.strptime(eff_date.text.strip(), '%Y%m%d%H%M%S').strftime('%Y-%m-%dT%H:%M:%S.000Z')).strftime('%Y-%m-%d %H:%M:%S'),
+                    "ExpDate": convert_uts_to_asia_tehran(datetime.strptime(exp_date.text.strip(), '%Y%m%d%H%M%S').strftime('%Y-%m-%dT%H:%M:%S.000Z')).strftime('%Y-%m-%d %H:%M:%S'),
                     "InitBal": init_bal.text.strip(),
                     "IsShowBal": is_show_bal,
                     "IsShowExpTime": is_show_exp_time,
@@ -100,8 +102,8 @@ def generate_response(cbs_response):
                     "BalanceValue": balance_value.text.strip(),
                     "Comments": comments.text.strip(),
                     "UnitType": unit_type,
-                    "EffDate": datetime.strptime(eff_date.text.strip(), '%Y%m%d%H%M%S').strftime('%Y-%m-%d %H:%M:%S'),
-                    "ExpDate": datetime.strptime(exp_date.text.strip(), '%Y%m%d%H%M%S').strftime('%Y-%m-%d %H:%M:%S'),
+                    "EffDate": convert_uts_to_asia_tehran(datetime.strptime(eff_date.text.strip(), '%Y%m%d%H%M%S').strftime('%Y-%m-%dT%H:%M:%S.000Z')).strftime('%Y-%m-%d %H:%M:%S'),
+                    "ExpDate": convert_uts_to_asia_tehran(datetime.strptime(exp_date.text.strip(), '%Y%m%d%H%M%S').strftime('%Y-%m-%dT%H:%M:%S.000Z')).strftime('%Y-%m-%d %H:%M:%S'),
                     "InitBal": init_bal.text.strip(),
                     "IsShowBal": is_show_bal,
                     "IsShowExpTime": is_show_exp_time,
