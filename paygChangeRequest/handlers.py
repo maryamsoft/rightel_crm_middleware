@@ -23,7 +23,7 @@ def payg_change_request_handler(data:PaygChangeRequest):
     data.opType = opTypeMapper[data.opType]
     xml_data = template.render({
         **data.__dict__,
-        "datetime": datetime.now().strftime("%Y-%m-%dT%H:%M:%S"),
+        "datetime": datetime.now().strftime("%Y-%m-%dT%H:%M:%S.%f"),
         **system_auth_info
     })
     print("request:", xml_data)
