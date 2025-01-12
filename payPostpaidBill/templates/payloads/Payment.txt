@@ -9,6 +9,9 @@
             <cbs:LoginSystemCode>{{LoginSystemCode}}</cbs:LoginSystemCode>
             <cbs:Password>{{Password}}</cbs:Password>
          </cbs:AccessSecurity>
+         <cbs:TimeFormat>
+            <cbs:TimeType>1</cbs:TimeType>
+         </cbs:TimeFormat>
       </RequestHeader>
       <PaymentRequest>
          {% if bankId is not none and  au is not none  %}
