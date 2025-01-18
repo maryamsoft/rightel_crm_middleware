@@ -10,6 +10,7 @@ from utils.utils import get_login_and_password
 
 
 def recharge_handler(data:RechargeRequest):
+    print('data:', data)
     app_path = os.path.dirname(os.path.abspath(__file__))
     
     with open(app_path+'/templates/payloads/Recharge.txt', 'r') as file:
