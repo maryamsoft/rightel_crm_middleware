@@ -17,7 +17,7 @@ def payg_check_request(data:PaygCheckRequest):
     template = Template(template)
     values = {
          **data.__dict__,
-         "datetime":datetime.now().strftime("%Y-%m-%dT%H:%M:%S.%f"),
+         "datetime":datetime.now().strftime("%Y%m%dT%H%M%S%f"),
          **system_auth_info
     }
     xml_data = template.render(**values)
