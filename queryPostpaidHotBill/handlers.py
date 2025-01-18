@@ -12,9 +12,11 @@ def query_postpaid_hotbill_handler(data):
     app_path = os.path.dirname(os.path.abspath(__file__))
     with open(app_path+'/templates/payloads/QueryDebt.txt', 'r') as file:
         query_debt_template = file.read()
-    system_auth_info = get_login_and_password()
+    # system_auth_info = get_login_and_password()
     query_debt_template = Template(query_debt_template)
-    query_debt = query_debt_template.render({**data.__dict__,"datetime":datetime.now().strftime("%Y%m%dT%H%M%S%f"),**system_auth_info})
+    query_debt = query_debt_template.render({**data.__dict__,"datetime":datetime.now().strftime("%Y%m%dT%H%M%S%f"),
+                                            #  **system_auth_info
+                                             })
     print('query_invoice:', query_debt)
     return ArCustomized_soap_client.call_service('QueryDebt', query_debt)
 

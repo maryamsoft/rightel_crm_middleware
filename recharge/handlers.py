@@ -15,12 +15,12 @@ def recharge_handler(data:RechargeRequest):
     
     with open(app_path+'/templates/payloads/Recharge.txt', 'r') as file:
         template = file.read()
-    system_auth_info = get_login_and_password()
+    # system_auth_info = get_login_and_password()
     template = Template(template)
     xml_data = template.render({
         **data.__dict__,
         "datetime": datetime.now().strftime("%Y%m%dT%H%M%S%f") if data.requestId is None else data.requestId ,
-        **system_auth_info
+        # **system_auth_info
     })
     print("request:", xml_data)
     return AR_soap_client.call_service('Recharge', xml_data)
