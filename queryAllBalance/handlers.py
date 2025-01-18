@@ -17,7 +17,7 @@ def customerInfo(data):
     template = Template(template)
     values = {
         **data.__dict__,
-        "datetime": datetime.now().strftime("%Y-%m-%dT%H:%M:%S.%f"),
+        "datetime": datetime.now().strftime("%Y%m%dT%H%M%S%f"),
         **system_auth_info
     }
     xml_data = template.render(**values)
@@ -27,8 +27,6 @@ def customerInfo(data):
 
 
 def generate_response(cbs_response):
-    tt = convert_uts_to_asia_tehran(datetime.now().strftime('%Y-%m-%dT%H:%M:%S.000Z')).strftime('%Y-%m-%d %H:%M:%S')
-    print('tt:', tt)
     # print("cbs_response", cbs_response)
     root = ET.fromstring(cbs_response)
     namespaces = {

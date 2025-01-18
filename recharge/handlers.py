@@ -19,7 +19,7 @@ def recharge_handler(data:RechargeRequest):
     template = Template(template)
     xml_data = template.render({
         **data.__dict__,
-        "datetime": datetime.now().strftime("%Y-%m-%dT%H:%M:%S.%f") if data.requestId is None else data.requestId ,
+        "datetime": datetime.now().strftime("%Y%m%dT%H%M%S%f") if data.requestId is None else data.requestId ,
         **system_auth_info
     })
     print("request:", xml_data)

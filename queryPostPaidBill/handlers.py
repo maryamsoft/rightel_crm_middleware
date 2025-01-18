@@ -14,7 +14,7 @@ def query_post_paid_bill_handler(data):
         query_invoice_template = file.read()
     system_auth_info = get_login_and_password()
     query_invoice_template = Template(query_invoice_template)
-    query_invoice = query_invoice_template.render({**data.__dict__,"datetime":datetime.now().strftime("%Y-%m-%dT%H:%M:%S.%f"),**system_auth_info})
+    query_invoice = query_invoice_template.render({**data.__dict__,"datetime":datetime.now().strftime("%Y%m%dT%H%M%S%f"),**system_auth_info})
     print('query_invoice:', query_invoice)
     return AR_soap_client.call_service('QueryInvoice', query_invoice)
     
