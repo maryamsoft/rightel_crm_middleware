@@ -10,6 +10,9 @@
                <cbs:LoginSystemCode>{{LoginSystemCode}}</cbs:LoginSystemCode>
                <cbs:Password>{{Password}}</cbs:Password>
             </cbs:AccessSecurity>
+            <cbs:TimeFormat>
+               <cbs:TimeType>1</cbs:TimeType>
+            </cbs:TimeFormat>
          </RequestHeader>
          <QueryCustomerInfoRequest>
             <bcs:QueryObj>

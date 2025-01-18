@@ -7,10 +7,8 @@ from typing import Annotated
 router = APIRouter()
 
 @router.post('')
-async def recharge_pps(request: RechargeRequest, response: Response, headers: Annotated[CommonHeaders, Header()]):
+async def recharge_pps(request: RechargeRequest, response: Response):
     try:
-        if headers.requestId:
-            request.requestId=headers.requestId
         xml_response = recharge_handler(request)
         result = generate_response(xml_response)
         # if request.paymentType == "1":
