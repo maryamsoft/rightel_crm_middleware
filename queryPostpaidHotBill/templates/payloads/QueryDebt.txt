@@ -10,9 +10,7 @@
                <cbs:LoginSystemCode>{{username}}</cbs:LoginSystemCode>
                <cbs:Password>{{password}}</cbs:Password>
             </cbs:AccessSecurity>
-            <cbs:TimeFormat>
-               <cbs:TimeType>1</cbs:TimeType>
-            </cbs:TimeFormat>
+            
          </RequestHeader>
          <QueryDebtRequest>
             <arc:SubAccessCode>
