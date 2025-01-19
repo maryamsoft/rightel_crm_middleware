@@ -51,7 +51,7 @@ def generate_response(cbs_response) :
             "DefaultCL": DefaultCL.text.strip() if DefaultCL is not None else 0,
             "CreditUsed": CreditUsed.text.strip(),
             "CreditAvailable": CreditAvailable.text.strip(),
-            "NonDefaultCl" : NonDefaultCL.text.strip() if NonDefaultCL is not None else None,
+            "NonDefaultCl" : NonDefaultCL.text.strip() if NonDefaultCL is not None else 0,
             "IncreaseLimit" : IncreaseLimit.text.strip() if IncreaseLimit is not None else 0,
             "MaximumDepositAmount" : MaximumDepositAmount.text.strip() if MaximumDepositAmount is not None else 0,
             "CurrentDepositAmount" : CurrentDepositAmount.text.strip() if CurrentDepositAmount is not None else 0,
