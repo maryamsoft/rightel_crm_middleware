@@ -70,7 +70,6 @@ def generate_exciting_response(response):
             eff_date = balance.find('.//arc:EffectiveTime', namespaces)
             benefit_bal_dto['EffDate'] = eff_date.text.strip()
             exp_date_item = balance.find('.//arc:ExpireTime', namespaces)
-            
             benefit_bal_dto['ExpDate'] = exp_date_item.text.strip()
                 
             result.append(benefit_bal_dto)
@@ -78,6 +77,25 @@ def generate_exciting_response(response):
         return result
     raise CustomException(status=result_code.text.strip(), detail=result_desc.text.strip())
 
+
+def generate_response(response):
+    print('cbs-response:', response)
+    root = ET.fromstring(response)
+    namespaces = {
+        'soapenv': 'http://schemas.xmlsoap.org/soap/envelope/',
+        'ars': 'http://www.huawei.com/bme/cbsinterface/arservices',
+        'cbs': 'http://www.huawei.com/bme/cbsinterface/cbscommon',
+        'arc': 'http://cbs.huawei.com/ar/wsservice/arcommon'
+    }
+    result_code = root.find('.//cbs:ResultCode', namespaces)
+    result_desc = root.find('.//cbs:ResultDesc', namespaces)
+    if result_code is not None and result_code.text == '0':
+        new_balance = root.find('.//arc:NewBalanceAmt', namespaces)
+        if new_balance is not None:
+            return {
+                "Balance": new_balance.text.strip()
+            }
+    raise CustomException(status=result_code.text.strip(), detail=result_desc.text.strip())
 # def  generate_response_normal(response) :
 #     print('normal:', response)
 #     root = ET.fromstring(response)
