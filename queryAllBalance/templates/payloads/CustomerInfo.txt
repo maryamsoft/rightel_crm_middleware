@@ -10,9 +10,10 @@
                <cbs:BEID>101</cbs:BEID>
             </cbs:OwnershipInfo>
             <cbs:AccessSecurity>
-               <cbs:LoginSystemCode>{{LoginSystemCode}}</cbs:LoginSystemCode>
-               <cbs:Password>{{Password}}</cbs:Password>
+               <cbs:LoginSystemCode>{{username}}</cbs:LoginSystemCode>
+               <cbs:Password>{{password}}</cbs:Password>
             </cbs:AccessSecurity>
+            
          </RequestHeader>
          <QueryCustomerInfoRequest>
             <bcs:QueryObj>

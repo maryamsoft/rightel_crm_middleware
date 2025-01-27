@@ -13,12 +13,12 @@ def customerInfo(data):
     app_path = os.path.dirname(os.path.abspath(__file__))
     with open(app_path + '/templates/payloads/CustomerInfo.txt', 'r') as file:
         template = file.read()
-    system_auth_info = get_login_and_password()
+    # system_auth_info = get_login_and_password()
     template = Template(template)
     values = {
         **data.__dict__,
-        "datetime": datetime.now().strftime("%Y-%m-%dT%H:%M:%S.%f"),
-        **system_auth_info
+        "datetime": datetime.now().strftime("%Y%m%dT%H%M%S%f"),
+        # **system_auth_info
     }
     xml_data = template.render(**values)
     # print("request:", xml_data)
@@ -27,8 +27,6 @@ def customerInfo(data):
 
 
 def generate_response(cbs_response):
-    tt = convert_uts_to_asia_tehran(datetime.now().strftime('%Y-%m-%dT%H:%M:%S.000Z')).strftime('%Y-%m-%d %H:%M:%S')
-    print('tt:', tt)
     # print("cbs_response", cbs_response)
     root = ET.fromstring(cbs_response)
     namespaces = {
@@ -70,8 +68,8 @@ def generate_response(cbs_response):
                     "BalanceValue": balance_value.text.strip(),
                     "Comments": comments.text.strip(),
                     "UnitType": unit_type,
-                    "EffDate": convert_uts_to_asia_tehran(datetime.strptime(eff_date.text.strip(), '%Y%m%d%H%M%S').strftime('%Y-%m-%dT%H:%M:%S.000Z')).strftime('%Y-%m-%d %H:%M:%S'),
-                    "ExpDate": convert_uts_to_asia_tehran(datetime.strptime(exp_date.text.strip(), '%Y%m%d%H%M%S').strftime('%Y-%m-%dT%H:%M:%S.000Z')).strftime('%Y-%m-%d %H:%M:%S'),
+                    "EffDate": datetime.strptime(eff_date.text.strip(), '%Y%m%d%H%M%S').strftime('%Y-%m-%d %H:%M:%S'),
+                    "ExpDate": datetime.strptime(exp_date.text.strip(), '%Y%m%d%H%M%S').strftime('%Y-%m-%d %H:%M:%S'),
                     "InitBal": init_bal.text.strip(),
                     "IsShowBal": is_show_bal,
                     "IsShowExpTime": is_show_exp_time,
@@ -102,8 +100,8 @@ def generate_response(cbs_response):
                     "BalanceValue": balance_value.text.strip(),
                     "Comments": comments.text.strip(),
                     "UnitType": unit_type,
-                    "EffDate": convert_uts_to_asia_tehran(datetime.strptime(eff_date.text.strip(), '%Y%m%d%H%M%S').strftime('%Y-%m-%dT%H:%M:%S.000Z')).strftime('%Y-%m-%d %H:%M:%S'),
-                    "ExpDate": convert_uts_to_asia_tehran(datetime.strptime(exp_date.text.strip(), '%Y%m%d%H%M%S').strftime('%Y-%m-%dT%H:%M:%S.000Z')).strftime('%Y-%m-%d %H:%M:%S'),
+                    "EffDate": datetime.strptime(eff_date.text.strip(), '%Y%m%d%H%M%S').strftime('%Y-%m-%d %H:%M:%S'),
+                    "ExpDate": datetime.strptime(exp_date.text.strip(), '%Y%m%d%H%M%S').strftime('%Y-%m-%d %H:%M:%S'),
                     "InitBal": init_bal.text.strip(),
                     "IsShowBal": is_show_bal,
                     "IsShowExpTime": is_show_exp_time,

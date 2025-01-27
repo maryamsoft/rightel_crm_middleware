@@ -5,7 +5,7 @@ from datetime import datetime
 #logger.add(sys.stderr, format="{time:MMMM D, YYYY > HH:mm:ss!UTC} | {level} | {message}", serialize=False)
 filename="logs/file_"+datetime.now().strftime("%Y-%m-%d")+".log"
 logger.remove()
-logger.add(filename,rotation="00:00",compression="zip",format="{time:YYYY-MM-DD at HH:mm:ss} | {level} | {message}",enqueue=True, level="ERROR")
+logger.add(filename,rotation="00:00",compression="zip",format="{time:YYYY-MM-DD at HH:mm:ss} | {level} | {message}",enqueue=True)
 
 # You can add more configurations here as needed
 

@@ -14,11 +14,11 @@ def ChangeSubOffering(data:OrderPricePlanOfferRequest):
     app_path = os.path.dirname(os.path.abspath(__file__))
     with open(app_path+'/templates/payloads/ChangeSubOffering.txt', 'r') as file:
         changeSubOffering_template = file.read()
-    system_auth_info = get_login_and_password(data.channelId)
+    # system_auth_info = get_login_and_password(data.channelId)
     changeSubOffering_template = Template(changeSubOffering_template)
-    changeSubOffering = changeSubOffering_template.render({**data.__dict__,"datetime":datetime.now().strftime("%Y-%m-%dT%H:%M:%S.%f"),
+    changeSubOffering = changeSubOffering_template.render({**data.__dict__,"datetime":datetime.now().strftime("%Y%m%dT%H%M%S%f"),
                                                            "C_FREE_PAY_FLAG" : 0 if str(data.payFlag)=="1" else 1,
-                                                           **system_auth_info
+                                                        #    **system_auth_info
                                                            })
     print('request:', changeSubOffering)
     return BC_soap_client.call_service('ChangeSubOffering', changeSubOffering)

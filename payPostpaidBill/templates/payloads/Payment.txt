@@ -6,9 +6,10 @@
          <cbs:Version>1</cbs:Version>
          <cbs:MessageSeq>{{ datetime }}</cbs:MessageSeq>
          <cbs:AccessSecurity>
-            <cbs:LoginSystemCode>{{LoginSystemCode}}</cbs:LoginSystemCode>
-            <cbs:Password>{{Password}}</cbs:Password>
+            <cbs:LoginSystemCode>{{username}}</cbs:LoginSystemCode>
+            <cbs:Password>{{password}}</cbs:Password>
          </cbs:AccessSecurity>
+        
       </RequestHeader>
       <PaymentRequest>
          {% if bankId is not none and  au is not none  %}

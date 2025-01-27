@@ -12,12 +12,12 @@ def increase_credit(data:IncreaseCreditRequest):
     app_path = os.path.dirname(os.path.abspath(__file__))
     with open(app_path+'/templates/payloads/Payment.txt', 'r') as file:
         template = file.read()
-    system_auth_info = get_login_and_password()
+    # system_auth_info = get_login_and_password()
     template = Template(template)
     values = {
          **data.__dict__,
-         "datetime":datetime.now().strftime("%Y-%m-%dT%H:%M:%S.%f"),
-         **system_auth_info
+         "datetime":datetime.now().strftime("%Y%m%dT%H%M%S%f"),
+        #  **system_auth_info
     }
     xml_data = template.render(**values)
     return AR_soap_client.call_service('IncreaseCredit', xml_data)
