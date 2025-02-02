@@ -11,4 +11,4 @@ class PayPostpaidBillRequest(CommonHeaders):
     paymentMethod: Optional[int]
     paymentId: Optional[str]
     invoiceId: Optional[str]
-    callerId: Optional[str]
+    CallerId: Optional[str]

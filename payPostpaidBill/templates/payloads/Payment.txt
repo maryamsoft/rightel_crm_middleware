@@ -44,9 +44,9 @@
          <arc:Code>CN_PAYMENTID</arc:Code>
          <arc:Value>{{paymentId}}</arc:Value>
       </ars:AdditionalProperty>{% endif %}
-         {% if callerId is not none %}<ars:AdditionalProperty>
+         {% if CallerId is not none %}<ars:AdditionalProperty>
          <arc:Code>CN_CALLERID</arc:Code>
-         <arc:Value>{{callerId}}</arc:Value>
+         <arc:Value>{{CallerId}}</arc:Value>
       </ars:AdditionalProperty>{% endif %}
       </PaymentRequest>
    </ars:PaymentRequestMsg>

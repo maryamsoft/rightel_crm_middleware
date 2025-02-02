@@ -41,6 +41,13 @@ async def router_middleware(request:Request, call_next):
         request._body = json.dumps(request_json).encode('utf-8')
     except  json.JSONDecodeError as e:
         pass
+    
+    logger.debug(logmodel(ServiceUrl=request.url,
+                                   RequestHeader= request.headers,
+                                   RequestBody=request._body,
+                                   ResponsetHeader="",
+                                   ResponseBody="",
+                                   TimeSpan=0).JsonString())
     print('request:', request._body)
     return await call_next(request) 
 

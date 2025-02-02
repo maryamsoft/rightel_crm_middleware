@@ -8,7 +8,7 @@ class RechargeRequest(CommonHeaders):
     au: Optional[str] = None
     paymentType: Optional[str] = "1"
     faceValueDtoList: Optional[List[dict]] = None
-    callerID: Optional[str] = None
+    CallerId: Optional[str] = None
     paymentMethod: Optional[int] = 1
     voucherType: Optional[str] = None
     location: Optional[str] = None

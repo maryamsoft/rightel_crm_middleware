@@ -37,9 +37,9 @@ def generate_response(cbs_response) :
         InvoiceId = root.find('.//ars:InvoiceInfo/ars:AcctCode', namespaces)
         PaymentId = root.find('.//ars:AdditionalProperty[arc:Code="CN_PAYMENT_ID"]/arc:Value', namespaces)
         final_resppnse = {
-            "PayableAmount": PayableAmount.text.strip() if PayableAmount else 0,
-            "InvoiceId": InvoiceId.text.strip() if InvoiceId else 0,
-            "PaymentId": PaymentId.text.strip() if PaymentId else 0,
+            "PayableAmount": PayableAmount.text.strip(),
+            "InvoiceId": InvoiceId.text.strip(),
+            "PaymentId": PaymentId.text.strip(),
             
         }
         status =  root.find('.//ars:Status', namespaces)
