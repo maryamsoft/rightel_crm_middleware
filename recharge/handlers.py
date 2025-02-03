@@ -39,11 +39,13 @@ def generate_normal_response(response):
         result_code = root.find('.//cbs:ResultCode', namespaces)
         result_desc = root.find('.//cbs:ResultDesc', namespaces)
         if result_code is not None and result_code.text == '0':
-            new_balance =  root.find('.//ars:BalanceChgInfo[arc:BalanceType="C_2001"]', namespaces)
+            new_balance =  root.find('.//ars:BalanceChgInfo[arc:BalanceType="C_2000"]', namespaces)
             balance =  new_balance.find('.//arc:NewBalanceAmt', namespaces)
+            AddBalance =  new_balance.find('.//arc:ChgBalanceAmt', namespaces)
             if new_balance is not None:
                 return {
-                    "Balance": balance.text.strip()
+                        "Balance": balance.text.strip(),
+                        "AddBalance":AddBalance.text.strip()
                 }
     except :
         raise CustomException(status=result_code.text.strip(), detail=result_desc.text.strip())

@@ -41,7 +41,15 @@ async def router_middleware(request:Request, call_next):
         request._body = json.dumps(request_json).encode('utf-8')
     except  json.JSONDecodeError as e:
         pass
-    print('request:', request._body)
+    
+    logger.debug(logmodel(ServiceUrl=request.url,
+                                   RequestHeader= request.headers,
+                                   RequestBody=request._body,
+                                   ResponsetHeader="",
+                                   ResponseBody="",
+                                   TimeSpan=0).JsonString())
+    print('\n')
+    print('main_request:', request._body)
     return await call_next(request) 
 
 app.include_router(orderPricePlanRoutes, prefix="/cbs/wrapper/orderPricePlanOffer", tags=["orderPricePlan"])
