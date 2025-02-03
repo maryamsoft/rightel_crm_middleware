@@ -48,7 +48,8 @@ async def router_middleware(request:Request, call_next):
                                    ResponsetHeader="",
                                    ResponseBody="",
                                    TimeSpan=0).JsonString())
-    print('request:', request._body)
+    print('\n')
+    print('main_request:', request._body)
     return await call_next(request) 
 
 app.include_router(orderPricePlanRoutes, prefix="/cbs/wrapper/orderPricePlanOffer", tags=["orderPricePlan"])
