@@ -2,7 +2,7 @@ import datetime
 from fastapi import FastAPI, Request,Response, Header
 from starlette.background import BackgroundTask
 from utils.logservice import logger
-from utils.logmodel import logmodel
+from utils.logmodel import logmodel, mainLog
 from orderPricePlan.routes import router as orderPricePlanRoutes
 from recharge.routes import router as rechargesRoutes
 from queryPostpaidHotBill.routes import router as queryPostpaidHotBillRoutes
@@ -42,12 +42,9 @@ async def router_middleware(request:Request, call_next):
     except  json.JSONDecodeError as e:
         pass
     
-    logger.debug(logmodel(ServiceUrl=request.url,
+    logger.debug(mainLog(ServiceUrl=request.url,
                                    RequestHeader= request.headers,
-                                   RequestBody=request._body,
-                                   ResponsetHeader="",
-                                   ResponseBody="",
-                                   TimeSpan=0).JsonString())
+                                   RequestBody=request._body).JsonString())
     print('\n')
     print('main_request:', request._body)
     return await call_next(request) 
