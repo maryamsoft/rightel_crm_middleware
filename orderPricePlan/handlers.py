@@ -25,6 +25,7 @@ def ChangeSubOffering(data:OrderPricePlanOfferRequest):
     
 
 def generate_response(cbs_response) :
+    print('cbs_response:', cbs_response)
     root = ET.fromstring(cbs_response)
     namespaces = {
     'soapenv': 'http://schemas.xmlsoap.org/soap/envelope/',

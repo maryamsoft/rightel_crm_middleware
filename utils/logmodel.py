@@ -15,10 +15,19 @@ class logmodel:
 
 class mainLog:
     def __init__(self,ServiceUrl, RequestHeader,RequestBody):
+        self.RequestTime =  convert_uts_to_asia_tehran().strftime("%Y-%m-%dT%H:%M:%S:%f")
         self.ServiceUrl = ServiceUrl.__str__()
         self.RequestHeader = RequestHeader.__str__()
         self.RequestBody = RequestBody.__str__()
-        self.RequestTime =  datetime.now().strftime("%Y-%m-%dT%H:%M:%S:%f")
+    def JsonString(self):
+        json_data = json.dumps(self.__dict__)
+        return json_data
+
+class CMLog:
+    def __init__(self,ResponseBody,method):
+        self.ResponseTime =  datetime.now().strftime("%Y-%m-%dT%H:%M:%S:%f")
+        self.method =  method.__str__()
+        self.ResponseBody =  ResponseBody.__str__()
     def JsonString(self):
         json_data = json.dumps(self.__dict__)
         return json_data
