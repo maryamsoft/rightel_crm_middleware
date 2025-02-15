@@ -39,14 +39,14 @@ class SOAPClient:
             raise HTTPException(status_code=response.status_code, detail="Bad content")
 
 
-BC_soap_client = SOAPClient("http://172.22.26.40:8080/services/BcServices")
-AR_soap_client = SOAPClient("http://172.22.26.40:8080/services/ArServices")
-ArCustomized_soap_client = SOAPClient("http://172.22.26.40:8080/services/ArCustomizedServices")
-BB_soap_client = SOAPClient("http://172.22.26.40:8080/services/BBServices")
+# BC_soap_client = SOAPClient("http://172.22.26.40:8080/services/BcServices")
+# AR_soap_client = SOAPClient("http://172.22.26.40:8080/services/ArServices")
+# ArCustomized_soap_client = SOAPClient("http://172.22.26.40:8080/services/ArCustomizedServices")
+# BB_soap_client = SOAPClient("http://172.22.26.40:8080/services/BBServices")
 
 
 
-# BC_soap_client = SOAPClient("https://172.22.20.119:8081/services/BcServices")
-# AR_soap_client = SOAPClient("https://172.22.20.119:8081/services/ArServices")
-# ArCustomized_soap_client = SOAPClient("https://172.22.20.119:8081/services/ArCustomizedServices")
-# BB_soap_client = SOAPClient("https://172.22.20.119:8081/services/BBServices")
+BC_soap_client = SOAPClient("https://172.22.20.119:8081/services/BcServices")
+AR_soap_client = SOAPClient("https://172.22.20.119:8081/services/ArServices")
+ArCustomized_soap_client = SOAPClient("https://172.22.20.119:8081/services/ArCustomizedServices")
+BB_soap_client = SOAPClient("https://172.22.20.119:8081/services/BBServices")
