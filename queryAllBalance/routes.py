@@ -4,7 +4,8 @@ from .schemas import queryAllBalanceRequest, queryAllBalanceResponse
 from utils import header
 from fastapi.responses import JSONResponse
 from datetime import datetime
-
+from utils.logmodel import CMLog
+from utils.logservice import logger
 router = APIRouter()
 
 
@@ -17,8 +18,10 @@ async def queryAllBalance(request: queryAllBalanceRequest, response: Response):
         if result:
                 header.successful_header(response)
                 CM_response_time =  datetime.now()
-                print('CM_response_time:', datetime.now())
-                print('CM_difference:', CM_response_time- CM_request_time)
+                # print('CM_response_time:', datetime.now())
+                # print('CM_difference:', CM_response_time- CM_request_time)
+                # print('cm-response:', result)
+                logger.debug(CMLog(method = 'queryAllBalance', ResponseBody=result).JsonString())
                 return result
                 
         header.unsuccessful_header(response)

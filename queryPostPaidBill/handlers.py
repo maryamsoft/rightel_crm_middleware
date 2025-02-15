@@ -12,9 +12,11 @@ def query_post_paid_bill_handler(data):
     app_path = os.path.dirname(os.path.abspath(__file__))
     with open(app_path+'/templates/payloads/queryInvoice.txt', 'r') as file:
         query_invoice_template = file.read()
-    system_auth_info = get_login_and_password()
+    # system_auth_info = get_login_and_password()
     query_invoice_template = Template(query_invoice_template)
-    query_invoice = query_invoice_template.render({**data.__dict__,"datetime":datetime.now().strftime("%Y-%m-%dT%H:%M:%S"),**system_auth_info})
+    query_invoice = query_invoice_template.render({**data.__dict__,"datetime":datetime.now().strftime("%Y%m%dT%H%M%S%f"),
+                                                #    **system_auth_info
+                                                })
     print('query_invoice:', query_invoice)
     return AR_soap_client.call_service('QueryInvoice', query_invoice)
     
@@ -35,9 +37,9 @@ def generate_response(cbs_response) :
         InvoiceId = root.find('.//ars:InvoiceInfo/ars:AcctCode', namespaces)
         PaymentId = root.find('.//ars:AdditionalProperty[arc:Code="CN_PAYMENT_ID"]/arc:Value', namespaces)
         final_resppnse = {
-            "PayableAmount": PayableAmount.text.strip() if PayableAmount else 0,
-            "InvoiceId": InvoiceId.text.strip() if InvoiceId else 0,
-            "PaymentId": PaymentId.text.strip() if PaymentId else 0,
+            "PayableAmount": PayableAmount.text.strip(),
+            "InvoiceId": InvoiceId.text.strip(),
+            "PaymentId": PaymentId.text.strip(),
             
         }
         status =  root.find('.//ars:Status', namespaces)

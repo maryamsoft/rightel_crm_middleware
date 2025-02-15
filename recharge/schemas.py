@@ -1,14 +1,14 @@
-from pydantic import BaseModel
+from utils.schemas import CommonHeaders
 from typing import List, Optional, Tuple
 
-class RechargeRequest(BaseModel):
+class RechargeRequest(CommonHeaders):
     msisdn: str
     amount: str
     bankId: Optional[str] = None
     au: Optional[str] = None
     paymentType: Optional[str] = "1"
     faceValueDtoList: Optional[List[dict]] = None
-    callerID: Optional[str] = None
+    CallerId: Optional[str] = None
     paymentMethod: Optional[int] = 1
     voucherType: Optional[str] = None
     location: Optional[str] = None
@@ -16,6 +16,3 @@ class RechargeRequest(BaseModel):
     requestId: str|None=None
 
 
-
-class CommonHeaders(BaseModel):
-    requestId : str|None = None

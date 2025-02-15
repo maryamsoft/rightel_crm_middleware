@@ -7,9 +7,10 @@
             <cbs:BusinessCode>QueryBalance</cbs:BusinessCode>
             <cbs:MessageSeq>{{datetime}}</cbs:MessageSeq>
             <cbs:AccessSecurity>
-               <cbs:LoginSystemCode>{{LoginSystemCode}}</cbs:LoginSystemCode>
-               <cbs:Password>{{Password}}</cbs:Password>
+               <cbs:LoginSystemCode>{{username}}</cbs:LoginSystemCode>
+               <cbs:Password>{{password}}</cbs:Password>
             </cbs:AccessSecurity>
+            
          </RequestHeader>
          <QueryBalanceRequest>
             <ars:QueryObj>

@@ -5,7 +5,7 @@ from utils.soap_client import BC_soap_client
 import xml.etree.ElementTree as ET
 from fastapi import HTTPException, Security, status
 from datetime import datetime
-from utils.custom_handler import CustomException
+from utils.custom_handler import CustomException, convert_uts_to_asia_tehran
 from utils.utils import get_login_and_password
 
 def customerInfo(data):
@@ -13,12 +13,12 @@ def customerInfo(data):
     app_path = os.path.dirname(os.path.abspath(__file__))
     with open(app_path + '/templates/payloads/CustomerInfo.txt', 'r') as file:
         template = file.read()
-    system_auth_info = get_login_and_password()
+    # system_auth_info = get_login_and_password()
     template = Template(template)
     values = {
         **data.__dict__,
-        "datetime": datetime.now().strftime("%Y-%m-%dT%H:%M:%S"),
-        **system_auth_info
+        "datetime": datetime.now().strftime("%Y%m%dT%H%M%S%f"),
+        # **system_auth_info
     }
     xml_data = template.render(**values)
     # print("request:", xml_data)
@@ -27,7 +27,7 @@ def customerInfo(data):
 
 
 def generate_response(cbs_response):
-    # print("cbs_response", cbs_response)
+    print("cbs_response", cbs_response)
     root = ET.fromstring(cbs_response)
     namespaces = {
         'soapenv': 'http://schemas.xmlsoap.org/soap/envelope/',
@@ -50,7 +50,6 @@ def generate_response(cbs_response):
             balance_details = balance_result.findall('.//bcs:BalanceDetail', namespaces)
             balance_type = balance_result.find('.//bcs:BalanceType', namespaces)
             balance_name = balance_result.find('.//bcs:BalanceTypeName', namespaces)
-            print('balance_type:', balance_name.text.strip())
             en_balance_name = balance_name.text.strip().split("|")[0]
             comments = balance_result.find('.//bcs:BalanceTypeName', namespaces)
             unit_type = 1

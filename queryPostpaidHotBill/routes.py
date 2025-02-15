@@ -3,6 +3,8 @@ from .handlers import  query_postpaid_hotbill_handler, generate_response
 from .schemas import QueryPostpaidHotBillRequest
 from utils import header
 from fastapi.responses import JSONResponse
+from utils.logmodel import CMLog
+from utils.logservice import logger
 
 router = APIRouter()
 
@@ -12,7 +14,8 @@ async def queryPostpaidHotBill(request: QueryPostpaidHotBillRequest, response: R
         xml_response = query_postpaid_hotbill_handler(request)
         result = generate_response(xml_response)
         if result:
-            header.successful_header(response)   
+            header.successful_header(response)
+            logger.debug(CMLog(method = 'queryPostpaidHotBill', ResponseBody=result).JsonString())  
             return result
         
         header.unsuccessful_header(response)

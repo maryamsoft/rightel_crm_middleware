@@ -1,7 +1,8 @@
 from pydantic import BaseModel
 from typing import List, Optional, Tuple
+from utils.schemas import CommonHeaders
 
-class PayPostpaidBillRequest(BaseModel):
+class PayPostpaidBillRequest(CommonHeaders):
     msisdn: str
     amount: str
     bankId: Optional[int]
@@ -10,4 +11,4 @@ class PayPostpaidBillRequest(BaseModel):
     paymentMethod: Optional[int]
     paymentId: Optional[str]
     invoiceId: Optional[str]
-    callerId: Optional[str]
+    CallerId: Optional[str]

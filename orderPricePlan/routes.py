@@ -3,7 +3,8 @@ from .handlers import  generate_response, ChangeSubOffering
 from .schemas import OrderPricePlanOfferRequest, ResponseBase
 from fastapi.responses import JSONResponse
 from utils import header
-
+from utils.logmodel import CMLog
+from utils.logservice import logger
 
 router = APIRouter()
 
@@ -17,6 +18,7 @@ async def orderPricePlanOffer(request: OrderPricePlanOfferRequest,  response: Re
                 'OrderNbr':result
             }
             header.successful_header(response)
+            logger.debug(CMLog(method = 'orderPricePlanOffer', ResponseBody=response_content).JsonString())
             return response_content
         return JSONResponse(content= {
             'OrderNbr':None

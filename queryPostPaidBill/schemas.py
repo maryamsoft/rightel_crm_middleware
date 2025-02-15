@@ -1,12 +1,12 @@
 from typing import Annotated, Optional
 from pydantic import BaseModel
+from utils.schemas import CommonHeaders
 
-
-class QueryPostPaidRequest(BaseModel):
+class QueryPostPaidRequest(CommonHeaders):
     MSISDN: str
 
     
-    
+#Response_Schema    
 class ResponseBase(BaseModel):
     PayableAmount:str
     InvoiceId:str

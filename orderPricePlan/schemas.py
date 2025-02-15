@@ -1,11 +1,11 @@
 from typing import Annotated, Optional
 from pydantic import BaseModel, validator
 from fastapi import FastAPI, HTTPException
-
+from utils.schemas import CommonHeaders
 
 app = FastAPI()
 
-class OrderPricePlanOfferRequest(BaseModel):
+class OrderPricePlanOfferRequest(CommonHeaders):
     msisdn: str
     offerCode: str
     channelId: int

@@ -1,10 +1,12 @@
 from pydantic import BaseModel
 from typing import List, Optional, Tuple
+from utils.schemas import CommonHeaders
 
-
-class QuerySubscriberRGUsageRequest(BaseModel):
+class QuerySubscriberRGUsageRequest(CommonHeaders):
     msisdn: str
 
+
+#Response_Schema
 class UsageRGList(BaseModel):
     rgCode: str
     usedAmount: str
