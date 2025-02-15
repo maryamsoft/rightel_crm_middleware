@@ -46,16 +46,16 @@ def generate_response(cbs_response) :
         CurrentDepositAmount= root.find('.//ars:CurrentDepositAmount', namespaces)
         RemainDepositAmount= root.find('.//ars:RemainDepositAmount', namespaces)
         response = {
-            "Balance": Balance.text.strip() if Balance is not None else 0,
+            "Balance": Balance.text.strip() ,#if Balance is not None else 0,
             "CreditLimit": CreditLimit.text.strip(),
-            "DefaultCL": DefaultCL.text.strip() if DefaultCL is not None else 0,
+            "DefaultCL": DefaultCL.text.strip() ,#if DefaultCL is not None else 0,
             "CreditUsed": CreditUsed.text.strip(),
             "CreditAvailable": CreditAvailable.text.strip(),
             "NonDefaultCL" : NonDefaultCL.text.strip() if NonDefaultCL is not None else 0,
-            "IncreaseLimit" : IncreaseLimit.text.strip() if IncreaseLimit is not None else 0,
-            "MaximumDepositAmount" : MaximumDepositAmount.text.strip() if MaximumDepositAmount is not None else 0,
-            "CurrentDepositAmount" : CurrentDepositAmount.text.strip() if CurrentDepositAmount is not None else 0,
-            "RemainDepositAmount" : RemainDepositAmount.text.strip()if RemainDepositAmount is not None else 0,
+            "IncreaseLimit" : IncreaseLimit.text.strip() ,#if IncreaseLimit is not None else 0,
+            "MaximumDepositAmount" : MaximumDepositAmount.text.strip() ,#if MaximumDepositAmount is not None else 0,
+            "CurrentDepositAmount" : CurrentDepositAmount.text.strip() ,#if CurrentDepositAmount is not None else 0,
+            "RemainDepositAmount" : RemainDepositAmount.text.strip() ,#if RemainDepositAmount is not None else 0,
         }
         return response
     else:
