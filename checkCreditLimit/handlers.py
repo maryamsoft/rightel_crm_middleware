@@ -23,7 +23,7 @@ def check_credit_limit(data):
     return AR_soap_client.call_service('CheckCreditLimit', xml_data)
     
 def generate_response(cbs_response) :
-    print('response:', cbs_response)
+    print('cbs_response:', cbs_response)
     root = ET.fromstring(cbs_response)
     namespaces = {
     'soapenv': 'http://schemas.xmlsoap.org/soap/envelope/',
@@ -51,11 +51,11 @@ def generate_response(cbs_response) :
             "DefaultCL": DefaultCL.text.strip() if DefaultCL is not None else 0,
             "CreditUsed": CreditUsed.text.strip(),
             "CreditAvailable": CreditAvailable.text.strip(),
-            "NonDefaultCl" : NonDefaultCL.text.strip() if NonDefaultCL is not None else None,
+            "NonDefaultCL" : NonDefaultCL.text.strip() if NonDefaultCL is not None else 0,
             "IncreaseLimit" : IncreaseLimit.text.strip() if IncreaseLimit is not None else 0,
             "MaximumDepositAmount" : MaximumDepositAmount.text.strip() if MaximumDepositAmount is not None else 0,
             "CurrentDepositAmount" : CurrentDepositAmount.text.strip() if CurrentDepositAmount is not None else 0,
-            "RemainDepositAmount" : RemainDepositAmount.text.strip() if RemainDepositAmount is not None else 0,
+            "RemainDepositAmount" : RemainDepositAmount.text.strip()if RemainDepositAmount is not None else 0,
         }
         return response
     else:

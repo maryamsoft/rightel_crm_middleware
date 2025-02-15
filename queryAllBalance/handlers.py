@@ -27,7 +27,7 @@ def customerInfo(data):
 
 
 def generate_response(cbs_response):
-    # print("cbs_response", cbs_response)
+    print("cbs_response", cbs_response)
     root = ET.fromstring(cbs_response)
     namespaces = {
         'soapenv': 'http://schemas.xmlsoap.org/soap/envelope/',
@@ -50,7 +50,6 @@ def generate_response(cbs_response):
             balance_details = balance_result.findall('.//bcs:BalanceDetail', namespaces)
             balance_type = balance_result.find('.//bcs:BalanceType', namespaces)
             balance_name = balance_result.find('.//bcs:BalanceTypeName', namespaces)
-            print('balance_type:', balance_name.text.strip())
             en_balance_name = balance_name.text.strip().split("|")[0]
             comments = balance_result.find('.//bcs:BalanceTypeName', namespaces)
             unit_type = 1

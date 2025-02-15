@@ -11,7 +11,7 @@ class CheckCreditLimitResponse(BaseModel):
     Balance: Optional[int]
     CreditLimit: int
     DefaultCL: int
-    NonDefaultCl: Optional[int]
+    NonDefaultCL: Optional[int]
     CreditUsed: int
     CreditAvailable: int
     IncreaseLimit: int
