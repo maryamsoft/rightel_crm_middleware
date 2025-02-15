@@ -39,6 +39,7 @@
          {% if CallerId is not none%}<ars:AdditionalProperty>
          <arc:Code>CN_CALLER_ID</arc:Code>
          <arc:Value>{{CallerId}}</arc:Value>
+      </ars:AdditionalProperty>{% endif %}
       {% if paymentType is not none and paymentType=="2" %}
          <ars:AdditionalProperty>
             <arc:Code>E_AMOUNT</arc:Code>
@@ -51,7 +52,6 @@
             <arc:Value>1</arc:Value>
          </ars:AdditionalProperty>
       {% endif %}
-      </ars:AdditionalProperty>{% endif %}
          {% if voucherType is not none%}<ars:AdditionalProperty>
          <arc:Code>CN_VC_TYPE</arc:Code>
          <arc:Value>{{voucherType}}</arc:Value>

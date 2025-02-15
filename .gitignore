@@ -176,3 +176,4 @@ logs
 nohup.out
 logs
 .nohup.out
+wget-log
