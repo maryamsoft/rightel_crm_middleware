@@ -24,10 +24,11 @@ class mainLog:
         return json_data
 
 class CMLog:
-    def __init__(self,ResponseBody,method):
+    def __init__(self,ResponseBody,method, CM_difference):
         self.ResponseTime =  datetime.now().strftime("%Y-%m-%dT%H:%M:%S:%f")
         self.method =  method.__str__()
         self.ResponseBody =  ResponseBody.__str__()
+        self.CM_difference =  CM_difference.__str__()
     def JsonString(self):
         json_data = json.dumps(self.__dict__)
         return json_data
