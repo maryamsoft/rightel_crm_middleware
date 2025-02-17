@@ -4,9 +4,12 @@ from datetime import datetime
 
 current_date  = datetime.now().strftime("%Y-%m-%d")
 # filename="/var/log/cm/File_"+datetime.now().strftime("%Y-%m-%d")+".log"
-filename= f"/var/log/cm/File_{current_date}.log"
+#filename= f"/var/log/cm/File_{current_date}.log"
+filename= f"/var/log/cm/cm.log"
+
 # logger.remove()
-logger.add(filename,rotation="00:00",format="{time:YYYY-MM-DD at HH:mm:ss} | {level} | {message}",enqueue=True)
+#logger.add(filename,rotation="00:00",format="{time:YYYY-MM-DD at HH:mm:ss} | {level} | {message}",enqueue=True)
+logger.add(filename,rotation=None,format="{time:YYYY-MM-DD at HH:mm:ss} | {level} | {message}",enqueue=True)
 
 
 def set_debug_mode():
