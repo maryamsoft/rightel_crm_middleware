@@ -15,7 +15,6 @@
             <ars:AcctAccessCode>
                <arc:PrimaryIdentity>{{MSISDN}}</arc:PrimaryIdentity>
             </ars:AcctAccessCode>
-            <ars:NumberOfBillCycle>1</ars:NumberOfBillCycle>
          </QueryInvoiceRequest>
       </ars:QueryInvoiceRequestMsg>
    </soapenv:Body>
