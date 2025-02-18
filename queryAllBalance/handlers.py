@@ -77,8 +77,8 @@ def generate_response(cbs_response):
                 
         for free_unit_item in free_unit_items:
             balance_type = free_unit_item.find('.//bcs:FreeUnitType', namespaces)
-            en_balance_type = balance_type.text.strip().split("|")[0]
             balance_name = free_unit_item.find('.//bcs:FreeUnitTypeName', namespaces)
+            en_balance_type = balance_name.text.strip().split("|")[0]
             freeunit_Details = free_unit_item.findall('.//bcs:FreeUnitItemDetail', namespaces)
             comments = free_unit_item.find('.//bcs:FreeUnitTypeName', namespaces)
             measure_unit = free_unit_item.find('.//bcs:MeasureUnit', namespaces)
@@ -94,8 +94,8 @@ def generate_response(cbs_response):
                 exp_date = detail.find('.//bcs:ExpireTime', namespaces)
                 init_bal = detail.find('.//bcs:InitialAmount', namespaces)
                 response['AllBalanceDtoList']['AllBalanceDto'].append({
-                    "BalanceType": en_balance_type,
-                    "BalanceName": balance_name.text.strip(),
+                    "BalanceType": balance_type.strip.text(),
+                    "BalanceName":  en_balance_type,
                     "BalanceValue": balance_value.text.strip(),
                     "Comments": comments.text.strip(),
                     "UnitType": unit_type,
