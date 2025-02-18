@@ -94,7 +94,7 @@ def generate_response(cbs_response):
                 exp_date = detail.find('.//bcs:ExpireTime', namespaces)
                 init_bal = detail.find('.//bcs:InitialAmount', namespaces)
                 response['AllBalanceDtoList']['AllBalanceDto'].append({
-                    "BalanceType": balance_type.strip.text(),
+                    "BalanceType": balance_type.text.strip(),
                     "BalanceName":  en_balance_type,
                     "BalanceValue": balance_value.text.strip(),
                     "Comments": comments.text.strip(),
