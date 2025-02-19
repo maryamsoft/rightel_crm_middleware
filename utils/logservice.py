@@ -9,7 +9,7 @@ filename= f"/var/log/cm/cm.log"
 
 # logger.remove()
 #logger.add(filename,rotation="00:00",format="{time:YYYY-MM-DD at HH:mm:ss} | {level} | {message}",enqueue=True)
-logger.add(filename,rotation=None,format="{time:YYYY-MM-DD at HH:mm:ss} | {level} | {message}",enqueue=True)
+logger.add(filename,rotation=None,format="{time:YYYY-MM-DD at HH:mm:ss} | {level} | {message}",enqueue=True,watch=True)
 
 
 def set_debug_mode():
