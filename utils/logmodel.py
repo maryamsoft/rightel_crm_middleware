@@ -25,7 +25,7 @@ class mainLog:
 
 class CMLog:
     def __init__(self,ResponseBody,method, CM_difference):
-        self.ResponseTime =  datetime.now().strftime("%Y-%m-%dT%H:%M:%S:%f")
+        self.ResponseTime = convert_uts_to_asia_tehran().strftime("%Y-%m-%dT%H:%M:%S:%f")
         self.method =  method.__str__()
         self.ResponseBody =  ResponseBody.__str__()
         self.CM_difference =  CM_difference.__str__()
