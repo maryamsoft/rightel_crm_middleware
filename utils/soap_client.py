@@ -25,7 +25,7 @@ class SOAPClient:
             logger.debug(logmodel(ServiceUrl=self.wsdl_url,
                                    RequestHeader=headers,
                                    RequestBody=xml_data,
-                                   ResponsetHeader=response.headers,
+                                   ResponseHeader=response.headers,
                                    ResponseBody=response.content,
                                    TimeSpan=difference.microseconds).JsonString())
             return response.content
@@ -33,7 +33,7 @@ class SOAPClient:
             logger.debug(logmodel(RemoteIP=self.wsdl_url,
                                    RequestHeader=headers,
                                    RequestBody=xml_data,
-                                   ResponsetHeader="status code is:"+response.status_code,
+                                   ResponseHeader="status code is:"+response.status_code,
                                    ResponseBody="Bad content",
                                    TimeSpan=difference.microseconds).JsonString())
             raise HTTPException(status_code=response.status_code, detail="Bad content")

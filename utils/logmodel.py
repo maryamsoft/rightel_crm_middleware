@@ -2,11 +2,11 @@ import json
 from utils.custom_handler import convert_uts_to_asia_tehran
 from datetime import datetime
 class logmodel:
-    def __init__(self, ServiceUrl, RequestHeader,RequestBody,ResponsetHeader,ResponseBody,TimeSpan):
+    def __init__(self, ServiceUrl, RequestHeader,RequestBody,ResponseHeader,ResponseBody,TimeSpan):
         self.ServiceUrl = ServiceUrl.__str__()
         self.RequestHeader = RequestHeader.__str__()
         self.RequestBody = RequestBody.__str__()
-        self.ResponsetHeader = ResponsetHeader.__str__()
+        self.ResponseHeader = ResponseHeader.__str__()
         self.ResponseBody = ResponseBody.__str__()
         self.TimeSpan = TimeSpan/1000
     def JsonString(self):
