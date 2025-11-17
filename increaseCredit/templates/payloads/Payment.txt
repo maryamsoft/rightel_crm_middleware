@@ -22,7 +22,7 @@
             </ars:PaymentObj>
             <ars:PaymentInfo>
                <ars:CashPayment>
-                  <ars:PaymentMethod>22</ars:PaymentMethod>
+                  <ars:PaymentMethod>{{PaymentMethod}}</ars:PaymentMethod>
                   <ars:Amount>{{increaseValue}}</ars:Amount>
                   <ars:BankInfo>
                      <arc:BankCode>{{bankId}}</arc:BankCode>

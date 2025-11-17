@@ -25,7 +25,7 @@
          </ars:PaymentObj>
          <ars:PaymentInfo>
             <ars:CashPayment>
-               {% if paymentMethod is not none %}<ars:PaymentMethod>{{paymentMethod}}</ars:PaymentMethod>{% endif %}
+               {% if PaymentMethod is not none %}<ars:PaymentMethod>{{PaymentMethod}}</ars:PaymentMethod>{% endif %}
                <ars:Amount>{{amount}}</ars:Amount>
                {% if bankId is not none %}<ars:BankInfo>
                <arc:BankCode>{{bankId}}</arc:BankCode>
