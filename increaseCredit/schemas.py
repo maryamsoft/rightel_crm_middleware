@@ -5,5 +5,6 @@ from utils.schemas import CommonHeaders
 class IncreaseCreditRequest(CommonHeaders):
     msisdn: str
     increaseValue: str
+    paymentMethod: int
     bankId: int
     au: str
