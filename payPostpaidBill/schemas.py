@@ -12,3 +12,4 @@ class PayPostpaidBillRequest(CommonHeaders):
     paymentId: Optional[str]
     invoiceId: Optional[str]
     CallerId: Optional[str]
+    CN_ChannelId: Optional[str]
